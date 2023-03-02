@@ -7,7 +7,10 @@
           <span class="font-weight-bold" style="font-size: 21px"
             >Login to Dashboard</span
           >
-          <v-card-subtitle>Title Here</v-card-subtitle>
+          <v-card-subtitle
+            >Online Employee Health Record Management System for BFP Regional
+            Office 1</v-card-subtitle
+          >
           <v-card-text class="mt-5">
             <v-container>
               <v-form ref="form" v-model="valid" lazy-validation>

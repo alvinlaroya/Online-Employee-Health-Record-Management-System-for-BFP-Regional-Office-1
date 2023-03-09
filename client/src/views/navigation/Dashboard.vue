@@ -4,19 +4,27 @@
       <v-col cols="12">
         <h1>Dashboard</h1>
       </v-col>
+      
     </v-row>
+    
+    <CardItems/>
   </v-container>
-</template>
+</template> 
 
 <script>
+import CardItems from "@/components/navigation/dashboard/cards/CardItems";
 import { createNamespacedHelpers } from "vuex";
 const { mapGetters: mapGettersAuth } = createNamespacedHelpers("auth");
 const { mapGetters: mapGettersNavigation, mapActions: mapActionsNavigation } =
   createNamespacedHelpers("navigation");
 
 export default {
+  components:{
+    CardItems
+  },
   data: () => ({
     name: "",
+    
   }),
 
   computed: {
@@ -29,6 +37,7 @@ export default {
       "relatedCase",
       "hasRelatedCase",
     ]),
+
   },
 };
 </script>

@@ -10,11 +10,12 @@ import Register from "@/views/auth/Register.vue";
 import Dashboard from "@/views/navigation/Dashboard.vue";
 import Personnel from "@/views/navigation/Personnel";
 import History from "@/views/navigation/History";
+// Pages > Cases
+import Case from "@/views/navigation/Cases/Case";
 
 // Components
 import Navbar from "../components/navigation/Navbar.vue";
 import Sidebar from "../components/navigation/Sidebar.vue";
-
 
 Vue.use(VueRouter);
 
@@ -123,7 +124,15 @@ const routes = [
         });
     },
   },
-
+  {
+    path: '/case/:title',
+    name: 'navigation/case',
+    components: {
+      default: Case,
+      navbar: Navbar,
+      sidebar: Sidebar,
+    }
+  },
 ];
 
 const router = new VueRouter({

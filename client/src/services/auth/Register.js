@@ -2,7 +2,8 @@
 import axios from "axios";
 import store from "../../store";
 
-const apiUrl = "http://127.0.0.1:8000/api";
+/* const apiUrl = "http://127.0.0.1:8000/api"; */
+const apiUrl = "http://192.168.1.143:8000/api";
 
 export default {
   async getAddressesEvent() {

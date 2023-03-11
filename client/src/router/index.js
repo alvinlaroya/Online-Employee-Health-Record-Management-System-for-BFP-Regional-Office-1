@@ -8,6 +8,8 @@ import Login from "@/views/auth/Login.vue";
 import Register from "@/views/auth/Register.vue";
 // Pages > Navigation
 import Dashboard from "@/views/navigation/Dashboard.vue";
+import Personnel from "@/views/navigation/Personnel";
+import History from "@/views/navigation/History";
 
 // Components
 import Navbar from "../components/navigation/Navbar.vue";
@@ -70,7 +72,58 @@ const routes = [
           next({ name: "auth.login" });
         });
     },
-  }
+  },
+
+  {
+    path: "/personnel",
+    name: "navigation.personnel",
+    components: {
+      default: Personnel,
+      navbar: Navbar,
+      sidebar: Sidebar,
+    },
+    beforeEnter(to, from, next) {
+      Auth.isAuthenticated()
+        .then((response) => {
+          if (response) {
+            next(); // If authenticated, proceed with the redirect
+          } else {
+            next({ name: "auth.login" });
+          }
+          /* console.log(response.data) */
+          next();
+        })
+        .catch(() => {
+          next({ name: "auth.login" });
+        });
+    },
+  },
+
+  {
+    path: "/history",
+    name: "navigation.history",
+    components: {
+      default: History,
+      navbar: Navbar,
+      sidebar: Sidebar,
+    },
+    beforeEnter(to, from, next) {
+      Auth.isAuthenticated()
+        .then((response) => {
+          if (response) {
+            next(); // If authenticated, proceed with the redirect
+          } else {
+            next({ name: "auth.login" });
+          }
+          /* console.log(response.data) */
+          next();
+        })
+        .catch(() => {
+          next({ name: "auth.login" });
+        });
+    },
+  },
+
 ];
 
 const router = new VueRouter({

@@ -48,8 +48,6 @@
         </v-card>
       </v-col>
     </v-row>
-  
-    
   </div>
 </template>
 
@@ -57,8 +55,8 @@
 export default {
   data: () => ({
     search: "",
-    selectedItem: "all",
-    items: ["All"],
+    selectedItem: null,
+    items: [],
     cardItem: [
       {
         title: "Underweight",
@@ -164,15 +162,28 @@ export default {
   }),
   computed: {
     filteredItems() {
-      if (this.search === "") {
+      if (this.search === "" && this.selectedItem === null) {
         return this.cardItem;
       } else {
+        let filteredItems = this.cardItem;
         const search = this.search.toLowerCase();
-        return this.cardItem.filter((item) =>
-          item.title.toLowerCase().includes(search)
-        );
+        if (search !== "") {
+          filteredItems = filteredItems.filter((item) =>
+            item.title.toLowerCase().includes(search)
+          );
+        }
+        if (this.selectedItem !== null && this.selectedItem !== "All") {
+          filteredItems = filteredItems.filter(
+            (item) => item.title === this.selectedItem
+          );
+        }
+        return filteredItems;
       }
     },
+  },
+
+  created() {
+    this.items = ["All"].concat(this.cardItem.map((item) => item.title));
   },
 };
 </script>

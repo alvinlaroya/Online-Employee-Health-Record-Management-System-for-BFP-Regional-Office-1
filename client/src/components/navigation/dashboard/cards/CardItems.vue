@@ -40,6 +40,7 @@
           max-width="305"
           class="d-flex flex-column align-center justify-center"
           rounded
+          @click="open(item)"
         >
           <v-card-subtitle class="pb-0"> {{ item.title }} </v-card-subtitle>
           <v-card-title class="green--text text-h4">
@@ -184,6 +185,18 @@ export default {
 
   created() {
     this.items = ["All"].concat(this.cardItem.map((item) => item.title));
+  },
+  methods: {
+    open(item) {
+      // this.$router.push("/case/" + title.toLowerCase());
+      this.$router.push({
+        name: "navigation/case",
+        params:{
+          title: item.title.toLowerCase(),
+          total: item.total
+        }
+      });
+    },
   },
 };
 </script>

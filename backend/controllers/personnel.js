@@ -20,9 +20,7 @@ const getAllPersonnels = async (req, res) => {
     let personnels = await Personnel.findAndCountAll({
         order: [["createdAt", "DESC"]],
     });
-
-    res.header("Access-Control-Allow-Origin", "*");
-    res.json({
+    res.status(200).json({
         message: "success",
         personnels: personnels,
     });

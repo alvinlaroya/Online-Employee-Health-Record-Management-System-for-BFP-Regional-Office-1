@@ -16,16 +16,10 @@ app.use(express.urlencoded({ extended: true }));
 
 // routers
 const userRoutes = require("./routes/user.js");
-const clearanceRoutes = require("./routes/clearance.js");
-const caseRoutes = require("./routes/case.js");
-const applicantRoutes = require("./routes/applicant.js");
-const chiefOfPoliceRoutes = require("./routes/chiefOfPolice.js");
+const personnelRoutes = require("./routes/personnel.js");
 
 app.use("/api/user", userRoutes);
-app.use("/api/clearance", clearanceRoutes);
-app.use("/api/case", caseRoutes);
-app.use("/api/applicant", applicantRoutes);
-app.use("/api/chiefOfPolice", chiefOfPoliceRoutes);
+app.use("/api/personnel", personnelRoutes);
 
 // static images folder
 app.use("/images", express.static("./images"));

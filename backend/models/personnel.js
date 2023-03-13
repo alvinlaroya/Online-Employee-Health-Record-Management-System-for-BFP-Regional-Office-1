@@ -1,5 +1,9 @@
 module.exports = (sequelize, DataTypes) => {
     const ChiefOfPolice = sequelize.define("personnels", {
+        accountNo: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
         rank: {
             type: DataTypes.STRING,
             allowNull: true,

@@ -95,7 +95,6 @@
               </v-row>
               <!-- row5 -->
               <v-row>
-                
                 <v-col cols="12" md="4">
                   <v-select
                     label="Civil Status"
@@ -129,7 +128,8 @@
                         v-model="date"
                         label="Date of Birth"
                         prepend-icon="mdi-calendar"
-                        readonly dense
+                        readonly
+                        dense
                         v-bind="attrs"
                         v-on="on"
                       ></v-text-field>
@@ -151,14 +151,14 @@
                 </v-col>
               </v-row>
               <v-row>
-                <v-col cols="12" md="4"> 
+                <v-col cols="12" md="4">
                   <v-text-field
                     label="Philhealth"
                     v-model="philhealth"
                     dense
                   ></v-text-field>
                 </v-col>
-                <v-col cols="12" md="4"> 
+                <v-col cols="12" md="4">
                   <v-text-field
                     label="Remarks"
                     v-model="remarks"
@@ -204,10 +204,10 @@ export default {
     mobile: "0909090909",
     civilStatus: "Single",
     gender: "Male",
-    philhealth: '',
-    remarks: '',
-    dateOfBirth: '',
-    address: ''
+    philhealth: "",
+    remarks: "",
+    dateOfBirth: "",
+    address: "",
   }),
   computed: {
     ...mapGetters(["personnels"]),
@@ -230,6 +230,7 @@ export default {
         remarks: this.remarks,
         philhealth: this.philhealth,
         address: this.address,
+        dateOfBirth: this.date,
       };
       this.addPersonnels(personnel);
     },

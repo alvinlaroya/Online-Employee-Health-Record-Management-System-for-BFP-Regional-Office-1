@@ -18,4 +18,18 @@ export default {
             }
         );
     },
+
+    async addPersonnels(payload) {
+        return await axios.post(
+            `${apiUrl}/addPersonnel`, payload,
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Credentials": "*",
+                    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+                },
+            }
+        );
+    },
 };

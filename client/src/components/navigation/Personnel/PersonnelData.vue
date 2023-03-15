@@ -1,16 +1,18 @@
 <template>
-  <div>
-    <v-data-table
+    <v-data-table 
       dense
       :headers="headers"
       :items="personnels"
       :items-per-page="5"
-      class="elevation-1 no-wrap"
+      
+      class="elevation-1 no-wrap w-100"
     >
       <template v-slot:item.action="{ item }">
         <v-menu offset-y>
           <template v-slot:activator="{ on }">
+            <v-icon small class="mr-5 cursor-pointer" >mdi-eye</v-icon>
             <v-icon small v-on="on">mdi-dots-vertical</v-icon>
+            
           </template>
           <v-list dense>
             <v-list-item
@@ -26,7 +28,6 @@
         </v-menu>
       </template>
     </v-data-table>
-  </div>
 </template>
 <script>
 import { createNamespacedHelpers } from "vuex";
@@ -42,10 +43,11 @@ export default {
       { text: "Middle Name", value: "mname" },
 
       { text: "Ext Name", value: "extName" },
-      { text: "Unit Assignment", value: "unitAssignment" },
+      { text: "Unit Assignment", value: "unit" },
       { text: "Designation", value: "designation" },
       { text: "Mobile", value: "mobile" },
       { text: "Civil Status", value: "civilStatus" },
+      
       { text: "Action", value: "action" },
     ],
     options: [
@@ -77,5 +79,11 @@ export default {
 .no-wrap th,
 td {
   white-space: nowrap;
+}
+.cursor-pointer{
+  cursor: pointer;
+}
+.w-100{
+  width: 100%;
 }
 </style>

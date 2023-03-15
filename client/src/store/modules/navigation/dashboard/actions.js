@@ -15,6 +15,15 @@ export const getPersonnels = ({ commit }, payload) => {
         });
 };
 
-export const addPersonnel = ({ commit }, payload) => {
+export const addPersonnels = ({ commit }, payload) => {
+    console.log("PAYLOAD FROM VUEX ACTION: ", payload)
 
+    EventService.addPersonnels(payload)
+        .then((response) => {
+            console.log(response.data.personnels)
+            commit("ADD_PERSONNELS", payload)
+        })
+        .catch((error) => {
+            console.log(error);
+        });
 }

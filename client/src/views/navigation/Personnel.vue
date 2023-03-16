@@ -6,12 +6,26 @@
       </v-col>
     </v-row>
     <v-col>
-      <v-row justify="end" class="pa-2">
+      <v-row justify="space-between" align-items="center" class="pa-2">
+        <v-col cols="4">
+          <v-text-field
+            dense
+            class="w-300"
+            v-model="search"
+            append-icon="mdi-magnify"
+            label="Search"
+            single-line
+            hide-details
+          ></v-text-field>
+        </v-col>
+
+       <v-col  cols="2">
         <AddPersonnelData />
+       </v-col>
       </v-row>
 
-      <v-row >
-        <PersonnelData />
+      <v-row>
+        <PersonnelData :search="search"/>
       </v-row>
     </v-col>
   </v-container>
@@ -26,6 +40,9 @@ export default {
     PersonnelData,
     AddPersonnelData,
   },
+  data:()=>({
+    search: '',
+  })
 };
 </script>
 

@@ -2,35 +2,40 @@
   <div>
     <v-dialog v-model="dialog" max-width="600px">
       <template v-slot:activator="{ on }">
-        <v-icon color="success" size="x-large" v-on="on">mdi-plus</v-icon>
+        <v-btn v-on="on" tile>
+          <v-icon left> mdi-plus </v-icon>
+          Add Personnel
+        </v-btn>
       </template>
       <v-card>
         <v-card-title>
           <span class="headline">New Personnel</span>
         </v-card-title>
-        <v-card-text>
-          <v-form v-model="valid">
+        <v-form @submit.prevent="submitPersonnel" v-model="valid" ref="form">
+          <v-card-text>
             <v-container fluid>
               <!-- row1 -->
               <v-row>
                 <v-col cols="12" md="4">
                   <v-text-field
                     label="Account Number"
-                    v-model="accountNo"
+                    v-model="personnels.accountNo"
                     dense
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" md="4">
-                  <v-text-field
+                  <v-select
                     label="Rank"
-                    v-model="rank"
+                    v-model="personnels.rank"
+                    :items="['SF01', 'SF02', 'SF03']"
                     dense
-                  ></v-text-field>
+                    outlined
+                  ></v-select>
                 </v-col>
                 <v-col>
                   <v-text-field
                     label="Ext Name"
-                    v-model="extName"
+                    v-model="personnels.extName"
                     dense
                   ></v-text-field>
                 </v-col>
@@ -40,21 +45,21 @@
                 <v-col class="" cols="12" md="4">
                   <v-text-field
                     label="Last Name"
-                    v-model="lname"
+                    v-model="personnels.lname"
                     dense
                   ></v-text-field>
                 </v-col>
                 <v-col class="" cols="12" md="4">
                   <v-text-field
                     label="First Name"
-                    v-model="fname"
+                    v-model="personnels.fname"
                     dense
                   ></v-text-field>
                 </v-col>
                 <v-col class="" cols="12" md="4">
                   <v-text-field
                     label="Middle Name"
-                    v-model="mname"
+                    v-model="personnels.mname"
                     dense
                   ></v-text-field>
                 </v-col>
@@ -64,14 +69,14 @@
                 <v-col cols="12" md="5">
                   <v-text-field
                     label="Mobile"
-                    v-model="mobile"
+                    v-model="personnels.mobile"
                     dense
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" md="7">
                   <v-text-field
                     label="Unit Assignment"
-                    v-model="unit"
+                    v-model="personnels.unit"
                     dense
                   ></v-text-field>
                 </v-col>
@@ -81,14 +86,14 @@
                 <v-col cols="12" md="6">
                   <v-text-field
                     label="Designation"
-                    v-model="designation"
+                    v-model="personnels.designation"
                     dense
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" md="6">
                   <v-text-field
                     label="Address"
-                    v-model="address"
+                    v-model="personnels.address"
                     dense
                   ></v-text-field>
                 </v-col>
@@ -98,7 +103,7 @@
                 <v-col cols="12" md="4">
                   <v-select
                     label="Civil Status"
-                    v-model="civilStatus"
+                    v-model="personnels.civilStatus"
                     :items="['Single', 'Married']"
                     dense
                     outlined
@@ -107,7 +112,7 @@
                 <v-col cols="12" md="4">
                   <v-select
                     label="Gender"
-                    v-model="gender"
+                    v-model="personnels.gender"
                     :items="['Male', 'Female']"
                     dense
                     outlined
@@ -125,7 +130,7 @@
                   >
                     <template v-slot:activator="{ on, attrs }">
                       <v-text-field
-                        v-model="date"
+                        v-model="personnels.dateOfBirth"
                         label="Date of Birth"
                         prepend-icon="mdi-calendar"
                         readonly
@@ -154,85 +159,83 @@
                 <v-col cols="12" md="4">
                   <v-text-field
                     label="Philhealth"
-                    v-model="philhealth"
+                    v-model="personnels.philhealth"
                     dense
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" md="4">
                   <v-text-field
                     label="Remarks"
-                    v-model="remarks"
+                    v-model="personnels.remarks"
                     dense
                   ></v-text-field>
                 </v-col>
               </v-row>
             </v-container>
-          </v-form>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="primary" @click="submitPersonnel">ADD</v-btn>
-          <v-btn color="secondary">Cancel</v-btn>
-        </v-card-actions>
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="primary" type="submit">ADD</v-btn>
+            <v-btn color="secondary" @click="cancel">Cancel</v-btn>
+          </v-card-actions>
+        </v-form>
       </v-card>
     </v-dialog>
-    <!-- Data table for displaying personnel goes here -->
+    <v-snackbar v-model="snackbar" :timeout="3000" color="success">
+      Personnel added successfully!
+    </v-snackbar>
   </div>
 </template>
 <script>
 import { createNamespacedHelpers } from "vuex";
-const { mapActions, mapGetters } = createNamespacedHelpers("navigation");
+const { mapActions } = createNamespacedHelpers("navigation");
 
 export default {
   data: () => ({
     dialog: false,
     valid: true,
+
     date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
       .toISOString()
       .substr(0, 10),
     menu: false,
     modal: false,
+    snackbar: false,
 
-    accountNo: "100",
-    rank: "SF220",
-    lname: "MER",
-    fname: "Rea",
-    mname: "ligue",
-    extName: "",
-    unit: "BFP-FPSS",
-    designation: "DESISISISIS",
-    mobile: "0909090909",
-    civilStatus: "Single",
-    gender: "Male",
-    philhealth: "",
-    remarks: "",
-    dateOfBirth: "",
-    address: "",
+    personnels: {
+      accountNo: "100",
+      rank: "SF220",
+      lname: "MER",
+      fname: "Rea",
+      mname: "ligue",
+      extName: "",
+      unit: "BFP-FPSS",
+      designation: "DESISISISIS",
+      mobile: "0909090909",
+      civilStatus: "Single",
+      gender: "Male",
+      philhealth: "",
+      remarks: "",
+      dateOfBirth: "01",
+      address: "",
+    },
   }),
-  computed: {
-    ...mapGetters(["personnels"]),
-  },
+
   methods: {
     ...mapActions(["addPersonnels"]),
-    submitPersonnel() {
-      const personnel = {
-        accountNo: this.accountNo,
-        rank: this.rank,
-        lname: this.lname,
-        fname: this.fname,
-        mname: this.mname,
-        extName: this.extName,
-        unit: this.unit,
-        designation: this.designation,
-        mobile: this.mobile,
-        civilStatus: this.civilStatus,
-        gender: this.gender,
-        remarks: this.remarks,
-        philhealth: this.philhealth,
-        address: this.address,
-        dateOfBirth: this.date,
-      };
-      this.addPersonnels(personnel);
+    async submitPersonnel() {
+      try {
+        await this.addPersonnels(this.personnels);
+        this.$refs.form.reset();
+        this.snackbar = true;
+        this.dialog = false;
+      } catch (error) {
+        console.error(error);
+        
+      }
+    },
+    cancel() {
+      this.dialog = !this.dialog;
     },
   },
 };

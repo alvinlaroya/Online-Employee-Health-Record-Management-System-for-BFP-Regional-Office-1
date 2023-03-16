@@ -20,7 +20,7 @@ export const addPersonnels = ({ commit }, payload) => {
 
     EventService.addPersonnels(payload)
         .then((response) => {
-            console.log(response.data.personnels)
+            console.log(response.data.personnel)
             commit("ADD_PERSONNELS", payload)
         })
         .catch((error) => {

@@ -1,18 +1,18 @@
 <template>
-    <v-data-table 
+  <div class="w-100">
+    <v-data-table
       dense
       :headers="headers"
       :items="personnels"
       :items-per-page="5"
-      
-      class="elevation-1 no-wrap w-100"
+      :search="search"
+      class="elevation-1 no-wrap"
     >
       <template v-slot:item.action="{ item }">
         <v-menu offset-y>
           <template v-slot:activator="{ on }">
-            <v-icon small class="mr-5 cursor-pointer" >mdi-eye</v-icon>
+            <v-icon small class="mr-5 cursor-pointer">mdi-eye</v-icon>
             <v-icon small v-on="on">mdi-dots-vertical</v-icon>
-            
           </template>
           <v-list dense>
             <v-list-item
@@ -28,6 +28,7 @@
         </v-menu>
       </template>
     </v-data-table>
+  </div>
 </template>
 <script>
 import { createNamespacedHelpers } from "vuex";
@@ -36,7 +37,12 @@ const { mapActions, mapGetters } = createNamespacedHelpers("navigation");
 export default {
   data: () => ({
     headers: [
-      { text: "Account #", value: "accountNo" },
+      {
+        text: "Account #",
+        value: "accountNo",
+        align: "start",
+        sortable: false,
+      },
       { text: "Rank", value: "rank" },
       { text: "Last Name", value: "lname" },
       { text: "First Name", value: "fname" },
@@ -47,7 +53,7 @@ export default {
       { text: "Designation", value: "designation" },
       { text: "Mobile", value: "mobile" },
       { text: "Civil Status", value: "civilStatus" },
-      
+
       { text: "Action", value: "action" },
     ],
     options: [
@@ -72,6 +78,7 @@ export default {
       name: "Alvin",
     });
   },
+  props: ["search"],
 };
 </script>
 
@@ -80,10 +87,13 @@ export default {
 td {
   white-space: nowrap;
 }
-.cursor-pointer{
+.cursor-pointer {
   cursor: pointer;
 }
-.w-100{
+.w-100 {
   width: 100%;
+}
+.w-40 {
+  width: 200px;
 }
 </style>

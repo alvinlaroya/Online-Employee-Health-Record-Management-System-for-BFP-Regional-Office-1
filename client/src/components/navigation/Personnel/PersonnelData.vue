@@ -4,7 +4,7 @@
       dense
       :headers="headers"
       :items="personnels"
-      :items-per-page="5"
+      :items-per-page="20"
       :search="search"
       class="elevation-1 no-wrap"
     >

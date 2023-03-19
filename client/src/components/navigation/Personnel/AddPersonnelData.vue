@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-dialog v-model="dialog" max-width="600px">
+    <v-dialog v-model="dialog" max-width="800">
       <template v-slot:activator="{ on }">
         <v-btn v-on="on" tile>
           <v-icon left> mdi-plus </v-icon>
@@ -29,7 +29,6 @@
                     v-model="personnels.rank"
                     :items="['SF01', 'SF02', 'SF03']"
                     dense
-                    outlined
                   ></v-select>
                 </v-col>
                 <v-col>
@@ -106,7 +105,6 @@
                     v-model="personnels.civilStatus"
                     :items="['Single', 'Married']"
                     dense
-                    outlined
                   ></v-select>
                 </v-col>
                 <v-col cols="12" md="4">
@@ -115,7 +113,6 @@
                     v-model="personnels.gender"
                     :items="['Male', 'Female']"
                     dense
-                    outlined
                   ></v-select>
                 </v-col>
                 <v-col cols="12" md="4">
@@ -203,20 +200,20 @@ export default {
     snackbar: false,
 
     personnels: {
-      accountNo: "100",
-      rank: "SF220",
-      lname: "MER",
-      fname: "Rea",
-      mname: "ligue",
+      accountNo: "",
+      rank: "",
+      lname: "",
+      fname: "",
+      mname: "",
       extName: "",
-      unit: "BFP-FPSS",
-      designation: "DESISISISIS",
-      mobile: "0909090909",
-      civilStatus: "Single",
+      unit: "",
+      designation: "",
+      mobile: "",
+      civilStatus: "",
       gender: "Male",
       philhealth: "",
       remarks: "",
-      dateOfBirth: "01",
+      dateOfBirth: "",
       address: "",
     },
   }),
@@ -226,13 +223,19 @@ export default {
     async submitPersonnel() {
       try {
         await this.addPersonnels(this.personnels);
-        this.$refs.form.reset();
         this.snackbar = true;
         this.dialog = false;
+        this.personnels = {};
       } catch (error) {
         console.error(error);
-        
       }
+    },
+    watch: {
+      dialog() {
+        if (!this.dialog) {
+          this.$refs.form.reset();
+        }
+      },
     },
     cancel() {
       this.dialog = !this.dialog;

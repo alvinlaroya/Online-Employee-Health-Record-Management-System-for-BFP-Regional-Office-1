@@ -11,7 +11,9 @@
       <template v-slot:item.action="{ item }">
         <v-menu offset-y>
           <template v-slot:activator="{ on }">
-            <v-icon small class="mr-5 cursor-pointer">mdi-eye</v-icon>
+            <v-icon small class="mr-5 cursor-pointer" @click="openDialog(item)"
+              >mdi-file-eye-outline</v-icon
+            >
             <v-icon small v-on="on">mdi-dots-vertical</v-icon>
           </template>
           <v-list dense>
@@ -28,14 +30,28 @@
         </v-menu>
       </template>
     </v-data-table>
+    <v-row justify="center">
+      <v-dialog v-model="dialog" width="600" transition="dialog-bottom-transition">
+        
+        <ViewDetails :data="selectedItem" :dialogVisible="dialog"/>
+        <v-btn small @click="close"> Close</v-btn>
+      </v-dialog>
+    </v-row>
   </div>
 </template>
 <script>
+import ViewDetails from '@/components/navigation/Personnel/ViewDetails';
 import { createNamespacedHelpers } from "vuex";
+
 const { mapActions, mapGetters } = createNamespacedHelpers("navigation");
 
 export default {
+  components:{
+    ViewDetails
+  },
   data: () => ({
+    dialog: false,
+   selectedItem : {},
     headers: [
       {
         text: "Account #",
@@ -69,6 +85,14 @@ export default {
     open(item, option) {
       console.log("etits");
     },
+    openDialog(item) {
+      this.selectedItem = item;
+      console.log("opendialog");
+      this.dialog = true;
+    },
+    close(){
+      this. dialog = false
+    }
   },
   computed: {
     ...mapGetters(["personnels"]),

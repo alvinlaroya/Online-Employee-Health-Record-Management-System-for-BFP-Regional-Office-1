@@ -3,7 +3,7 @@ export default {
         state.personnels = data
     },
     ADD_PERSONNELS(state, payload) {
-        state.personnels.push(payload)
+        state.personnels.unshift(payload)
     }
 
 }

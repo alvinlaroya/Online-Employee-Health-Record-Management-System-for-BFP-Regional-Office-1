@@ -29,6 +29,7 @@
                     v-model="personnels.rank"
                     :items="['SF01', 'SF02', 'SF03']"
                     dense
+                    outlined
                   ></v-select>
                 </v-col>
                 <v-col>
@@ -223,6 +224,7 @@ export default {
     async submitPersonnel() {
       try {
         await this.addPersonnels(this.personnels);
+        this.$refs.form.reset();
         this.snackbar = true;
         this.dialog = false;
         this.personnels = {};

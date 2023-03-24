@@ -1,8 +1,6 @@
 <template>
-  
-  <v-card>
-    <v-toolbar dark>Personnel Data</v-toolbar>
-    <v-container class="pa-5">
+  <v-card elevation="0">
+    <v-container class="pa-8">
       <v-row>
         <span>
           Account Number : <strong>{{ data.accountNo }}</strong>
@@ -73,22 +71,19 @@
         >
       </v-row>
     </v-container>
-
   </v-card>
 </template>
 
 <script>
 export default {
-  props: ["data" ],
-  
+  props: ["data"],
+
   computed: {
     birthDate() {
       return this.data.dateOfBirth.substr(0, 10);
     },
   },
-
 };
 </script>
 
-<style>
-</style>
+<style></style>

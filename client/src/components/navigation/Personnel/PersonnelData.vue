@@ -18,9 +18,9 @@
           </template>
           <v-list dense>
             <v-list-item
-              v-for="option in options"
+              v-for="(option, i) in options"
               :key="option.title"
-              @click="open(item, option)"
+              @click="open(item, option, i)"
             >
               <v-list-item-title>
                 {{ option.title }}
@@ -31,27 +31,75 @@
       </template>
     </v-data-table>
     <v-row justify="center">
-      <v-dialog v-model="dialog" width="600" transition="dialog-bottom-transition">
-        
-        <ViewDetails :data="selectedItem" :dialogVisible="dialog"/>
-        <v-btn small @click="close"> Close</v-btn>
+      <v-dialog
+        v-model="dialog"
+        width="70vw"
+        transition="dialog-bottom-transition"
+      >
+        <v-card style="min-height: 80vh">
+          <v-toolbar dense>
+            <v-tabs v-model="tab">
+              <v-tab
+                v-for="(item, i) in Object.keys(component)"
+                :key="i"
+                @click="[(tab = i), (currentTab = item)]"
+                >{{ item.replaceAll("-", " ") }}</v-tab
+              >
+            </v-tabs>
+            <v-spacer></v-spacer>
+            <v-btn icon @click="close">
+              <v-icon>mdi-close</v-icon>
+            </v-btn>
+          </v-toolbar>
+          <keep-alive>
+            <component
+              :is="component[currentTab]"
+              :data="selectedItem"
+              :dialogVisible="dialog"
+            />
+          </keep-alive>
+        </v-card>
       </v-dialog>
     </v-row>
   </div>
 </template>
 <script>
-import ViewDetails from '@/components/navigation/Personnel/ViewDetails';
 import { createNamespacedHelpers } from "vuex";
-
 const { mapActions, mapGetters } = createNamespacedHelpers("navigation");
 
+// components
+import ViewDetails from "@/components/navigation/Personnel/ViewDetails";
+import MedicalProfile from "@/components/navigation/Personnel/MedicalProfile";
+import DentalRecord from "@/components/navigation/Personnel/DentalRecord";
+import PhysicalExam from "@/components/navigation/Personnel/PhysicalExam";
+import PtNotes from "@/components/navigation/Personnel/PtNotes";
+import NeuroPsych from "@/components/navigation/Personnel/NeuroPsych";
+
 export default {
-  components:{
-    ViewDetails
+  components: {
+    ViewDetails,
   },
   data: () => ({
+    component: {
+      "view-detail": ViewDetails,
+      "medical-profile": MedicalProfile,
+      "dental-record": DentalRecord,
+      "physical-exam": PhysicalExam,
+      "pt-notes": PtNotes,
+      "neuro-psych": NeuroPsych,
+    },
+    tab: 0,
+    /* tabs: [
+      "view-detail",
+      "medical-profile",
+      "dental-record",
+      "physical-exam",
+      "pt-notes",
+      "neuro-psych",
+    ], */
+    currentTab: "view-detail",
     dialog: false,
-   selectedItem : {},
+    selectedItem: {},
     headers: [
       {
         text: "Account #",
@@ -82,17 +130,23 @@ export default {
   }),
   methods: {
     ...mapActions(["getPersonnels"]),
-    open(item, option) {
-      console.log("etits");
+    open(item, option, i) {
+      this.tab = i + 1;
+      this.dialog = true;
+      this.selectedItem = item;
+      const titleLowerCase = option.title.toLowerCase();
+      const kebebCase = titleLowerCase.replaceAll(" ", "-"); // setting default tab in dialog
+      this.currentTab = kebebCase;
     },
     openDialog(item) {
+      this.tab = 0;
+      this.currentTab = "view-detail";
       this.selectedItem = item;
-      console.log("opendialog");
       this.dialog = true;
     },
-    close(){
-      this. dialog = false
-    }
+    close() {
+      this.dialog = false;
+    },
   },
   computed: {
     ...mapGetters(["personnels"]),

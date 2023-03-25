@@ -23,6 +23,7 @@
                       required
                       outlined
                       prepend-inner-icon="mdi-account"
+                      @keypress="isLetter($event)"
                     ></v-text-field>
                   </v-col>
                   <v-col md="4">
@@ -33,6 +34,7 @@
                       required
                       outlined
                       prepend-inner-icon="mdi-account"
+                      @keypress="isLetter($event)"
                     ></v-text-field>
                   </v-col>
                   <v-col md="4">
@@ -43,6 +45,7 @@
                       required
                       outlined
                       prepend-inner-icon="mdi-account"
+                      @keypress="isLetter($event)"
                     ></v-text-field>
                   </v-col>
                 </v-row>
@@ -50,8 +53,8 @@
                   <v-col md="6">
                     <v-text-field
                       v-model="user.email"
-                      :rules="emailRules"
-                      label="Email"
+                      :rules="usernameRules"
+                      label="Username"
                       required
                       outlined
                       prepend-inner-icon="mdi-account"
@@ -102,6 +105,7 @@
                       label="Position"
                       outlined
                       prepend-inner-icon="mdi-account"
+                      @keypress="isLetter($event)"
                     ></v-text-field>
                   </v-col>
                 </v-row>
@@ -171,6 +175,9 @@
 import { createNamespacedHelpers } from "vuex";
 const { mapGetters, mapActions } = createNamespacedHelpers("auth");
 
+// helpers
+import validateString from "@/_common/helpers/validateString.js";
+
 export default {
   data: () => ({
     show: false,
@@ -190,6 +197,7 @@ export default {
     fnameRules: [(v) => !!v || "First name is required"],
     mnameRules: [(v) => !!v || "Middle name is required"],
     lnameRules: [(v) => !!v || "Last name is required"],
+    usernameRules: [(v) => !!v || "Username is required"],
     email: "",
     emailRules: [
       (v) => !!v || "E-mail is required",
@@ -219,6 +227,9 @@ export default {
     },
     resetValidation() {
       this.$refs.form.resetValidation();
+    },
+    isLetter(e) {
+      validateString(e);
     },
   },
 

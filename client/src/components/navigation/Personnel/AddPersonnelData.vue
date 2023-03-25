@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-dialog v-model="dialog" max-width="800">
+    <v-dialog v-model="dialog" max-width="900">
       <template v-slot:activator="{ on }">
         <v-btn v-on="on" tile>
           <v-icon left> mdi-plus </v-icon>
@@ -21,6 +21,7 @@
                     label="Account Number"
                     v-model="personnels.accountNo"
                     dense
+                    @keypress="keyPressAccountNo($event)"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" md="4">
@@ -29,15 +30,15 @@
                     v-model="personnels.rank"
                     :items="['SF01', 'SF02', 'SF03']"
                     dense
-                    outlined
                   ></v-select>
                 </v-col>
                 <v-col>
-                  <v-text-field
+                  <v-select
                     label="Ext Name"
                     v-model="personnels.extName"
+                    :items="['Sr', 'Jr', 'I', 'II', 'III  ']"
                     dense
-                  ></v-text-field>
+                  ></v-select>
                 </v-col>
               </v-row>
               <!-- row2 -->
@@ -47,6 +48,7 @@
                     label="Last Name"
                     v-model="personnels.lname"
                     dense
+                    @keypress="validateString($event)"
                   ></v-text-field>
                 </v-col>
                 <v-col class="" cols="12" md="4">
@@ -54,6 +56,7 @@
                     label="First Name"
                     v-model="personnels.fname"
                     dense
+                    @keypress="validateString($event)"
                   ></v-text-field>
                 </v-col>
                 <v-col class="" cols="12" md="4">
@@ -61,6 +64,7 @@
                     label="Middle Name"
                     v-model="personnels.mname"
                     dense
+                    @keypress="validateString($event)"
                   ></v-text-field>
                 </v-col>
               </v-row>
@@ -70,7 +74,9 @@
                   <v-text-field
                     label="Mobile"
                     v-model="personnels.mobile"
+                    prefix="+639"
                     dense
+                    @keypress="validateNumber($event)"
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" md="7">
@@ -83,14 +89,16 @@
               </v-row>
               <!-- row4 -->
               <v-row>
-                <v-col cols="12" md="6">
+                <v-col cols="12">
                   <v-text-field
                     label="Designation"
                     v-model="personnels.designation"
                     dense
                   ></v-text-field>
                 </v-col>
-                <v-col cols="12" md="6">
+              </v-row>
+              <v-row>
+                <v-col cols="12">
                   <v-text-field
                     label="Address"
                     v-model="personnels.address"
@@ -104,7 +112,7 @@
                   <v-select
                     label="Civil Status"
                     v-model="personnels.civilStatus"
-                    :items="['Single', 'Married']"
+                    :items="['Single', 'Married', 'Widowed', 'Separated']"
                     dense
                   ></v-select>
                 </v-col>
@@ -157,11 +165,12 @@
                 <v-col cols="12" md="4">
                   <v-text-field
                     label="Philhealth"
+                    v-mask="'##-#########-#'"
                     v-model="personnels.philhealth"
                     dense
                   ></v-text-field>
                 </v-col>
-                <v-col cols="12" md="4">
+                <v-col cols="12" md="8">
                   <v-text-field
                     label="Remarks"
                     v-model="personnels.remarks"
@@ -187,6 +196,11 @@
 <script>
 import { createNamespacedHelpers } from "vuex";
 const { mapActions } = createNamespacedHelpers("navigation");
+
+// helpers
+import validateAccountNo from "@/_common/helpers/accountNoValidation.js";
+import validateString from "@/_common/helpers/validateString.js";
+import validateNumber from "@/_common/helpers/validateNumber.js";
 
 export default {
   data: () => ({
@@ -233,9 +247,24 @@ export default {
         console.error(error);
       }
     },
-
+    keyPressAccountNo(e) {
+      validateAccountNo(e, this.personnels.accountNo.length);
+    },
+    validateString(e) {
+      validateString(e);
+    },
+    validateNumber(e) {
+      validateNumber(e, this.personnels.mobile.length);
+    },
     cancel() {
       this.dialog = !this.dialog;
+    },
+  },
+  watch: {
+    dialog() {
+      if (!this.dialog) {
+        this.$refs.form.reset();
+      }
     },
   },
 };

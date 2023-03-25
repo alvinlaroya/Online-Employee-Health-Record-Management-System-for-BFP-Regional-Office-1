@@ -115,7 +115,7 @@ export default {
         subheader: "Navigation",
         subheaderList: [
           {
-            text: "Dahboard",
+            text: "Dashboard",
             icon: "mdi-view-dashboard-outline",
             path: "/dashboard",
           },

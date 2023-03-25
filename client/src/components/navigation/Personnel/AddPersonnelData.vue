@@ -243,6 +243,8 @@ export default {
         this.snackbar = true;
         this.dialog = false;
         this.personnels = {};
+        this.$refs.form.reset();
+        location.reload();
       } catch (error) {
         console.error(error);
       }

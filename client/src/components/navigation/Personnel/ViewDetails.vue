@@ -15,7 +15,7 @@
         <span
           >Full Name :
           <strong
-            >{{ data.fname }} {{ data.mname }} {{ data.lname }}</strong
+            >{{ data.fname }} {{ data.mname }} {{ data.lname }} {{ data.extName }}</strong
           ></span
         >
       </v-row>
@@ -50,11 +50,7 @@
           >Philhealth : <strong> {{ data.philhealth }}</strong></span
         >
       </v-row>
-      <v-row>
-        <span
-          >Ext Name : <strong> {{ data.extName }}</strong></span
-        >
-      </v-row>
+      
       <v-row>
         <span
           >Unit : <strong> {{ data.unit }}</strong></span

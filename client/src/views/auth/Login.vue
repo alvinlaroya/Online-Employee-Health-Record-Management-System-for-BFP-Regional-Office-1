@@ -27,7 +27,7 @@
               <v-form ref="form" v-model="valid" lazy-validation>
                 <v-text-field
                   v-model="email"
-                  label="Email"
+                  label="Username"
                   required
                   outlined
                   prepend-inner-icon="mdi-account"
@@ -46,7 +46,7 @@
                 ></v-text-field>
                 <v-btn tile color="success" block large @click="validate">
                   <v-icon left> mdi-login-variant </v-icon>
-                  Sign In
+                  Login
                 </v-btn>
               </v-form>
             </v-container>

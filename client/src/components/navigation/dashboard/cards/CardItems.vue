@@ -164,7 +164,7 @@ export default {
   computed: {
     filteredItems() {
       if (this.search === "" && this.selectedItem === null) {
-        return this.cardItem;
+        return this.sortCaseTitle(this.cardItem);
       } else {
         let filteredItems = this.cardItem;
         const search = this.search.toLowerCase();
@@ -178,7 +178,7 @@ export default {
             (item) => item.title === this.selectedItem
           );
         }
-        return filteredItems;
+        return this.sortCaseTitle(filteredItems);
       }
     },
   },
@@ -191,15 +191,21 @@ export default {
       // this.$router.push("/case/" + title.toLowerCase());
       this.$router.push({
         name: "navigation/case",
-        params:{
+        params: {
           title: item.title.toLowerCase(),
-          total: item.total
-        }
+          total: item.total,
+        },
+      });
+    },
+    sortCaseTitle(arr) {
+      return arr.sort(function (a, b) {
+        var textA = a.title.toUpperCase();
+        var textB = b.title.toUpperCase();
+        return textA < textB ? -1 : textA > textB ? 1 : 0;
       });
     },
   },
 };
 </script>
 
-<style>
-</style>
+<style></style>

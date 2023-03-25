@@ -145,7 +145,7 @@
                         v-on="on"
                       ></v-text-field>
                     </template>
-                    <v-date-picker v-model="date" no-title scrollable>
+                    <v-date-picker v-model="personnels.dateOfBirth" no-title scrollable>
                       <v-spacer></v-spacer>
                       <v-btn text color="primary" @click="menu = false">
                         Cancel
@@ -153,7 +153,7 @@
                       <v-btn
                         text
                         color="primary"
-                        @click="$refs.menu.save(date)"
+                        @click="$refs.menu.save(personnels.dateOfBirth)"
                       >
                         OK
                       </v-btn>
@@ -238,6 +238,7 @@ export default {
     async submitPersonnel() {
       try {
         await this.addPersonnels(this.personnels);
+        console.log(this.personnels)
         this.$refs.form.reset();
         this.snackbar = true;
         this.dialog = false;

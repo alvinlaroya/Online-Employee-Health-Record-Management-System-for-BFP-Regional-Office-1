@@ -80,11 +80,18 @@
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" md="7">
-                  <v-text-field
+                  <v-select
                     label="Unit Assignment"
                     v-model="personnels.unit"
+                    :items="[
+                      'OARD - R1',
+                      'OPFM - ILOCOS NORTE',
+                      'OPFM - ILOCOS SUR',
+                      'OPFM - La Union',
+                      'OPFM - PANGASINAN',
+                    ]"
                     dense
-                  ></v-text-field>
+                  ></v-select>
                 </v-col>
               </v-row>
               <!-- row4 -->
@@ -145,7 +152,11 @@
                         v-on="on"
                       ></v-text-field>
                     </template>
-                    <v-date-picker v-model="personnels.dateOfBirth" no-title scrollable>
+                    <v-date-picker
+                      v-model="personnels.dateOfBirth"
+                      no-title
+                      scrollable
+                    >
                       <v-spacer></v-spacer>
                       <v-btn text color="primary" @click="menu = false">
                         Cancel
@@ -238,7 +249,7 @@ export default {
     async submitPersonnel() {
       try {
         await this.addPersonnels(this.personnels);
-        console.log(this.personnels)
+        console.log(this.personnels);
         this.$refs.form.reset();
         this.snackbar = true;
         this.dialog = false;

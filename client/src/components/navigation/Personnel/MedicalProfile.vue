@@ -11,12 +11,13 @@
         </span>
       </v-row>
       <v-row>
-        <span
-          >Date Of Birth :
+        <span class="pr-5">Date Of Birth :
           <strong>15 sep 1981</strong>
         </span>
+        <span class="pr-5">AGE: <strong>41</strong></span>
+        <span class="pr-5">Place of Birth: <strong>Naga City, Cam. sur</strong></span>
       </v-row>
-      <v-row><span>Family History</span></v-row>
+      
       <v-row class="mt-5">
         <v-tabs v-model="tab">
           <v-tab @click="tab = 0">Family History</v-tab>

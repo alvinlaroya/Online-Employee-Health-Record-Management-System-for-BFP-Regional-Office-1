@@ -2,7 +2,7 @@
   <div>
     <v-container v-for="(item, i) in items" :key="i">
       <v-row>
-        <h2>PERSONAL HISTORY</h2>
+        <h2 class="pb-3">PERSONAL HISTORY</h2>
       </v-row>
       <v-row>
         <strong class="pr-5">OB History: </strong>
@@ -40,11 +40,16 @@
         >
       </v-row>
     </v-container>
+    <Diseases />
   </div>
 </template>
 
 <script>
+import Diseases from "@/components/navigation/Personnel/Medical/Diseases";
 export default {
+  components: {
+    Diseases,
+  },
   data: () => ({
     items: [
       {

@@ -1,22 +1,33 @@
 <template>
   <v-card elevation="0">
     <v-container class="pa-8">
-      <v-row>
-        <span>
-          Full Name :
-          <strong>
-            {{ data.fname }} {{ data.mname }} {{ data.lname }}
-            {{ data.extName }}
-          </strong>
-        </span>
+      <v-row justify="space-between">
+        <v-col class="pa-0" >
+          <span>
+            Full Name :
+            <strong>
+              {{ data.fname }} {{ data.mname }} {{ data.lname }}
+              {{ data.extName }}
+            </strong>
+          </span>
+        </v-col>
+        <v-col cols="6" class="py-0 d-flex justify-end" >
+          <v-btn small>Update</v-btn>
+        </v-col>
       </v-row>
       <v-row>
-        <span
-          >Date Of Birth :
-          <strong>15 sep 1981</strong>
-        </span>
+        <v-col align-content="space-between" class="pa-0">
+          <span class="pr-5"
+            >Date Of Birth :
+            <strong>15 sep 1981</strong>
+          </span>
+          <span class="pr-5">AGE: <strong>41</strong></span>
+          <span class="pr-5"
+            >Place of Birth: <strong>Naga City, Cam. sur</strong></span
+          ></v-col
+        >
       </v-row>
-      <v-row><span>Family History</span></v-row>
+
       <v-row class="mt-5">
         <v-tabs v-model="tab">
           <v-tab @click="tab = 0">Family History</v-tab>

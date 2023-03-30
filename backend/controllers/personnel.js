@@ -4,27 +4,95 @@ var moment = require("moment"); // require
 moment().format();
 const Op = Sequelize.Op;
 const db = require("../models");
+
+// multer
+const multer = require("multer");
+const path = require("path");
+
 // MODEL
 const Personnel = db.peronnels;
 
+// UPLOAD
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "images");
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+    cb(null, uniqueSuffix + path.extname(file.originalname));
+  },
+});
+
+const upload = multer({
+  storage: storage,
+  fileFilter: (req, file, cb) => {
+    const fileTypes = /jpeg|jpg|png|gif/;
+    const mimType = fileTypes.test(file.mimetype);
+    const extname = fileTypes.test(path.extname(file.originalname));
+
+    if (mimType && extname) return cb(null, true);
+    cb("Dive proper file format to upload");
+  },
+}).fields([{ name: "personnelImage", maxCount: 1 }]);
+
 // CREATE CLEARANCE
 const addPersonnel = async (req, res) => {
-    const personnel = await Personnel.create(req.body);
-    res.status(200).json({
-        message: "success",
-        personnel: personnel,
-    });
+    console.log("REQ", req.files['personnelImage'][0].path)
+    console.log("REQ 2", req.files.personnelImage[0].path)
+    const {
+        accountNo,
+        rank,
+        lname,
+        fname,
+        mname,
+        extName,
+        unit,
+        designation,
+        mobile,
+        civilStatus,
+        gender,
+        philhealth,
+        remarks,
+        dateOfBirth,
+        address
+    } = req.body
+
+
+    const param = {
+        accountNo,
+        rank,
+        lname,
+        fname,
+        mname,
+        extName,
+        unit,
+        designation,
+        mobile,
+        civilStatus,
+        gender,
+        philhealth,
+        remarks,
+        dateOfBirth,
+        address,
+        personnelImage: req.files['personnelImage'][0].path,
+    }
+
+  const personnel = await Personnel.create(param);
+  res.status(200).json({
+    message: "success",
+    personnel: personnel,
+  });
 };
 
 const getAllPersonnels = async (req, res) => {
-    let personnels = await Personnel.findAndCountAll({
-        order: [["createdAt", "DESC"]],
-    });
-    res.status(200).json({
-        message: "success",
-        personnels: personnels,
-    });
-}
+  let personnels = await Personnel.findAndCountAll({
+    order: [["createdAt", "DESC"]],
+  });
+  res.status(200).json({
+    message: "success",
+    personnels: personnels,
+  });
+};
 
 // READ APPLICANT
 
@@ -54,8 +122,9 @@ const getAllPersonnels = async (req, res) => {
 };
  */
 module.exports = {
-    addPersonnel,
-    getAllPersonnels
-    /*     getAllApplicant,
+  upload,
+  addPersonnel,
+  getAllPersonnels,
+  /*     getAllApplicant,
         updateApplicant, */
 };

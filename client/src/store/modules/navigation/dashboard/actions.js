@@ -16,12 +16,13 @@ export const getPersonnels = ({ commit }, payload) => {
 };
 
 export const addPersonnels = ({ commit }, payload) => {
-    console.log("PAYLOAD FROM VUEX ACTION: ", payload)
+    const { formData, data } = payload
+    console.log("PAYLOAD FROM VUEX ACTION: ", formData)
 
-    EventService.addPersonnels(payload)
+    EventService.addPersonnels(formData)
         .then((response) => {
             console.log(response.data.personnel)
-            commit("ADD_PERSONNELS", payload)
+            commit("ADD_PERSONNELS", data)
         })
         .catch((error) => {
             console.log(error);

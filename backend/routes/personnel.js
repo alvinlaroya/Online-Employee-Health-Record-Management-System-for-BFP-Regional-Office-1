@@ -6,7 +6,7 @@ const router = require("express").Router();
 const personnel = require("../controllers/personnel.js");
 
 // routes
-router.post("/addPersonnel", personnel.addPersonnel);
+router.post("/addPersonnel", personnel.upload, personnel.addPersonnel);
 router.get("/getALlPersonnels", personnel.getAllPersonnels)
 /* router.get("/getAllApplicant", middleware, applicant.getAllApplicant);
 router.put("/updateApplicant/:id", middleware, applicant.updateApplicant);

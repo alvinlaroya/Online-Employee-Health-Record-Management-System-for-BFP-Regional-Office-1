@@ -168,13 +168,13 @@
 export default {
   data: () => ({
     headers: [
-      { text: "Name", value: "name" },
-      { text: "Age", value: "age" },
-      { text: "State of Health", value: "stateOfHealth" },
-      { text: "Cause of Death", value: "causeOfDeath" },
-      { text: "Disease", value: "disease" },
-      { text: "Yes", value: "yes" },
-      { text: "No", value: "no" },
+      { text: "Name", value: "name", divider: true },
+      { text: "Age", value: "age" , divider: true },
+      { text: "State of Health", value: "stateOfHealth", divider: true },
+      { text: "Cause of Death", value: "causeOfDeath", divider: true },
+      { text: "Disease", value: "disease", divider: true },
+      { text: "Yes", value: "yes", divider: true },
+      { text: "No", value: "no", divider: true },
     ],
     items: [
       {

@@ -1,12 +1,10 @@
 <template>
   <v-data-table
-  
     :headers="headers"
     :items="items"
     hide-default-header
     hide-default-footer
-    :pagination="false"
-    :items-per-page="100"
+    disable-pagination
     class="elevation-1 mt-5"
     dense
   ></v-data-table>
@@ -21,10 +19,11 @@ export default {
           text: "Diseases",
           align: "start",
           value: "name",
+          divider: true 
         },
-        { text: "Yes/No", value: "yesNo" },
-        { text: "More Dieases", value: "moreDisease" },
-        { text: "Yes/No", value: "moreYesNo" },
+        { text: "Yes/No", value: "yesNo", divider: true },
+        { text: "More Dieases", value: "moreDisease", divider: true },
+        { text: "Yes/No", value: "moreYesNo", divider: true },
       ],
       items: [
         {

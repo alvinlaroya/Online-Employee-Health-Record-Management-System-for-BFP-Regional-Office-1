@@ -5,6 +5,8 @@
     hide-default-header
     hide-default-footer
     disable-pagination
+    :pagination="false"
+    :items-per-page="100"
     class="elevation-1 mt-5"
     dense
   ></v-data-table>

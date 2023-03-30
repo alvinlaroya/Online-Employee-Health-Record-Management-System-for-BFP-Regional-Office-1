@@ -336,6 +336,50 @@ export default {
       return this.data.dateOfBirth.substr(0, 10);
     },
   },
+  data: () => ({
+    items: [
+      {
+        name: "Hypertension",
+        father: "YES",
+        mother: "",
+      },
+      {
+        name: "Diabetes Mellitus",
+        father: "YES",
+        mother: "",
+      },
+      {
+        name: "Asthma",
+        father: "",
+        mother: "",
+      },
+      {
+        name: "Arthritis",
+        father: "YES",
+        mother: "",
+      },
+      {
+        name: "Cerebral Vascular Accident",
+        father: "YES",
+        mother: "YES",
+      },
+      {
+        name: "Others",
+        father: "",
+        mother: "",
+      },
+    ],
+    headers: [
+      {
+        text: "Medical History",
+        align: "start",
+        sortable: false,
+        value: "name",
+      },
+      { text: "Father", value: "father" },
+      { text: "Mother", value: "mother" },
+    ],
+  }),
 };
 </script>
 

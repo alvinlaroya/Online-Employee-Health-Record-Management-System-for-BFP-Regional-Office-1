@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-dialog v-model="dialog" max-width="900">
+    <v-dialog v-model="dialog" max-width="1000">
       <template v-slot:activator="{ on }">
         <v-btn v-on="on" tile>
           <v-icon left> mdi-plus </v-icon>
@@ -11,11 +11,48 @@
         <v-card-title>
           <span class="headline">New Personnel</span>
         </v-card-title>
-        <v-form @submit.prevent="submitPersonnel" v-model="valid" ref="form">
+        <v-form v-model="valid" lazy-validation ref="form">
           <v-card-text>
             <v-container fluid>
               <!-- row1 -->
-              <v-row>
+              <v-row class="justify-center align-center">
+                <v-col sm="2" style="">
+                  <div class="form-group">
+                    <div class="border p-2 mt-3">
+                      <template v-if="preview">
+                        <img
+                          :src="preview"
+                          class="img-fluid"
+                          style="width: 150px; height: 150px"
+                        />
+                      </template>
+                      <template v-else>
+                        <img
+                          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-KTBlqHftCBwjj38pFMWEiMgX_vBq2KUvWQ&usqp=CAU"
+                          style="width: 150px; height: 150px"
+                          class="img-fluid"
+                        />
+                      </template>
+                    </div>
+                    <label for="my-file">Select Image</label><br />
+                    <input
+                      type="file"
+                      accept="image/*"
+                      @change="previewImage"
+                      style="color: black"
+                    />
+
+                    <!--  <v-file-input
+                        v-model="personnels.personnelImage"
+                        @change="selectedCedula"
+                        accept="image/*"
+                        label="Cedula"
+                        outlined
+                      ></v-file-input> -->
+                  </div>
+                </v-col>
+              </v-row>
+              <v-row class="mt-8">
                 <v-col cols="12" md="4">
                   <v-text-field
                     label="Account Number"
@@ -193,7 +230,7 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="primary" type="submit">ADD</v-btn>
+            <v-btn color="primary" @click="submitPersonnel">ADD</v-btn>
             <v-btn color="secondary" @click="cancel">Cancel</v-btn>
           </v-card-actions>
         </v-form>
@@ -225,6 +262,9 @@ export default {
     modal: false,
     snackbar: false,
 
+    preview: null,
+    image: null,
+
     personnels: {
       accountNo: "",
       rank: "",
@@ -241,21 +281,53 @@ export default {
       remarks: "",
       dateOfBirth: "",
       address: "",
+      personnelImage: null
     },
   }),
 
   methods: {
     ...mapActions(["addPersonnels"]),
+    toFormData(obj) {
+      var fd = new FormData();
+      for (var i in obj) {
+        fd.append(i, obj[i]);
+      }
+      return fd;
+    },
+    /* selectedCedula(file) {
+      console.log(file)
+      this.personnels.personnelImage = file;
+    }, */
+    previewImage: function (event) {
+      var input = event.target;
+      if (input.files) {
+        this.personnels.personnelImage = input.files[0]
+       console.log(this.personnels.personnelImage)
+        var reader = new FileReader();
+        reader.onload = (e) => {
+          this.preview = e.target.result;
+        };
+        this.image = input.files[0];
+        reader.readAsDataURL(input.files[0]);
+      }
+    },
+    reset: function () {
+      this.image = null;
+      this.preview = null;
+      this.image_list = [];
+      this.preview_list = [];
+    },
     async submitPersonnel() {
+      var formData = this.toFormData(this.personnels);
+
       try {
-        await this.addPersonnels(this.personnels);
-        console.log(this.personnels);
-        this.$refs.form.reset();
+        console.log("form data", formData);
+        await this.addPersonnels({formData, data: this.personnels});
+        
+        this.personnels = {}
+        this.reset();
         this.snackbar = true;
         this.dialog = false;
-        this.personnels = {};
-        this.$refs.form.reset();
-        location.reload();
       } catch (error) {
         console.error(error);
       }

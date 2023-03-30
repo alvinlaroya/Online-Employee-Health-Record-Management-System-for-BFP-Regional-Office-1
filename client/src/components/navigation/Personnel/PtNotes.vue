@@ -17,7 +17,7 @@
             <strong> BFP Regional Office 1 </strong>
           </div>
         </v-col>
-        <v-col cols="1" class="py-0 d-flex justify-end" >
+        <v-col cols="1" class="py-0 d-flex justify-end">
           <v-btn small>Update</v-btn>
         </v-col>
       </v-row>
@@ -84,14 +84,7 @@
       <v-row>
         <v-col>
           <strong>FAMILY MEDICAL HISTORY</strong>
-          <v-data-table
-            dense
-            :headers="headers"
-            :items="items"
-            item-key="name"
-            hide-default-footer
-            class="elevation-1"
-          ></v-data-table>
+          <FamMedHistory />
         </v-col>
       </v-row>
       <v-row>
@@ -134,14 +127,14 @@
       <v-row>
         <v-col>
           <div>
-            <strong>RR : </strong> 
+            <strong>RR : </strong>
             <span> 18 </span>
             <v-divider></v-divider>
           </div>
         </v-col>
         <v-col>
           <div>
-            <strong>Blood Pressure : </strong> 
+            <strong>Blood Pressure : </strong>
             <span> 100/120 </span>
             <v-divider></v-divider>
           </div>
@@ -150,14 +143,14 @@
       <v-row>
         <v-col>
           <div>
-            <strong>Pulse Rate : </strong> 
+            <strong>Pulse Rate : </strong>
             <span> 80 Bpm </span>
             <v-divider></v-divider>
           </div>
         </v-col>
         <v-col>
           <div>
-            <strong>Temperature : </strong> 
+            <strong>Temperature : </strong>
             <span> 36 </span>
             <v-divider></v-divider>
           </div>
@@ -179,15 +172,165 @@
           <span>N/A</span>
           <v-divider></v-divider>
         </v-col>
+        <v-col>
+          <strong>MMT : </strong>
+          <span>N/A</span>
+          <v-divider></v-divider>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <div>
+            <strong> Muscle Bulk Measurement (MBM) : </strong>
+            <span> N/A </span>
+            <v-divider></v-divider>
+          </div>
+        </v-col>
+        <v-col>
+          <div>
+            <strong> Limb Girth Measurement (LGM) : </strong>
+            <span> N/A </span>
+            <v-divider></v-divider>
+          </div>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <strong>Gait Analysis</strong>
+          <GaitAnalysis />
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <div>
+            <strong> Findings : </strong>
+            <span> N/A </span>
+            <v-divider></v-divider>
+          </div>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <div>
+            <strong> Significance : </strong>
+            <span> N/A </span>
+            <v-divider></v-divider>
+          </div>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <div>
+            <strong> Functional Analysis : </strong>
+            <span> N/A </span>
+            <v-divider></v-divider>
+          </div>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="6">
+          <strong>Balance/Tolerance</strong>
+          <BalanceTolerance />
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <strong>ADL</strong>
+          <Adl />
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <strong>ASSESSMENT : </strong>
+          <span>N/A</span>
+          <v-divider></v-divider>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <strong>Diagnosis : </strong>
+          <span>N/A</span>
+          <v-divider></v-divider>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <strong>PT Impression : </strong>
+          <span>N/A</span>
+          <v-divider></v-divider>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <strong>Problem List : </strong>
+          <span>N/A</span>
+          <v-divider></v-divider>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <strong>Short Term Goal : </strong>
+          <span>N/A</span>
+          <v-divider></v-divider>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <strong>PT Management : </strong>
+          <span>N/A</span>
+          <v-divider></v-divider>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <strong>Suggested PT Management : </strong>
+          <span>N/A</span>
+          <v-divider></v-divider>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <strong>Home Instruction : </strong>
+          <span>N/A</span>
+          <v-divider></v-divider>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <div class="d-flex flex-column">
+            <strong class="mb-5">Examining Physical Therapist</strong>
+            <span  class="text-center">Name Here</span>
+            <v-divider></v-divider>
+            <small  class="text-center">Physical Therapist </small>
+          </div>
+        </v-col>
+        <v-col>
+          <div class="d-flex flex-column">
+            <strong class="mb-5">Noted by : </strong>
+            <span  class="text-center">Name Here</span>
+            <v-divider></v-divider>
+            <small class="text-center">Acting Chief, Physical Therapy Rehabilitation Service</small>
+          </div>
+        </v-col>
       </v-row>
     </v-container>
   </v-card>
 </template>
 
 <script>
+import GaitAnalysis from "@/components/navigation/Personnel/PtNotes/GaitAnalysis";
+import FamMedHistory from "@/components/navigation/Personnel/PtNotes/FamMedHistory";
+import BalanceTolerance from "@/components/navigation/Personnel/PtNotes/BalanceTolerance";
+import Adl from "@/components/navigation/Personnel/PtNotes/Adl";
+
 export default {
   props: ["data"],
-
+  components: {
+    GaitAnalysis,
+    FamMedHistory,
+    BalanceTolerance,
+    Adl,
+  },
   computed: {
     birthDate() {
       return this.data.dateOfBirth.substr(0, 10);

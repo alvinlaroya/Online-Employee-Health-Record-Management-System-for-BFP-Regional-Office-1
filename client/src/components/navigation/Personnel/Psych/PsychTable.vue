@@ -1,5 +1,5 @@
 <template>
-  <v-data-table :items="items" :headers="headers" disable-pagination hide-default-footer>
+  <v-data-table :items="items" :headers="headers"  hide-default-footer>
 
   </v-data-table>
 </template>

@@ -18,7 +18,7 @@
           </div>
         </v-col>
         <v-col cols="1" class="py-0 d-flex justify-end">
-          <v-btn small>Update</v-btn>
+          <PtNoteUpdate/>
         </v-col>
       </v-row>
       <v-row justify="space-between">
@@ -318,10 +318,12 @@
 </template>
 
 <script>
+PtNoteUpdate
 import GaitAnalysis from "@/components/navigation/Personnel/PtNotes/GaitAnalysis";
 import FamMedHistory from "@/components/navigation/Personnel/PtNotes/FamMedHistory";
 import BalanceTolerance from "@/components/navigation/Personnel/PtNotes/BalanceTolerance";
 import Adl from "@/components/navigation/Personnel/PtNotes/Adl";
+import PtNoteUpdate from "@/components/navigation/Personnel/PtNotes/PtNoteUpdate";
 
 export default {
   props: ["data"],
@@ -330,6 +332,7 @@ export default {
     FamMedHistory,
     BalanceTolerance,
     Adl,
+    PtNoteUpdate
   },
   computed: {
     birthDate() {

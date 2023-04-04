@@ -13,8 +13,8 @@
             <strong>SF02</strong>
           </div>
         </v-col>
-        <v-col cols="1" class="py-0 d-flex justify-end">
-          <v-btn small>Update</v-btn>
+        <v-col  class="py-0 d-flex justify-end">
+          <PhysicalUpdate/>
         </v-col>
       </v-row>
       <v-row justify="space-between">
@@ -71,7 +71,7 @@
         </v-col>
       </v-row>
       <v-row>
-        <v-col>
+        <v-col  >
           <PhysicalTable/>
         </v-col>
       </v-row>
@@ -79,8 +79,8 @@
         <v-col class="">
           <div class="d-flex flex-column">
             <span class="body-2 "> SIGNIFICANT MEDICAL HISTORY : </span>
-            <strong>  N/A </strong>
-            <span class="body-2 "> OVERALL PHYSICAL EVALUATION : </span>
+            <strong> N/A </strong>
+            <span  class="body-2 "> OVERALL PHYSICAL EVALUATION : </span>
             <strong>  N/A </strong>
             <span class="body-2 "> RECOMMENDATION : </span>
             <strong>  N/A </strong>
@@ -88,32 +88,36 @@
         </v-col>
         <v-col>
           <div class="d-flex flex-column">
-            <strong>OFFICIAL DESIGNATION : </strong>
-            <span>N/A</span>
-            <strong>OFFICIAL DESIGNATION : </strong>
-            <span>N/A</span>
-            <strong>MEDICAL OFFICER NAME : </strong>
-            <span>N/A</span>
+            <span class="body-2 "> OFFICIAL DESIGNATION : </span>
+            <strong >N/A</strong>
+
+            <span class="body-2 ">MEDICAL OFFICER NAME : </span>
+            <strong >N/A</strong>
+            <span class="body-2 "> REG Certificate No : </span>
+            <strong >N/A</strong>
           </div>
         </v-col>
       </v-row>
-      <v-row>
+      <!-- <v-row>
         <v-col>
           <div>
             <strong>OCCUPATIONAL HISTORY</strong>
           </div>
         </v-col>
-      </v-row>
+      </v-row> -->
     </v-container>
   </v-card>
 </template>
 
 <script>
+
 import PhysicalTable from "@/components/navigation/Personnel/Physical/PhysicalTable";
+import PhysicalUpdate from "@/components/navigation/Personnel/Physical/PhysicalUpdate";
 export default {
   props: ["data"],
   components:{
-    PhysicalTable
+    PhysicalTable,
+    PhysicalUpdate
   },
   computed: {
     birthDate() {

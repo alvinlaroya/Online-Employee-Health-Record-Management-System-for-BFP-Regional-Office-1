@@ -12,7 +12,7 @@
           </span>
         </v-col>
         <v-col cols="6" class="py-0 d-flex justify-end" >
-          <v-btn small>Update</v-btn>
+          <MedicalUpdate/>
         </v-col>
       </v-row>
       <v-row>
@@ -46,12 +46,14 @@
 <script>
 import PersonalHistory from "@/components/navigation/Personnel/Medical/PersonalHistory";
 import MedicalDetails from "@/components/navigation/Personnel/Medical/MedicalDetails";
+import MedicalUpdate from "@/components/navigation/Personnel/Medical/MedicalUpdate";
 
 export default {
   props: ["data"],
   components: {
     MedicalDetails,
     PersonalHistory,
+    MedicalUpdate
   },
   data: () => ({
     tab: 0,

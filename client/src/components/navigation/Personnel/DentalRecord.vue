@@ -16,7 +16,7 @@
           </div>
         </v-col>
         <v-col cols="1" class="py-0 d-flex justify-end">
-          <v-btn small>Update</v-btn>
+          <DentalUpdate/>
         </v-col>
       </v-row>
       <v-row justify="space-between">
@@ -48,13 +48,12 @@
           <div class="">
             <span class="body-2">DATE : </span>
             <strong> 05 December 2022 </strong>
-
           </div>
         </v-col>
       </v-row>
       <v-row>
         <v-col cols="6">
-          <DentalTable/>
+          <DentalTable />
         </v-col>
       </v-row>
       <v-row>
@@ -78,28 +77,39 @@
       <v-row>
         <v-col>
           <div class="d-flex flex-column">
-            <strong class="text-decoration-underline">SINSP CLAPER A OJASCASTRO, DMD</strong>
+            <strong class="text-decoration-underline"
+              >SINSP CLAPER A OJASCASTRO, DMD</strong
+            >
             <span class="body-1">Chief, Dental Service Section</span>
             <span class="body-1">BFP Region 1</span>
           </div>
-        </v-col> 
+        </v-col>
       </v-row>
+      
     </v-container>
   </v-card>
 </template>
 
 <script>
+
 import DentalTable from "@/components/navigation/Personnel/Dental/DentalTable";
+import DentalUpdate from "@/components/navigation/Personnel/Dental/DentalUpdate";
 export default {
   props: ["data"],
-  components:{
-    DentalTable
+  components: {
+    DentalTable,
+    DentalUpdate
   },
+  data: () => ({
+    dialog: false,
+
+  }),
   computed: {
     birthDate() {
       return this.data.dateOfBirth.substr(0, 10);
     },
   },
+
 };
 </script>
 

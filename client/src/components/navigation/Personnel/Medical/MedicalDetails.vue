@@ -9,7 +9,7 @@
       :items="items"
       dense
       hide-default-footer
-      :pagination="false"
+      
       :items-per-page="100"
     >
       <template v-slot:item.name="{ item }">

@@ -14,6 +14,8 @@ const Personnel = db.peronnels;
 const PhysicalExamination = db.physicalExaminations;
 const Dental = db.dentals;
 const Psych = db.psychs;
+const MedicalFamilyHistory = db.medicalFamilyHistories;
+const MedicalPersonalHistory = db.medicalPersonalHistories;
 
 // UPLOAD
 const storage = multer.diskStorage({
@@ -87,6 +89,12 @@ const addPersonnel = async (req, res) => {
     personnelId: personnel.id,
   });
   await Psych.create({
+    personnelId: personnel.id,
+  });
+  await MedicalFamilyHistory.create({
+    personnelId: personnel.id,
+  });
+  await MedicalPersonalHistory.create({
     personnelId: personnel.id,
   });
 

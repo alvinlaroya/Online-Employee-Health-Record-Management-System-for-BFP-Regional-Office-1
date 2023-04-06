@@ -40,10 +40,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    calculus: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
     diabetes: {
       type: DataTypes.BOOLEAN,
       allowNull: true,

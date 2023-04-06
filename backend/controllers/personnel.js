@@ -11,6 +11,9 @@ const path = require("path");
 
 // MODEL
 const Personnel = db.peronnels;
+const PhysicalExamination = db.physicalExaminations;
+const Dental = db.dentals;
+const Psych = db.psychs;
 
 // UPLOAD
 const storage = multer.diskStorage({
@@ -37,50 +40,59 @@ const upload = multer({
 
 // CREATE CLEARANCE
 const addPersonnel = async (req, res) => {
-    console.log("REQ", req.files['personnelImage'][0].path)
-    console.log("REQ 2", req.files.personnelImage[0].path)
-    const {
-        accountNo,
-        rank,
-        lname,
-        fname,
-        mname,
-        extName,
-        unit,
-        designation,
-        mobile,
-        civilStatus,
-        gender,
-        philhealth,
-        remarks,
-        dateOfBirth,
-        address
-    } = req.body
+  console.log("REQ", req.files["personnelImage"][0].path);
+  console.log("REQ 2", req.files.personnelImage[0].path);
+  const {
+    accountNo,
+    rank,
+    lname,
+    fname,
+    mname,
+    extName,
+    unit,
+    designation,
+    mobile,
+    civilStatus,
+    gender,
+    philhealth,
+    remarks,
+    dateOfBirth,
+    address,
+  } = req.body;
 
-
-    const param = {
-        accountNo,
-        rank,
-        lname,
-        fname,
-        mname,
-        extName,
-        unit,
-        designation,
-        mobile,
-        civilStatus,
-        gender,
-        philhealth,
-        remarks,
-        dateOfBirth,
-        address,
-        personnelImage: req.files['personnelImage'][0].path,
-    }
+  const param = {
+    accountNo,
+    rank,
+    lname,
+    fname,
+    mname,
+    extName,
+    unit,
+    designation,
+    mobile,
+    civilStatus,
+    gender,
+    philhealth,
+    remarks,
+    dateOfBirth,
+    address,
+    personnelImage: req.files["personnelImage"][0].path,
+  };
 
   const personnel = await Personnel.create(param);
+  await PhysicalExamination.create({
+    personnelId: personnel.id,
+  });
+  await Dental.create({
+    personnelId: personnel.id,
+  });
+  await Psych.create({
+    personnelId: personnel.id,
+  });
+
   res.status(200).json({
     message: "success",
-    personnel: personnel,
+    personnel: personnel
   });
 };
 

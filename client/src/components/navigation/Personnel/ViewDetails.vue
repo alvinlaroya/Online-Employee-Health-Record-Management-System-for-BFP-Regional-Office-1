@@ -41,6 +41,11 @@
       </v-row>
       <v-row>
         <span
+          >Age : <strong> {{ birthDate | computeAge }}</strong></span
+        >
+      </v-row>
+      <v-row>
+        <span
           >Civil Status : <strong> {{ data.civilStatus }}</strong></span
         >
       </v-row>

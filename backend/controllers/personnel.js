@@ -100,7 +100,7 @@ const addPersonnel = async (req, res) => {
 
   res.status(200).json({
     message: "success",
-    personnel: personnel
+    personnel: personnel,
   });
 };
 
@@ -111,6 +111,55 @@ const getAllPersonnels = async (req, res) => {
   res.status(200).json({
     message: "success",
     personnels: personnels,
+  });
+};
+
+const viewDetails = async (req, res) => {
+  const personnelId = req.params.personnelId;
+
+  let personnel = await Personnel.findOne({
+    where: {
+      id: personnelId, // user email
+    },
+  });
+  let physicalExamination = await PhysicalExamination.findOne({
+    where: {
+      personnelId: personnelId, // user email
+    },
+  });
+  let dental = await Dental.findOne({
+    where: {
+      personnelId: personnelId, // user email
+    },
+  });
+  let neuroPsych = await Psych.findOne({
+    where: {
+      personnelId: personnelId, // user email
+    },
+  });
+  let medicalFamilyHistory = await MedicalFamilyHistory.findOne({
+    where: {
+      personnelId: personnelId, // user email
+    },
+  });
+  let medicalPersonalHistory = await MedicalPersonalHistory.findOne({
+    where: {
+      personnelId: personnelId, // user email
+    },
+  });
+
+  res.status(200).json({
+    message: "success",
+    data: {
+      personnel,
+      physicalExamination,
+      dental,
+      neuroPsych,
+      medicalRecord: {
+        medicalFamilyHistory,
+        medicalPersonalHistory,
+      }
+    }
   });
 };
 
@@ -145,6 +194,7 @@ module.exports = {
   upload,
   addPersonnel,
   getAllPersonnels,
+  viewDetails
   /*     getAllApplicant,
         updateApplicant, */
 };

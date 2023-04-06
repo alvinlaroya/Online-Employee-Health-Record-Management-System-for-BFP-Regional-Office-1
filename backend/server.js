@@ -17,9 +17,17 @@ app.use(express.urlencoded({ extended: true }));
 // routers
 const userRoutes = require("./routes/user.js");
 const personnelRoutes = require("./routes/personnel.js");
+const physicalExaminationRoutes = require("./routes/physicalExamination.js");
+const dentalRoutes = require("./routes/dental.js");
+const psychRoutes = require("./routes/psych.js");
+const medicalHistoryRoutes = require("./routes/medicalHistory.js");
 
 app.use("/api/user", userRoutes);
 app.use("/api/personnel", personnelRoutes);
+app.use("/api/physical-examination", physicalExaminationRoutes);
+app.use("/api/dental", dentalRoutes);
+app.use("/api/psych", psychRoutes);
+app.use("/api/medical-history", medicalHistoryRoutes);
 
 // static images folder
 app.use("/images", express.static("./images"));

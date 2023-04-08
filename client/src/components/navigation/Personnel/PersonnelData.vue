@@ -129,8 +129,9 @@ export default {
     ],
   }),
   methods: {
-    ...mapActions(["getPersonnels"]),
-    open(item, option, i) {
+    ...mapActions(["getPersonnels", "viewDetails"]),
+    async open(item, option, i) {
+      await this.viewDetails(item.id);
       this.tab = i + 1;
       this.dialog = true;
       this.selectedItem = item;
@@ -138,7 +139,8 @@ export default {
       const kebebCase = titleLowerCase.replaceAll(" ", "-"); // setting default tab in dialog
       this.currentTab = kebebCase;
     },
-    openDialog(item) {
+    async openDialog(item) {
+      await this.viewDetails(item.id);
       this.tab = 0;
       this.currentTab = "view-detail";
       this.selectedItem = item;

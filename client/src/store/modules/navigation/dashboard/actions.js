@@ -15,6 +15,17 @@ export const getPersonnels = ({ commit }, payload) => {
         });
 };
 
+export const viewDetails = ({ commit }, payload) => {
+    EventService.viewPersonnelDetails(payload)
+        .then((response) => {
+            console.log("RESPONSE DETAILS", response.data)
+            commit("SET_PERSONNEL_DETAILS", response.data.data)
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+};
+
 export const addPersonnels = ({ commit }, payload) => {
     const { formData, data } = payload
     console.log("PAYLOAD FROM VUEX ACTION: ", formData)

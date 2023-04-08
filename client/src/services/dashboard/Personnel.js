@@ -19,6 +19,20 @@ export default {
         );
     },
 
+    async viewPersonnelDetails(personnelId) {
+        return await axios.get(
+            `${apiUrl}/viewDetails/${personnelId}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Credentials": "*",
+                    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+                },
+            }
+        );
+    },
+
     async addPersonnels(payload) {
         return await axios.post(
             `${apiUrl}/addPersonnel`, payload,

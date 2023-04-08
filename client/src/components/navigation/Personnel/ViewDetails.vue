@@ -71,15 +71,22 @@
           >Remarks : <strong>{{ data.remarks }}</strong></span
         >
       </v-row>
+      <v-row>
+        <pre>{{ personnelDetails }}</pre>
+      </v-row>
     </v-container>
   </v-card>
 </template>
 
 <script>
+import { createNamespacedHelpers } from "vuex";
+const { mapGetters } = createNamespacedHelpers("navigation");
+
 export default {
   props: ["data"],
 
   computed: {
+    ...mapGetters(["personnelDetails"]),
     birthDate() {
       return this.data.dateOfBirth.substr(0, 10);
     },

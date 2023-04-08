@@ -18,6 +18,7 @@
                       v-for="(item, i) in neuro.items"
                       :key="i"
                       :label="item.name"
+                      @keypress="validateString($event)"
                       dense
                     ></v-text-field>
                   </v-form>
@@ -41,34 +42,6 @@ export default {
     date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
       .toISOString()
       .substr(0, 10),
-    // healthCondition: [
-    //   {
-    //     title: 'Current Health',
-    //     name: "disease",
-    //   },
-    //   {
-    //     name: "disease1",
-    //   },
-    // ],
-    // historyMentalHealth: [
-    //   {
-    //     title: 'History of Mental Health',
-    //     name: "disease",
-    //   },
-    //   {
-    //     name: "disease1",
-    //   },
-    // ],
-    // currentMentalHealth: [
-    //   {
-    //     title: 'Current Mental Health',
-    //     name: "disease",
-    //   },
-    //   {
-    //     name: "disease1",
-    //   },
-    // ],
-
     neuroPsych: [
       {
         title: "Current Health Condition",

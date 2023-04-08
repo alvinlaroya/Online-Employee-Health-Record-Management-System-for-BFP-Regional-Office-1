@@ -1,6 +1,12 @@
 <template>
   <v-card elevation="0">
-    <v-container class="pa-8">
+    <v-container>
+      <v-row justify="end" class="pa-2">
+        <!-- <PtNoteUpdate /> -->
+        <v-btn v-print="'#print'" class="ml-3" small>print</v-btn>
+      </v-row>
+    </v-container>
+    <v-container id="print" class="pa-8" >
       <v-row>
         <span>
           Account Number : <strong>{{ data.accountNo }}</strong>

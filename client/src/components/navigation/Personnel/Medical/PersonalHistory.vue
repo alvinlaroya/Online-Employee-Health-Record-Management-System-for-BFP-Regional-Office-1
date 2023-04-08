@@ -1,9 +1,12 @@
 <template>
   <div>
-    <v-container v-for="(item, i) in items" :key="i">
-      <v-row>
-        <h2 class="pb-3">PERSONAL HISTORY</h2>
+    <v-row>
+        <v-col>
+          <span class="py-3">PERSONAL HISTORY</span>
+        </v-col>
       </v-row>
+    <v-container class="mt-5" v-for="(item, i) in items" :key="i">
+      
       <v-row>
         <strong class="pr-5">OB History: </strong>
         <span class="pr-5"

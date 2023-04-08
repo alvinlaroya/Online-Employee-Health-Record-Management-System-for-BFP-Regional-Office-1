@@ -1,6 +1,12 @@
 <template>
   <v-card elevation="0">
-    <v-container class="pa-8">
+    <v-container>
+      <v-row justify="end" class="pa-2">
+        <DentalUpdate />
+        <v-btn v-print="'#print'" class="ml-3" small>print</v-btn>
+      </v-row>
+    </v-container>
+    <v-container id="print" class="pa-8">
       <v-row justify="space-between">
         <v-col class="pa-0">
           <div class="">
@@ -14,9 +20,6 @@
             <span class="body-2 pl-5">DATE OF BIRTH : </span>
             <strong>11-21-1998</strong>
           </div>
-        </v-col>
-        <v-col cols="1" class="py-0 d-flex justify-end">
-          <DentalUpdate/>
         </v-col>
       </v-row>
       <v-row justify="space-between">
@@ -85,31 +88,27 @@
           </div>
         </v-col>
       </v-row>
-      
     </v-container>
   </v-card>
 </template>
 
 <script>
-
 import DentalTable from "@/components/navigation/Personnel/Dental/DentalTable";
 import DentalUpdate from "@/components/navigation/Personnel/Dental/DentalUpdate";
 export default {
   props: ["data"],
   components: {
     DentalTable,
-    DentalUpdate
+    DentalUpdate,
   },
   data: () => ({
     dialog: false,
-
   }),
   computed: {
     birthDate() {
       return this.data.dateOfBirth.substr(0, 10);
     },
   },
-
 };
 </script>
 

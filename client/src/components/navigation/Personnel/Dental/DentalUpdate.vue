@@ -7,7 +7,7 @@
       <v-card>
         <v-card-title> Update Form </v-card-title>
         <v-card-text>
-          <v-form @submit.prevent="submit"> 
+          <v-form @submit.prevent="">
             <div>
               <v-row>
                 <v-col>
@@ -124,11 +124,91 @@
                   />
                 </v-col>
                 <v-col>
+                  <v-menu
+                    ref="menu1"
+                    v-model="menu1"
+                    :close-on-content-click="false"
+                    :return-value.sync="date"
+                    transition="scale-transition"
+                    offset-y
+                    min-width="auto"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field
+                        v-model="patientData.initialDate"
+                        label="Initial Date"
+                        prepend-icon="mdi-calendar"
+                        readonly
+                        dense
+                        v-bind="attrs"
+                        v-on="on"
+                      ></v-text-field>
+                    </template>
+                    <v-date-picker
+                      v-model="patientData.initialDate"
+                      no-title
+                      scrollable
+                    >
+                      <v-spacer></v-spacer>
+                      <v-btn text color="primary" @click="menu1 = false">
+                        Cancel
+                      </v-btn>
+                      <v-btn
+                        text
+                        color="primary"
+                        @click="$refs.menu1.save(patientData.initialDate)"
+                      >
+                        OK
+                      </v-btn>
+                    </v-date-picker>
+                  </v-menu>
+                </v-col>
+                <v-col>
                   <v-checkbox
                     label="Training"
                     v-model="patientData.training"
                     dense
                   />
+                </v-col>
+                <v-col>
+                  <v-menu
+                    ref="menu2"
+                    v-model="menu2"
+                    :close-on-content-click="false"
+                    :return-value.sync="date"
+                    transition="scale-transition"
+                    offset-y
+                    min-width="auto"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field
+                        v-model="patientData.trainingDate"
+                        label="Training Date"
+                        prepend-icon="mdi-calendar"
+                        readonly
+                        dense
+                        v-bind="attrs"
+                        v-on="on"
+                      ></v-text-field>
+                    </template>
+                    <v-date-picker
+                      v-model="patientData.trainingDate"
+                      no-title
+                      scrollable
+                    >
+                      <v-spacer></v-spacer>
+                      <v-btn text color="primary" @click="menu2 = false">
+                        Cancel
+                      </v-btn>
+                      <v-btn
+                        text
+                        color="primary"
+                        @click="$refs.menu2.save(patientData.trainingDate)"
+                      >
+                        OK
+                      </v-btn>
+                    </v-date-picker>
+                  </v-menu>
                 </v-col>
                 <v-col>
                   <v-checkbox
@@ -149,7 +229,7 @@
                 <v-col>
                   <v-checkbox
                     label="Bleeding Tendency"
-                    v-model="patientData.bleedingTendency"
+                    v-model="patientData.bleeding"
                     dense
                   />
                 </v-col>
@@ -186,26 +266,25 @@
                 <v-col>
                   <v-checkbox
                     label="BP Systolic"
-                    v-model="patientData.bpSystolic"
+                    v-model="patientData.systolicBP"
                     dense
                   />
                 </v-col>
                 <v-col>
                   <v-checkbox
                     label="Diastolic"
-                    v-model="patientData.diastolic"
+                    v-model="patientData.diastolicBP"
                     dense
                   />
                 </v-col>
               </v-row>
               <v-row>
                 <v-col>
-                  <v-text-field
-                    label="Examining Dentist"
-                    v-model="patientData.examiningDentist"
+                  <v-checkbox
+                    label="Examing Date"
+                    v-model="patientData.examiningDate"
                     dense
-                    @keypress="validateString($event)"
-                  ></v-text-field>
+                  />
                 </v-col>
               </v-row>
             </div>
@@ -227,6 +306,9 @@ export default {
   data: () => ({
     dialog: false,
     menu: false,
+    menu1: false,
+    menu2: false,
+    menu3: false,
     date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
       .toISOString()
       .substr(0, 10),
@@ -239,18 +321,25 @@ export default {
       unit: "",
       address: "",
       mobile: "",
+      // api update dentalRecord
       initial: false,
+      initialDate: "",
       training: false,
+      trainingDate: "",
       promotion: false,
+      promotionDate: "",
+      calculus: false,
+      remarks: "",
+      presentOralComplaint: "",
       diabetes: false,
-      bleedingTendency: false,
+      bleeding: true,
       drugSensitivity: false,
       historyOfHypertension: false,
       asthma: false,
-      foodAllergy: false,
-      bpSystolic: false,
-      diastolic: false,
-      examiningDentist: "",
+      foodAllergy: true,
+      systolicBP: true,
+      diastolicBP: true,
+      examiningDate: false,
     },
   }),
   methods: {

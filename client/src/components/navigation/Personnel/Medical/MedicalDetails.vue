@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row>
-      <h2 class="pb-3">FAMILY HISTORY</h2>
+      <v-col><span class="py-3">FAMILY HISTORY</span></v-col>
     </v-row>
     <v-data-table
       class="mt-5"

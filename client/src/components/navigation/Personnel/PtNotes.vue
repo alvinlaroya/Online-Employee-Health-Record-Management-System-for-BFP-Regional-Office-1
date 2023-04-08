@@ -1,6 +1,12 @@
 <template>
   <v-card elevation="0">
-    <v-container class="pa-8">
+    <v-container>
+      <v-row justify="end" class="pa-2">
+        <PtNoteUpdate />
+        <v-btn v-print="'#print'" class="ml-3" small>print</v-btn>
+      </v-row>
+    </v-container>
+    <v-container id="print" class="pa-8">
       <v-row justify="space-between">
         <v-col class="pa-0">
           <div class="">
@@ -16,9 +22,6 @@
             <span class="body-2 pl-5">UNIT : </span>
             <strong> BFP Regional Office 1 </strong>
           </div>
-        </v-col>
-        <v-col cols="1" class="py-0 d-flex justify-end">
-          <PtNoteUpdate/>
         </v-col>
       </v-row>
       <v-row justify="space-between">
@@ -299,17 +302,19 @@
         <v-col>
           <div class="d-flex flex-column">
             <strong class="mb-5">Examining Physical Therapist</strong>
-            <span  class="text-center">Name Here</span>
+            <span class="text-center">Name Here</span>
             <v-divider></v-divider>
-            <small  class="text-center">Physical Therapist </small>
+            <small class="text-center">Physical Therapist </small>
           </div>
         </v-col>
         <v-col>
           <div class="d-flex flex-column">
             <strong class="mb-5">Noted by : </strong>
-            <span  class="text-center">Name Here</span>
+            <span class="text-center">Name Here</span>
             <v-divider></v-divider>
-            <small class="text-center">Acting Chief, Physical Therapy Rehabilitation Service</small>
+            <small class="text-center"
+              >Acting Chief, Physical Therapy Rehabilitation Service</small
+            >
           </div>
         </v-col>
       </v-row>
@@ -318,7 +323,7 @@
 </template>
 
 <script>
-PtNoteUpdate
+PtNoteUpdate;
 import GaitAnalysis from "@/components/navigation/Personnel/PtNotes/GaitAnalysis";
 import FamMedHistory from "@/components/navigation/Personnel/PtNotes/FamMedHistory";
 import BalanceTolerance from "@/components/navigation/Personnel/PtNotes/BalanceTolerance";
@@ -332,7 +337,7 @@ export default {
     FamMedHistory,
     BalanceTolerance,
     Adl,
-    PtNoteUpdate
+    PtNoteUpdate,
   },
   computed: {
     birthDate() {

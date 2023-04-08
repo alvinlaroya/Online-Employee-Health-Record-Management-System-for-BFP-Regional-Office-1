@@ -1,23 +1,23 @@
 <template>
   <v-card elevation="0">
-    <v-container class="pa-8">
+    <v-container>
+      <v-row justify="end" class="pa-2">
+        <PsychUpdate />
+        <v-btn v-print="'#print'" class="ml-3" small>print</v-btn>
+      </v-row>
+    </v-container>
+    <v-container id="print" class="px-8">
       <v-row justify="space-between">
-        <v-col class="mb-2" >
+        <v-col class="mb-2">
           <span>
             Date :
-            <strong>
-              March 31, 2022
-            </strong>
+            <strong> March 31, 2022 </strong>
           </span>
-        </v-col>
-        <v-col cols="6" class="py-0 d-flex justify-end" >
-          <PsychUpdate/>
         </v-col>
       </v-row>
       <v-row justify="space-between">
-        <PsychTable/>
+        <PsychTable />
       </v-row>
-
     </v-container>
   </v-card>
 </template>
@@ -27,9 +27,9 @@ import PsychTable from "@/components/navigation/Personnel/Psych/PsychTable";
 import PsychUpdate from "@/components/navigation/Personnel/Psych/PsychUpdate";
 export default {
   props: ["data"],
-  components:{
+  components: {
     PsychTable,
-    PsychUpdate
+    PsychUpdate,
   },
   computed: {
     birthDate() {
@@ -43,12 +43,11 @@ export default {
   },
   methods: {
     open() {
-      this.dialogVisible =! this.dialogVisible;
+      this.dialogVisible = !this.dialogVisible;
     },
     close() {
       this.dialogVisible = false;
     },
-    
   },
 };
 </script>

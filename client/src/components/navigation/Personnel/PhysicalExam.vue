@@ -1,6 +1,12 @@
 <template>
   <v-card elevation="0">
-    <v-container class="pa-8">
+    <v-container>
+      <v-row justify="end" class="pa-2">
+        <PhysicalUpdate/>
+        <v-btn v-print="'#print'" class="ml-3" small>print</v-btn>
+      </v-row>
+    </v-container>
+    <v-container id="print" class="px-8" >
       <v-row justify="space-between">
         <v-col class="pa-0">
           <div class="">
@@ -12,9 +18,6 @@
             <span class="body-2 pl-5">RANK : </span>
             <strong>SF02</strong>
           </div>
-        </v-col>
-        <v-col  class="py-0 d-flex justify-end">
-          <PhysicalUpdate/>
         </v-col>
       </v-row>
       <v-row justify="space-between">

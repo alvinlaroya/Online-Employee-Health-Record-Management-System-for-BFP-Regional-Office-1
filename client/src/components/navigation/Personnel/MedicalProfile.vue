@@ -1,8 +1,14 @@
 <template>
   <v-card elevation="0">
-    <v-container class="pa-8">
+    <v-container>
+      <v-row justify="end" class="pa-2">
+        <MedicalUpdate />
+        <v-btn v-print="'#print'" class="ml-3" small>print</v-btn>
+      </v-row>
+    </v-container>
+    <v-container id="print" class="px-8">
       <v-row justify="space-between">
-        <v-col class="pa-0" >
+        <v-col class="pa-0">
           <span>
             Full Name :
             <strong>
@@ -10,9 +16,6 @@
               {{ data.extName }}
             </strong>
           </span>
-        </v-col>
-        <v-col cols="6" class="py-0 d-flex justify-end" >
-          <MedicalUpdate/>
         </v-col>
       </v-row>
       <v-row>
@@ -30,11 +33,11 @@
 
       <v-row class="mt-5">
         <v-tabs v-model="tab">
-          <v-tab @click="tab = 0">Family History</v-tab>
-          <v-tab @click="tab = 1">Personal History</v-tab>
+          <v-tab @click="tab = 0" >Family History</v-tab>
+          <v-tab @click="tab = 1" >Personal History</v-tab>
         </v-tabs>
       </v-row>
-      <v-card-text class="mt-5">
+      <v-card-text class="">
         <keep-alive>
           <component :is="tabs[tab].component"></component>
         </keep-alive>
@@ -53,7 +56,7 @@ export default {
   components: {
     MedicalDetails,
     PersonalHistory,
-    MedicalUpdate
+    MedicalUpdate,
   },
   data: () => ({
     tab: 0,

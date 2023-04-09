@@ -12,15 +12,15 @@
           <div class="">
             <span class="body-2"> FULL NAME : </span>
             <strong>
-              {{ data.fname }} {{ data.mname }} {{ data.lname }}
-              {{ data.extName }}
+              {{ personnelDetails.personnel.fname }} {{ personnelDetails.personnel.mname }} {{ personnelDetails.personnel.lname }}
+              {{ personnelDetails.personnel.extName }}
             </strong>
             <span class="body-2 pl-5">OCCUPATION : </span>
             <strong>BFP</strong>
             <span class="body-2 pl-5">RANK : </span>
-            <strong>SF02</strong>
+            <strong>{{ personnelDetails.personnel.rank }}</strong>
             <span class="body-2 pl-5">UNIT : </span>
-            <strong> BFP Regional Office 1 </strong>
+            <strong> {{personnelDetails.personnel.unit}} </strong>
           </div>
         </v-col>
       </v-row>
@@ -28,13 +28,13 @@
         <v-col class="pa-0">
           <div class="">
             <span class="body-2"> ADDRESS : </span>
-            <strong> Agoo, La Union </strong>
+            <strong> {{personnelDetails.personnel.address}} </strong>
             <span class="body-2 pl-5">MOBILE NO. : </span>
-            <strong>09090980987</strong>
+            <strong>{{personnelDetails.personnel.mobile}}</strong>
             <span class="body-2 pl-5">SEX : </span>
-            <strong>Male</strong>
+            <strong>{{personnelDetails.personnel.gender}}</strong>
             <span class="body-2 pl-5">CIVIL STATUS : </span>
-            <strong> Single</strong>
+            <strong> {{personnelDetails.personnel.civilStatus}}</strong>
           </div>
         </v-col>
       </v-row>
@@ -52,7 +52,7 @@
         <v-col>
           <div>
             <strong>Date of initial/Re-evaluation : </strong>
-            <span>March 27, 2000</span>
+            <span>{{ dateToday}}</span>
             <v-divider></v-divider>
             <strong>History of Present Illness : </strong>
             <span>N/A</span>
@@ -323,7 +323,10 @@
 </template>
 
 <script>
-PtNoteUpdate;
+import { createNamespacedHelpers } from "vuex";
+const { mapGetters } = createNamespacedHelpers("navigation");
+
+
 import GaitAnalysis from "@/components/navigation/Personnel/PtNotes/GaitAnalysis";
 import FamMedHistory from "@/components/navigation/Personnel/PtNotes/FamMedHistory";
 import BalanceTolerance from "@/components/navigation/Personnel/PtNotes/BalanceTolerance";
@@ -340,8 +343,12 @@ export default {
     PtNoteUpdate,
   },
   computed: {
+    ...mapGetters(["personnelDetails"]),
     birthDate() {
-      return this.data.dateOfBirth.substr(0, 10);
+      return this.personnelDetails.personnel.dateOfBirth.substr(0, 10);
+    },
+    dateToday() {
+      return this.personnelDetails.personnel.createdAt.substr(0, 10);
     },
   },
   data: () => ({

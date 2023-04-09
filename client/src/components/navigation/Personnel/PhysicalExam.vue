@@ -12,11 +12,11 @@
           <div class="">
             <span class="body-2"> FULL NAME : </span>
             <strong>
-              {{ data.fname }} {{ data.mname }} {{ data.lname }}
-              {{ data.extName }}
+              {{ personnelDetails.personnel.fname }} {{ data.mname }} {{ personnelDetails.personnel.lname }}
+              {{ personnelDetails.personnel.extName }}
             </strong>
             <span class="body-2 pl-5">RANK : </span>
-            <strong>SF02</strong>
+            <strong>{{personnelDetails.personnel.rank}}</strong>
           </div>
         </v-col>
       </v-row>
@@ -24,7 +24,7 @@
         <v-col class="pa-0">
           <div class="">
             <span class="body-2"> ADDRESS : </span>
-            <strong> Agoo, La Union </strong>
+            <strong> {{personnelDetails.personnel.address}} </strong>
           </div>
         </v-col>
       </v-row>
@@ -32,13 +32,13 @@
         <v-col class="pa-0">
           <div class="">
             <span class="body-2"> SEX : </span>
-            <strong> FEMALE</strong>
+            <strong> {{personnelDetails.personnel.gender}}</strong>
             <span class="body-2 pl-5"> CIVIL STATUS : </span>
-            <strong> SINGLE</strong>
+            <strong>{{personnelDetails.personnel.civilStatus}}</strong>
             <span class="body-2 pl-5"> AGE : </span>
-            <strong> 41</strong>
+            <strong> {{birthDate | computeAge }}</strong>
             <span class="body-2 pl-5"> MOBILE NO. : </span>
-            <strong> 0906587452</strong>
+            <strong> {{personnelDetails.personnel.mobile}}</strong>
           </div>
         </v-col>
       </v-row>
@@ -46,7 +46,7 @@
         <v-col class="pa-0">
           <div class="">
             <span class="body-2"> DATE AND PLACE OF BIRTH  : </span>
-            <strong> 15 Sept 1981 | Naga City, Cam Sur</strong>
+            <strong> {{birthDate}} | Naga City, Cam Sur</strong>
             <span class="body-2 pl-5"> Date of Examination : </span>
             <strong> N/A</strong>
             
@@ -57,10 +57,7 @@
         <v-col class="pa-0">
           <div class="">
             <span class="body-2 "> DESIGNATION/ UNIT ASSIGNMENT : </span>
-            <strong>  HS Staff | Unit Assignment Provider </strong>
-            <span class="body-2 pl-5"> MOBILE NO. : </span>
-            <strong> 0906587452</strong>
-            
+            <strong>  {{personnelDetails.personnel.designation }} | {{personnelDetails.personnel.unit}} </strong>
           </div>
         </v-col>
       </v-row>
@@ -101,18 +98,14 @@
           </div>
         </v-col>
       </v-row>
-      <!-- <v-row>
-        <v-col>
-          <div>
-            <strong>OCCUPATIONAL HISTORY</strong>
-          </div>
-        </v-col>
-      </v-row> -->
     </v-container>
   </v-card>
 </template>
 
 <script>
+import { createNamespacedHelpers } from "vuex";
+const { mapGetters } = createNamespacedHelpers("navigation");
+
 
 import PhysicalTable from "@/components/navigation/Personnel/Physical/PhysicalTable";
 import PhysicalUpdate from "@/components/navigation/Personnel/Physical/PhysicalUpdate";
@@ -123,8 +116,9 @@ export default {
     PhysicalUpdate
   },
   computed: {
+    ...mapGetters(["personnelDetails"]),
     birthDate() {
-      return this.data.dateOfBirth.substr(0, 10);
+      return this.personnelDetails.personnel.dateOfBirth.substr(0, 10);
     },
   },
 };

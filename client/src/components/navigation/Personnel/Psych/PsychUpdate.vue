@@ -10,21 +10,30 @@
           <v-form @submit.prevent="submit">
             <div>
               <v-row>
-                <v-col v-for="(neuro, index) in neuroPsych" :key="index">
-                  <span>{{ neuro.title }}</span>
-                  <v-form>
-                    <v-text-field
-
-                      v-for="(item, i) in neuro.items"
-                      :key="i"
-                      :label="item.name"
-                      dense
-                    ></v-text-field>
-                  </v-form>
+                <v-col cols="4">
+                  <v-text-field
+                    v-model="psych.currentHealthCondition"
+                    label="Current Health Condition"
+                    dense
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="4">
+                  <v-text-field
+                    v-model="psych.historyOfMentalHealthCondition"
+                    label="History of Mental Health Condition"
+                    dense
+                  ></v-text-field>
+                </v-col>
+                <v-col cols="4">
+                  <v-text-field
+                    v-model="psych.currentMentalHealthCondition"
+                    label="Current Mental Health Condition"
+                    dense
+                  ></v-text-field>
                 </v-col>
               </v-row>
             </div>
-            <v-btn type="submit" color="primary">Submit</v-btn>
+            <v-btn color="primary" @click="submitHandler">Submit</v-btn>
           </v-form>
         </v-card-text>
       </v-card>
@@ -34,6 +43,9 @@
 
 <script>
 import validateString from "@/_common/helpers/validateString.js";
+import { createNamespacedHelpers } from "vuex";
+const { mapGetters, mapActions } = createNamespacedHelpers('navigation')
+
 export default {
   data: () => ({
     dialog: false,
@@ -41,71 +53,33 @@ export default {
     date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
       .toISOString()
       .substr(0, 10),
-    // healthCondition: [
-    //   {
-    //     title: 'Current Health',
-    //     name: "disease",
-    //   },
-    //   {
-    //     name: "disease1",
-    //   },
-    // ],
-    // historyMentalHealth: [
-    //   {
-    //     title: 'History of Mental Health',
-    //     name: "disease",
-    //   },
-    //   {
-    //     name: "disease1",
-    //   },
-    // ],
-    // currentMentalHealth: [
-    //   {
-    //     title: 'Current Mental Health',
-    //     name: "disease",
-    //   },
-    //   {
-    //     name: "disease1",
-    //   },
-    // ],
-
-    neuroPsych: [
-      {
-        title: "Current Health Condition",
-        items: [
-          { name: "" },
-          { name: "" },
-          { name: "" },
-        ],
-      },
-      {
-        title: "History of Mental Health Condition",
-        items: [
-          { name: "" },
-          { name: "" },
-          { name: "" },
-        ],
-      },
-      {
-        title: "Current Mental Health Condition",
-        items: [
-          { name: "" },
-          { name: "" },
-          { name: "" },
-        ],
-      },
-    ],
+    psych: {
+      currentHealthCondition: "",
+      historyOfMentalHealthCondition: "",
+      currentMentalHealthCondition: ""
+    }
   }),
   methods: {
-    submit() {
-      console.log("submitted");
+    ...mapActions(["updatePsych"]),
+    async submitHandler() {
+      await this.updatePsych({
+        personnelId: this.personnelId,
+        data: this.psych
+      })
+
+      this.dialog = false;
     },
     validateString(e) {
       validateString(e);
     },
   },
+  computed: {
+    ...mapGetters(["personnelDetails"]),
+    personnelId() {
+      return this.personnelDetails.personnel.id;
+    }
+  }
 };
 </script>
 
-<style>
-</style>
+<style></style>

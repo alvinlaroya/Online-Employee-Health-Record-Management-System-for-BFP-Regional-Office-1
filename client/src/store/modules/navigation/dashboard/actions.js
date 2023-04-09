@@ -1,6 +1,10 @@
 import EventService from "@/services/dashboard/Personnel.js";
+import PsychEventService from "@/services/dashboard/Psych.js";
 /* import * as types from "@/store/mutation-types"; */
 
+
+
+// Personnel
 export const getPersonnels = ({ commit }, payload) => {
     console.log("PAYLOAD FROM VUEX ACTION: ", payload)
 
@@ -38,4 +42,13 @@ export const addPersonnels = ({ commit }, payload) => {
         .catch((error) => {
             console.log(error);
         });
+}
+// End of Personnel actions
+
+
+
+// Neuro Psych
+export const updatePsych = async ({ commit, dispatch }, payload) => {
+    await PsychEventService.updatePsych(payload)
+    await dispatch("viewDetails", payload.personnelId)
 }

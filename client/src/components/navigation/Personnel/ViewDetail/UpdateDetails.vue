@@ -160,6 +160,9 @@ export default {
     unit: "",
     designation: "",
     remarks: "",
+    philhealth: '',
+    rank: '',
+    accountNo: ''
     // },
   }),
   methods: {

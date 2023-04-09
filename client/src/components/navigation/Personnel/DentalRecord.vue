@@ -12,13 +12,13 @@
           <div class="">
             <span class="body-2"> FULL NAME : </span>
             <strong>
-              {{ data.fname }} {{ data.mname }} {{ data.lname }}
-              {{ data.extName }}
+              {{ personnelDetails.personnel.fname }} {{ personnelDetails.personnel.mname }} {{ personnelDetails.personnel.lname }}
+              {{ personnelDetails.personnel.extName }}
             </strong>
             <span class="body-2 pl-5">RANK : </span>
-            <strong>SF02</strong>
+            <strong>{{personnelDetails.personnel.rank}}</strong>
             <span class="body-2 pl-5">DATE OF BIRTH : </span>
-            <strong>11-21-1998</strong>
+            <strong>{{ dateOfBirth }}</strong>
           </div>
         </v-col>
       </v-row>
@@ -26,11 +26,11 @@
         <v-col class="pa-0">
           <div class="">
             <span class="body-2"> UNIT ASSIGNMENT : </span>
-            <strong> La Union </strong>
+            <strong> {{personnelDetails.personnel.unit}} </strong>
             <span class="body-2 pl-5">HOME ADDRESS : </span>
-            <strong>Agoo, La Union</strong>
+            <strong>{{ personnelDetails.personnel.address}}</strong>
             <span class="body-2 pl-5">CELLPHONE No. : </span>
-            <strong>09060650555</strong>
+            <strong>{{personnelDetails.personnel.mobile}}</strong>
           </div>
         </v-col>
       </v-row>
@@ -72,7 +72,7 @@
         <v-col>
           <div>
             <strong>Date : </strong>
-            <span>Dec 05, 2022</span>
+            <span>{{dateToday}}</span>
             <v-divider></v-divider>
           </div>
         </v-col>
@@ -93,6 +93,10 @@
 </template>
 
 <script>
+import { createNamespacedHelpers } from "vuex";
+const { mapGetters } = createNamespacedHelpers("navigation");
+
+
 import DentalTable from "@/components/navigation/Personnel/Dental/DentalTable";
 import DentalUpdate from "@/components/navigation/Personnel/Dental/DentalUpdate";
 export default {
@@ -105,8 +109,12 @@ export default {
     dialog: false,
   }),
   computed: {
+    ...mapGetters(["personnelDetails"]),
     birthDate() {
-      return this.data.dateOfBirth.substr(0, 10);
+      return this.personnelDetails.personnel.dateOfBirth.substr(0, 10);
+    },
+    dateToday() {
+      return this.personnelDetails.personnel.createdAt.substr(0, 10);
     },
   },
 };

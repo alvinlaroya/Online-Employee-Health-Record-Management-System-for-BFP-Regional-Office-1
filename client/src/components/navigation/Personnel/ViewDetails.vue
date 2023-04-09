@@ -2,7 +2,7 @@
   <v-card elevation="0">
     <v-container>
       <v-row justify="end" class="pa-2">
-        <!-- <PtNoteUpdate /> -->
+        <UpdateDetails />
         <v-btn v-print="'#print'" class="ml-3" small>print</v-btn>
       </v-row>
     </v-container>
@@ -86,17 +86,21 @@
 
 <script>
 import { createNamespacedHelpers } from "vuex";
+import UpdateDetails from "./ViewDetail/UpdateDetails.vue";
 const { mapGetters } = createNamespacedHelpers("navigation");
 
 export default {
-  props: ["data"],
-
-  computed: {
-    ...mapGetters(["personnelDetails"]),
-    birthDate() {
-      return this.data.dateOfBirth.substr(0, 10);
+    props: ["data"],
+    components:{
+      UpdateDetails
     },
-  },
+    computed: {
+        ...mapGetters(["personnelDetails"]),
+        birthDate() {
+            return this.data.dateOfBirth.substr(0, 10);
+        },
+    },
+    components: { UpdateDetails }
 };
 </script>
 

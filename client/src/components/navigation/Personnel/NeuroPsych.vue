@@ -11,7 +11,7 @@
         <v-col class="mb-2">
           <span>
             Date :
-            <strong> March 31, 2022 </strong>
+            <strong> {{ dateToday}} </strong>
           </span>
         </v-col>
       </v-row>
@@ -23,6 +23,9 @@
 </template>
 
 <script>
+import { createNamespacedHelpers } from "vuex";
+const { mapGetters } = createNamespacedHelpers("navigation");
+
 import PsychTable from "@/components/navigation/Personnel/Psych/PsychTable";
 import PsychUpdate from "@/components/navigation/Personnel/Psych/PsychUpdate";
 export default {
@@ -31,11 +34,7 @@ export default {
     PsychTable,
     PsychUpdate,
   },
-  computed: {
-    birthDate() {
-      return this.data.dateOfBirth.substr(0, 10);
-    },
-  },
+
   data() {
     return {
       dialogVisible: false,
@@ -47,6 +46,12 @@ export default {
     },
     close() {
       this.dialogVisible = false;
+    },
+  },
+  computed: {
+    ...mapGetters(["personnelDetails"]),
+    dateToday() {
+      return this.personnelDetails.personnel.createdAt.substr(0, 10);
     },
   },
 };

@@ -12,8 +12,8 @@
           <span>
             Full Name :
             <strong>
-              {{ data.fname }} {{ data.mname }} {{ data.lname }}
-              {{ data.extName }}
+              {{ personnelDetails.personnel.fname }} {{ personnelDetails.personnel.mname }} {{ personnelDetails.personnel.lname }}
+              {{ personnelDetails.personnel.extName }}
             </strong>
           </span>
         </v-col>
@@ -22,9 +22,9 @@
         <v-col align-content="space-between" class="pa-0">
           <span class="pr-5"
             >Date Of Birth :
-            <strong>15 sep 1981</strong>
+            <strong>{{ birthDate}}</strong>
           </span>
-          <span class="pr-5">AGE: <strong>41</strong></span>
+          <span class="pr-5">AGE: <strong>{{ birthDate | computeAge }}</strong></span>
           <span class="pr-5"
             >Place of Birth: <strong>Naga City, Cam. sur</strong></span
           ></v-col
@@ -47,6 +47,10 @@
 </template>
 
 <script>
+import { createNamespacedHelpers } from "vuex";
+const { mapGetters } = createNamespacedHelpers("navigation");
+
+
 import PersonalHistory from "@/components/navigation/Personnel/Medical/PersonalHistory";
 import MedicalDetails from "@/components/navigation/Personnel/Medical/MedicalDetails";
 import MedicalUpdate from "@/components/navigation/Personnel/Medical/MedicalUpdate";
@@ -63,8 +67,9 @@ export default {
     tabs: [{ component: MedicalDetails }, { component: PersonalHistory }],
   }),
   computed: {
+    ...mapGetters(["personnelDetails"]),
     birthDate() {
-      return this.data.dateOfBirth.substr(0, 10);
+      return this.personnelDetails.personnel.dateOfBirth.substr(0, 10);
     },
   },
 };

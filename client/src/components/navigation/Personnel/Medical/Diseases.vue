@@ -1,204 +1,214 @@
 <template>
-  <v-data-table
-    :headers="headers"
-    :items="items"
-    hide-default-header
-    hide-default-footer
-    disable-pagination
-    :pagination="false"
-    :items-per-page="100"
-    class="elevation-1 mt-5"
-    dense
-  ></v-data-table>
+  <div>
+    <v-data-table
+      :headers="headers"
+      :items="items"
+      hide-default-header
+      hide-default-footer
+      :items-per-page="100"
+      class="elevation-1 mt-5"
+      dense
+    ></v-data-table>
+  </div>
 </template>
 
 <script>
+import { createNamespacedHelpers } from "vuex";
+const { mapGetters } = createNamespacedHelpers("navigation");
 export default {
-  data() {
-    return {
-      headers: [
-        {
-          text: "Diseases",
-          align: "start",
-          value: "name",
-          divider: true 
-        },
-        { text: "Yes/No", value: "yesNo", divider: true },
-        { text: "More Dieases", value: "moreDisease", divider: true },
-        { text: "Yes/No", value: "moreYesNo", divider: true },
-      ],
-      items: [
-        {
-          name: "Worn Eye Glass",
-          moreDisease: "Worn Brace or Back Support",
-          yesNo: "YES",
-          moreYesNo: "NO",
-        },
-        {
-          name: "Worn Hearing Aid",
-          moreDisease: "Worn Artificial Eyes",
-          yesNo: "NO",
-          moreYesNo: "NO",
-        },
-        {
-          name: "Had Syphillis",
-          moreDisease: "Had Paralysis / Infantile",
-          yesNo: "NO",
-          moreYesNo: "NO",
-        },
-        {
-          name: "Had Fracture",
-          moreDisease: "Had Serum reaction",
-          yesNo: "NO",
-          moreYesNo: "NO",
-        },
-        {
-          name: "Attempted Suicide",
-          moreDisease: "Lived with person with Tubercolosis",
-          yesNo: "NO",
-          moreYesNo: "NO",
-        },
-        {
-          name: "Had Foot trouble",
-          moreDisease: "Had Stuttered or Stammered speech",
-          yesNo: "yes",
-          moreYesNo: "NO",
-        },
-        {
-          name: "Diphtheria",
-          moreDisease: "Gall bladder disease",
-          yesNo: "NO",
-          moreYesNo: "YES",
-        },
-        {
-          name: "Rheumatic fever",
-          moreDisease: "Frequent / Severe headache",
-          yesNo: "NO",
-          moreYesNo: "NO",
-        },
-        {
-          name: "Measles",
-          moreDisease: "Dizziness/ fainting spell",
-          yesNo: "NO",
-          moreYesNo: "NO",
-        },
-        {
-          name: "Mumps",
-          moreDisease: "Chronic / Frequent colds",
-          yesNo: "NO",
-          moreYesNo: "NO",
-        },
-        {
-          name: "Chicken pox",
-          moreDisease: "Palpitation / Pounding heart",
-          yesNo: "NO",
-          moreYesNo: "NO",
-        },
-        {
-          name: "Whooping Cough",
-          moreDisease: "Tumor , Cyst or Cancer",
-          yesNo: "NO",
-          moreYesNo: "YES",
-        },
-        {
-          name: "Tuberculosis",
-          moreDisease: "Frequent / paintful urination",
-          yesNo: "NO",
-          moreYesNo: "NO",
-        },
-        {
-          name: "Pneumonia",
-          moreDisease: "Sugar / Albumin in urine",
-          yesNo: "NO",
-          moreYesNo: "NO",
-        },
-        {
-          name: "Asthma",
-          moreDisease: "Recent  weight gain / weight loss",
-          yesNo: "NO",
-          moreYesNo: "NO",
-        },
-        {
-          name: "Jaundice",
-          moreDisease: "Bone / joint deformity",
-          yesNo: "NO",
-          moreYesNo: "NO",
-        },
-        {
-          name: "Ear Discharge",
-          moreDisease: "Loss of arm, finger , toe",
-          yesNo: "NO",
-          moreYesNo: "NO",
-        },
-        {
-          name: "Goiter",
-          moreDisease: "Pain in Shoulder",
-          yesNo: "NO",
-          moreYesNo: "NO",
-        },
-        {
-          name: "Epilepsy",
-          moreDisease: "Motion Sickness",
-          yesNo: "NO",
-          moreYesNo: "NO",
-        },
-        {
-          name: "Veneral disease",
-          moreDisease: "Shortness of breath",
-          yesNo: "NO",
-          moreYesNo: "NO",
-        },
-        {
-          name: "Knocked-knee",
-          moreDisease: "Stomach, Liver or intestinal disorder",
-          yesNo: "NO",
-          moreYesNo: "NO",
-        },
-        {
-          name: "Depression",
-          moreDisease: "Terrefying Nightmare",
-          yesNo: "NO",
-          moreYesNo: "NO",
-        },
-        {
-          name: "Pyorrhea / bleeding gums",
-          moreDisease: "Sleeping Trouble",
-          yesNo: "NO",
-          moreYesNo: "NO",
-        },
-        {
-          name: "Arthritis",
-          moreDisease: "Drug, Narcotic-habit or alcoholism",
-          yesNo: "NO",
-          moreYesNo: "NO",
-        },
-        {
-          name: "Loss of memory",
-          moreDisease: "Pain or pressure in the chest",
-          yesNo: "NO",
-          moreYesNo: "NO",
-        },
-        {
-          name: "Nervousness",
-          moreDisease: "Frequent or Severe Indigestion",
-          yesNo: "NO",
-          moreYesNo: "NO",
-        },
-        {
-          name: "Sinusitis",
-          moreDisease: "Piles or rectal disease",
-          yesNo: "yes",
-          moreYesNo: "NO",
-        },
-        {
-          name: "Bedwetting",
-          moreDisease: "Diarrhea",
-          yesNo: "yes",
-          moreYesNo: "NO",
-        },
-      ],
-    };
+  data: () => ({
+    headers: [
+      {
+        text: "Diseases",
+        align: "start",
+        value: "name",
+        divider: true,
+      },
+      { text: "Answer", value: "Answer", divider: true },
+      { text: "More Dieases", value: "moreDisease", divider: true },
+      { text: "Answer2", value: "Answer2", divider: true },
+    ],
+    items: []
+  }),
+  computed: {
+    ...mapGetters(["personnelDetails"]),
+    personalHistory() {
+      return this.personnelDetails.medicalRecord.medicalPersonalHistory
+    },
   },
+  created() {
+    this.items = [
+      {
+        name: "Worn Eye Glass",
+        moreDisease: "Worn Brace or Back Support",
+        Answer: this.personalHistory.wornEyeglasses ? 'Yes' : 'No',
+        Answer2: this.personalHistory.wornBrace ? 'Yes' : 'No',
+      },
+      {
+        name: "Worn Hearing Aid",
+        moreDisease: "Worn Artificial Eyes",
+        Answer: this.personalHistory.wornHearingAid ? 'Yes' : 'No',
+        Answer2: this.personalHistory.wornArtificialEyes ? 'Yes' : 'No',
+      },
+      {
+        name: "Had Syphillis",
+        moreDisease: "Had Paralysis / Infantile",
+        Answer: this.personalHistory.syphillis ? 'Yes' : 'No',
+        Answer2: this.personalHistory.paralysis ? 'Yes' : 'No',
+      },
+      {
+        name: "Had Fracture",
+        moreDisease: "Had Serum reaction",
+        Answer: this.personalHistory.fracture ? 'Yes' : 'No',
+        Answer2: this.personalHistory.serumReaction ? 'Yes' : 'No',
+      },
+      {
+        name: "Attempted Suicide",
+        moreDisease: "Lived with person with Tubercolosis",
+        Answer: this.personalHistory.suicide ? 'Yes' : 'No',
+        Answer2: this.personalHistory.liveWithTuberculosis ? 'Yes' : 'No',
+      },
+      {
+        name: "Had Foot trouble",
+        moreDisease: "Had Stuttered or Stammered speech",
+        Answer: this.personalHistory.footTrouble ? 'Yes' : 'No',
+        Answer2: this.personalHistory.stuttered ? 'Yes' : 'No',
+      },
+      {
+        name: "Diphtheria",
+        moreDisease: "Gall bladder disease",
+        Answer: this.personalHistory.diphtheria ? 'Yes' : 'No',
+        Answer2: this.personalHistory.gallBladder ? 'Yes' : 'No',
+      },
+      {
+        name: "Rheumatic fever",
+        moreDisease: "Frequent / Severe headache",
+        Answer: this.personalHistory.rheumaticFever ? 'Yes' : 'No',
+        Answer2: this.personalHistory.severeHeadache ? 'Yes' : 'No',
+      },
+      {
+        name: "Measles",
+        moreDisease: "Dizziness/ fainting spell",
+        Answer: this.personalHistory.measles ? 'Yes' : 'No',
+        Answer2: this.personalHistory.dizziness ? 'Yes' : 'No',
+      },
+      {
+        name: "Mumps",
+        moreDisease: "Chronic / Frequent colds",
+        Answer: this.personalHistory.mumps ? 'Yes' : 'No',
+        Answer2: this.personalHistory.chronic ? 'Yes' : 'No',
+      },
+      {
+        name: "Chicken pox",
+        moreDisease: "Palpitation / Pounding heart",
+        Answer: this.personalHistory.chickenPox ? 'Yes' : 'No',
+        Answer2: this.personalHistory.palpitation ? 'Yes' : 'No',
+      },
+      {
+        name: "Whooping Cough",
+        moreDisease: "Tumor , Cyst or Cancer",
+        Answer: this.personalHistory.whoopingCough ? 'Yes' : 'No',
+        Answer2: this.personalHistory.cyst ? 'Yes' : 'No',
+      },
+      {
+        name: "Tuberculosis",
+        moreDisease: "Frequent / paintful urination",
+        Answer: this.personalHistory.tuberculosis ? 'Yes' : 'No',
+        Answer2: this.personalHistory.painfulUrination ? 'Yes' : 'No',
+      },
+      {
+        name: "Pneumonia",
+        moreDisease: "Sugar / Albumin in urine",
+        Answer: this.personalHistory.pneumonia ? 'Yes' : 'No',
+        Answer2: this.personalHistory.albuminUrine ? 'Yes' : 'No',
+      },
+      {
+        name: "Asthma",
+        moreDisease: "Recent  weight gain / weight loss",
+        Answer: this.personalHistory.asthma ? 'Yes' : 'No',
+        Answer2: this.personalHistory.weightLoss ? 'Yes' : 'No',
+      },
+      {
+        name: "Jaundice",
+        moreDisease: "Bone / joint deformity",
+        Answer: this.personalHistory.jaundice ? 'Yes' : 'No',
+        Answer2: this.personalHistory.jointDeformity ? 'Yes' : 'No',
+      },
+      {
+        name: "Ear Discharge",
+        moreDisease: "Loss of arm, finger , toe",
+        Answer: this.personalHistory.earDischarge ? 'Yes' : 'No',
+        Answer2: this.personalHistory.lossOfArm ? 'Yes' : 'No',
+      },
+      {
+        name: "Goiter",
+        moreDisease: "Pain in Shoulder",
+        Answer: this.personalHistory.goiter ? 'Yes' : 'No',
+        Answer2: this.personalHistory.painInShoulder ? 'Yes' : 'No',
+      },
+      {
+        name: "Epilepsy",
+        moreDisease: "Motion Sickness",
+        Answer: this.personalHistory.epilepsy ? 'Yes' : 'No',
+        Answer2: this.personalHistory.motionSickness ? 'Yes' : 'No',
+      },
+      {
+        name: "Veneral disease",
+        moreDisease: "Shortness of breath",
+        Answer: this.personalHistory.veneralDisease ? 'Yes' : 'No',
+        Answer2: this.personalHistory.shortnessOfBreath ? 'Yes' : 'No',
+      },
+      {
+        name: "Knocked-knee",
+        moreDisease: "Stomach, Liver or intestinal disorder",
+        Answer: this.personalHistory.knockedKnee ? 'Yes' : 'No',
+        Answer2: this.personalHistory.liverDisorder ? 'Yes' : 'No',
+      },
+      {
+        name: "Depression",
+        moreDisease: "Terrefying Nightmare",
+        Answer: this.personalHistory.depression ? 'Yes' : 'No',
+        Answer2: this.personalHistory.terrifyingNightmare ? 'Yes' : 'No',
+      },
+      {
+        name: "Pyorrhea / bleeding gums",
+        moreDisease: "Sleeping Trouble",
+        Answer: this.personalHistory.pyorrhea ? 'Yes' : 'No',
+        Answer2: this.personalHistory.sleepingTrouble ? 'Yes' : 'No',
+      },
+      {
+        name: "Arthritis",
+        moreDisease: "Drug, Narcotic-habit or alcoholism",
+        Answer: this.personalHistory.arthritis ? 'Yes' : 'No',
+        Answer2: this.personalHistory.alcoholism ? 'Yes' : 'No',
+      },
+      {
+        name: "Loss of memory",
+        moreDisease: "Pain or pressure in the chest",
+        Answer: this.personalHistory.lossOfMemory ? 'Yes' : 'No',
+        Answer2: this.personalHistory.painInTheChest ? 'Yes' : 'No',
+      },
+      {
+        name: "Nervousness",
+        moreDisease: "Frequent or Severe Indigestion",
+        Answer: this.personalHistory.nervousness ? 'Yes' : 'No',
+        Answer2: this.personalHistory.severeIndigestion ? 'Yes' : 'No',
+      },
+      {
+        name: "Sinusitis",
+        moreDisease: "Piles or rectal disease",
+        Answer: this.personalHistory.sinusitis ? 'Yes' : 'No',
+        Answer2: this.personalHistory.rectalDisease ? 'Yes' : 'No',
+      },
+      {
+        name: "Bedwetting",
+        moreDisease: "Diarrhea",
+        Answer: this.personalHistory.bedWetting ? 'Yes' : 'No',
+        Answer2: this.personalHistory.diarrhea ? 'Yes' : 'No',
+      },
+    ];
+  },
+
 };
 </script>
 

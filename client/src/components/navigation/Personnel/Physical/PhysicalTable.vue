@@ -1,5 +1,6 @@
 <template>
-  <v-data-table
+  <div>
+    <v-data-table
     :headers="headers"
     :items="items"
     dense
@@ -8,9 +9,15 @@
     :disable-pagination="true"
     class="elevation-1"
   ></v-data-table>
+
+  </div>
+  
 </template>
 
 <script>
+import { createNamespacedHelpers } from "vuex";
+const { mapGetters } = createNamespacedHelpers("navigation");
+
 export default {
   data: () => ({
     headers: [
@@ -35,128 +42,136 @@ export default {
         divider: true,
       },
     ],
-    items: [
-      {
-        label: "10: HEIGHT (bare Foot) ",
-        label2: "31 : UPPER EXTREMITIES ",
-        answer: "-",
-        answer2: "-",
-      },
-      {
-        label: "11: HEIGHT (Stripped) in kilos ",
-        label2: "32 : LOWER EXTREMITIES ",
-        answer: "-",
-        answer2: "-",
-      },
-      {
-        label: "12: BUILD ",
-        label2: "33 : SPINE & MSK SYSTEM",
-        answer: "-",
-        answer2: "-",
-      },
-      {
-        label: "13: SKIN ",
-        label2: "34 : PELVIC",
-        answer: "-",
-        answer2: "-",
-      },
-      {
-        label: "14: COLOR OF EYES ",
-        label2: "35 : PSYCHIATRIC",
-        answer: "-",
-        answer2: "-",
-      },
-      {
-        label: "15: COLOR OF HAIR ",
-        label2: "36 : BLOOD PRESSURE",
-        answer: "-",
-        answer2: "-",
-      },
-      {
-        label: "16: HEAD & FACE ",
-        label2: "37 : CARDIAC RATE",
-        answer: "-",
-        answer2: "-",
-      },
-      {
-        label: "17: NECK ",
-        label2: "38 : DRUG TEST",
-        answer: "-",
-        answer2: "-",
-      },
-      {
-        label: "18: NOSE & AND SINUSES ",
-        label2: "39 : URINALYSIS",
-        answer: "-",
-        answer2: "-",
-      },
-
-      {
-        label: "19: MOUTH & THROAT ",
-        label2: "40 : FBS",
-        answer: "-",
-        answer2: "-",
-      },
-      {
-        label: "20: EARS & EARDRUMS ",
-        label2: "41 : Hepa-B Screening",
-        answer: "-",
-        answer2: "-",
-      },
-      {
-        label: "21: WHISPER VOICE TEST ",
-        label2: "42 : CBC",
-        answer: "-",
-        answer2: "-",
-      },
-      {
-        label: "22: EYES / PUPILS ",
-        label2: "43 : BLOOD TYPE",
-        answer: "-",
-        answer2: "-",
-      },
-      {
-        label: "23: VISION ",
-        label2: "44 : PREGNANCY TEST",
-        answer: "-",
-        answer2: "-",
-      },
-      {
-        label: "24: COLOR VISION ",
-        label2: "45 : CHOLESTEROL",
-        answer: "-",
-        answer2: "-",
-      },
-      {
-        label: "25: HEART ",
-        label2: "46 : ECG",
-        answer: "-",
-        answer2: "-",
-      },
-      {
-        label: "26: VASCULAR SYSTEM ",
-        label2: "47 : CHEST X-RAY",
-        answer: "-",
-        answer2: "-",
-      },
-      {
-        label: "27: LUNGS AND CHEST ",
-        answer: "-",
-      },
-      {
-        label: "28: ABDOMEN VISCERA ",
-        answer: "-",
-      },
-      {
-        label: "29: ANUS AND RECTUM ",
-        answer: "-",
-      },
-      {
-        label: "30: GENITAL ",
-        answer: "-",
-      },
-    ],
+    items: []
   }),
+  computed: {
+    ...mapGetters(["personnelDetails"]),
+    physicalExam() {
+      return this.personnelDetails.physicalExamination;
+    },
+  },
+  created() {
+    this.items = [
+      {
+        label: "HEIGHT (bare Foot) ",
+        label2: "UPPER EXTREMITIES ",
+        answer: this.physicalExam.height,
+        answer2: this.physicalExam.upperExtremities ,
+      },
+      {
+        label: "WEIGHT (Stripped) in kilos ",
+        label2: "LOWER EXTREMITIES ",
+        answer: this.physicalExam.weight,
+        answer2: this.physicalExam.lowerExtremities
+      },
+      {
+        label: "BUILD ",
+        label2: "SPINE & MSK SYSTEM",
+        answer: this.physicalExam.build,
+        answer2: this.physicalExam.spineAndMskSystem
+      },
+      {
+        label: "SKIN ",
+        label2: "PELVIC",
+        answer: this.physicalExam.skin,
+        answer2: this.physicalExam.pelvic
+      },
+      {
+        label: "COLOR OF EYES ",
+        label2: "PSYCHIATRIC",
+        answer: this.physicalExam.colorOfEyes,
+        answer2: this.physicalExam.psychiatric
+      },
+      {
+        label: "COLOR OF HAIR ",
+        label2: "BLOOD PRESSURE",
+        answer: this.physicalExam.colorOfHair,
+        answer2: this.physicalExam.bloodPressure,
+      },
+      {
+        label: " HEAD & FACE ",
+        label2: "CARDIAC RATE",
+        answer: this.physicalExam.headAndFace,
+        answer2: this.physicalExam.cardiacRate,
+      },
+      {
+        label: "NECK ",
+        label2: "DRUG TEST",
+        answer: this.physicalExam.neck,
+        answer2: this.physicalExam.drugTest,
+      },
+      {
+        label: "NOSE & AND SINUSES ",
+        label2: "URINALYSIS",
+        answer: this.physicalExam.noseAndSinuses,
+        answer2: this.physicalExam.urinalysis,
+      },
+      {
+        label: "MOUTH & THROAT ",
+        label2: "FBS",
+        answer: this.physicalExam.mouthAndThroat,
+        answer2: this.physicalExam.fbs,
+      },
+      {
+        label: "EARS & EARDRUMS ",
+        label2: "Hepa-B Screening",
+        answer: this.physicalExam.earsAndEardrums,
+        answer2: this.physicalExam.hepaScreening,
+      },
+      {
+        label: "WHISPER VOICE TEST ",
+        label2: "CBC",
+        answer: this.physicalExam.whisperVoiceTest,
+        answer2: this.physicalExam.cbc,
+      },
+      {
+        label: "EYES / PUPILS ",
+        label2: "BLOOD TYPE",
+        answer: this.physicalExam.eyesOrPupils,
+        answer2: this.physicalExam.bloodType,
+      },
+      {
+        label: "VISION ",
+        label2: "PREGNANCY TEST",
+        answer: this.physicalExam.vision,
+        answer2: this.physicalExam.pregnancyTest,
+      },
+      {
+        label: "COLOR VISION ",
+        label2: "CHOLESTEROL",
+        answer: this.physicalExam.colorVision,
+        answer2: this.physicalExam.cholesterol,
+      },
+      {
+        label: "HEART ",
+        label2: "ECG",
+        answer: this.physicalExam.heart,
+        answer2: this.physicalExam.ecg,
+      },
+      {
+        label: "VASCULAR SYSTEM ",
+        label2: "CHEST X-RAY",
+        answer: this.physicalExam.vascularSystem,
+        answer2: this.physicalExam.chestXray,
+      },
+      {
+        label: "LUNGS AND CHEST ",
+        answer: this.physicalExam.lungsAndChest,
+      },
+      {
+        label: "ABDOMEN VISCERA ",
+        answer: this.physicalExam.abdomenViscera,
+      },
+      {
+        label: "ANUS AND RECTUM ",
+        answer: this.physicalExam.anusAndRectum
+      },
+      {
+        label: "GENITAL ",
+        answer: this.physicalExam.genital
+      },
+    ];
+  },
 };
 </script>
 

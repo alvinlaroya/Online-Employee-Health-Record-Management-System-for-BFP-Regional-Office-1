@@ -7,6 +7,12 @@ export default {
     },
     ADD_PERSONNELS(state, payload) {
         state.personnels.unshift(payload)
-    }
+    },
+
+    // SET_CASES(state, data) {
+    //     state.cases = data
+    // },
+
+
 
 }

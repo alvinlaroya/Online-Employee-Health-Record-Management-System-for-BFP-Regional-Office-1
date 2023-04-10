@@ -77,9 +77,7 @@
           >Remarks : <strong>{{ data.remarks }}</strong></span
         >
       </v-row>
-      <v-row>
-        <pre>{{ personnelDetails }}</pre>
-      </v-row>
+
     </v-container>
   </v-card>
 </template>
@@ -100,7 +98,7 @@ export default {
             return this.data.dateOfBirth.substr(0, 10);
         },
     },
-    components: { UpdateDetails }
+  
 };
 </script>
 

@@ -12,13 +12,15 @@
           <div class="">
             <span class="body-2"> FULL NAME : </span>
             <strong>
-              {{ personnelDetails.personnel.fname }} {{ personnelDetails.personnel.mname }} {{ personnelDetails.personnel.lname }}
+              {{ personnelDetails.personnel.fname }}
+              {{ personnelDetails.personnel.mname }}
+              {{ personnelDetails.personnel.lname }}
               {{ personnelDetails.personnel.extName }}
             </strong>
             <span class="body-2 pl-5">RANK : </span>
-            <strong>{{personnelDetails.personnel.rank}}</strong>
+            <strong>{{ personnelDetails.personnel.rank }}</strong>
             <span class="body-2 pl-5">DATE OF BIRTH : </span>
-            <strong>{{ dateOfBirth }}</strong>
+            <strong>{{ birthDate }}</strong>
           </div>
         </v-col>
       </v-row>
@@ -26,11 +28,11 @@
         <v-col class="pa-0">
           <div class="">
             <span class="body-2"> UNIT ASSIGNMENT : </span>
-            <strong> {{personnelDetails.personnel.unit}} </strong>
+            <strong> {{ personnelDetails.personnel.unit }} </strong>
             <span class="body-2 pl-5">HOME ADDRESS : </span>
-            <strong>{{ personnelDetails.personnel.address}}</strong>
+            <strong>{{ personnelDetails.personnel.address }}</strong>
             <span class="body-2 pl-5">CELLPHONE No. : </span>
-            <strong>{{personnelDetails.personnel.mobile}}</strong>
+            <strong>{{ personnelDetails.personnel.mobile }}</strong>
           </div>
         </v-col>
       </v-row>
@@ -38,20 +40,36 @@
         <v-col class="pa-0">
           <div class="">
             <span class="body-2">INITIAL / CONSULTATION : </span>
-            <strong> YES </strong>
+            <strong>
+              {{
+                personnelDetails.dental.initial
+                  ? personnelDetails.dental.initial
+                  : "N/A"
+              }}
+            </strong>
             <span class="body-2 pl-5">TRAINING : </span>
-            <strong>NO</strong>
+            <strong>{{
+              personnelDetails.dental.training
+                ? personnelDetails.dental.training
+                : "N/A"
+            }}</strong>
             <span class="body-2 pl-5">PROMOTION : </span>
-            <strong>NO</strong>
+            <strong>{{
+              personnelDetails.dental.promotion
+                ? personnelDetails.dental.promotion
+                : "N/A"
+            }}</strong>
           </div>
         </v-col>
       </v-row>
       <v-row justify="space-between">
         <v-col class="pa-0">
-          <div class="">
-            <span class="body-2">DATE : </span>
-            <strong> 05 December 2022 </strong>
-          </div>
+          <span class="body-2">INITIAL DATE : </span>
+          <strong> {{ initialDate  }} </strong>
+          <span class="body-2 pl-5">TRAINING DATE : </span>
+          <strong>{{ trainingDate  }}</strong>
+          <span class="body-2 pl-5">PROMOTION DATE: </span>
+          <strong>{{ promotionDate }}</strong>
         </v-col>
       </v-row>
       <v-row>
@@ -59,20 +77,12 @@
           <DentalTable />
         </v-col>
       </v-row>
+
       <v-row>
         <v-col>
           <div>
-            <strong>Examining Dentist : </strong>
-            <span>Name of Dentist Here</span>
-            <v-divider></v-divider>
-          </div>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
-          <div>
-            <strong>Date : </strong>
-            <span>{{dateToday}}</span>
+            <strong>Examining Date : </strong>
+            <!-- <span>{{ personnelDetails.dental.examiningDate }}</span> -->
             <v-divider></v-divider>
           </div>
         </v-col>
@@ -96,7 +106,6 @@
 import { createNamespacedHelpers } from "vuex";
 const { mapGetters } = createNamespacedHelpers("navigation");
 
-
 import DentalTable from "@/components/navigation/Personnel/Dental/DentalTable";
 import DentalUpdate from "@/components/navigation/Personnel/Dental/DentalUpdate";
 export default {
@@ -115,6 +124,33 @@ export default {
     },
     dateToday() {
       return this.personnelDetails.personnel.createdAt.substr(0, 10);
+    },
+    initialDate() {
+      if (
+        !this.personnelDetails.dental ||
+        !this.personnelDetails.dental.initialDate
+      ) {
+        return "N/A";
+      }
+      return this.personnelDetails.dental.initialDate.substr(0, 10);
+    },
+    trainingDate() {
+      if (
+        !this.personnelDetails.dental ||
+        !this.personnelDetails.dental.trainingDate
+      ) {
+        return "N/A";
+      }
+      return this.personnelDetails.dental.trainingDate.substr(0, 10);
+    },
+    promotionDate() {
+      if (
+        !this.personnelDetails.dental ||
+        !this.personnelDetails.dental.promotionDate
+      ) {
+        return "N/A";
+      }
+      return this.personnelDetails.dental.promotionDate.substr(0, 10);
     },
   },
 };

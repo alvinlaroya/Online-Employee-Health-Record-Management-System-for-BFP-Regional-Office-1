@@ -2,13 +2,13 @@
 import axios from "axios";
 
 /* const apiUrl = "http://127.0.0.1:8000/api"; */
-const apiUrl = "http://localhost:8000/api/dental";
+const apiUrl = "http://localhost:8000/api/physical-examination";
 
 export default {
-    async updateDental({ personnelId, data }) {
+    async updatePhysical({ personnelId, data }) {
         console.log("Service", { personnelId, data})
         await axios.put(
-            `${apiUrl}/updateDental/${personnelId}`, data,
+            `${apiUrl}/updatePhysicalExamination/${personnelId}`, data,
             {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,

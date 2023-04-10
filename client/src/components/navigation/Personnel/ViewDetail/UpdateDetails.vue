@@ -12,7 +12,7 @@
               <v-col>
                 <v-text-field
                   label="Account Number"
-                  v-model="accountNo"
+                  v-model="Personnel.accountNo"
                   dense
                   @keypress="keyPressAccountNo($event)"
                 ></v-text-field>
@@ -20,25 +20,25 @@
               <v-col>
                 <v-select
                   label="Rank"
-                  v-model="rank"
+                  v-model="Personnel.rank"
                   :items="['SF01', 'SF02', 'SF03']"
                   dense
                 ></v-select>
               </v-col>
               <v-col>
                 <v-text-field
-                    label="Philhealth"
-                    v-mask="'##-#########-#'"
-                    v-model="philhealth"
-                    dense
-                  ></v-text-field>
+                  label="Philhealth"
+                  v-mask="'##-#########-#'"
+                  v-model="Personnel.philhealth"
+                  dense
+                ></v-text-field>
               </v-col>
             </v-row>
             <v-row>
               <v-col class="" cols="12" md="4">
                 <v-text-field
                   label="Last Name"
-                  v-model="lname"
+                  v-model="Personnel.lname"
                   dense
                   @keypress="validateString($event)"
                 ></v-text-field>
@@ -46,7 +46,7 @@
               <v-col class="" cols="12" md="4">
                 <v-text-field
                   label="First Name"
-                  v-model="fname"
+                  v-model="Personnel.fname"
                   dense
                   @keypress="validateString($event)"
                 ></v-text-field>
@@ -54,7 +54,7 @@
               <v-col class="" cols="12" md="4">
                 <v-text-field
                   label="Middle Name"
-                  v-model="mname"
+                  v-model="Personnel.mname"
                   dense
                   @keypress="validateString($event)"
                 ></v-text-field>
@@ -64,7 +64,7 @@
               <v-col cols="4">
                 <v-text-field
                   label="Mobile"
-                  v-model="mobile"
+                  v-model="Personnel.mobile"
                   prefix="+639"
                   dense
                   @keypress="validateNumber($event)"
@@ -73,7 +73,7 @@
               <v-col cols="4">
                 <v-select
                   label="Unit Assignment"
-                  v-model="unit"
+                  v-model="Personnel.unit"
                   :items="[
                     'OARD - R1',
                     'OPFM - ILOCOS NORTE',
@@ -87,43 +87,44 @@
               <v-col cols="4">
                 <v-text-field
                   label="Address"
-                  v-model="address"
+                  v-model="Personnel.address"
                   dense
                 ></v-text-field>
               </v-col>
             </v-row>
             <v-row>
               <v-col cols="4">
-                  <v-text-field
-                    label="Designation"
-                    v-model="designation"
-                    dense
-                  ></v-text-field>
-                </v-col>
-                <v-col>
-                  <v-select
-                    label="Civil Status"
-                    v-model="civilStatus"
-                    :items="['Single', 'Married', 'Widowed', 'Separated']"
-                    dense
-                  ></v-select>
-                </v-col>
-                <v-col>
-                  <v-select
-                    label="Gender"
-                    v-model="gender"
-                    :items="['Male', 'Female']"
-                    dense
-                  ></v-select>
-                </v-col>
-                <v-col>
-                  <v-text-field
-                    label="Remarks"
-                    v-model="remarks"
-                    dense
-                  ></v-text-field>
-                </v-col>
+                <v-text-field
+                  label="Designation"
+                  v-model="Personnel.designation"
+                  dense
+                ></v-text-field>
+              </v-col>
+              <v-col>
+                <v-select
+                  label="Civil Status"
+                  v-model="Personnel.civilStatus"
+                  :items="['Single', 'Married', 'Widowed', 'Separated']"
+                  dense
+                ></v-select>
+              </v-col>
+              <v-col>
+                <v-select
+                  label="Gender"
+                  v-model="Personnel.gender"
+                  :items="['Male', 'Female']"
+                  dense
+                ></v-select>
+              </v-col>
+              <v-col>
+                <v-text-field
+                  label="Remarks"
+                  v-model="Personnel.remarks"
+                  dense
+                ></v-text-field>
+              </v-col>
             </v-row>
+            <v-btn color="primary" @click="submitHandler">Submit</v-btn>
           </v-form>
         </v-card-text>
       </v-card>
@@ -137,8 +138,7 @@ import validateString from "@/_common/helpers/validateString.js";
 import validateNumber from "@/_common/helpers/validateNumber.js";
 
 import { createNamespacedHelpers } from "vuex";
-
-const { mapState, mapActions } = createNamespacedHelpers("navigation");
+const { mapState, mapActions ,mapGetters } = createNamespacedHelpers("navigation");
 
 export default {
   data: () => ({
@@ -147,33 +147,52 @@ export default {
     date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
       .toISOString()
       .substr(0, 10),
-    // formData: {
-    fname: "",
-    mname: "",
-    lname: "",
-    extName: "",
-    gender: "",
-    mobile: "",
-    address: "",
-    dateOfBirth: "",
-    civilStatus: "",
-    unit: "",
-    designation: "",
-    remarks: "",
-    // },
+    Personnel: [
+      {
+        fname: "",
+        mname: "",
+        lname: "",
+        extName: "",
+        gender: "",
+        mobile: "",
+        address: "",
+        dateOfBirth: "",
+        civilStatus: "",
+        unit: "",
+        designation: "",
+        remarks: "",
+        accountNo: "",
+        rank: "",
+        philhealth: "",
+      },
+    ],
   }),
   methods: {
-    keyPressAccountNo(e) {
-      validateAccountNo(e, this.personnels.accountNo.length);
-    },
-    validateString(e) {
-      validateString(e);
-    },
-    validateNumber(e) {
-      validateNumber(e, this.personnels.mobile.length);
-    },
+    // ...mapActions(["updatePersonnel"]),
+    // async submitHandler() {
+    //   await this.updatePersonnel({
+    //     personnelId: this.personnelId,
+    //     data: this.Personnel
+    //   })
+
+    //   this.dialog = false;
+    // },
+    // keyPressAccountNo(e) {
+    //   validateAccountNo(e, this.updatePersonnel.accountNo.length);
+    // },
+    // validateString(e) {
+    //   validateString(e);
+    // },
+    // validateNumber(e) {
+    //   validateNumber(e, this.updatePersonnel.mobile.length);
+    // },
   },
-  computed: {},
+  computed: {
+    ...mapGetters(["personnelDetails"]),
+    personnelId() {
+      return this.personnelDetails.personnel.id;
+    }
+  }
 };
 </script>
   

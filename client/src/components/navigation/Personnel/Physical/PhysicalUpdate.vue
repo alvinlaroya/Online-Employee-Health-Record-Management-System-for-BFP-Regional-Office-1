@@ -13,7 +13,7 @@
                 <v-col>
                   <v-select
                     label="Rank"
-                    v-model="physicalData.rank"
+                    v-model="personnelData.rank"
                     :items="['SF01', 'SF02', 'SF03']"
                     dense
                   ></v-select>
@@ -21,7 +21,7 @@
                 <v-col>
                   <v-text-field
                     label="Last Name"
-                    v-model="physicalData.lname"
+                    v-model="personnelData.lname"
                     dense
                     @keypress="validateString($event)"
                   ></v-text-field>
@@ -29,7 +29,7 @@
                 <v-col>
                   <v-text-field
                     label="First Name"
-                    v-model="physicalData.fname"
+                    v-model="personnelData.fname"
                     dense
                     @keypress="validateString($event)"
                   ></v-text-field>
@@ -37,7 +37,7 @@
                 <v-col>
                   <v-text-field
                     label="Middle Name"
-                    v-model="physicalData.mname"
+                    v-model="personnelData.mname"
                     dense
                     @keypress="validateString($event)"
                   ></v-text-field>
@@ -47,14 +47,14 @@
                 <v-col>
                   <v-text-field
                     label="Home Address"
-                    v-model="physicalData.homeAddress"
+                    v-model="personnelData.address"
                     dense
                   ></v-text-field>
                 </v-col>
                 <v-col cols="2">
                   <v-select
                     label="Sex"
-                    v-model="physicalData.sex"
+                    v-model="personnelData.gender"
                     :items="['Male', 'Female']"
                     dense
                   ></v-select>
@@ -62,7 +62,7 @@
                 <v-col cols="2">
                   <v-select
                     label="Civil Status"
-                    v-model="physicalData.sex"
+                    v-model="personnelData.civilStatus"
                     :items="['Single', 'Married', 'Widowed', 'Seperated']"
                     dense
                   ></v-select>
@@ -70,7 +70,7 @@
                 <v-col>
                   <v-text-field
                     label="Mobile"
-                    v-model="physicalData.mobile"
+                    v-model="personnelData.mobile"
                     prefix="+639"
                     dense
                     @keypress="validateNumber($event)"
@@ -90,7 +90,7 @@
                   >
                     <template v-slot:activator="{ on, attrs }">
                       <v-text-field
-                        v-model="physicalData.dateOfBirth"
+                        v-model="personnelData.dateOfBirth"
                         label="Date of Birth"
                         prepend-icon="mdi-calendar"
                         readonly
@@ -100,7 +100,7 @@
                       ></v-text-field>
                     </template>
                     <v-date-picker
-                      v-model="physicalData.dateOfBirth"
+                      v-model="personnelData.dateOfBirth"
                       no-title
                       scrollable
                     >
@@ -111,7 +111,7 @@
                       <v-btn
                         text
                         color="primary"
-                        @click="$refs.menu.save(physicalData.dateOfBirth)"
+                        @click="$refs.menu.save(personnelData.dateOfBirth)"
                       >
                         OK
                       </v-btn>
@@ -121,7 +121,7 @@
                 <v-col>
                   <v-text-field
                     label="Place of birth"
-                    v-model="physicalData.placeOfBirth"
+                    v-model="personnelData.placeOfBirth"
                     dense
                   ></v-text-field>
                 </v-col>
@@ -130,7 +130,7 @@
                 <v-col>
                   <v-select
                     label="Unit Assignment"
-                    v-model="physicalData.unit"
+                    v-model="personnelData.unit"
                     :items="[
                       'OARD - R1',
                       'OPFM - ILOCOS NORTE',
@@ -144,84 +144,26 @@
                 <v-col>
                   <v-text-field
                     label="Designation"
-                    v-model="physicalData.designation"
+                    v-model="personnelData.designation"
                     dense
                   ></v-text-field>
                 </v-col>
               </v-row>
-              <v-row>
-                <v-col>
-                  <v-text-field
-                    label="Purpose of Examination"
-                    v-model="physicalData.purpose"
-                    dense
-                  ></v-text-field>
-                </v-col>
-              </v-row>
+              <!-- physical api -->
               <v-row>
                 <v-col
                   cols="4"
-                  v-for="(value, key) in medicalPersonnel"
+                  v-for="(value, key) in physicalData"
                   :key="key"
                 >
-                  <v-text-field
-                    v-if="
-                      typeof value === 'string' &&
-                      key !== 'build' &&
-                      key !== 'cholesterol' &&
-                      key !== 'psychiatric'
-                    "
-                    :label="key"
-                    v-model="medicalPersonnel[key]"
-                    dense
-                  />
-                  <v-checkbox
-                    v-else-if="
-                      typeof value === 'boolean' && key !== 'psychiatric'
-                    "
-                    :label="key"
-                    v-model="medicalPersonnel[key]"
-                    dense
-                  />
-                  <v-select
-                    v-else-if="key === 'build'"
-                    :label="key"
-                    v-model="medicalPersonnel[key]"
-                    :items="['Option 1', 'Option 2', 'Option 3']"
-                    dense
-                  />
-                  <v-select
-                    v-else-if="key === 'cholesterol'"
-                    :label="key"
-                    v-model="medicalPersonnel[key]"
-                    :items="['TC', 'LDL', 'HDL', 'VLDL']"
-                    dense
-                  />
-                  <v-select
-                    v-else-if="key === 'psychiatric'"
-                    :label="key"
-                    v-model="medicalPersonnel[key]"
-                    :items="[
-                      { text: 'Not reco', value: false },
-                      { text: 'Reco', value: true },
-                    ]"
-                    dense
-                  />
+                <v-text-field v-model="physicalData[key]" :label="key"></v-text-field>
                 </v-col>
               </v-row>
-              <v-row>
+              <!-- <v-row>
                 <v-col>
                   <v-text-field
                     label="Significat Medical history"
                     v-model="physicalData.significantHistory"
-                    dense
-                    @keypress="validateString($event)"
-                  ></v-text-field>
-                </v-col>
-                <v-col>
-                  <v-text-field
-                    label="Official Designation"
-                    v-model="physicalData.officialDesignation"
                     dense
                     @keypress="validateString($event)"
                   ></v-text-field>
@@ -236,14 +178,6 @@
                     @keypress="validateString($event)"
                   ></v-text-field>
                 </v-col>
-                <v-col>
-                  <v-text-field
-                    label="Medical Officer"
-                    v-model="physicalData.medicalOfficer"
-                    dense
-                    @keypress="validateString($event)"
-                  ></v-text-field>
-                </v-col>
               </v-row>
               <v-row>
                 <v-col>
@@ -254,17 +188,9 @@
                     @keypress="validateString($event)"
                   ></v-text-field>
                 </v-col>
-                <v-col>
-                  <v-text-field
-                    label="Reg Certificate No."
-                    v-model="physicalData.certificateNo"
-                    dense
-                    @keypress="validateString($event)"
-                  ></v-text-field>
-                </v-col>
-              </v-row>
+              </v-row> -->
             </div>
-            <v-btn type="submit" color="primary">Submit</v-btn>
+            <v-btn color="primary" @click="submitHandler">Submit</v-btn>
 
           </v-form>
         </v-card-text>
@@ -278,6 +204,9 @@
 import validateString from "@/_common/helpers/validateString.js";
 import validateNumber from "@/_common/helpers/validateNumber.js";
 
+import { createNamespacedHelpers } from "vuex";
+const { mapGetters, mapActions } = createNamespacedHelpers('navigation')
+
 export default {
   data: () => ({
     dialog: false,
@@ -285,7 +214,7 @@ export default {
     date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
       .toISOString()
       .substr(0, 10),
-    physicalData: {
+    personnelData: {
       rank: "",
       lname: "",
       fname: "",
@@ -299,61 +228,63 @@ export default {
       unit: "",
       designation: "",
       address: "",
-      purpose: "",
-      significantHistory: "",
-      officialDesignation: "",
-      physicalEvaluation: "",
-      medicalOfficer: "",
-      recommendation: "",
-      certificateNo: "",
+      
     },
-    medicalPersonnel: {
+    physicalData: {
       height: "",
       weight: "",
       build: "",
       skin: "",
-      colorEyes: "",
-      colorHair: "",
+      colorOfEyes: "",
+      colorOfHair: "",
       headAndFace: "",
       neck: "",
       noseAndSinuses: "",
       mouthAndThroat: "",
-      // right or left
-      earAndEardrums: false,
-      whisperTest: false,
-      eyeAndPupils: false,
-      vision: false,
-      // right or left
+      earsAndEardrums: '',
+      whisperVoiceTest: '',
+      eyesOrPupils: '',
+      vision: '',
       colorVision: "",
       heart: "",
       vascularSystem: "",
       lungsAndChest: "",
       abdomenViscera: "",
-      abdomenViscera: "",
       anusAndRectum: "",
       genital: "",
       upperExtremities: "",
       lowerExtremities: "",
-      spineSystem: "",
+      spineAndMskSystem: "",
       pelvic: "",
-      // reco or not reco
-      psychiatric: false,
-      // reco or not reco
+      psychiatric: '',
       bloodPressure: "",
       cardiacRate: "",
       drugTest: "",
       urinalysis: "",
       fbs: "",
-      hepaBScreening: "",
+      hepaScreening: "",
       cbc: "",
       bloodType: "",
       pregnancyTest: "",
       cholesterol: "",
       ecg: "",
       chestXray: "",
+      purposeOfExamination: '',
+      dateOfExamination: '',
+      significantMedicalHistory: "",
+      overallPhysicalEvaluation: "",
+      recommendation: "",
     },
   }),
   methods: {
+    ...mapActions(["updatePhysical"]),
+    async submitHandler(){
+      await this.updatePhysical({
+        personnelId: this.personnelId,
+        data: this.physicalData,
+      })
+      this.dialog = false
+    },
     open() {
       this.dialog = !this.dialog;
     },
@@ -363,10 +294,15 @@ export default {
     validateNumber(e) {
       validateNumber(e, this.physicalData.mobile.length);
     },
-    submit(){
-      console.log('submitted')
-    }
+    
   },
+  computed: {
+    ...mapGetters(["personnelDetails"]),
+    personnelId() {
+      return this.personnelDetails.personnel.id;
+    },
+    
+  }
 };
 </script>
 

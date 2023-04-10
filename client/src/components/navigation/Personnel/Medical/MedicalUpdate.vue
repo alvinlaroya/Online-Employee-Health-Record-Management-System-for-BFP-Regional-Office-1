@@ -259,16 +259,41 @@
                 </v-col>
               </v-row>
               <v-row>
-                <v-col v-for="(value, i) in personalHistory" :key="i" cols="6">
-                  <v-checkbox
-                    v-model="personalHistory[i]"
-                    :label="formatLabel(i)"
-                    dense
-                  ></v-checkbox>
+                <v-col
+                  v-for="(value, key) in personalHistory"
+                  :key="key"
+                  cols="12"
+                  sm="6"
+                  md="3"
+                >
+                  <template
+                    v-if="
+                      key === 'numberOfTimesPregnant' ||
+                      key === 'numberOfChildren'
+                    "
+                  >
+                    <v-text-field
+                      v-model="personalHistory[key]"
+                      :label="key"
+                      type="text"
+                    ></v-text-field>
+                  </template>
+                  <template v-else>
+                    <v-checkbox
+                      v-model="personalHistory[key]"
+                      :label="key"
+                      :value="true"
+                    ></v-checkbox>
+                  </template>
                 </v-col>
               </v-row>
+              <v-row>
+                <v-col> </v-col>
+              </v-row>
             </div>
-            <v-btn type="submit" color="primary">Submit</v-btn>
+            <v-btn type="submit" @click="submitHandler" color="primary"
+              >Submit</v-btn
+            >
           </v-form>
         </v-card-text>
       </v-card>
@@ -279,6 +304,8 @@
 <script>
 // helpers
 import validateString from "@/_common/helpers/validateString.js";
+import { createNamespacedHelpers } from "vuex";
+const { mapGetters, mapActions } = createNamespacedHelpers("navigation");
 
 export default {
   data: () => ({
@@ -358,14 +385,19 @@ export default {
       diabetes: false,
     },
     personalHistory: {
-      wornEyeGlass: true,
-      wornHearingAid: false,
-      hadSyphillis: false,
-      hadFracture: false,
-      attemptedSuicide: false,
-      hadFootTrouble: true,
+      haveBeenPregnant: false,
+      numberOfTimesPregnant: 3,
+      numberOfChildren: 2,
+      hadAbortion: false,
+      numberOfAbortion: true,
+      wornEyeglasses: true,
+      wornHearingAid: true,
+      syphillis: false,
+      fracture: false,
+      suicide: false,
+      footTrouble: false,
       diphtheria: false,
-      rheumaticFever: false,
+      rheumaticFever: true,
       measles: false,
       mumps: false,
       chickenPox: false,
@@ -380,28 +412,28 @@ export default {
       veneralDisease: false,
       knockedKnee: false,
       depression: false,
-      pyorrheaOrBleedingGums: false,
+      pyorrhea: false,
       arthritis: false,
-      lossOfMemory: false,
+      lossOfMemory: true,
       nervousness: false,
-      sinusitis: true,
-      betwetting: false,
-      wornBraceOrBackSupport: false,
+      sinusitis: false,
+      bedWetting: false,
+      wornBrace: false,
       wornArtificialEyes: false,
-      hadParalysis: false,
-      hadSerumReaction: false,
-      livedWithTB: false,
-      hadStutteredSpeech: false,
-      gallBladderDisease: false,
+      paralysis: false,
+      serumReaction: false,
+      liveWithTuberculosis: false,
+      stuttered: true,
+      gallBladder: true,
       severeHeadache: true,
       dizziness: false,
-      frequentColds: false,
+      chronic: false,
       palpitation: false,
-      tumor: true,
-      painfulUrination: false,
-      sugarInUrine: false,
+      cyst: false,
+      painfulUrination: true,
+      albuminUrine: false,
       weightLoss: false,
-      boneDeformity: false,
+      jointDeformity: false,
       lossOfArm: false,
       painInShoulder: false,
       motionSickness: false,
@@ -409,16 +441,22 @@ export default {
       liverDisorder: false,
       terrifyingNightmare: false,
       sleepingTrouble: false,
-      drugOrAlcoholism: false,
+      alcoholism: false,
       painInTheChest: false,
       severeIndigestion: false,
       rectalDisease: false,
-      diarrhea: false,
+      diarrhea: true,
     },
   }),
   methods: {
-    submit(){
-      console.log('submitted');
+    ...mapActions(["updatePersonal"]),
+    async submitHandler() {
+      await this.updatePersonal({
+        personnelId: this.personnelId,
+        data: this.personalHistory,
+      });
+
+      this.dialog = false;
     },
     open() {
       this.dialog = !this.dialog;
@@ -433,17 +471,10 @@ export default {
     },
   },
   computed: {
-    age() {
-      const dob = new Date(this.medicalHistory.dateOfBirth);
-      const now = new Date();
-      const diff = now - dob;
-      const ageInMilliseconds = new Date(diff).getTime();
-      const ageInYears = ageInMilliseconds / (1000 * 60 * 60 * 24 * 365);
-      return Math.floor(ageInYears);
+    ...mapGetters(["personnelDetails"]),
+    personnelId() {
+      return this.personnelDetails.personnel.id;
     },
-  },
-  created() {
-    // console.log(this.familyHistory.father.age);
   },
 };
 </script>

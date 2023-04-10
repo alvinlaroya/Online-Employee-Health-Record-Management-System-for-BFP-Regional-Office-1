@@ -226,6 +226,24 @@
                   ></v-text-field>
                 </v-col>
               </v-row>
+              <v-row>
+                <v-col cols="12">
+                  <v-text-field
+                    label="Place Of Birth"
+                    v-model="personnels.placeOfBirth"
+                    dense
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="12">
+                  <v-text-field
+                    label="Occupation"
+                    v-model="personnels.occupation"
+                    dense
+                  ></v-text-field>
+                </v-col>
+              </v-row>
             </v-container>
           </v-card-text>
           <v-card-actions>
@@ -281,6 +299,8 @@ export default {
       remarks: "",
       dateOfBirth: "",
       address: "",
+      placeOfBirth: '',
+      occupation: '',
       personnelImage: null
     },
   }),

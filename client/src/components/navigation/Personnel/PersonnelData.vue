@@ -1,27 +1,20 @@
 <template>
   <div class="w-100">
-    <v-data-table
-      dense
-      :headers="headers"
-      :items="personnels"
-      :items-per-page="20"
-      :search="search"
-      class="elevation-1 no-wrap"
-    >
+    <v-data-table :headers="headers" :items="personnels" :items-per-page="20" :search="search"
+      class="elevation-1 no-wrap">
+      <template v-slot:item.photo="{ item }">
+        <v-avatar size="40">
+          <img :src="renderPhoto(item.personnelImage)" alt="John">
+        </v-avatar>
+      </template>
       <template v-slot:item.action="{ item }">
         <v-menu offset-y>
           <template v-slot:activator="{ on }">
-            <v-icon small class="mr-5 cursor-pointer" @click="openDialog(item)"
-              >mdi-file-eye-outline</v-icon
-            >
+            <v-icon small class="mr-5 cursor-pointer" @click="openDialog(item)">mdi-file-eye-outline</v-icon>
             <v-icon small v-on="on">mdi-dots-vertical</v-icon>
           </template>
           <v-list dense>
-            <v-list-item
-              v-for="(option, i) in options"
-              :key="option.title"
-              @click="open(item, option, i)"
-            >
+            <v-list-item v-for="(option, i) in options" :key="option.title" @click="open(item, option, i)">
               <v-list-item-title>
                 {{ option.title }}
               </v-list-item-title>
@@ -31,20 +24,12 @@
       </template>
     </v-data-table>
     <v-row justify="center">
-      <v-dialog
-        v-model="dialog"
-        width="70vw"
-        transition="dialog-bottom-transition"
-      >
+      <v-dialog v-model="dialog" width="70vw" transition="dialog-bottom-transition">
         <v-card style="min-height: 80vh">
           <v-toolbar dense>
             <v-tabs v-model="tab">
-              <v-tab
-                v-for="(item, i) in Object.keys(component)"
-                :key="i"
-                @click="[(tab = i), (currentTab = item)]"
-                >{{ item.replaceAll("-", " ") }}</v-tab
-              >
+              <v-tab v-for="(item, i) in Object.keys(component)" :key="i" @click="[(tab = i), (currentTab = item)]">{{
+                item.replaceAll("-", " ") }}</v-tab>
             </v-tabs>
             <v-spacer></v-spacer>
             <v-btn icon @click="close">
@@ -52,11 +37,7 @@
             </v-btn>
           </v-toolbar>
           <keep-alive>
-            <component
-              :is="component[currentTab]"
-              :data="selectedItem"
-              :dialogVisible="dialog"
-            />
+            <component :is="component[currentTab]" :data="selectedItem" :dialogVisible="dialog" />
           </keep-alive>
         </v-card>
       </v-dialog>
@@ -102,6 +83,12 @@ export default {
     selectedItem: {},
     headers: [
       {
+        text: "Photo",
+        value: "photo",
+        align: "start",
+        sortable: false,
+      },
+      {
         text: "Account #",
         value: "accountNo",
         align: "start",
@@ -130,6 +117,11 @@ export default {
   }),
   methods: {
     ...mapActions(["getPersonnels", "viewDetails"]),
+    renderPhoto(src) {
+      if(src) return `http://localhost:8000/${src}`
+
+      return "https://png.pngitem.com/pimgs/s/137-1370051_avatar-generic-avatar-hd-png-download.png"
+    },
     async open(item, option, i) {
       await this.viewDetails(item.id);
       this.tab = i + 1;
@@ -167,12 +159,15 @@ export default {
 td {
   white-space: nowrap;
 }
+
 .cursor-pointer {
   cursor: pointer;
 }
+
 .w-100 {
   width: 100%;
 }
+
 .w-40 {
   width: 200px;
 }

@@ -78,6 +78,9 @@ export default {
     personnelId() {
       return this.personnelDetails.personnel.id;
     }
+  },
+  mounted() {
+    this.psych = this.personnelDetails.neuroPsych
   }
 };
 </script>

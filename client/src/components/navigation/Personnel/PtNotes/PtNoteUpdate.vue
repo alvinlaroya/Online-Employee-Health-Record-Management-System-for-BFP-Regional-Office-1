@@ -9,7 +9,6 @@
         <v-card-text>
           <v-form @submit.prevent="submit">
             <div>
-              
               <v-row>
                 <v-col>
                   <v-text-field
@@ -20,51 +19,12 @@
                   </v-text-field>
                 </v-col>
                 <v-col>
-                  <!-- <v-text-field
-                    label="Date of Initial Evaluation/Re-evaluation"
+                  <v-text-field
+                    label="Initial Evaluation/Re-evaluation"
                     v-model="ptNoteData.initialEvaluation"
                     dense
-                    
                   >
-                  </v-text-field> -->
-                  <v-menu
-                    ref="menu"
-                    v-model="menu"
-                    :close-on-content-click="false"
-                    :return-value.sync="date"
-                    transition="scale-transition"
-                    offset-y
-                    min-width="auto"
-                  >
-                    <template v-slot:activator="{ on, attrs }">
-                      <v-text-field
-                        v-model="initialEvaluation"
-                        label="Date of Initial Evaluation/Re-evaluation"
-                        prepend-icon="mdi-calendar"
-                        readonly
-                        dense
-                        v-bind="attrs"
-                        v-on="on"
-                      ></v-text-field>
-                    </template>
-                    <v-date-picker
-                      v-model="initialEvaluation"
-                      no-title
-                      scrollable
-                    >
-                      <v-spacer></v-spacer>
-                      <v-btn text color="primary" @click="menu = false">
-                        Cancel
-                      </v-btn>
-                      <v-btn
-                        text
-                        color="primary"
-                        @click="$refs.menu.save(initialEvaluation)"
-                      >
-                        OK
-                      </v-btn>
-                    </v-date-picker>
-                  </v-menu>
+                  </v-text-field>
                 </v-col>
               </v-row>
               <v-row>
@@ -73,7 +33,6 @@
                     label="Diagnosis"
                     v-model="ptNoteData.diagnosis"
                     dense
-                    
                   >
                   </v-text-field>
                 </v-col>
@@ -84,7 +43,6 @@
                     label="History of Present Illness"
                     v-model="ptNoteData.hpi"
                     dense
-                    
                   >
                   </v-text-field>
                 </v-col>
@@ -95,7 +53,6 @@
                     label="Medications"
                     v-model="ptNoteData.medication"
                     dense
-                    
                   >
                   </v-text-field>
                 </v-col>
@@ -106,7 +63,6 @@
                     label="Laboratory Exams"
                     v-model="ptNoteData.labExams"
                     dense
-                    
                   >
                   </v-text-field>
                 </v-col>
@@ -117,7 +73,6 @@
                     label="Diagnostic Procedures"
                     v-model="ptNoteData.diagnosticProcedure"
                     dense
-                    
                   >
                   </v-text-field>
                 </v-col>
@@ -128,7 +83,6 @@
                     label="Past Medical History"
                     v-model="ptNoteData.pmh"
                     dense
-                    
                   >
                   </v-text-field>
                 </v-col>
@@ -159,7 +113,6 @@
                     label="Personal/Social History"
                     v-model="ptNoteData.psh"
                     dense
-                    
                   >
                   </v-text-field>
                 </v-col>
@@ -170,7 +123,6 @@
                     label="Food and Drug Allergy"
                     v-model="ptNoteData.fda"
                     dense
-                    
                   >
                   </v-text-field>
                 </v-col>
@@ -181,7 +133,16 @@
                     label="Subjective"
                     v-model="ptNoteData.subjective"
                     dense
-                    
+                  >
+                  </v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-text-field
+                    label="Objective"
+                    v-model="ptNoteData.objective"
+                    dense
                   >
                   </v-text-field>
                 </v-col>
@@ -224,7 +185,6 @@
                     label="Ocular Inspection"
                     v-model="ptNoteData.ocularInspection"
                     dense
-                    
                   >
                   </v-text-field>
                 </v-col>
@@ -235,17 +195,11 @@
                     label="Palpation"
                     v-model="ptNoteData.palpation"
                     dense
-                    
                   >
                   </v-text-field>
                 </v-col>
                 <v-col>
-                  <v-text-field
-                    label="ROM"
-                    v-model="ptNoteData.rom"
-                    dense
-                    
-                  >
+                  <v-text-field label="ROM" v-model="ptNoteData.rom" dense>
                   </v-text-field>
                 </v-col>
                 <v-col>
@@ -338,9 +292,11 @@
 
               <v-row>
                 <v-col v-for="(item, index) in adl" :key="index" :cols="4">
-                  <v-text-field
+                  <v-checkbox
                     v-model="adl[index][Object.keys(item)[0]]"
-                    :label="Object.keys(item)[0]"
+                    :label="Object.keys(item)[0].split(/(?=[A-Z])/).join(' ')"
+                    :true-value="true"
+                    :false-value="false"
                   />
                 </v-col>
               </v-row>
@@ -353,7 +309,7 @@
                   >
                   </v-text-field>
                 </v-col>
-                
+
                 <v-col>
                   <v-text-field
                     label="PT Impression"
@@ -388,7 +344,7 @@
                   >
                   </v-text-field>
                 </v-col>
-                
+
                 <v-col>
                   <v-text-field
                     label="Suggested Pt Management"
@@ -407,6 +363,7 @@
                 </v-col>
               </v-row>
             </div>
+
             <v-btn type="submit" color="primary">Submit</v-btn>
           </v-form>
         </v-card-text>
@@ -420,7 +377,7 @@ import validateString from "@/_common/helpers/validateString.js";
 import validateNumber from "@/_common/helpers/validateNumber.js";
 
 import { createNamespacedHelpers } from "vuex";
-const { mapActions ,mapGetters } = createNamespacedHelpers("navigation");
+const { mapActions, mapGetters } = createNamespacedHelpers("navigation");
 
 export default {
   data: () => ({
@@ -522,7 +479,7 @@ export default {
     ],
   }),
   methods: {
-    ...mapActions(['updatePtNotes']),
+    ...mapActions(["updatePtNotes"]),
     async submit() {
       console.log("submitted");
       const payload = {
@@ -551,9 +508,12 @@ export default {
         strideLength: this.gaits[11].value,
         stepWidth: this.gaits[12].value,
         balanceToleranceSittingBalance: this.balanceTolerance[0].sittingBalance,
-        balanceToleranceSittingTolerance: this.balanceTolerance[0].sittingTolerance,
-        balanceToleranceStandingBalance: this.balanceTolerance[0].standingBalance,
-        balanceToleranceStandingTolerance: this.balanceTolerance[0].standingTolerance,
+        balanceToleranceSittingTolerance:
+          this.balanceTolerance[0].sittingTolerance,
+        balanceToleranceStandingBalance:
+          this.balanceTolerance[0].standingBalance,
+        balanceToleranceStandingTolerance:
+          this.balanceTolerance[0].standingTolerance,
         adlBathing: this.adl[0].bathing,
         adlToileting: this.adl[1].toileting,
         adlEating: this.adl[2].eating,
@@ -568,15 +528,15 @@ export default {
         adlTransfers: this.adl[11].transfers,
         adlWheelChairToMat: this.adl[12].wheelchairToMat,
         adlBedToWheelChair: this.adl[13].bedToWheelchair,
-        adlAmbulation: this.adl[14].ambulation
-      }
+        adlAmbulation: this.adl[14].ambulation,
+      };
 
       await this.updatePtNotes({
-       personnelId: this.personnelId,
-       data: payload
-     })
+        personnelId: this.personnelId,
+        data: payload,
+      });
 
-     this.dialog = false;
+      this.dialog = false;
     },
     open() {
       this.dialog = !this.dialog;
@@ -594,12 +554,9 @@ export default {
     personnelId() {
       return this.personnelDetails.personnel.id;
     },
-    initialEvaluation(){
-      if(!this.ptNoteData.initialEvaluation){
-        return "N/A"
-      }
-      return this.ptNoteData.initialEvaluation.substr(0, 10)
-    }
+  },
+  mounted() {
+    this.ptNoteData = this.personnelDetails.ptNotes;
   },
 };
 </script>

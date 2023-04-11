@@ -259,6 +259,7 @@ export default {
         this.personnels = {}
         this.reset();
         this.snackbar = true;
+        window.location.reload(true);
         this.dialog = false;
       } catch (error) {
         console.error(error);

@@ -47,7 +47,9 @@
         <v-col class="pa-0">
           <div class="">
             <span class="body-2"> DATE AND PLACE OF BIRTH : </span>
-            <strong> {{ birthDate }} | {{ physicalExam.placeOfBirth}}</strong>
+            <strong> {{ birthDate }} | cam sus
+              <!-- {{ physicalExam.placeOfBirth}} -->
+            </strong>
             <span class="body-2 pl-5"> Date of Examination : </span>
             <strong> {{ examDate }}</strong>
           </div>
@@ -69,7 +71,8 @@
           <div class="">
             <span class="body-2"> PURPOSE OF EXAMINATION : </span>
             <strong>
-              {{ physicalExam.purposeOfExamination }}
+              {{ physicalExam.purposeOfExamination ? physicalExam.purposeOfExamination
+                  : "N/A" }}
             </strong>
           </div>
         </v-col>

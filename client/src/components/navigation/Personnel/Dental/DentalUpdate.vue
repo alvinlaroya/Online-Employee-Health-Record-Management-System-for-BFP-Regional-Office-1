@@ -331,24 +331,42 @@ export default {
     personnelId() {
       return this.personnelDetails.personnel.id;
     },
-    initialDate(){
-      if (!this.dental.initialDate) {
-        return "N/A";
+    promotionDate: {
+      get() {
+        if (this.dental.promotionDate) {
+          return this.dental.promotionDate.substr(0, 10)
+        } else {
+          return ''
+        }
+      },
+      set(value) {
+        this.dental.promotionDate = value
       }
-      return this.dental.initialDate.substr(0, 10)
     },
-    trainingDate(){
-      if (!this.dental.trainingDate) {
-        return "N/A";
+    initialDate: {
+      get() {
+        if (this.dental.initialDate) {
+          return this.dental.initialDate.substr(0, 10)
+        } else {
+          return ''
+        }
+      },
+      set(value) {
+        this.dental.initialDate = value
       }
-      return this.dental.trainingDate.substr(0, 10)
     },
-    promotionDate(){
-      if(!this.dental.promotionDate){
-        return "N/A"
+    trainingDate: {
+      get() {
+        if (this.dental.trainingDate) {
+          return this.dental.trainingDate.substr(0, 10)
+        } else {
+          return ''
+        }
+      },
+      set(value) {
+        this.dental.trainingDate = value
       }
-      return this.dental.promotionDate.substr(0, 10)
-    }
+    },
   },
 
   mounted() {

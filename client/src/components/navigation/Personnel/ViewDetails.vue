@@ -11,7 +11,7 @@
         <v-col cols="4">
           <v-row>
             <v-avatar size="300" tile>
-              <img :src="`http://localhost:8000/${personnel.personnelImage}`" alt="John">
+              <img :src="`http://localhost:8000/${personnel.personnelImage}`" alt="John" style="object-fit: cover;">
             </v-avatar>
           </v-row>
         </v-col>

@@ -20,7 +20,7 @@
                   <div class="form-group">
                     <div class="border p-2 mt-3">
                       <template v-if="preview">
-                        <img :src="preview" class="img-fluid" style="width: 150px; height: 150px" />
+                        <img :src="preview" class="img-fluid" style="width: 150px; height: 150px; object-fit: cover;" />
                       </template>
                       <template v-else>
                         <img

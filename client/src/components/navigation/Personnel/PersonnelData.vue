@@ -4,7 +4,7 @@
       class="elevation-1 no-wrap">
       <template v-slot:item.photo="{ item }">
         <v-avatar size="40">
-          <img :src="renderPhoto(item.personnelImage)" alt="John">
+          <img :src="renderPhoto(item.personnelImage)" alt="John" style="object-fit: cover;">
         </v-avatar>
       </template>
       <template v-slot:item.action="{ item }">

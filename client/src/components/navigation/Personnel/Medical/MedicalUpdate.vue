@@ -26,7 +26,6 @@
                     v-model="familyHistory.fatherName"
                     label="Name"
                     dense
-                    @keypress="validateString($event)"
                   ></v-text-field>
                 </v-col>
                 <v-col>
@@ -34,7 +33,6 @@
                     v-model="familyHistory.motherName"
                     label="Name"
                     dense
-                    @keypress="validateString($event)"
                   ></v-text-field>
                 </v-col>
                 <v-col>
@@ -42,7 +40,6 @@
                     v-model="familyHistory.spouseName"
                     label="Name"
                     dense
-                    @keypress="validateString($event)"
                   ></v-text-field>
                 </v-col>
               </v-row>
@@ -133,7 +130,6 @@
                     v-model="familyHistory.brother1Name"
                     label="Brother 1 Name"
                     dense
-                    @keypress="validateString($event)"
                   ></v-text-field>
                 </v-col>
                 <v-col>
@@ -141,7 +137,6 @@
                     v-model="familyHistory.sister1Name"
                     label="Sister 1 Name"
                     dense
-                    @keypress="validateString($event)"
                   ></v-text-field>
                 </v-col>
                 <v-col>
@@ -149,7 +144,6 @@
                     v-model="familyHistory.children1Name"
                     label="Children 1 Name"
                     dense
-                    @keypress="validateString($event)"
                   ></v-text-field>
                 </v-col>
               </v-row>
@@ -159,7 +153,6 @@
                     v-model="familyHistory.brother1Age"
                     label="Brother 1 Age"
                     dense
-                    @keypress="validateString($event)"
                   ></v-text-field>
                 </v-col>
                 <v-col>
@@ -167,7 +160,6 @@
                     v-model="familyHistory.sister1Age"
                     label="Sister 1 Age"
                     dense
-                    @keypress="validateString($event)"
                   ></v-text-field>
                 </v-col>
                 <v-col>
@@ -175,7 +167,6 @@
                     v-model="familyHistory.children1Age"
                     label="Children 1 Age"
                     dense
-                    @keypress="validateString($event)"
                   ></v-text-field>
                 </v-col>
               </v-row>
@@ -185,7 +176,6 @@
                     v-model="familyHistory.brother1StateOfHealth"
                     label="Brother 1 State of Health"
                     dense
-                    @keypress="validateString($event)"
                   ></v-text-field>
                 </v-col>
                 <v-col>
@@ -193,7 +183,6 @@
                     v-model="familyHistory.sister1StateOfHealth"
                     label="Sister 1 State of Health"
                     dense
-                    @keypress="validateString($event)"
                   ></v-text-field>
                 </v-col>
                 <v-col>
@@ -201,7 +190,6 @@
                     v-model="familyHistory.children1StateOfHealth"
                     label="Children 1 State of Health"
                     dense
-                    @keypress="validateString($event)"
                   ></v-text-field>
                 </v-col>
               </v-row>
@@ -211,7 +199,6 @@
                     v-model="familyHistory.brother1CauseOfDeath"
                     label="Brother 1 Cause of Death"
                     dense
-                    @keypress="validateString($event)"
                   ></v-text-field>
                 </v-col>
                 <v-col>
@@ -219,7 +206,6 @@
                     v-model="familyHistory.sister1CauseOfDeath"
                     label="Siter 1 Cause of Death"
                     dense
-                    @keypress="validateString($event)"
                   ></v-text-field>
                 </v-col>
                 <v-col>
@@ -227,7 +213,6 @@
                     v-model="familyHistory.children1CauseOfDeath"
                     label="Children 1 Cause of Death"
                     dense
-                    @keypress="validateString($event)"
                   ></v-text-field>
                 </v-col>
               </v-row>
@@ -238,7 +223,6 @@
                     v-model="familyHistory.brother2Name"
                     label="Brother 2 Name"
                     dense
-                    @keypress="validateString($event)"
                   ></v-text-field>
                 </v-col>
                 <v-col>
@@ -246,7 +230,6 @@
                     v-model="familyHistory.sister2Name"
                     label="Sister 2 Name"
                     dense
-                    @keypress="validateString($event)"
                   ></v-text-field>
                 </v-col>
                 <v-col>
@@ -254,7 +237,6 @@
                     v-model="familyHistory.children2Name"
                     label="Children 2 Name"
                     dense
-                    @keypress="validateString($event)"
                   ></v-text-field>
                 </v-col>
               </v-row>
@@ -264,7 +246,6 @@
                     v-model="familyHistory.brother2Age"
                     label="Brother 2 Age"
                     dense
-                    @keypress="validateString($event)"
                   ></v-text-field>
                 </v-col>
                 <v-col>
@@ -272,7 +253,6 @@
                     v-model="familyHistory.sister2Age"
                     label="Sister 2 Age"
                     dense
-                    @keypress="validateString($event)"
                   ></v-text-field>
                 </v-col>
                 <v-col>
@@ -280,7 +260,6 @@
                     v-model="familyHistory.children2Age"
                     label="Children 2 Age"
                     dense
-                    @keypress="validateString($event)"
                   ></v-text-field>
                 </v-col>
               </v-row>
@@ -290,7 +269,6 @@
                     v-model="familyHistory.brother2StateOfHealth"
                     label="Brother 2 State of Health"
                     dense
-                    @keypress="validateString($event)"
                   ></v-text-field>
                 </v-col>
                 <v-col>
@@ -298,7 +276,6 @@
                     v-model="familyHistory.sister2StateOfHealth"
                     label="Sister 2 State of Health"
                     dense
-                    @keypress="validateString($event)"
                   ></v-text-field>
                 </v-col>
                 <v-col>
@@ -306,7 +283,6 @@
                     v-model="familyHistory.children2StateOfHealth"
                     label="Children 2State of Health"
                     dense
-                    @keypress="validateString($event)"
                   ></v-text-field>
                 </v-col>
               </v-row>
@@ -316,7 +292,6 @@
                     v-model="familyHistory.brother2CauseOfDeath"
                     label="Brother 2 Cause of Death"
                     dense
-                    @keypress="validateString($event)"
                   ></v-text-field>
                 </v-col>
                 <v-col>
@@ -324,7 +299,6 @@
                     v-model="familyHistory.sister2CauseOfDeath"
                     label="Sister 2 Cause of Death"
                     dense
-                    @keypress="validateString($event)"
                   ></v-text-field>
                 </v-col>
                 <v-col>
@@ -332,7 +306,6 @@
                     v-model="familyHistory.children2CauseOfDeath"
                     label="Childreb 2 Cause of Death"
                     dense
-                    @keypress="validateString($event)"
                   ></v-text-field>
                 </v-col>
               </v-row>
@@ -513,8 +486,12 @@ export default {
     },
   }),
   methods: {
-    ...mapActions(["updatePersonal"]),
+    ...mapActions(["updatePersonal", 'updateFamily']),
     async submitHandler() {
+      await this.updateFamily({
+        personnelId: this.personnelId,
+        data: this.familyHistory,
+      });
       await this.updatePersonal({
         personnelId: this.personnelId,
         data: this.personalHistory,
@@ -541,6 +518,7 @@ export default {
     },
   },
   mounted() {
+    this.familyHistory = this.personnelDetails.medicalRecord.medicalFamilyHistory
     this.personalHistory = this.personnelDetails.medicalRecord.medicalPersonalHistory
     delete this.personalHistory.id;
     delete this.personalHistory.personnelId;

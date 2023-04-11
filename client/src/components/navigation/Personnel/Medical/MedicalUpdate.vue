@@ -304,11 +304,96 @@
                 <v-col>
                   <v-text-field
                     v-model="familyHistory.children2CauseOfDeath"
-                    label="Childreb 2 Cause of Death"
+                    label="Children 2 Cause of Death"
                     dense
                   ></v-text-field>
                 </v-col>
+                
               </v-row>
+              <v-row>
+                <v-col cols="3">
+                  <v-checkbox
+                    v-model="familyHistory.syphillis"
+                    label="Syphillis"
+                    dense
+                  />
+                </v-col>
+                <v-col cols="3">
+                  <v-checkbox
+                    v-model="familyHistory.kidneyTrouble"
+                    label="Kidney Trouble"
+                    dense
+                  />
+                </v-col>
+                <v-col cols="3">
+                  <v-checkbox
+                    v-model="familyHistory.committedSuicide"
+                    label="Committed Suicide"
+                    dense
+                  />
+                </v-col>
+                <v-col cols="3">
+                  <v-checkbox
+                    v-model="familyHistory.kidney"
+                    label="Kidney"
+                    dense
+                  />
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="3">
+                  <v-checkbox
+                    v-model="familyHistory.cancer"
+                    label="Cancer"
+                    dense
+                  />
+                </v-col>
+                <v-col cols="3">
+                  <v-checkbox
+                    v-model="familyHistory.asthma"
+                    label="Asthma"
+                    dense
+                  />
+                </v-col>
+                <v-col cols="3">
+                  <v-checkbox
+                    v-model="familyHistory.hypertension"
+                    label="Hypertension"
+                    dense
+                  />
+                </v-col>
+                <v-col cols="3">
+                  <v-checkbox
+                    v-model="familyHistory.psychiatric"
+                    label="Psychiatric"
+                    dense
+                  />
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="4">
+                  <v-checkbox
+                    v-model="familyHistory.epilepsy"
+                    label="Epilepsy"
+                    dense
+                  />
+                </v-col>
+                <v-col cols="4">
+                  <v-checkbox
+                    v-model="familyHistory.allergy"
+                    label="Allergy"
+                    dense
+                  />
+                </v-col>
+                <v-col cols="4">
+                  <v-checkbox
+                    v-model="familyHistory.diabetes"
+                    label="Diabetes"
+                    dense
+                  />
+                </v-col>
+              </v-row>
+              
 
               <v-row>
                 <v-col

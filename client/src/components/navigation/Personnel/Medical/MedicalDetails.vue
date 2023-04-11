@@ -3,309 +3,619 @@
     <v-row>
       <v-col><span class="py-3">FAMILY HISTORY</span></v-col>
     </v-row>
-    <v-data-table
-      class="mt-5"
-      :headers="headers"
-      :items="items"
-      dense
-      hide-default-footer
-      
-      :items-per-page="100"
-    >
-      <template v-slot:item.name="{ item }">
-        <div
-          v-if="
-            item.name === 'Father' ||
-            item.name === 'Mother' ||
-            item.name === 'Brothers' ||
-            item.name === 'Sisters' ||
-            item.name === 'Spouse' ||
-            item.name === 'Children'
-          "
-        >
-          {{ item.name }}
-          <ul>
-            <li v-for="(person, index) in item.people" :key="index">
-              {{ person.name }}
-            </li>
-          </ul>
+    <v-row>
+      <v-col cols="4">
+        <div class="d-flex flex-column">
+          <small>Father Name : </small>
+          <strong>{{
+            medicalFamilyHistory.fatherName
+              ? medicalFamilyHistory.fatherName
+              : "N/A"
+          }}</strong>
         </div>
-        <div v-else>
-          {{ item.name }}
+      </v-col>
+      <v-col cols="4">
+        <div class="d-flex flex-column">
+          <small>Mother Name : </small>
+          <strong>{{
+            medicalFamilyHistory.motherName
+              ? medicalFamilyHistory.motherName
+              : "N/A"
+          }}</strong>
         </div>
-      </template>
-      <!-- age -->
-      <template v-slot:item.age="{ item }">
-        &nbsp;
-        <div
-          v-if="
-            item.name === 'Father' ||
-            item.name === 'Mother' ||
-            item.name === 'Brothers' ||
-            item.name === 'Sisters' ||
-            item.name === 'Spouse' ||
-            item.name === 'Children'
-          "
-        >
-          <div v-for="(person, index) in item.people" :key="index">
-            {{ person.age }}
-          </div>
+      </v-col>
+      <v-col cols="4">
+        <div class="d-flex flex-column">
+          <small>Spouse Name : </small>
+          <strong>{{
+            medicalFamilyHistory.spouseName
+              ? medicalFamilyHistory.spouseName
+              : "N/A"
+          }}</strong>
         </div>
-        <div v-else>
-          {{ item.age }}
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="4">
+        <div class="d-flex flex-column">
+          <small>Father Age : </small>
+          <strong>{{
+            medicalFamilyHistory.fatherAge
+              ? medicalFamilyHistory.fatherAge
+              : "N/A"
+          }}</strong>
         </div>
-      </template>
-      <!-- state of health -->
-      <template v-slot:item.stateOfHealth="{ item }">
-        &nbsp;
-        <div
-          v-if="
-            item.name === 'Father' ||
-            item.name === 'Mother' ||
-            item.name === 'Brothers' ||
-            item.name === 'Sisters' ||
-            item.name === 'Spouse' ||
-            item.name === 'Children'
-          "
-        >
-          <div v-for="(person, index) in item.people" :key="index">
-            {{ person.stateOfHealth }}
-          </div>
+      </v-col>
+      <v-col cols="4">
+        <div class="d-flex flex-column">
+          <small>Mother Age : </small>
+          <strong>{{
+            medicalFamilyHistory.motherAge
+              ? medicalFamilyHistory.motherAge
+              : "N/A"
+          }}</strong>
         </div>
-        <div v-else>
-          {{ item.stateOfHealth }}
+      </v-col>
+      <v-col cols="4">
+        <div class="d-flex flex-column">
+          <small>Spouse Age : </small>
+          <strong>{{
+            medicalFamilyHistory.spouseAge
+              ? medicalFamilyHistory.spouseAge
+              : "N/A"
+          }}</strong>
         </div>
-      </template>
-      <!-- cause of death -->
-      <template v-slot:item.causeOfDeath="{ item }">
-        &nbsp;
-        <div
-          v-if="
-            item.name === 'Father' ||
-            item.name === 'Mother' ||
-            item.name === 'Brothers' ||
-            item.name === 'Sisters' ||
-            item.name === 'Spouse' ||
-            item.name === 'Children'
-          "
-        >
-          <div v-for="(person, index) in item.people" :key="index">
-            {{ person.causeOfDeath }}
-          </div>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="4">
+        <div class="d-flex flex-column">
+          <small>Father State of Health : </small>
+          <strong>{{
+            medicalFamilyHistory.fatherStateOfHealth
+              ? medicalFamilyHistory.fatherStateOfHealth
+              : "N/A"
+          }}</strong>
         </div>
-        <div v-else>
-          {{ item.causeOfDeath }}
+      </v-col>
+      <v-col cols="4">
+        <div class="d-flex flex-column">
+          <small>Mother State of Health : </small>
+          <strong>{{
+            medicalFamilyHistory.motherStateOfHealth
+              ? medicalFamilyHistory.motherStateOfHealth
+              : "N/A"
+          }}</strong>
         </div>
-      </template>
-      <!-- diseases -->
-      <template v-slot:item.disease="{ item }">
-        &nbsp;
-        <div
-          v-if="
-            item.name === 'Father' ||
-            item.name === 'Mother' ||
-            item.name === 'Brothers' ||
-            item.name === 'Sisters' ||
-            item.name === 'Spouse' ||
-            item.name === 'Children'
-          "
-        >
-          <div v-for="(person, index) in item.people" :key="index">
-            {{ person.disease }}
-          </div>
+      </v-col>
+      <v-col cols="4">
+        <div class="d-flex flex-column">
+          <small>Spouse State of Health : </small>
+          <strong>{{
+            medicalFamilyHistory.spouseStateOfHealth
+              ? medicalFamilyHistory.spouseStateOfHealth
+              : "N/A"
+          }}</strong>
         </div>
-        <div v-else>
-          {{ item.disease }}
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="4">
+        <div class="d-flex flex-column">
+          <small>Brother 1 Cause of Death : </small>
+          <strong>{{
+            medicalFamilyHistory.brother1CauseOfDeath
+              ? medicalFamilyHistory.brother1CauseOfDeath
+              : "N/A"
+          }}</strong>
         </div>
-      </template>
-      <!-- yes -->
-      <template v-slot:item.yes="{ item }">
-        &nbsp;
-        <div
-          v-if="
-            item.name === 'Father' ||
-            item.name === 'Mother' ||
-            item.name === 'Brothers' ||
-            item.name === 'Sisters' ||
-            item.name === 'Spouse' ||
-            item.name === 'Children'
-          "
-        >
-          <div v-for="(person, index) in item.people" :key="index">
-            {{ person.yes }}
-          </div>
+      </v-col>
+      <v-col cols="4">
+        <div class="d-flex flex-column">
+          <small>Sister 1 Cause of Death : </small>
+          <strong>{{
+            medicalFamilyHistory.sister1CauseOfDeath
+              ? medicalFamilyHistory.sister1CauseOfDeath
+              : "N/A"
+          }}</strong>
         </div>
-        <div v-else>
-          {{ item.yes }}
+      </v-col>
+      <v-col cols="4">
+        <div class="d-flex flex-column">
+          <small>Children 1 Cause of Death : </small>
+          <strong>{{
+            medicalFamilyHistory.children1CauseOfDeath
+              ? medicalFamilyHistory.children1CauseOfDeath
+              : "N/A"
+          }}</strong>
         </div>
-      </template>
-      <!-- no -->
-      <template v-slot:item.no="{ item }">
-        &nbsp;
-        <div
-          v-if="
-            item.name === 'Father' ||
-            item.name === 'Mother' ||
-            item.name === 'Brothers' ||
-            item.name === 'Sisters' ||
-            item.name === 'Spouse' ||
-            item.name === 'Children'
-          "
-        >
-          <div v-for="(person, index) in item.people" :key="index">
-            {{ person.no }}
-          </div>
+      </v-col>
+    </v-row>
+
+    <v-divider inset class="my-4"></v-divider>
+
+    <!--brother sister children name -->
+    <v-row>
+      <v-col cols="4">
+        <div class="d-flex flex-column">
+          <small>Brother 1 Name : </small>
+          <strong>{{
+            medicalFamilyHistory.brother1Name
+              ? medicalFamilyHistory.brother1Name
+              : "N/A"
+          }}</strong>
         </div>
-        <div v-else>
-          {{ item.no }}
+      </v-col>
+      <v-col cols="4">
+        <div class="d-flex flex-column">
+          <small>Sister 1 Name : </small>
+          <strong>{{
+            medicalFamilyHistory.sister1Name
+              ? medicalFamilyHistory.sister1Name
+              : "N/A"
+          }}</strong>
         </div>
-      </template>
-    </v-data-table>
+      </v-col>
+      <v-col cols="4">
+        <div class="d-flex flex-column">
+          <small>Children 1 Name : </small>
+          <strong>{{
+            medicalFamilyHistory.children1Name
+              ? medicalFamilyHistory.children1Name
+              : "N/A"
+          }}</strong>
+        </div>
+      </v-col>
+    </v-row>
+    <!--brother sister children age -->
+    <v-row>
+      <v-col cols="4">
+        <div class="d-flex flex-column">
+          <small>Brother 1 Age : </small>
+          <strong>{{
+            medicalFamilyHistory.brother1Age
+              ? medicalFamilyHistory.brother1Age
+              : "N/A"
+          }}</strong>
+        </div>
+      </v-col>
+      <v-col cols="4">
+        <div class="d-flex flex-column">
+          <small>Sister 1 Age : </small>
+          <strong>{{
+            medicalFamilyHistory.sister1Age
+              ? medicalFamilyHistory.sister1Age
+              : "N/A"
+          }}</strong>
+        </div>
+      </v-col>
+      <v-col cols="4">
+        <div class="d-flex flex-column">
+          <small>Children 1 Age : </small>
+          <strong>{{
+            medicalFamilyHistory.children1Age
+              ? medicalFamilyHistory.children1Age
+              : "N/A"
+          }}</strong>
+        </div>
+      </v-col>
+    </v-row>
+    <!--brother sister children state of health -->
+    <v-row>
+      <v-col cols="4">
+        <div class="d-flex flex-column">
+          <small>Brother 1 State of Health : </small>
+          <strong>{{
+            medicalFamilyHistory.brother1StateOfHealth
+              ? medicalFamilyHistory.brother1StateOfHealth
+              : "N/A"
+          }}</strong>
+        </div>
+      </v-col>
+      <v-col cols="4">
+        <div class="d-flex flex-column">
+          <small>Sister 1 State of Health : </small>
+          <strong>{{
+            medicalFamilyHistory.sister1StateOfHealth
+              ? medicalFamilyHistory.sister1StateOfHealth
+              : "N/A"
+          }}</strong>
+        </div>
+      </v-col>
+      <v-col cols="4">
+        <div class="d-flex flex-column">
+          <small>Children 1 State of Health : </small>
+          <strong>{{
+            medicalFamilyHistory.children1StateOfHealth
+              ? medicalFamilyHistory.children1StateOfHealth
+              : "N/A"
+          }}</strong>
+        </div>
+      </v-col>
+    </v-row>
+
+    <!--brother sister children cause of death -->
+    <v-row>
+      <v-col cols="4">
+        <div class="d-flex flex-column">
+          <small>Brother 1 Cause of Death : </small>
+          <strong>{{
+            medicalFamilyHistory.brother1CauseOfDeath
+              ? medicalFamilyHistory.brother1CauseOfDeath
+              : "N/A"
+          }}</strong>
+        </div>
+      </v-col>
+      <v-col cols="4">
+        <div class="d-flex flex-column">
+          <small>Sister 1 Cause of Death : </small>
+          <strong>{{
+            medicalFamilyHistory.sister1CauseOfDeath
+              ? medicalFamilyHistory.sister1CauseOfDeath
+              : "N/A"
+          }}</strong>
+        </div>
+      </v-col>
+      <v-col cols="4">
+        <div class="d-flex flex-column">
+          <small>Children 1 Cause of Death : </small>
+          <strong>{{
+            medicalFamilyHistory.children1CauseOfDeath
+              ? medicalFamilyHistory.children1CauseOfDeath
+              : "N/A"
+          }}</strong>
+        </div>
+      </v-col>
+    </v-row>
+
+    <v-divider inset class="my-4"></v-divider>
+    <!-- 2 -->
+    <!--brother sister children name -->
+    <v-row>
+      <v-col cols="4">
+        <div class="d-flex flex-column">
+          <small>Brother 2 Name : </small>
+          <strong>{{
+            medicalFamilyHistory.brother2Name
+              ? medicalFamilyHistory.brother2Name
+              : "N/A"
+          }}</strong>
+        </div>
+      </v-col>
+      <v-col cols="4">
+        <div class="d-flex flex-column">
+          <small>Sister 2 Name : </small>
+          <strong>{{
+            medicalFamilyHistory.sister2Name
+              ? medicalFamilyHistory.sister2Name
+              : "N/A"
+          }}</strong>
+        </div>
+      </v-col>
+      <v-col cols="4">
+        <div class="d-flex flex-column">
+          <small>Children 2 Name : </small>
+          <strong>{{
+            medicalFamilyHistory.children2Name
+              ? medicalFamilyHistory.children2Name
+              : "N/A"
+          }}</strong>
+        </div>
+      </v-col>
+    </v-row>
+    <!--brother sister children age -->
+    <v-row>
+      <v-col cols="4">
+        <div class="d-flex flex-column">
+          <small>Brother 2 Age : </small>
+          <strong>{{
+            medicalFamilyHistory.brother2Age
+              ? medicalFamilyHistory.brother2Age
+              : "N/A"
+          }}</strong>
+        </div>
+      </v-col>
+      <v-col cols="4">
+        <div class="d-flex flex-column">
+          <small>Sister 2 Age : </small>
+          <strong>{{
+            medicalFamilyHistory.sister2Age
+              ? medicalFamilyHistory.sister2Age
+              : "N/A"
+          }}</strong>
+        </div>
+      </v-col>
+      <v-col cols="4">
+        <div class="d-flex flex-column">
+          <small>Children 2 Age : </small>
+          <strong>{{
+            medicalFamilyHistory.children2Age
+              ? medicalFamilyHistory.children2Age
+              : "N/A"
+          }}</strong>
+        </div>
+      </v-col>
+    </v-row>
+    <!--brother sister children state of health -->
+    <v-row>
+      <v-col cols="4">
+        <div class="d-flex flex-column">
+          <small>Brother 2 State of Health : </small>
+          <strong>{{
+            medicalFamilyHistory.brother2StateOfHealth
+              ? medicalFamilyHistory.brother2StateOfHealth
+              : "N/A"
+          }}</strong>
+        </div>
+      </v-col>
+      <v-col cols="4">
+        <div class="d-flex flex-column">
+          <small>Sister 2 State of Health : </small>
+          <strong>{{
+            medicalFamilyHistory.sister2StateOfHealth
+              ? medicalFamilyHistory.sister2StateOfHealth
+              : "N/A"
+          }}</strong>
+        </div>
+      </v-col>
+      <v-col cols="4">
+        <div class="d-flex flex-column">
+          <small>Children 2 State of Health : </small>
+          <strong>{{
+            medicalFamilyHistory.children2StateOfHealth
+              ? medicalFamilyHistory.children2StateOfHealth
+              : "N/A"
+          }}</strong>
+        </div>
+      </v-col>
+    </v-row>
+
+    <!--brother sister children cause of death -->
+    <v-row>
+      <v-col cols="4">
+        <div class="d-flex flex-column">
+          <small>Brother 2 Cause of Death : </small>
+          <strong>{{
+            medicalFamilyHistory.brother2CauseOfDeath
+              ? medicalFamilyHistory.brother2CauseOfDeath
+              : "N/A"
+          }}</strong>
+        </div>
+      </v-col>
+      <v-col cols="4">
+        <div class="d-flex flex-column">
+          <small>Sister 2 Cause of Death : </small>
+          <strong>{{
+            medicalFamilyHistory.sister2CauseOfDeath
+              ? medicalFamilyHistory.sister2CauseOfDeath
+              : "N/A"
+          }}</strong>
+        </div>
+      </v-col>
+      <v-col cols="4">
+        <div class="d-flex flex-column">
+          <small>Children 2 Cause of Death : </small>
+          <strong>{{
+            medicalFamilyHistory.children2CauseOfDeath
+              ? medicalFamilyHistory.children2CauseOfDeath
+              : "N/A"
+          }}</strong>
+        </div>
+      </v-col>
+    </v-row>
+    <v-divider inset class="my-4"></v-divider>
+
+    <v-row>
+      <v-col>
+        <div class="d-flex flex-column">
+          <small> Syphillis : </small>
+          <strong>{{ medicalFamilyHistory.syphillis ? "yes" : "no" }}</strong>
+        </div>
+      </v-col>
+      <v-col>
+        <div class="d-flex flex-column">
+          <small> Kidney Trouble : </small>
+          <strong>{{ medicalFamilyHistory.kidneyTrouble ? "yes" : "no" }}</strong>
+        </div>
+      </v-col>
+      <v-col>
+        <div class="d-flex flex-column">
+          <small> Committed Suicide : </small>
+          <strong>{{ medicalFamilyHistory.committedSuicide ? "yes" : "no" }}</strong>
+        </div>
+      </v-col>
+      <v-col>
+        <div class="d-flex flex-column">
+          <small> Kidney : </small>
+          <strong>{{ medicalFamilyHistory.kidney ? "yes" : "no" }}</strong>
+        </div>
+      </v-col>
+    </v-row>
+    
+    <v-row>
+      <v-col>
+        <div class="d-flex flex-column">
+          <small> Cancer : </small>
+          <strong>{{ medicalFamilyHistory.cancer ? "yes" : "no" }}</strong>
+        </div>
+      </v-col>
+      <v-col>
+        <div class="d-flex flex-column">
+          <small> Asthma : </small>
+          <strong>{{ medicalFamilyHistory.asthma ? "yes" : "no" }}</strong>
+        </div>
+      </v-col>
+      <v-col>
+        <div class="d-flex flex-column">
+          <small> Hypertension : </small>
+          <strong>{{ medicalFamilyHistory.hypertension ? "yes" : "no" }}</strong>
+        </div>
+      </v-col>
+      <v-col>
+        <div class="d-flex flex-column">
+          <small> Psychiatric : </small>
+          <strong>{{ medicalFamilyHistory.psychiatric ? "yes" : "no" }}</strong>
+        </div>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+        <div class="d-flex flex-column">
+          <small> Epilepsy : </small>
+          <strong>{{ medicalFamilyHistory.epilepsy ? "yes" : "no" }}</strong>
+        </div>
+      </v-col>
+      <v-col>
+        <div class="d-flex flex-column">
+          <small> Allergy : </small>
+          <strong>{{ medicalFamilyHistory.allergy ? "yes" : "no" }}</strong>
+        </div>
+      </v-col>
+      <v-col>
+        <div class="d-flex flex-column">
+          <small> Diabetes : </small>
+          <strong>{{ medicalFamilyHistory.diabetes ? "yes" : "no" }}</strong>
+        </div>
+      </v-col>
+    </v-row>
+
+    <pre></pre>
   </div>
 </template>
 
 <script>
+import { createNamespacedHelpers } from "vuex";
+const { mapGetters } = createNamespacedHelpers("navigation");
 export default {
   data: () => ({
-    headers: [
-      { text: "Name", value: "name", divider: true },
-      { text: "Age", value: "age" , divider: true },
-      { text: "State of Health", value: "stateOfHealth", divider: true },
-      { text: "Cause of Death", value: "causeOfDeath", divider: true },
-      { text: "Disease", value: "disease", divider: true },
-      { text: "Yes", value: "yes", divider: true },
-      { text: "No", value: "no", divider: true },
-    ],
-    items: [
-      {
-        name: "Father",
-        age: "",
-        people: [
-          {
-            name: "Father John",
-            age: "200 ",
-            stateOfHealth: "Dying",
-            causeOfDeath: "flu",
-            disease: "diabetes",
-            yes: "",
-            no: "No",
-          },
-        ],
-      },
-      {
-        name: "Mother",
+    familyHistory: {
+      fatherName: "",
+      fatherAge: "",
+      fatherStateOfHealth: "",
+      fatherCauseOfDeath: "",
+      motherName: "",
+      motherAge: "",
+      motherStateOfHealth: "",
+      motherCauseOfDeath: "",
+      spouseName: "",
+      spouseAge: "",
+      spouseStateOfHealth: "",
+      spouseCauseOfDeath: "",
 
-        people: [
-          {
-            name: "Mother Jane",
-            age: "50 ",
-            stateOfHealth: "Healthy",
-            causeOfDeath: "Alive",
-            disease: "NA",
-            yes: "",
-            no: "No",
-          },
-        ],
-      },
+      brother1Name: "",
+      brother1Age: "",
+      brother1StateOfHealth: "",
+      brother1CauseOfDeath: "",
 
-      {
-        name: "Brothers",
-        age: "",
-        people: [
-          {
-            name: "John",
-            age: "20 ",
-            stateOfHealth: "1",
-            causeOfDeath: "1",
-            disease: "1",
-            yes: "1",
-            no: "",
-          },
-          {
-            name: "Jane",
-            age: "21",
-            stateOfHealth: "1",
-            causeOfDeath: "1",
-            disease: "1",
-            yes: "1",
-            no: "",
-          },
-          {
-            name: "Joe",
-            age: "22",
-            stateOfHealth: "1",
-            causeOfDeath: "1",
-            disease: "1",
-            yes: "1",
-            no: "",
-          },
-        ],
-      },
-      {
-        name: "Sisters",
-        age: "",
-        people: [
-          {
-            name: "Lisa",
-            age: "20 ",
-            stateOfHealth: "1",
-            causeOfDeath: "1",
-            disease: "1",
-            yes: "1",
-            no: "",
-          },
-          {
-            name: "Jennie",
-            age: "21",
-            stateOfHealth: "1",
-            causeOfDeath: "1",
-            disease: "1",
-            yes: "1",
-            no: "",
-          },
-          {
-            name: "Rose",
-            age: "22",
-            stateOfHealth: "1",
-            causeOfDeath: "1",
-            disease: "1",
-            yes: "1",
-            no: "",
-          },
-        ],
-      },
-      {
-        name: "Spouse",
-        age: "",
-        people: [
-          {
-            name: "N/A ",
-            age: "N/A ",
-            stateOfHealth: "N/A",
-            causeOfDeath: "N/A",
-            disease: "N/A",
-            yes: "",
-            no: "No",
-          },
-        ],
-      },
-      {
-        name: "Children",
-        age: "",
-        people: [
-          {
-            name: "N/A ",
-            age: "N/A ",
-            stateOfHealth: "N/A",
-            causeOfDeath: "N/A",
-            disease: "N/A",
-            yes: "",
-            no: "No",
-          },
-        ],
-      },
-    ],
+      brother2Name: "",
+      brother2Age: "",
+      brother2StateOfHealth: "",
+      brother2CauseOfDeath: "",
+
+      sister1Name: "",
+      sister1Age: "",
+      sister1StateOfHealth: "",
+      sister1CauseOfDeath: "",
+
+      sister2Name: "",
+      sister2Age: "",
+      sister2StateOfHealth: "",
+      sister2CauseOfDeath: "",
+
+      children1Name: "",
+      children1Age: "",
+      children1StateOfHealth: "",
+      children1CauseOfDeath: "",
+
+      children2Name: "",
+      children2Age: "",
+      children2StateOfHealth: "",
+      children2CauseOfDeath: "",
+
+      syphillis: false,
+      cancer: false,
+      epilepsy: false,
+      kidney: false,
+
+      kidneyTrouble: false,
+      asthma: false,
+      allergy: false,
+      psychiatric: false,
+
+      committedSuicide: false,
+      hypertension: false,
+      diabetes: false,
+    },
   }),
+  computed: {
+    ...mapGetters(["personnelDetails"]),
+    medicalFamilyHistory() {
+      return this.personnelDetails.medicalRecord.medicalFamilyHistory;
+    },
+  },
+  watch: {
+    handler(val) {
+      this.items = [
+        {
+          fatherName: "",
+          fatherAge: "",
+          fatherStateOfHealth: "",
+          fatherCauseOfDeath: "",
+          motherName: "",
+          motherAge: "",
+          motherStateOfHealth: "",
+          motherCauseOfDeath: "",
+          spouseName: "",
+          spouseAge: "",
+          spouseStateOfHealth: "",
+          spouseCauseOfDeath: "",
+
+          brother1Name: "",
+          brother1Age: "",
+          brother1StateOfHealth: "",
+          brother1CauseOfDeath: "",
+
+          brother2Name: "",
+          brother2Age: "",
+          brother2StateOfHealth: "",
+          brother2CauseOfDeath: "",
+
+          sister1Name: "",
+          sister1Age: "",
+          sister1StateOfHealth: "",
+          sister1CauseOfDeath: "",
+
+          sister2Name: "",
+          sister2Age: "",
+          sister2StateOfHealth: "",
+          sister2CauseOfDeath: "",
+
+          children1Name: "",
+          children1Age: "",
+          children1StateOfHealth: "",
+          children1CauseOfDeath: "",
+
+          children2Name: "",
+          children2Age: "",
+          children2StateOfHealth: "",
+          children2CauseOfDeath: "",
+
+          syphillis: false,
+          cancer: false,
+          epilepsy: false,
+          kidney: false,
+          kidneyTrouble: false,
+          asthma: false,
+          allergy: false,
+          psychiatric: false,
+          committedSuicide: false,
+          hypertension: false,
+          diabetes: false,
+        },
+      ];
+    },
+    deep: true,
+  },
 };
 </script>
 

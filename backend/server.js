@@ -22,6 +22,7 @@ const dentalRoutes = require("./routes/dental.js");
 const psychRoutes = require("./routes/psych.js");
 const medicalHistoryRoutes = require("./routes/medicalHistory.js");
 const ptNotes = require("./routes/ptNotes.js");
+const cases = require("./routes/case.js");
 
 app.use("/api/user", userRoutes);
 app.use("/api/personnel", personnelRoutes);
@@ -30,6 +31,7 @@ app.use("/api/dental", dentalRoutes);
 app.use("/api/psych", psychRoutes);
 app.use("/api/medical-history", medicalHistoryRoutes);
 app.use("/api/pt-notes", ptNotes);
+app.use("/api/case", cases);
 
 // static images folder
 app.use("/images", express.static("./images"));

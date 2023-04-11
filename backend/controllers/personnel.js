@@ -97,6 +97,17 @@ const addPersonnel = async (req, res) => {
   });
   await MedicalPersonalHistory.create({
     personnelId: personnel.id,
+    accountNo,
+    rank,
+    lname,
+    fname,
+    mname,
+    extName,
+    unit,
+    designation,
+    mobile,
+    civilStatus,
+    gender
   });
   await PtNotes.create({
     personnelId: personnel.id,

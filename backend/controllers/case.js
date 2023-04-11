@@ -130,7 +130,7 @@ const getAllPersonnelsByCase = async (req, res) => {
     case "Arthritis":
       personnels = await MedicalPersonalHistory.findAndCountAll({
         where: {
-          asthma: true,
+          arthritis: true,
         },
       });
       break;

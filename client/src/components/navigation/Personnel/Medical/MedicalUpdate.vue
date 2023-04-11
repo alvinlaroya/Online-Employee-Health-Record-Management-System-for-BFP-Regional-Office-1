@@ -393,7 +393,20 @@ export default {
     },
   },
   mounted() {
-    this.medicalPersonalHistory = this.personnelDetails.medicalRecord.medicalPersonalHistory
+    this.personalHistory = this.personnelDetails.medicalRecord.medicalPersonalHistory
+    delete this.personalHistory.id;
+    delete this.personalHistory.personnelId;
+    delete this.personalHistory.accountNo;
+    delete this.personalHistory.rank;
+    delete this.personalHistory.lname;
+    delete this.personalHistory.fname;
+    delete this.personalHistory.mname;
+    delete this.personalHistory.extName;
+    delete this.personalHistory.unit;
+    delete this.personalHistory.designation;
+    delete this.personalHistory.mobile;
+    delete this.personalHistory.civilStatus;
+    delete this.personalHistory.gender;
   }
 };
 </script>

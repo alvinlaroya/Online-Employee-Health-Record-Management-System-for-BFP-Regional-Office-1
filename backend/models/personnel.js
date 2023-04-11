@@ -60,6 +60,22 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: true,
         },
+        placeOfBirth: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        occupation: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        occupation: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        },
+        personnelImage: {
+            type: DataTypes.STRING,
+            allowNull: true,
+        }
     });
 
     return ChiefOfPolice;

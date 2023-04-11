@@ -95,7 +95,7 @@ export default {
   computed: {
     ...mapGetters(["personnelDetails"]),
     personnel() {
-      return this.personnelDetails.personnel
+      return this.personnelDetails?.personnel || ''
     },
     birthDate() {
       return this.data.dateOfBirth.substr(0, 10);

@@ -5,6 +5,7 @@ import PhysicalEventService from "@/services/dashboard/Physical";
 import FamilyEventService from "@/services/dashboard/MedicalProfile";
 import PersonalEventService from "@/services/dashboard/MedicalProfile";
 import UpdatePersonnelEventService from "@/services/dashboard/updatePersonnel";
+import PtNotesEventService from "@/services/dashboard/PtNotes";
 
 
 /* import * as types from "@/store/mutation-types"; */
@@ -77,6 +78,11 @@ export const updatePersonal= async ({ commit, dispatch }, payload) => {
 }
 export const updatePersonnel= async ({ commit, dispatch }, payload) => {
     await UpdatePersonnelEventService.updatePersonnel(payload)
+    await dispatch("viewDetails", payload.personnelId)
+}
+export const updatePtNotes= async ({ commit, dispatch }, payload) => {
+    console.log("ACTION PAYLOAD", payload)
+    await PtNotesEventService.updatePtNotes(payload)
     await dispatch("viewDetails", payload.personnelId)
 }
 

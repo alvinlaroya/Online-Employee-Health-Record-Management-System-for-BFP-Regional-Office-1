@@ -138,7 +138,7 @@ import validateString from "@/_common/helpers/validateString.js";
 import validateNumber from "@/_common/helpers/validateNumber.js";
 
 import { createNamespacedHelpers } from "vuex";
-const { mapState, mapActions ,mapGetters } = createNamespacedHelpers("navigation");
+const { mapActions, mapGetters } =createNamespacedHelpers("navigation");
 
 export default {
   data: () => ({
@@ -166,36 +166,37 @@ export default {
     },
   }),
   methods: {
-   ...mapActions(["updatePersonnel"]),
-   async submitHandler() {
-     await this.updatePersonnel({
-       personnelId: this.personnelId,
-       data: this.Personnel
-     })
+    ...mapActions(["updatePersonnel"]),
+    async submitHandler() {
+      await this.updatePersonnel({
+        personnelId: this.personnelId,
+        data: this.Personnel,
+      });
 
-     this.dialog = false;
-   },
-   keyPressAccountNo(e) {
-     validateAccountNo(e, this.Personnel.accountNo.length);
-   },
-   validateString(e) {
-     validateString(e);
-   },
-   validateNumber(e) {
-     validateNumber(e, this.Personnel.mobile.length);
-   },
+      this.dialog = false;
+    },
+    keyPressAccountNo(e) {
+      validateAccountNo(e, this.personnelDetails.personnel.accountNo.length);
+    },
+    validateString(e) {
+      validateString(e);
+    },
+    validateNumber(e) {
+      validateNumber(e, this.personnelDetails.personnel.mobile.length);
+    },
   },
   computed: {
     ...mapGetters(["personnelDetails"]),
     personnelId() {
       return this.personnelDetails.personnel.id;
-    }
+    },
   },
   mounted() {
     setTimeout(() => {
-      this.Personnel = this.personnelDetails.personnel
-    }, 2000)
-  }
+      this.Personnel = this.personnelDetails.personnel;
+    }, 2000);
+    
+  },
 };
 </script>
   

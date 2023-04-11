@@ -2,7 +2,6 @@
   <v-data-table
     :headers="headers"
     :items="items"
-    
     dense
     hide-default-footer
     hide-default-header
@@ -10,7 +9,10 @@
   ></v-data-table>
 </template>
   
-  <script>
+<script>
+import { createNamespacedHelpers } from "vuex";
+const { mapGetters } = createNamespacedHelpers("navigation");
+
 export default {
   data: () => ({
     headers: [
@@ -21,25 +23,103 @@ export default {
       },
       { text: "Checklist", value: "Checklist", divider: true },
     ],
-    items: [
+    items: [],
+  }),
+  computed: {
+    ...mapGetters(["personnelDetails"]),
+  },
+  watch: {
+    personnelDetails: {
+      handler(val) {
+        this.items = [
+          {
+            name: "Sitting Balance",
+            Checklist:
+              this.personnelDetails.ptNotes.balanceToleranceSittingBalance ===
+              null
+                ? "-"
+                : this.personnelDetails.ptNotes.balanceToleranceSittingBalance
+                ? "Yes"
+                : "No",
+          },
+          {
+            name: "Sitting Tolerance",
+            Checklist:
+              this.personnelDetails.ptNotes.balanceToleranceSittingTolerance ===
+              null
+                ? "-"
+                : this.personnelDetails.ptNotes.balanceToleranceSittingTolerance
+                ? "Yes"
+                : "No",
+          },
+          {
+            name: "Standing Balance",
+            Checklist:
+              this.personnelDetails.ptNotes.balanceToleranceStandingBalance ===
+              null
+                ? "-"
+                : this.personnelDetails.ptNotes.balanceToleranceStandingBalance
+                ? "Yes"
+                : "No",
+          },
+          {
+            name: "Standing Tolerance",
+            Checklist:
+              this.personnelDetails.ptNotes
+                .balanceToleranceStandingTolerance === null
+                ? "-"
+                : this.personnelDetails.ptNotes
+                    .balanceToleranceStandingTolerance
+                ? "Yes"
+                : "No",
+          },
+        ];
+      },
+      deep: true,
+    },
+  },
+  created() {
+    this.items = [
       {
         name: "Sitting Balance",
-        Checklist: "N/A",
+        Checklist:
+          this.personnelDetails.ptNotes.balanceToleranceSittingBalance === null
+            ? "-"
+            : this.personnelDetails.ptNotes.balanceToleranceSittingBalance
+            ? "Yes"
+            : "No",
       },
       {
         name: "Sitting Tolerance",
-        Checklist: "N/A",
+        Checklist:
+          this.personnelDetails.ptNotes.balanceToleranceSittingTolerance ===
+          null
+            ? "-"
+            : this.personnelDetails.ptNotes.balanceToleranceSittingTolerance
+            ? "Yes"
+            : "No",
       },
       {
         name: "Standing Balance",
-        Checklist: "N/A",
+        Checklist:
+          this.personnelDetails.ptNotes.balanceToleranceStandingBalance === null
+            ? "-"
+            : this.personnelDetails.ptNotes.balanceToleranceStandingBalance
+            ? "Yes"
+            : "No",
       },
       {
         name: "Standing Tolerance",
-        Checklist: "N/A",
+        Checklist:
+          this.personnelDetails.ptNotes.balanceToleranceStandingTolerance ===
+          null
+            ? "-"
+            : this.personnelDetails.ptNotes.balanceToleranceStandingTolerance
+            ? "Yes"
+            : "No",
       },
-    ],
-  }),
+    ];
+  },
 };
 </script>
   

@@ -21,29 +21,29 @@
         <span
           >Full Name :
           <strong
-            >{{ personnel.fname }} {{ personnel.mname }} {{ personnel.lname }}
-            {{ personnel.extName }}</strong
+            >{{ personnel.fname ? personnel.fname : '' }} {{ personnel.mname ? personnel.mname : '' }} {{ personnel.lname ? personnel.lname : '' }}
+            {{ personnel.extName ? personnel.extName : '' }}</strong
           ></span
         >
       </v-row>
       <v-row>
         <span
-          >Gender : <strong> {{ personnel.gender }}</strong></span
+          >Gender : <strong> {{ personnel.gender ? personnel.gender : '' }}</strong></span
         >
       </v-row>
       <v-row>
         <span
-          >Mobile Number : <strong>{{ personnel.mobile }}</strong></span
+          >Mobile Number : <strong>{{ personnel.mobile ? personnel.mobile : '' }}</strong></span
         >
       </v-row>
       <v-row>
         <span
-          >Address : <strong> {{ personnel.address }}</strong></span
+          >Address : <strong> {{ personnel.address ? personnel.address : '' }}</strong></span
         >
       </v-row>
       <v-row>
         <span
-          >Date of Birth : <strong> {{ personnel.birthDate }}</strong></span
+          >Date of Birth : <strong> {{ personnel.birthDate ? personnel.birthDate : '' }}</strong></span
         >
       </v-row>
       <v-row>
@@ -53,38 +53,39 @@
       </v-row>
       <v-row>
         <span
-          >Civil Status : <strong> {{ personnel.civilStatus }}</strong></span
+          >Civil Status : <strong> {{ personnel.civilStatus ? personnel.civilStatus : '' }}</strong></span
         >
       </v-row>
 
       <v-row>
         <span
-          >Philhealth : <strong> {{ personnel.philhealth }}</strong></span
+          >Philhealth : <strong> {{ personnel.philhealth ? personnel.philhealth : '' }}</strong></span
         >
       </v-row>
 
       <v-row>
         <span
-          >Unit : <strong> {{ personnel.unit }}</strong></span
+          >Unit : <strong> {{ personnel.unit ? personnel.unit : '' }}</strong></span
         >
       </v-row>
       <v-row>
         <span
-          >Designation : <strong> {{ personnel.designation }}</strong></span
+          >Designation : <strong> {{ personnel.designation ? personnel.designation : '' }}</strong></span
         >
       </v-row>
       <v-row>
         <span
-          >Remarks : <strong>{{ personnel.remarks }}</strong></span
+          >Remarks : <strong>{{ personnel.remarks ? personnel.remarks : '' }}</strong></span
         >
       </v-row>
     </v-container>
+    
   </v-card>
 </template>
 
 <script>
 import { createNamespacedHelpers } from "vuex";
-import UpdateDetails from "./ViewDetail/UpdateDetails.vue";
+import UpdateDetails from "@/components/navigation/Personnel/ViewDetail/UpdateDetails";
 const { mapGetters } = createNamespacedHelpers("navigation");
 
 export default {
@@ -95,7 +96,7 @@ export default {
   computed: {
     ...mapGetters(["personnelDetails"]),
     personnel() {
-      return this.personnelDetails?.personnel || ''
+      return this.personnelDetails.personnel || ''
     },
     birthDate() {
       return this.data.dateOfBirth.substr(0, 10);

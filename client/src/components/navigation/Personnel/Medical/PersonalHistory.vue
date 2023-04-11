@@ -41,7 +41,6 @@
         >
       </v-row>
     </v-container>
-    <Pre>{{ personalHistory.hadAbortion  }}</Pre>
     <Diseases />
   </div>
 </template>

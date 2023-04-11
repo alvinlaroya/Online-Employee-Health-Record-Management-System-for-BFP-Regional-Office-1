@@ -9,7 +9,6 @@
         <v-card-text>
           <v-form @submit.prevent="submit">
             <div>
-              
               <v-row>
                 <v-col>
                   <strong class="">Father Information</strong>
@@ -24,7 +23,7 @@
               <v-row>
                 <v-col>
                   <v-text-field
-                    v-model="familyHistory.father.name"
+                    v-model="familyHistory.fatherName"
                     label="Name"
                     dense
                     @keypress="validateString($event)"
@@ -32,7 +31,7 @@
                 </v-col>
                 <v-col>
                   <v-text-field
-                    v-model="familyHistory.mother.name"
+                    v-model="familyHistory.motherName"
                     label="Name"
                     dense
                     @keypress="validateString($event)"
@@ -40,7 +39,7 @@
                 </v-col>
                 <v-col>
                   <v-text-field
-                    v-model="familyHistory.spouse.name"
+                    v-model="familyHistory.spouseName"
                     label="Name"
                     dense
                     @keypress="validateString($event)"
@@ -50,21 +49,21 @@
               <v-row>
                 <v-col>
                   <v-text-field
-                    v-model="familyHistory.father.age"
+                    v-model="familyHistory.fatherAge"
                     label="Age"
                     dense
                   ></v-text-field>
                 </v-col>
                 <v-col>
                   <v-text-field
-                    v-model="familyHistory.mother.age"
+                    v-model="familyHistory.motherAge"
                     label="Age"
                     dense
                   ></v-text-field>
                 </v-col>
                 <v-col>
                   <v-text-field
-                    v-model="familyHistory.spouse.age"
+                    v-model="familyHistory.spouseAge"
                     label="Age"
                     dense
                   ></v-text-field>
@@ -73,21 +72,21 @@
               <v-row>
                 <v-col>
                   <v-text-field
-                    v-model="familyHistory.father.stateOfHealth"
+                    v-model="familyHistory.fatherStateOfHealth"
                     label="State of health"
                     dense
                   ></v-text-field>
                 </v-col>
                 <v-col>
                   <v-text-field
-                    v-model="familyHistory.mother.stateOfHealth"
+                    v-model="familyHistory.motherstateOfHealth"
                     label="State of health"
                     dense
                   ></v-text-field>
                 </v-col>
                 <v-col>
                   <v-text-field
-                    v-model="familyHistory.spouse.stateOfHealth"
+                    v-model="familyHistory.spouseStateOfHealth"
                     label="State of health"
                     dense
                   ></v-text-field>
@@ -96,21 +95,21 @@
               <v-row>
                 <v-col>
                   <v-text-field
-                    v-model="familyHistory.father.causeOfDeath"
+                    v-model="familyHistory.fatherCauseOfDeath"
                     label="Cause of Death"
                     dense
                   ></v-text-field>
                 </v-col>
                 <v-col>
                   <v-text-field
-                    v-model="familyHistory.mother.causeOfDeath"
+                    v-model="familyHistory.motherCauseOfDeath"
                     label="Cause of Death"
                     dense
                   ></v-text-field>
                 </v-col>
                 <v-col>
                   <v-text-field
-                    v-model="familyHistory.spouse.causeOfDeath"
+                    v-model="familyHistory.spouseCauseOfDeath"
                     label="Cause of Death"
                     dense
                   ></v-text-field>
@@ -130,59 +129,214 @@
               </v-row>
               <v-row>
                 <v-col>
-                  <div v-for="(brother, i) in familyHistory.brothers" :key="i">
-                    <v-text-field
-                      v-model="brother.name"
-                      :label="`Brother ${i + 1} Name`"
-                      dense
-                      @keypress="validateString($event)"
-                    ></v-text-field>
-                  </div>
+                  <v-text-field
+                    v-model="familyHistory.brother1Name"
+                    label="Brother 1 Name"
+                    dense
+                    @keypress="validateString($event)"
+                  ></v-text-field>
                 </v-col>
                 <v-col>
-                  <div v-for="(sister, i) in familyHistory.sisters" :key="i">
-                    <v-text-field
-                      v-model="sister.name"
-                      :label="`Sister ${i + 1} Name`"
-                      dense
-                      @keypress="validateString($event)"
-                    ></v-text-field>
-                  </div>
+                  <v-text-field
+                    v-model="familyHistory.sister1Name"
+                    label="Sister 1 Name"
+                    dense
+                    @keypress="validateString($event)"
+                  ></v-text-field>
                 </v-col>
                 <v-col>
-                  <div v-for="(child, i) in familyHistory.children" :key="i">
-                    <v-text-field
-                      v-model="child.name"
-                      :label="`Child ${i + 1} Name`"
-                      dense
-                      @keypress="validateString($event)"
-                    ></v-text-field>
-                  </div>
+                  <v-text-field
+                    v-model="familyHistory.children1Name"
+                    label="Children 1 Name"
+                    dense
+                    @keypress="validateString($event)"
+                  ></v-text-field>
                 </v-col>
               </v-row>
               <v-row>
                 <v-col>
                   <v-text-field
-                    v-model="familyHistory.brothers.age"
-                    label="Age"
+                    v-model="familyHistory.brother1Age"
+                    label="Brother 1 Age"
                     dense
+                    @keypress="validateString($event)"
                   ></v-text-field>
                 </v-col>
                 <v-col>
                   <v-text-field
-                    v-model="familyHistory.sisters.age"
-                    label="Age"
+                    v-model="familyHistory.sister1Age"
+                    label="Sister 1 Age"
                     dense
+                    @keypress="validateString($event)"
                   ></v-text-field>
                 </v-col>
                 <v-col>
                   <v-text-field
-                    v-model="familyHistory.children.age"
-                    label="Age"
+                    v-model="familyHistory.children1Age"
+                    label="Children 1 Age"
                     dense
+                    @keypress="validateString($event)"
                   ></v-text-field>
                 </v-col>
               </v-row>
+              <v-row>
+                <v-col>
+                  <v-text-field
+                    v-model="familyHistory.brother1StateOfHealth"
+                    label="Brother 1 State of Health"
+                    dense
+                    @keypress="validateString($event)"
+                  ></v-text-field>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    v-model="familyHistory.sister1StateOfHealth"
+                    label="Sister 1 State of Health"
+                    dense
+                    @keypress="validateString($event)"
+                  ></v-text-field>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    v-model="familyHistory.children1StateOfHealth"
+                    label="Children 1 State of Health"
+                    dense
+                    @keypress="validateString($event)"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-text-field
+                    v-model="familyHistory.brother1CauseOfDeath"
+                    label="Brother 1 Cause of Death"
+                    dense
+                    @keypress="validateString($event)"
+                  ></v-text-field>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    v-model="familyHistory.sister1CauseOfDeath"
+                    label="Siter 1 Cause of Death"
+                    dense
+                    @keypress="validateString($event)"
+                  ></v-text-field>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    v-model="familyHistory.children1CauseOfDeath"
+                    label="Children 1 Cause of Death"
+                    dense
+                    @keypress="validateString($event)"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+              <!-- 2 -->
+              <v-row>
+                <v-col>
+                  <v-text-field
+                    v-model="familyHistory.brother2Name"
+                    label="Brother 2 Name"
+                    dense
+                    @keypress="validateString($event)"
+                  ></v-text-field>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    v-model="familyHistory.sister2Name"
+                    label="Sister 2 Name"
+                    dense
+                    @keypress="validateString($event)"
+                  ></v-text-field>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    v-model="familyHistory.children2Name"
+                    label="Children 2 Name"
+                    dense
+                    @keypress="validateString($event)"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-text-field
+                    v-model="familyHistory.brother2Age"
+                    label="Brother 2 Age"
+                    dense
+                    @keypress="validateString($event)"
+                  ></v-text-field>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    v-model="familyHistory.sister2Age"
+                    label="Sister 2 Age"
+                    dense
+                    @keypress="validateString($event)"
+                  ></v-text-field>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    v-model="familyHistory.children2Age"
+                    label="Children 2 Age"
+                    dense
+                    @keypress="validateString($event)"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-text-field
+                    v-model="familyHistory.brother2StateOfHealth"
+                    label="Brother 2 State of Health"
+                    dense
+                    @keypress="validateString($event)"
+                  ></v-text-field>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    v-model="familyHistory.sister2StateOfHealth"
+                    label="Sister 2 State of Health"
+                    dense
+                    @keypress="validateString($event)"
+                  ></v-text-field>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    v-model="familyHistory.children2StateOfHealth"
+                    label="Children 2State of Health"
+                    dense
+                    @keypress="validateString($event)"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-text-field
+                    v-model="familyHistory.brother2CauseOfDeath"
+                    label="Brother 2 Cause of Death"
+                    dense
+                    @keypress="validateString($event)"
+                  ></v-text-field>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    v-model="familyHistory.sister2CauseOfDeath"
+                    label="Sister 2 Cause of Death"
+                    dense
+                    @keypress="validateString($event)"
+                  ></v-text-field>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    v-model="familyHistory.children2CauseOfDeath"
+                    label="Childreb 2 Cause of Death"
+                    dense
+                    @keypress="validateString($event)"
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+
               <v-row>
                 <v-col
                   v-for="(value, key) in personalHistory"
@@ -239,62 +393,56 @@ export default {
       .substr(0, 10),
 
     familyHistory: {
-      father: {
-        name: "",
-        age: "",
-        stateOfHealth: "",
-        causeOfDeath: "",
-      },
-      mother: {
-        name: "",
-        age: "20",
-        stateOfHealth: "",
-        causeOfDeath: "",
-      },
-      brothers: [
-        {
-          name: "",
-          age: "",
-          stateOfHealth: "",
-          causeOfDeath: "",
-        },
-        {
-          name: "",
-          age: "",
-          stateOfHealth: "",
-          causeOfDeath: "",
-        },
-      ],
-      sisters: [
-        {
-          name: "",
-          age: "",
-          stateOfHealth: "",
-          causeOfDeath: "",
-        },
-      ],
-      spouse: {
-        name: "",
-        age: "",
-        stateOfHealth: "",
-        causeOfDeath: "",
-      },
-      children: [
-        {
-          name: "",
-          age: "",
-          stateOfHealth: "",
-          causeOfDeath: "",
-        },
-      ],
-      tb: false,
+      fatherName: "",
+      fatherAge: '',
+      fatherStateOfHealth: "",
+      fatherCauseOfDeath: "",
+      motherName: "",
+      motherAge: '',
+      motherStateOfHealth: "",
+      motherCauseOfDeath: "",
+      spouseName: "",
+      spouseAge: '',
+      spouseStateOfHealth: "",
+      spouseCauseOfDeath: "",
+
+      brother1Name: "",
+      brother1Age: '',
+      brother1StateOfHealth: "",
+      brother1CauseOfDeath: "",
+
+      brother2Name: "",
+      brother2Age: '',
+      brother2StateOfHealth: "",
+      brother2CauseOfDeath: "",
+
+      sister1Name: "",
+      sister1Age: '',
+      sister1StateOfHealth: "",
+      sister1CauseOfDeath: "",
+
+      sister2Name: "",
+      sister2Age: '',
+      sister2StateOfHealth: "",
+      sister2CauseOfDeath: "",
+
+      children1Name: "",
+      children1Age: '',
+      children1StateOfHealth: "",
+      children1CauseOfDeath: "",
+
+      children2Name: "",
+      children2Age: '',
+      children2StateOfHealth: "",
+      children2CauseOfDeath: "",
+
       syphillis: false,
       cancer: false,
       epilepsy: false,
       kidney: false,
       kidneyTrouble: false,
       asthma: false,
-      allergyHives: false,
+      allergy: false,
       psychiatric: false,
       committedSuicide: false,
       hypertension: false,
@@ -393,8 +541,9 @@ export default {
     },
   },
   mounted() {
-    this.medicalPersonalHistory = this.personnelDetails.medicalRecord.medicalPersonalHistory
-  }
+    this.medicalPersonalHistory =
+      this.personnelDetails.medicalRecord.medicalPersonalHistory;
+  },
 };
 </script>
 

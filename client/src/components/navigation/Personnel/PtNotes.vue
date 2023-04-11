@@ -42,20 +42,20 @@
         <v-col>
           <div class="">
             <strong>Referring Doctor : </strong>
-            <span>{{refDoctor}}</span>
+            <span>{{ ptNotes.refDoctor ? ptNotes.refDoctor : 'N/A' }}</span>
             <v-divider></v-divider>
             <strong>Diagnosis : </strong>
-            <span>N/A</span>
+            <span>{{ ptNotes.diagnosis ? ptNotes.diagnosis : 'N/A' }}</span>
             <v-divider></v-divider>
           </div>
         </v-col>
         <v-col>
           <div>
-            <strong>Date of initial/Re-evaluation : </strong>
-            <span>{{ dateToday}}</span>
+            <strong>Initial/Re-evaluation : </strong>
+            <span>{{ ptNotes.initialEvaluation ? ptNotes.initialEvaluation : 'N/A'  }}</span>
             <v-divider></v-divider>
             <strong>History of Present Illness : </strong>
-            <span>N/A</span>
+            <span>{{ ptNotes.hpi ? ptNotes.hpi : 'N/A' }}</span>
             <v-divider></v-divider>
           </div>
         </v-col>
@@ -63,24 +63,24 @@
       <v-row>
         <v-col>
           <strong>Medications: </strong>
-          <span>N/A</span>
+          <span>{{ ptNotes.medication ? ptNotes.medication : 'N/A'  }}</span>
           <v-divider></v-divider>
         </v-col>
         <v-col>
           <strong>Laboratory Exam : </strong>
-          <span>N/A</span>
+          <span>{{ ptNotes.labExams ? ptNotes.labExams : 'N/A' }}</span>
           <v-divider></v-divider>
         </v-col>
         <v-col>
           <strong>Diagnostic Procedure : </strong>
-          <span>N/A</span>
+          <span>{{ ptNotes.diagnosticProcedure ? ptNotes.diagnosticProcedure : 'N/A' }}</span>
           <v-divider></v-divider>
         </v-col>
       </v-row>
       <v-row>
         <v-col>
           <strong>PAST MEDICAL HISTORY : </strong>
-          <span>N/A</span>
+          <span>{{ptNotes.pmh ? ptNotes.pmh : 'N/A' }}</span>
           <v-divider></v-divider>
         </v-col>
       </v-row>
@@ -94,14 +94,14 @@
         <v-col>
           <div>
             <strong>PERSONAL/SOCIAL HISTORY : </strong>
-            <span>N/A</span>
+            <span>{{ptNotes.psh ? ptNotes.psh : 'N/A' }}</span>
             <v-divider></v-divider>
           </div>
         </v-col>
         <v-col>
           <div>
             <strong>FOOD AND DRUG ALLERGY : </strong>
-            <span>N/A</span>
+            <span>{{ptNotes.fda ? ptNotes.fda : 'N/A' }}</span>
             <v-divider></v-divider>
           </div>
         </v-col>
@@ -110,14 +110,14 @@
         <v-col>
           <div>
             <strong>SUBJECTIVE : </strong>
-            <span>N/A</span>
+            <span>{{ptNotes.subjective ? ptNotes.subjective : 'N/A' }}</span>
             <v-divider></v-divider>
           </div>
         </v-col>
         <v-col>
           <div>
             <strong>OBJECTIVE : </strong>
-            <span>N/A</span>
+            <span>{{ptNotes.objective ? ptNotes.objective : 'N/A' }}</span>
             <v-divider></v-divider>
           </div>
         </v-col>
@@ -131,14 +131,14 @@
         <v-col>
           <div>
             <strong>RR : </strong>
-            <span> 18 </span>
+            <span> {{ptNotes.rr ? ptNotes.rr : 'N/A' }} </span>
             <v-divider></v-divider>
           </div>
         </v-col>
         <v-col>
           <div>
             <strong>Blood Pressure : </strong>
-            <span> 100/120 </span>
+            <span> {{ptNotes.bloodPressure ? ptNotes.bloodPressure : 'N/A' }} </span>
             <v-divider></v-divider>
           </div>
         </v-col>
@@ -147,14 +147,14 @@
         <v-col>
           <div>
             <strong>Pulse Rate : </strong>
-            <span> 80 Bpm </span>
+            <span> {{ptNotes.pulseRate ? ptNotes.pulseRate : 'N/A' }} </span>
             <v-divider></v-divider>
           </div>
         </v-col>
         <v-col>
           <div>
             <strong>Temperature : </strong>
-            <span> 36 </span>
+            <span> {{ptNotes.temperature ? ptNotes.temperature : 'N/A' }} </span>
             <v-divider></v-divider>
           </div>
         </v-col>
@@ -162,22 +162,22 @@
       <v-row>
         <v-col>
           <strong>Ocular Inspection : </strong>
-          <span>N/A</span>
+          <span>{{ptNotes.ocularInspection ? ptNotes.ocularInspection : 'N/A' }}</span>
           <v-divider></v-divider>
         </v-col>
         <v-col>
-          <strong>Palpitation : </strong>
-          <span>N/A</span>
+          <strong>Palpation : </strong>
+          <span>{{ ptNotes.palpation ? ptNotes.palpation : 'N/A'  }}</span>
           <v-divider></v-divider>
         </v-col>
         <v-col>
           <strong>ROM : </strong>
-          <span>N/A</span>
+          <span>{{ ptNotes.rom ? ptNotes.rom : 'N/A'  }}</span>
           <v-divider></v-divider>
         </v-col>
         <v-col>
           <strong>MMT : </strong>
-          <span>N/A</span>
+          <span>{{ ptNotes.mmt ? ptNotes.mmt : 'N/A'  }}</span>
           <v-divider></v-divider>
         </v-col>
       </v-row>
@@ -185,14 +185,14 @@
         <v-col>
           <div>
             <strong> Muscle Bulk Measurement (MBM) : </strong>
-            <span> N/A </span>
+            <span> {{ ptNotes.mbm ? ptNotes.mbm : 'N/A'  }} </span>
             <v-divider></v-divider>
           </div>
         </v-col>
         <v-col>
           <div>
             <strong> Limb Girth Measurement (LGM) : </strong>
-            <span> N/A </span>
+            <span> {{ ptNotes.lgm ? ptNotes.lgm : 'N/A'  }} </span>
             <v-divider></v-divider>
           </div>
         </v-col>
@@ -207,7 +207,7 @@
         <v-col>
           <div>
             <strong> Findings : </strong>
-            <span> N/A </span>
+            <span> {{ ptNotes.findings ? ptNotes.findings : 'N/A'  }} </span>
             <v-divider></v-divider>
           </div>
         </v-col>
@@ -216,7 +216,7 @@
         <v-col>
           <div>
             <strong> Significance : </strong>
-            <span> N/A </span>
+            <span> {{ ptNotes.significance ? ptNotes.significance : 'N/A'  }} </span>
             <v-divider></v-divider>
           </div>
         </v-col>
@@ -225,7 +225,7 @@
         <v-col>
           <div>
             <strong> Functional Analysis : </strong>
-            <span> N/A </span>
+            <span> {{ ptNotes.functionalAnalysis ? ptNotes.functionalAnalysis : 'N/A'  }} </span>
             <v-divider></v-divider>
           </div>
         </v-col>
@@ -245,77 +245,57 @@
       <v-row>
         <v-col>
           <strong>ASSESSMENT : </strong>
-          <span>N/A</span>
+          <span>{{ ptNotes.assessment ? ptNotes.assessment : 'N/A'  }}</span>
           <v-divider></v-divider>
         </v-col>
       </v-row>
       <v-row>
         <v-col>
           <strong>Diagnosis : </strong>
-          <span>N/A</span>
+          <span>{{ ptNotes.diagnosis ? ptNotes.diagnosis : 'N/A'  }}</span>
           <v-divider></v-divider>
         </v-col>
       </v-row>
       <v-row>
         <v-col>
           <strong>PT Impression : </strong>
-          <span>N/A</span>
+          <span>{{ ptNotes.ptImpression ? ptNotes.ptImpression : 'N/A'  }}</span>
           <v-divider></v-divider>
         </v-col>
       </v-row>
       <v-row>
         <v-col>
           <strong>Problem List : </strong>
-          <span>N/A</span>
+          <span>{{ ptNotes.problemList ? ptNotes.problemList : 'N/A'  }}</span>
           <v-divider></v-divider>
         </v-col>
       </v-row>
       <v-row>
         <v-col>
           <strong>Short Term Goal : </strong>
-          <span>N/A</span>
+          <span>{{ ptNotes.shortTermGoal ? ptNotes.shortTermGoal : 'N/A' }}</span>
           <v-divider></v-divider>
         </v-col>
       </v-row>
       <v-row>
         <v-col>
           <strong>PT Management : </strong>
-          <span>N/A</span>
+          <span>{{ ptNotes.ptManagement ? ptNotes.ptManagement : 'N/A' }}</span>
           <v-divider></v-divider>
         </v-col>
       </v-row>
       <v-row>
         <v-col>
           <strong>Suggested PT Management : </strong>
-          <span>N/A</span>
+          <span>{{ ptNotes.suggestedPtManagement ? ptNotes.suggestedPtManagement : 'N/A' }}</span>
           <v-divider></v-divider>
         </v-col>
       </v-row>
       <v-row>
         <v-col>
           <strong>Home Instruction : </strong>
-          <span>N/A</span>
+          <span>{{ ptNotes.homeInstruction ? ptNotes.homeInstruction : 'N/A' }}</span>
           <v-divider></v-divider>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
-          <div class="d-flex flex-column">
-            <strong class="mb-5">Examining Physical Therapist</strong>
-            <span class="text-center">Name Here</span>
-            <v-divider></v-divider>
-            <small class="text-center">Physical Therapist </small>
-          </div>
-        </v-col>
-        <v-col>
-          <div class="d-flex flex-column">
-            <strong class="mb-5">Noted by : </strong>
-            <span class="text-center">Name Here</span>
-            <v-divider></v-divider>
-            <small class="text-center"
-              >Acting Chief, Physical Therapy Rehabilitation Service</small
-            >
-          </div>
         </v-col>
       </v-row>
     </v-container>
@@ -342,29 +322,17 @@ export default {
     Adl,
     PtNoteUpdate,
   },
-  computed: {
-    ...mapGetters(["personnelDetails"]),
-    ptNotes() {
-      return this.personnelDetails.physicalExamination;
-      
-    },
-    birthDate() {
-      return this.personnelDetails.personnel.dateOfBirth.substr(0, 10);
-    },
-    dateToday() {
-      return this.personnelDetails.personnel.createdAt.substr(0, 10);
-    },
-  },
+  
   data: () => ({
     items: [
       {
         name: "Hypertension",
-        father: "YES",
+        father: "",
         mother: "",
       },
       {
         name: "Diabetes Mellitus",
-        father: "YES",
+        father: "",
         mother: "",
       },
       {
@@ -374,19 +342,15 @@ export default {
       },
       {
         name: "Arthritis",
-        father: "YES",
+        father: "",
         mother: "",
       },
       {
         name: "Cerebral Vascular Accident",
-        father: "YES",
-        mother: "YES",
-      },
-      {
-        name: "Others",
         father: "",
         mother: "",
       },
+      
     ],
     headers: [
       {
@@ -399,6 +363,18 @@ export default {
       { text: "Mother", value: "mother" },
     ],
   }),
+  computed: {
+    ...mapGetters(["personnelDetails"]),
+    ptNotes() {
+      return this.personnelDetails.ptNotes
+      
+    },
+    birthDate() {
+      return this.personnelDetails.personnel.dateOfBirth.substr(0, 10);
+    },
+    
+    
+  },
 
 };
 </script>

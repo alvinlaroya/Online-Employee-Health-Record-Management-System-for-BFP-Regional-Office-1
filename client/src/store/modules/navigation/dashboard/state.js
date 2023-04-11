@@ -1,5 +1,6 @@
 export default {
   personnels: [],
   personnelDetails: {},
-  cases: []
+  cases: [],
+  personnelCases: []
 };

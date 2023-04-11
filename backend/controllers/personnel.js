@@ -61,6 +61,8 @@ const addPersonnel = async (req, res) => {
     remarks,
     dateOfBirth,
     address,
+    placeOfBirth,
+    occupation
   } = req.body;
 
   const param = {
@@ -79,6 +81,8 @@ const addPersonnel = async (req, res) => {
     remarks,
     dateOfBirth,
     address,
+    placeOfBirth,
+    occupation,
     personnelImage: req.files["personnelImage"][0].path,
   };
 
@@ -97,6 +101,17 @@ const addPersonnel = async (req, res) => {
   });
   await MedicalPersonalHistory.create({
     personnelId: personnel.id,
+    accountNo,
+    rank,
+    lname,
+    fname,
+    mname,
+    extName,
+    unit,
+    designation,
+    mobile,
+    civilStatus,
+    gender
   });
   await PtNotes.create({
     personnelId: personnel.id,

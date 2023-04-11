@@ -6,11 +6,8 @@ const router = require('express').Router()
 
 
 // routes
-router.post('/addCase', middleware, caseController.addCase)
-router.get('/getCases', caseController.getAllCases)
-router.delete('/deleteCase/:id', caseController.deleteCase)
-router.put('/updateCase/:id', middleware, caseController.updateCase)
-router.post('/searchCase', middleware, caseController.searchCase)
+router.get('/getAllCases', caseController.getAllCases)
+router.get('/getAllPersonnelsByCase/:case', caseController.getAllPersonnelsByCase)
 
 function middleware(req, res, next) {
     const authHeader = req.headers["authorization"];

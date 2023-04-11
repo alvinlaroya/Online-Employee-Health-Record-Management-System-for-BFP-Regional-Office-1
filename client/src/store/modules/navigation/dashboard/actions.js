@@ -6,6 +6,7 @@ import FamilyEventService from "@/services/dashboard/MedicalProfile";
 import PersonalEventService from "@/services/dashboard/MedicalProfile";
 import UpdatePersonnelEventService from "@/services/dashboard/updatePersonnel";
 import PtNotesEventService from "@/services/dashboard/PtNotes";
+import CaseEventService from "@/services/dashboard/Case";
 
 
 /* import * as types from "@/store/mutation-types"; */
@@ -72,32 +73,35 @@ export const updateFamily = async ({ commit, dispatch }, payload) => {
     await FamilyEventService.updateFamily(payload)
     await dispatch("viewDetails", payload.personnelId)
 }
-export const updatePersonal= async ({ commit, dispatch }, payload) => {
+export const updatePersonal = async ({ commit, dispatch }, payload) => {
     await PersonalEventService.updatePersonal(payload)
     await dispatch("viewDetails", payload.personnelId)
 }
-export const updatePersonnel= async ({ commit, dispatch }, payload) => {
+export const updatePersonnel = async ({ commit, dispatch }, payload) => {
     await UpdatePersonnelEventService.updatePersonnel(payload)
     await dispatch("viewDetails", payload.personnelId)
 }
-export const updatePtNotes= async ({ commit, dispatch }, payload) => {
+export const updatePtNotes = async ({ commit, dispatch }, payload) => {
     console.log("ACTION PAYLOAD", payload)
     await PtNotesEventService.updatePtNotes(payload)
     await dispatch("viewDetails", payload.personnelId)
 }
 
-// get cases
+export const getAllCases = async ({ commit }) => {
+    const response = await CaseEventService.getAllCases()
+    console.log("CASE RESPONSE", response.data.data)
+    commit("SET_ALL_CASES", response.data.data)
+}
 
-// export const getCases = ({ commit }, payload) => {
-//     console.log("PAYLOAD FROM VUEX ACTION: ", payload)
+export const getAllPersonnelsByCase = ({ commit }, payload) => {
+    console.log("PAYLOAD FROM VUEX ACTION: ", payload)
+    CaseEventService.getAllPersonnelsByCase(payload)
+        .then((response) => {
+            console.log(response.data.data.rows)
+            commit("SET_ALL_PERSONNEL_CASES", response.data.data.rows)
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+};
 
-
-//     EventService.getCases()
-//         .then((response) => {
-//             console.log(response.data.cases)
-//             commit("SET_CASES", response.data.cases)
-//         })
-//         .catch((error) => {
-//             console.log(error);
-//         });
-// };

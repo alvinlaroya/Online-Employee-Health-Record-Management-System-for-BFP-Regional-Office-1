@@ -9,6 +9,12 @@
         <v-card-text>
           <v-form @submit.prevent="submit">
             <div>
+              
+              <v-row>
+                <v-col>
+                  <strong>Family History</strong>
+                </v-col>
+              </v-row>
               <v-row>
                 <v-col>
                   <strong class="">Father Information</strong>
@@ -393,8 +399,18 @@
                   />
                 </v-col>
               </v-row>
+              <v-row>
+                <v-col><v-divider></v-divider></v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <strong>Personal History</strong>
+                  
+                </v-col>
+               
+              </v-row>
               
-
+              
               <v-row>
                 <v-col
                   v-for="(value, key) in personalHistory"

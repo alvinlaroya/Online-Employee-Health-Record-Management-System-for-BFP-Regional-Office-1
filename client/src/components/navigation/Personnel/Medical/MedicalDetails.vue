@@ -132,7 +132,9 @@
       </v-col>
     </v-row>
 
-    <v-divider inset class="my-4"></v-divider>
+    <v-row>
+      <v-col><v-divider></v-divider></v-col>
+    </v-row>
 
     <!--brother sister children name -->
     <v-row>
@@ -268,7 +270,9 @@
       </v-col>
     </v-row>
 
-    <v-divider inset class="my-4"></v-divider>
+    <v-row>
+      <v-col><v-divider></v-divider></v-col>
+    </v-row>
     <!-- 2 -->
     <!--brother sister children name -->
     <v-row>
@@ -403,7 +407,9 @@
         </div>
       </v-col>
     </v-row>
-    <v-divider inset class="my-4"></v-divider>
+    <v-row>
+      <v-col><v-divider></v-divider></v-col>
+    </v-row>
 
     <v-row>
       <v-col>
@@ -415,13 +421,17 @@
       <v-col>
         <div class="d-flex flex-column">
           <small> Kidney Trouble : </small>
-          <strong>{{ medicalFamilyHistory.kidneyTrouble ? "yes" : "no" }}</strong>
+          <strong>{{
+            medicalFamilyHistory.kidneyTrouble ? "yes" : "no"
+          }}</strong>
         </div>
       </v-col>
       <v-col>
         <div class="d-flex flex-column">
           <small> Committed Suicide : </small>
-          <strong>{{ medicalFamilyHistory.committedSuicide ? "yes" : "no" }}</strong>
+          <strong>{{
+            medicalFamilyHistory.committedSuicide ? "yes" : "no"
+          }}</strong>
         </div>
       </v-col>
       <v-col>
@@ -431,7 +441,7 @@
         </div>
       </v-col>
     </v-row>
-    
+
     <v-row>
       <v-col>
         <div class="d-flex flex-column">
@@ -448,7 +458,9 @@
       <v-col>
         <div class="d-flex flex-column">
           <small> Hypertension : </small>
-          <strong>{{ medicalFamilyHistory.hypertension ? "yes" : "no" }}</strong>
+          <strong>{{
+            medicalFamilyHistory.hypertension ? "yes" : "no"
+          }}</strong>
         </div>
       </v-col>
       <v-col>

@@ -120,34 +120,26 @@ export default {
   computed: {
     ...mapGetters(["personnelDetails"]),
     birthDate() {
+      
       return this.personnelDetails.personnel.dateOfBirth.substr(0, 10);
     },
     dateToday() {
       return this.personnelDetails.personnel.createdAt.substr(0, 10);
     },
     initialDate() {
-      if (
-        !this.personnelDetails.dental ||
-        !this.personnelDetails.dental.initialDate
-      ) {
+      if (!this.personnelDetails.dental.initialDate) {
         return "N/A";
       }
       return this.personnelDetails.dental.initialDate.substr(0, 10);
     },
     trainingDate() {
-      if (
-        !this.personnelDetails.dental ||
-        !this.personnelDetails.dental.trainingDate
-      ) {
+      if (!this.personnelDetails.dental.trainingDate) {
         return "N/A";
       }
       return this.personnelDetails.dental.trainingDate.substr(0, 10);
     },
     promotionDate() {
-      if (
-        !this.personnelDetails.dental ||
-        !this.personnelDetails.dental.promotionDate
-      ) {
+      if (!this.personnelDetails.dental.promotionDate) {
         return "N/A";
       }
       return this.personnelDetails.dental.promotionDate.substr(0, 10);

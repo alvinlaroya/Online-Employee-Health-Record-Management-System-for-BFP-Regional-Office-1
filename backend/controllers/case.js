@@ -104,7 +104,7 @@ const getAllCases = async (req, res) => {
       { title: 'Arthritis', total: arthritis },
       { title: 'Asthma', total: asthma },
       { title: 'Chicken Pox', total: chickenPox },
-      { title: 'Cyst/Tumor', total: cyst },
+      { title: 'Cyst or Tumor', total: cyst },
       { title: 'Epilepsy', total: epilepsy },
       { title: 'Gall Stone', total: gallBladder },
       { title: 'Goiter', total: goiter },
@@ -148,7 +148,7 @@ const getAllPersonnelsByCase = async (req, res) => {
         },
       });
       break;
-    case "Cyst/Tumor":
+    case "Cyst or Tumor":
       personnels = await MedicalPersonalHistory.findAndCountAll({
         where: {
           cyst: true,

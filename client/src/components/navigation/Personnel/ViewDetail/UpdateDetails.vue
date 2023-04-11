@@ -124,7 +124,7 @@
                 ></v-text-field>
               </v-col>
             </v-row>
-            <!-- <v-btn color="primary" @click="submitHandler">Submit</v-btn> -->
+            <v-btn color="primary" @click="submitHandler">Submit</v-btn>
           </v-form>
         </v-card-text>
       </v-card>
@@ -147,51 +147,54 @@ export default {
     date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
       .toISOString()
       .substr(0, 10),
-    Personnel: [
-      {
-        fname: "",
-        mname: "",
-        lname: "",
-        extName: "",
-        gender: "",
-        mobile: "",
-        address: "",
-        dateOfBirth: "",
-        civilStatus: "",
-        unit: "",
-        designation: "",
-        remarks: "",
-        accountNo: "",
-        rank: "",
-        philhealth: "",
-      },
-    ],
+    Personnel: {
+      fname: "",
+      mname: "",
+      lname: "",
+      extName: "",
+      gender: "",
+      mobile: "",
+      address: "",
+      dateOfBirth: "",
+      civilStatus: "",
+      unit: "",
+      designation: "",
+      remarks: "",
+      accountNo: "",
+      rank: "",
+      philhealth: "",
+    },
   }),
   methods: {
-    // ...mapActions(["updatePersonnel"]),
-    // async submitHandler() {
-    //   await this.updatePersonnel({
-    //     personnelId: this.personnelId,
-    //     data: this.Personnel
-    //   })
+   ...mapActions(["updatePersonnel"]),
+   async submitHandler() {
+     await this.updatePersonnel({
+       personnelId: this.personnelId,
+       data: this.Personnel
+     })
 
-    //   this.dialog = false;
-    // },
-    // keyPressAccountNo(e) {
-    //   validateAccountNo(e, this.updatePersonnel.accountNo.length);
-    // },
-    // validateString(e) {
-    //   validateString(e);
-    // },
-    // validateNumber(e) {
-    //   validateNumber(e, this.updatePersonnel.mobile.length);
-    // },
+     this.dialog = false;
+   },
+   keyPressAccountNo(e) {
+     validateAccountNo(e, this.Personnel.accountNo.length);
+   },
+   validateString(e) {
+     validateString(e);
+   },
+   validateNumber(e) {
+     validateNumber(e, this.Personnel.mobile.length);
+   },
   },
   computed: {
     ...mapGetters(["personnelDetails"]),
     personnelId() {
       return this.personnelDetails.personnel.id;
     }
+  },
+  mounted() {
+    setTimeout(() => {
+      this.Personnel = this.personnelDetails.personnel
+    }, 2000)
   }
 };
 </script>

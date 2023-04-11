@@ -163,38 +163,23 @@ const viewDetails = async (req, res) => {
   });
 };
 
-// READ APPLICANT
 
-/* const getAllApplicant = async (req, res) => {
-    let applicants = await Applicant.findAndCountAll({
-        order: [["createdAt", "DESC"]],
-    });
+const updatePersonnel = async (req, res) => {
+  const persoonelData = req.body;
 
-    res.header("Access-Control-Allow-Origin", "*");
-    res.json({
-        message: "success",
-        applicants: applicants,
-    });
-}; */
+  await Personnel.update(persoonelData, {
+    where: {
+      id: req.params.personnelId
+    }
+  });
 
-// UPDATE APPLICANT
-/* const updateApplicant = async (req, res) => {
-    const applicant = req.body;
+  res.sendStatus(200);
+}
 
-    await Applicant.update(applicant, {
-        where: {
-            id: req.params.id,
-        },
-    });
-
-    res.sendStatus(200);
-};
- */
 module.exports = {
   upload,
   addPersonnel,
   getAllPersonnels,
-  viewDetails
-  /*     getAllApplicant,
-        updateApplicant, */
+  viewDetails,
+  updatePersonnel
 };

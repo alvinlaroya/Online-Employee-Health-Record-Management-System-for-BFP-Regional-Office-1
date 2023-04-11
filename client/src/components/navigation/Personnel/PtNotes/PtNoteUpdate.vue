@@ -20,13 +20,51 @@
                   </v-text-field>
                 </v-col>
                 <v-col>
-                  <v-text-field
+                  <!-- <v-text-field
                     label="Date of Initial Evaluation/Re-evaluation"
                     v-model="ptNoteData.initialEvaluation"
                     dense
-                    @keypress="validateString($event)"
+                    
                   >
-                  </v-text-field>
+                  </v-text-field> -->
+                  <v-menu
+                    ref="menu"
+                    v-model="menu"
+                    :close-on-content-click="false"
+                    :return-value.sync="date"
+                    transition="scale-transition"
+                    offset-y
+                    min-width="auto"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field
+                        v-model="initialEvaluation"
+                        label="Date of Initial Evaluation/Re-evaluation"
+                        prepend-icon="mdi-calendar"
+                        readonly
+                        dense
+                        v-bind="attrs"
+                        v-on="on"
+                      ></v-text-field>
+                    </template>
+                    <v-date-picker
+                      v-model="initialEvaluation"
+                      no-title
+                      scrollable
+                    >
+                      <v-spacer></v-spacer>
+                      <v-btn text color="primary" @click="menu = false">
+                        Cancel
+                      </v-btn>
+                      <v-btn
+                        text
+                        color="primary"
+                        @click="$refs.menu.save(initialEvaluation)"
+                      >
+                        OK
+                      </v-btn>
+                    </v-date-picker>
+                  </v-menu>
                 </v-col>
               </v-row>
               <v-row>
@@ -35,7 +73,7 @@
                     label="Diagnosis"
                     v-model="ptNoteData.diagnosis"
                     dense
-                    @keypress="validateString($event)"
+                    
                   >
                   </v-text-field>
                 </v-col>
@@ -46,7 +84,7 @@
                     label="History of Present Illness"
                     v-model="ptNoteData.hpi"
                     dense
-                    @keypress="validateString($event)"
+                    
                   >
                   </v-text-field>
                 </v-col>
@@ -57,7 +95,7 @@
                     label="Medications"
                     v-model="ptNoteData.medication"
                     dense
-                    @keypress="validateString($event)"
+                    
                   >
                   </v-text-field>
                 </v-col>
@@ -68,7 +106,7 @@
                     label="Laboratory Exams"
                     v-model="ptNoteData.labExams"
                     dense
-                    @keypress="validateString($event)"
+                    
                   >
                   </v-text-field>
                 </v-col>
@@ -79,7 +117,7 @@
                     label="Diagnostic Procedures"
                     v-model="ptNoteData.diagnosticProcedure"
                     dense
-                    @keypress="validateString($event)"
+                    
                   >
                   </v-text-field>
                 </v-col>
@@ -90,7 +128,7 @@
                     label="Past Medical History"
                     v-model="ptNoteData.pmh"
                     dense
-                    @keypress="validateString($event)"
+                    
                   >
                   </v-text-field>
                 </v-col>
@@ -121,7 +159,7 @@
                     label="Personal/Social History"
                     v-model="ptNoteData.psh"
                     dense
-                    @keypress="validateString($event)"
+                    
                   >
                   </v-text-field>
                 </v-col>
@@ -132,7 +170,7 @@
                     label="Food and Drug Allergy"
                     v-model="ptNoteData.fda"
                     dense
-                    @keypress="validateString($event)"
+                    
                   >
                   </v-text-field>
                 </v-col>
@@ -143,7 +181,7 @@
                     label="Subjective"
                     v-model="ptNoteData.subjective"
                     dense
-                    @keypress="validateString($event)"
+                    
                   >
                   </v-text-field>
                 </v-col>
@@ -186,7 +224,7 @@
                     label="Ocular Inspection"
                     v-model="ptNoteData.ocularInspection"
                     dense
-                    @keypress="validateString($event)"
+                    
                   >
                   </v-text-field>
                 </v-col>
@@ -197,7 +235,7 @@
                     label="Palpation"
                     v-model="ptNoteData.palpation"
                     dense
-                    @keypress="validateString($event)"
+                    
                   >
                   </v-text-field>
                 </v-col>
@@ -206,7 +244,7 @@
                     label="ROM"
                     v-model="ptNoteData.rom"
                     dense
-                    @keypress="validateString($event)"
+                    
                   >
                   </v-text-field>
                 </v-col>
@@ -555,6 +593,12 @@ export default {
     ...mapGetters(["personnelDetails"]),
     personnelId() {
       return this.personnelDetails.personnel.id;
+    },
+    initialEvaluation(){
+      if(!this.ptNoteData.initialEvaluation){
+        return "N/A"
+      }
+      return this.ptNoteData.initialEvaluation.substr(0, 10)
     }
   },
 };

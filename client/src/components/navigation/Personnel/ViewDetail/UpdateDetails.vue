@@ -124,7 +124,7 @@
                 ></v-text-field>
               </v-col>
             </v-row>
-            <v-btn color="primary" @click="submitHandler">Submit</v-btn>
+            <!-- <v-btn color="primary" @click="submitHandler">Submit</v-btn> -->
           </v-form>
         </v-card-text>
       </v-card>

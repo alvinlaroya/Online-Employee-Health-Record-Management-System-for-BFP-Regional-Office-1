@@ -352,14 +352,169 @@
                   >
                   </v-text-field>
                 </v-col>
-              </v-row>
-              <v-row>
                 <v-col>
                   <v-text-field
                     label="ROM"
                     v-model="ptNoteData.rom"
                     dense
                     @keypress="validateString($event)"
+                  >
+                  </v-text-field>
+                </v-col>
+                <v-col>
+                  <v-text-field label="MMT" v-model="ptNoteData.mmt" dense>
+                  </v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-text-field
+                    label="Muscle Bulk Measurement"
+                    v-model="ptNoteData.mbm"
+                    dense
+                  >
+                  </v-text-field>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    label="Limb Girth Measurement"
+                    v-model="ptNoteData.lgm"
+                    dense
+                  >
+                  </v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col v-for="(gait, index) in gaits" :key="index" cols="3">
+                  <v-checkbox
+                    v-model="gait.value"
+                    :label="gait.label"
+                  ></v-checkbox>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-text-field
+                    label="Findings"
+                    v-model="ptNoteData.findings"
+                    dense
+                  >
+                  </v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-text-field
+                    label="Significance"
+                    v-model="ptNoteData.significance"
+                    dense
+                  >
+                  </v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-text-field
+                    label="Functional Analysis"
+                    v-model="ptNoteData.functionalAnalysis"
+                    dense
+                  >
+                  </v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="3">
+                  <v-checkbox
+                    v-model="balanceTolerance[0].sittingBalance"
+                    label="Sitting Balance"
+                  ></v-checkbox>
+                </v-col>
+                <v-col cols="3">
+                  <v-checkbox
+                    v-model="balanceTolerance[0].sittingTolerance"
+                    label="Sitting Tolerance"
+                  ></v-checkbox>
+                </v-col>
+                <v-col cols="3">
+                  <v-checkbox
+                    v-model="balanceTolerance[0].standingBalance"
+                    label="Standing Balance"
+                  ></v-checkbox>
+                </v-col>
+                <v-col cols="3">
+                  <v-checkbox
+                    v-model="balanceTolerance[0].standingTolerance"
+                    label="Standing Tolerance"
+                  ></v-checkbox>
+                </v-col>
+              </v-row>
+
+              <v-row>
+                <v-col v-for="(item, index) in adl" :key="index" :cols="4">
+                  <v-text-field
+                    v-model="adl[index][Object.keys(item)[0]]"
+                    :label="Object.keys(item)[0]"
+                  />
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-text-field
+                    label="Assessment"
+                    v-model="ptNoteData.assessment"
+                    dense
+                  >
+                  </v-text-field>
+                </v-col>
+                
+                <v-col>
+                  <v-text-field
+                    label="PT Impression"
+                    v-model="ptNoteData.ptImpression"
+                    dense
+                  >
+                  </v-text-field>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    label="Problem List"
+                    v-model="ptNoteData.problemList"
+                    dense
+                  >
+                  </v-text-field>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    label="Short Term Goal"
+                    v-model="ptNoteData.shortTermGoal"
+                    dense
+                  >
+                  </v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-text-field
+                    label="PT Management"
+                    v-model="ptNoteData.ptManagement"
+                    dense
+                  >
+                  </v-text-field>
+                </v-col>
+                
+                <v-col>
+                  <v-text-field
+                    label="Suggested Pt Management"
+                    v-model="ptNoteData.suggestedPtManagement"
+                    dense
+                  >
+                  </v-text-field>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    label="Home Instruction"
+                    v-model="ptNoteData.homeInstruction"
+                    dense
                   >
                   </v-text-field>
                 </v-col>
@@ -417,6 +572,21 @@ export default {
       ocularInspection: "",
       palpation: "",
       rom: "",
+      mmt: "",
+      mbm: "",
+      lgm: "",
+      findings: "",
+      significance: "",
+      functionalAnalysis: "",
+
+      assessment: "",
+      ptImpression: "",
+      problemList: "",
+      shortTermGoal: "",
+
+      ptManagement: "",
+      suggestedPtManagement: "",
+      homeInstruction: "",
     },
     fatherConditions: [
       { id: 1, name: "Hypertension", isChecked: false },
@@ -431,6 +601,46 @@ export default {
       { id: 3, name: "Asthma", isChecked: false },
       { id: 4, name: "Arthritis", isChecked: false },
       { id: 5, name: "Cerebral Vascular Accident", isChecked: false },
+    ],
+    gaits: [
+      { label: "Initial Contact", value: false },
+      { label: "Loading Response", value: false },
+      { label: "Midstance", value: false },
+      { label: "Terminal Stance", value: false },
+      { label: "Swing Phase", value: false },
+      { label: "Preswing", value: false },
+      { label: "Initial Swing", value: false },
+      { label: "Midswing", value: false },
+      { label: "Terminal Swing", value: false },
+      { label: "Cadence", value: false },
+      { label: "Arm Swing", value: false },
+      { label: "Stride Length", value: false },
+      { label: "Step Width", value: false },
+    ],
+    balanceTolerance: [
+      {
+        sittingBalance: false,
+        sittingTolerance: false,
+        standingBalance: false,
+        standingTolerance: false,
+      },
+    ],
+    adl: [
+      { bathing: "" },
+      { toileting: "" },
+      { eating: "" },
+      { upperExtermityDressing: "" },
+      { lowerExtremityDressing: "" },
+      { bedMobility: "" },
+      { scootTowardsHeadOfHead: "" },
+      { scootTowardsFootOfHead: "" },
+      { sideToSideScooting: "" },
+      { supineToLongSitting: "" },
+      { rolling: "" },
+      { transfers: "" },
+      { wheelchairToMat: "" },
+      { bedToWheelchair: "" },
+      { ambulation: "" },
     ],
   }),
   methods: {

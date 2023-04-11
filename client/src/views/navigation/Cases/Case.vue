@@ -1,134 +1,127 @@
 <template>
   <v-container>
-    {{ title }}
-    <h2>{{ total }}</h2>
+    <h1>Case: {{ title }}</h1>
+    <h2>Total: {{ total }}</h2>
+    <div class="mt-5">
+      <v-card>
+        <v-card-title>
+          Personnels
+          <v-spacer></v-spacer>
+          <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details></v-text-field>
+        </v-card-title>
+        <v-data-table :headers="headers" :items="items" :search="search" sort-by="calories" class="elevation-1">
+          <template v-slot:item.actions="{ item }">
+            <v-icon small class="mr-2" @click="openDialog(item)">
+              mdi-eye
+            </v-icon>
+          </template>
+        </v-data-table>
+      </v-card>
+    </div>
+    <v-row justify="center">
+      <v-dialog v-model="dialog" width="80vw" transition="dialog-bottom-transition">
+        <v-card>
+          <v-toolbar dense>
+            <v-tabs v-model="tab">
+              <v-tab v-for="(item, i) in Object.keys(component)" :key="i" @click="[(tab = i), (currentTab = item)]">{{
+                item.replaceAll("-", " ") }}</v-tab>
+            </v-tabs>
+            <v-spacer></v-spacer>
+            <v-btn icon @click="close">
+              <v-icon>mdi-close</v-icon>
+            </v-btn>
+          </v-toolbar>
+          <keep-alive>
+            <component :is="component[currentTab]" :data="selectedItem" :dialogVisible="dialog" />
+          </keep-alive>
+        </v-card>
+      </v-dialog>
+    </v-row>
   </v-container>
 </template>
 
 <script>
-// import { createNamespacedHelpers } from "vuex";
-// const { mapGetters } = createNamespacedHelpers("navigation");
+import { createNamespacedHelpers } from "vuex";
+const { mapGetters, mapActions } = createNamespacedHelpers("navigation");
 
+// components
+import ViewDetails from "@/components/navigation/Personnel/ViewDetails";
+import MedicalProfile from "@/components/navigation/Personnel/MedicalProfile";
+import DentalRecord from "@/components/navigation/Personnel/DentalRecord";
+import PhysicalExam from "@/components/navigation/Personnel/PhysicalExam";
+import PtNotes from "@/components/navigation/Personnel/PtNotes";
+import NeuroPsych from "@/components/navigation/Personnel/NeuroPsych";
 
 export default {
+  components: {
+    ViewDetails,
+  },
   data: () => ({
-    title: null,
-    total: null,
+    search: '',
+    component: {
+      "view-detail": ViewDetails,
+      "medical-profile": MedicalProfile,
+      "dental-record": DentalRecord,
+      "physical-exam": PhysicalExam,
+      "pt-notes": PtNotes,
+      "neuro-psych": NeuroPsych,
+    },
+    tab: 0,
+    currentTab: "view-detail",
+    dialog: false,
+    selectedItem: {},
 
-    // cases:[
-    //   
-      // {
-      //   title: "Underweight",
-      //   total: "1",
-      // },
-      // {
-      //   title: "Normal",
-      //   total: "33",
-      // },
-      // {
-      //   title: "Overweight",
-      //   total: "53",
-      // },
-      // {
-      //   title: "Obese 1",
-      //   total: "0",
-      // },
-      // {
-      //   title: "Obese 2",
-      //   total: "0",
-      // },
-      // {
-      //   title: "Allergy/Hives",
-      //   total: "10",
-      // },
-      // {
-      //   title: "Arthritis",
-      //   total: "4",
-      // },
-      // {
-      //   title: "Asthma",
-      //   total: "7",
-      // },
-      // {
-      //   title: "Cancer",
-      //   total: "0",
-      // },
-      // {
-      //   title: "Chicken Pox",
-      //   total: "58",
-      // },
-      // {
-      //   title: "Cyst/Tumor",
-      //   total: "10",
-      // },
-      // {
-      //   title: "Diabetes",
-      //   total: "4",
-      // },
-      // {
-      //   title: "Epilepsy",
-      //   total: "7",
-      // },
-      // {
-      //   title: "Gall Stone",
-      //   total: "0",
-      // },
-      // {
-      //   title: "Goiter",
-      //   total: "58",
-      // },
-      // {
-      //   title: "Hepatitis",
-      //   total: "10",
-      // },
-      // {
-      //   title: "Hypertenstion",
-      //   total: "4",
-      // },
-      // {
-      //   title: "Heart Disease",
-      //   total: "7",
-      // },
-      // {
-      //   title: "Kidney Disease",
-      //   total: "0",
-      // },
-      // {
-      //   title: "Measles",
-      //   total: "58",
-      // },
-      // {
-      //   title: "Mumps",
-      //   total: "10",
-      // },
-      // {
-      //   title: "Pneumonia",
-      //   total: "4",
-      // },
-      // {
-      //   title: "Stroke",
-      //   total: "7",
-      // },
-      // {
-      //   title: "Tuberculosis",
-      //   total: "0",
-      // },
-      // {
-      //   title: "Vertigo",
-      //   total: "58",
-      // },
-    // ]
+    title: null,
+    headers: [
+      {
+        text: 'Account #',
+        align: 'start',
+        sortable: false,
+        value: 'accountNo',
+      },
+      { text: 'Rank', value: 'rank' },
+      { text: 'First Name', value: 'fname' },
+      { text: 'Middle Name', value: 'mname' },
+      { text: 'Last Name', value: 'lname' },
+      { text: 'Ext Name', value: 'extName' },
+      { text: 'Unit', value: 'unit' },
+      { text: 'Designation', value: 'designation' },
+      { text: 'Mobile', value: 'mobile' },
+      { text: 'Civil Status', value: 'civilStatus' },
+      { text: 'Gender', value: 'gender' },
+      { text: 'Actions', value: 'actions', sortable: false },
+    ],
   }),
+  methods: {
+    ...mapActions(['viewDetails', 'getAllPersonnelsByCase']),
+    async openDialog(item) {
+      await this.viewDetails(item.personnelId);
+      this.tab = 0;
+      this.currentTab = "view-detail";
+      this.selectedItem = item;
+      this.dialog = true;
+    },
+    close() {
+      this.dialog = false;
+    },
+  },
   mounted() {
     // Retrieve the title and total values from the route parameters
     this.title = this.$route.params.title;
-    this.total = this.$route.params.total;
   },
-  // computed: {
-  //   ...mapGetters(["getCases"]),
-  // },
+  computed: {
+    ...mapGetters(["personnelCases"]),
+    items() {
+      return this.personnelCases;
+    },
+    total() {
+      return this.personnelCases.length
+    }
+  },
+  created() {
+    this.getAllPersonnelsByCase(this.$route.params.title)
+  }
 };
 </script>
 
-<style>
-</style>
+<style></style>

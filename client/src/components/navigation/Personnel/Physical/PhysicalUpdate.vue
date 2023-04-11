@@ -52,7 +52,9 @@
             <v-btn color="primary" @click="submitHandler">Submit</v-btn>
           </v-form>
         </v-card-text>
+       <pre>{{ personnelDetails.physicalExamination }}</pre>
       </v-card>
+     
     </v-dialog>
   </div>
 </template>
@@ -152,6 +154,9 @@ export default {
       return this.personnelDetails.personnel.id;
     },
   },
+  mounted() {
+    this.physicalExamination = this.personnelDetails.physicalExamination
+  }
 };
 </script>
 

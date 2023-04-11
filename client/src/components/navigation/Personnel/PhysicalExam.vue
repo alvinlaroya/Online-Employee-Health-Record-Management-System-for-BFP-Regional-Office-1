@@ -47,7 +47,7 @@
         <v-col class="pa-0">
           <div class="">
             <span class="body-2"> DATE AND PLACE OF BIRTH : </span>
-            <strong> {{ birthDate }} | Naga City, Cam Sur</strong>
+            <strong> {{ birthDate }} | {{ physicalExam.placeOfBirth}}</strong>
             <span class="body-2 pl-5"> Date of Examination : </span>
             <strong> {{ examDate }}</strong>
           </div>

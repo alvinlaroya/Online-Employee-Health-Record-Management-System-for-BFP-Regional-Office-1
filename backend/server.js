@@ -21,6 +21,7 @@ const physicalExaminationRoutes = require("./routes/physicalExamination.js");
 const dentalRoutes = require("./routes/dental.js");
 const psychRoutes = require("./routes/psych.js");
 const medicalHistoryRoutes = require("./routes/medicalHistory.js");
+const ptNotes = require("./routes/ptNotes.js");
 
 app.use("/api/user", userRoutes);
 app.use("/api/personnel", personnelRoutes);
@@ -28,6 +29,7 @@ app.use("/api/physical-examination", physicalExaminationRoutes);
 app.use("/api/dental", dentalRoutes);
 app.use("/api/psych", psychRoutes);
 app.use("/api/medical-history", medicalHistoryRoutes);
+app.use("/api/pt-notes", ptNotes);
 
 // static images folder
 app.use("/images", express.static("./images"));

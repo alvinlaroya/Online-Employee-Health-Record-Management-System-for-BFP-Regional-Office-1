@@ -124,11 +124,11 @@ export default {
             icon: "mdi-briefcase-account-outline",
             path: "/personnel",
           },
-          {
+          /* {
             text: "History",
             icon: "mdi-history",
             path: "/history",
-          },
+          }, */
         ],
       },
     ],

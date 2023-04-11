@@ -16,7 +16,6 @@
                     label="Referring Doctor"
                     v-model="ptNoteData.refDoctor"
                     dense
-                    @keypress="validateString($event)"
                   >
                   </v-text-field>
                 </v-col>
@@ -381,6 +380,10 @@
 <script>
 import validateString from "@/_common/helpers/validateString.js";
 import validateNumber from "@/_common/helpers/validateNumber.js";
+
+import { createNamespacedHelpers } from "vuex";
+const { mapActions ,mapGetters } = createNamespacedHelpers("navigation");
+
 export default {
   data: () => ({
     dialog: false,
@@ -389,19 +392,6 @@ export default {
       .toISOString()
       .substr(0, 10),
     ptNoteData: {
-      rank: "",
-      lname: "",
-      fname: "",
-      mname: "",
-      occupation: "",
-      unit: "",
-      homeAddress: "",
-      mobile: "",
-      age: "",
-      dateOfBirth: "",
-      civilStatus: "",
-      gender: "Male",
-      handedness: "",
       refDoctor: "",
       initialEvaluation: "",
       diagnosis: "",
@@ -494,8 +484,61 @@ export default {
     ],
   }),
   methods: {
-    submit() {
+    ...mapActions(['updatePtNotes']),
+    async submit() {
       console.log("submitted");
+      const payload = {
+        ...this.ptNoteData,
+        fatherConditionHypertension: this.fatherConditions[0].isChecked,
+        fatherConditionDiabetes: this.fatherConditions[1].isChecked,
+        fatherConditionAsthma: this.fatherConditions[2].isChecked,
+        fatherConditionArthritis: this.fatherConditions[3].isChecked,
+        fatherConditionCerebalVascular: this.fatherConditions[4].isChecked,
+        motherConditionHypertension: this.motherConditions[0].isChecked,
+        motherConditionDiabetes: this.motherConditions[1].isChecked,
+        motherConditionAsthma: this.motherConditions[2].isChecked,
+        motherConditionArthritis: this.motherConditions[3].isChecked,
+        motherConditionCerebalVascular: this.motherConditions[4].isChecked,
+        initialContact: this.gaits[0].value,
+        loadingResponse: this.gaits[1].value,
+        midstance: this.gaits[2].value,
+        terminalStance: this.gaits[3].value,
+        swingPhase: this.gaits[4].value,
+        preSwing: this.gaits[5].value,
+        initialSwing: this.gaits[6].value,
+        midSwing: this.gaits[7].value,
+        terminalSwing: this.gaits[8].value,
+        cadence: this.gaits[9].value,
+        armSwing: this.gaits[10].value,
+        strideLength: this.gaits[11].value,
+        stepWidth: this.gaits[12].value,
+        balanceToleranceSittingBalance: this.balanceTolerance[0].sittingBalance,
+        balanceToleranceSittingTolerance: this.balanceTolerance[0].sittingTolerance,
+        balanceToleranceStandingBalance: this.balanceTolerance[0].standingBalance,
+        balanceToleranceStandingTolerance: this.balanceTolerance[0].standingTolerance,
+        adlBathing: this.adl[0].bathing,
+        adlToileting: this.adl[1].toileting,
+        adlEating: this.adl[2].eating,
+        adlUpperExtermityDressing: this.adl[3].upperExtermityDressing,
+        adlLowerExtermityDressing: this.adl[4].lowerExtremityDressing,
+        adlBedMobility: this.adl[5].bedMobility,
+        adlScootTowardsHeadOfHead: this.adl[6].scootTowardsHeadOfHead,
+        adlScootTowardsFootOfHead: this.adl[7].scootTowardsFootOfHead,
+        adlSideToSideScooting: this.adl[8].sideToSideScooting,
+        adlSupineToLongSitting: this.adl[9].supineToLongSitting,
+        adlRolling: this.adl[10].rolling,
+        adlTransfers: this.adl[11].transfers,
+        adlWheelChairToMat: this.adl[12].wheelchairToMat,
+        adlBedToWheelChair: this.adl[13].bedToWheelchair,
+        adlAmbulation: this.adl[14].ambulation
+      }
+
+      await this.updatePtNotes({
+       personnelId: this.personnelId,
+       data: payload
+     })
+
+     this.dialog = false;
     },
     open() {
       this.dialog = !this.dialog;
@@ -507,6 +550,12 @@ export default {
     validateNumber(e) {
       validateNumber(e, this.ptNoteData.mobile.length);
     },
+  },
+  computed: {
+    ...mapGetters(["personnelDetails"]),
+    personnelId() {
+      return this.personnelDetails.personnel.id;
+    }
   },
 };
 </script>

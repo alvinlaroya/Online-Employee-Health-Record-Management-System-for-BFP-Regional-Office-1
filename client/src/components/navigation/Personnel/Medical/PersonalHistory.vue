@@ -5,13 +5,12 @@
         <span class="py-3">PERSONAL HISTORY</span>
       </v-col>
     </v-row>
-    <v-container class="mt-5" >
+    <v-container class="mt-5">
       <v-row>
-       
         <span class="pr-5"
           >Have you been Pregnant ?
           <strong class="text-decoration-underline">{{
-            personalHistory.haveBeenPregnant ? 'Yes' : 'No'
+            personalHistory.haveBeenPregnant ? "Yes" : "No"
           }}</strong></span
         >
         <span class="pr-5"
@@ -31,7 +30,7 @@
         <span class="pr-5"
           >Have you have an Abortion ?
           <strong class="text-decoration-underline">
-            {{ personalHistory.hadAbortion ? 'Yes' : 'No' }}</strong
+            {{ personalHistory.hadAbortion ? "Yes" : "No" }}</strong
           ></span
         >
         <span class="pr-5"
@@ -42,8 +41,8 @@
         >
       </v-row>
     </v-container>
+    <Pre>{{ personalHistory.hadAbortion  }}</Pre>
     <Diseases />
-  
   </div>
 </template>
 
@@ -59,11 +58,11 @@ export default {
   data: () => ({
     items: [
       {
-        pregnant: "No",
-        howManyTimes: "0",
-        childrenCount: "0",
-        abortionCount: "0",
-        ifAbortionCount: "0",
+        haveBeenPregnant: false,
+        numberOfTimesPregnant: "0",
+        numberOfChildren: "0",
+        hadAbortion: "0",
+        numberOfAbortion: "0",
       },
     ],
   }),
@@ -72,6 +71,23 @@ export default {
     personalHistory() {
       return this.personnelDetails.medicalRecord.medicalPersonalHistory;
     },
+  },
+  created(){
+
+  },
+  watch: {
+    handler(val) {
+      this.items = [
+        {
+          haveBeenPregnant: false,
+          numberOfTimesPregnant: "0",
+          numberOfChildren: "0",
+          hadAbortion: "0",
+          numberOfAbortion: "0",
+        },
+      ];
+    },
+    deep: true,
   },
 };
 </script>

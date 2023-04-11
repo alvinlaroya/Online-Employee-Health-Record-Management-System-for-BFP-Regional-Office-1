@@ -216,11 +216,10 @@
                 <v-col> </v-col>
               </v-row>
             </div>
-            <v-btn type="submit" @click="submitHandler" color="primary"
-              >Submit</v-btn
-            >
+            <v-btn @click="submitHandler" color="primary">Submit</v-btn>
           </v-form>
         </v-card-text>
+        <pre>{{ personnelDetails }}</pre>
       </v-card>
     </v-dialog>
   </div>
@@ -239,14 +238,7 @@ export default {
     date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
       .toISOString()
       .substr(0, 10),
-    medicalHistory: {
-      lname: "",
-      fname: "",
-      mname: "",
-      dateOfBirth: "",
-      address: "",
-      age: "",
-    },
+
     familyHistory: {
       father: {
         name: "",
@@ -311,18 +303,18 @@ export default {
     },
     personalHistory: {
       haveBeenPregnant: false,
-      numberOfTimesPregnant: 3,
-      numberOfChildren: 2,
+      numberOfTimesPregnant: 0,
+      numberOfChildren: 0,
       hadAbortion: false,
-      numberOfAbortion: true,
-      wornEyeglasses: true,
-      wornHearingAid: true,
+      numberOfAbortion: false,
+      wornEyeglasses: false,
+      wornHearingAid: false,
       syphillis: false,
       fracture: false,
       suicide: false,
       footTrouble: false,
       diphtheria: false,
-      rheumaticFever: true,
+      rheumaticFever: false,
       measles: false,
       mumps: false,
       chickenPox: false,
@@ -339,7 +331,7 @@ export default {
       depression: false,
       pyorrhea: false,
       arthritis: false,
-      lossOfMemory: true,
+      lossOfMemory: false,
       nervousness: false,
       sinusitis: false,
       bedWetting: false,
@@ -348,14 +340,14 @@ export default {
       paralysis: false,
       serumReaction: false,
       liveWithTuberculosis: false,
-      stuttered: true,
-      gallBladder: true,
-      severeHeadache: true,
+      stuttered: false,
+      gallBladder: false,
+      severeHeadache: false,
       dizziness: false,
       chronic: false,
       palpitation: false,
       cyst: false,
-      painfulUrination: true,
+      painfulUrination: false,
       albuminUrine: false,
       weightLoss: false,
       jointDeformity: false,
@@ -370,7 +362,7 @@ export default {
       painInTheChest: false,
       severeIndigestion: false,
       rectalDisease: false,
-      diarrhea: true,
+      diarrhea: false,
     },
   }),
   methods: {
@@ -401,6 +393,9 @@ export default {
       return this.personnelDetails.personnel.id;
     },
   },
+  mounted() {
+    this.medicalPersonalHistory = this.personnelDetails.medicalRecord.medicalPersonalHistory
+  }
 };
 </script>
 

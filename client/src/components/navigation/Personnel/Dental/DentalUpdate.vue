@@ -30,7 +30,7 @@
                   >
                     <template v-slot:activator="{ on, attrs }">
                       <v-text-field
-                        v-model="dental.initialDate"
+                        v-model="initialDate"
                         label="Initial Date"
                         prepend-icon="mdi-calendar"
                         readonly
@@ -40,7 +40,7 @@
                       ></v-text-field>
                     </template>
                     <v-date-picker
-                      v-model="dental.initialDate"
+                      v-model="initialDate"
                       no-title
                       scrollable
                     >
@@ -51,7 +51,7 @@
                       <v-btn
                         text
                         color="primary"
-                        @click="$refs.menu1.save(dental.initialDate)"
+                        @click="$refs.menu1.save(initialDate)"
                       >
                         OK
                       </v-btn>
@@ -79,7 +79,7 @@
                   >
                     <template v-slot:activator="{ on, attrs }">
                       <v-text-field
-                        v-model="dental.trainingDate"
+                        v-model="trainingDate"
                         label="Training Date"
                         prepend-icon="mdi-calendar"
                         readonly
@@ -89,7 +89,7 @@
                       ></v-text-field>
                     </template>
                     <v-date-picker
-                      v-model="dental.trainingDate"
+                      v-model="trainingDate"
                       no-title
                       scrollable
                     >
@@ -100,7 +100,7 @@
                       <v-btn
                         text
                         color="primary"
-                        @click="$refs.menu2.save(dental.trainingDate)"
+                        @click="$refs.menu2.save(trainingDate)"
                       >
                         OK
                       </v-btn>
@@ -128,7 +128,7 @@
                   >
                     <template v-slot:activator="{ on, attrs }">
                       <v-text-field
-                        v-model="dental.promotionDate"
+                        v-model="promotionDate"
                         label="Promotion Date"
                         prepend-icon="mdi-calendar"
                         readonly
@@ -138,7 +138,7 @@
                       ></v-text-field>
                     </template>
                     <v-date-picker
-                      v-model="dental.promotionDate"
+                      v-model="promotionDate"
                       no-title
                       scrollable
                     >
@@ -149,7 +149,7 @@
                       <v-btn
                         text
                         color="primary"
-                        @click="$refs.menu4.save(dental.promotionDate)"
+                        @click="$refs.menu4.save(promotionDate)"
                       >
                         OK
                       </v-btn>
@@ -284,17 +284,7 @@ export default {
     date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
       .toISOString()
       .substr(0, 10),
-    patientData: {
-      rank: "",
-      lname: "",
-      fname: "",
-      mname: "",
-      dateOfBirth: "",
-      unit: "",
-      address: "",
-      mobile: "",
-      // api update dentalRecord
-    },
+
     dental: {
       initial: false,
       initialDate: "",
@@ -341,6 +331,24 @@ export default {
     personnelId() {
       return this.personnelDetails.personnel.id;
     },
+    initialDate(){
+      if (!this.dental.initialDate) {
+        return "N/A";
+      }
+      return this.dental.initialDate.substr(0, 10)
+    },
+    trainingDate(){
+      if (!this.dental.trainingDate) {
+        return "N/A";
+      }
+      return this.dental.trainingDate.substr(0, 10)
+    },
+    promotionDate(){
+      if(!this.dental.promotionDate){
+        return "N/A"
+      }
+      return this.dental.promotionDate.substr(0, 10)
+    }
   },
 
   mounted() {

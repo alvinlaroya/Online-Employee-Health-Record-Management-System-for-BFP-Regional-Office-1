@@ -42,7 +42,7 @@
         <v-col>
           <div class="">
             <strong>Referring Doctor : </strong>
-            <span>Doctor Mundo</span>
+            <span>{{refDoctor}}</span>
             <v-divider></v-divider>
             <strong>Diagnosis : </strong>
             <span>N/A</span>
@@ -344,6 +344,10 @@ export default {
   },
   computed: {
     ...mapGetters(["personnelDetails"]),
+    ptNotes() {
+      return this.personnelDetails.physicalExamination;
+      
+    },
     birthDate() {
       return this.personnelDetails.personnel.dateOfBirth.substr(0, 10);
     },
@@ -395,6 +399,7 @@ export default {
       { text: "Mother", value: "mother" },
     ],
   }),
+
 };
 </script>
 

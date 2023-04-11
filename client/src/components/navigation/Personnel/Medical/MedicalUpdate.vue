@@ -219,7 +219,6 @@
             <v-btn @click="submitHandler" color="primary">Submit</v-btn>
           </v-form>
         </v-card-text>
-        <pre>{{ personnelDetails }}</pre>
       </v-card>
     </v-dialog>
   </div>

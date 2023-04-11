@@ -151,6 +151,11 @@ const viewDetails = async (req, res) => {
       personnelId: personnelId, // user email
     },
   });
+  let ptNotes = await PtNotes.findOne({
+    where: {
+      personnelId: personnelId, // user email
+    },
+  });
 
   res.status(200).json({
     message: "success",
@@ -162,7 +167,8 @@ const viewDetails = async (req, res) => {
       medicalRecord: {
         medicalFamilyHistory,
         medicalPersonalHistory,
-      }
+      },
+      ptNotes
     }
   });
 };

@@ -49,7 +49,7 @@
             <span class="body-2"> DATE AND PLACE OF BIRTH : </span>
             <strong> {{ birthDate }} | Naga City, Cam Sur</strong>
             <span class="body-2 pl-5"> Date of Examination : </span>
-            <strong> N/A</strong>
+            <strong> {{ examDate }}</strong>
           </div>
         </v-col>
       </v-row>
@@ -83,17 +83,34 @@
         <v-col class="">
           <div class="d-flex flex-column">
             <span class="body-2"> SIGNIFICANT MEDICAL HISTORY : </span>
-            <strong> {{ physicalExam.significantMedicalHistory ? physicalExam.significantMedicalHistory : 'N/A' }} </strong>
+            <strong>
+              {{
+                physicalExam.significantMedicalHistory
+                  ? physicalExam.significantMedicalHistory
+                  : "N/A"
+              }}
+            </strong>
             <span class="body-2"> OVERALL PHYSICAL EVALUATION : </span>
-            <strong> {{ physicalExam.overallPhysicalEvaluation ? physicalExam.overallPhysicalEvaluation : 'N/A' }} </strong>
+            <strong>
+              {{
+                physicalExam.overallPhysicalEvaluation
+                  ? physicalExam.overallPhysicalEvaluation
+                  : "N/A"
+              }}
+            </strong>
             <span class="body-2"> RECOMMENDATION : </span>
             <strong>
-              {{ physicalExam.recommendation ? physicalExam.recommendation : 'N/A'  }}</strong
+              {{
+                physicalExam.recommendation
+                  ? physicalExam.recommendation
+                  : "N/A"
+              }}</strong
             >
           </div>
         </v-col>
       </v-row>
     </v-container>
+
   </v-card>
 </template>
 
@@ -113,9 +130,19 @@ export default {
     ...mapGetters(["personnelDetails"]),
     physicalExam() {
       return this.personnelDetails.physicalExamination;
+      
     },
     birthDate() {
+      if (!this.personnelDetails.personnel.dateOfBirth) {
+        return "N/A";
+      }
       return this.personnelDetails.personnel.dateOfBirth.substr(0, 10);
+    },
+    examDate() {
+      if (!this.physicalExam.dateOfExamination) {
+        return "N/A";
+      }
+      return this.physicalExam.dateOfExamination.substr(0, 10);
     },
   },
 };

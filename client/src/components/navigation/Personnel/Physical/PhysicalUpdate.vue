@@ -9,77 +9,16 @@
         <v-card-text>
           <v-form @submit.prevent="submit">
             <div>
+              <!-- physical api -->
               <v-row>
-                <v-col>
-                  <v-select
-                    label="Rank"
-                    v-model="personnelData.rank"
-                    :items="['SF01', 'SF02', 'SF03']"
-                    dense
-                  ></v-select>
-                </v-col>
-                <v-col>
+                <v-col cols="4" v-for="(value, key) in physicalData" :key="key">
                   <v-text-field
-                    label="Last Name"
-                    v-model="personnelData.lname"
-                    dense
-                    @keypress="validateString($event)"
+                    v-if="key !== 'dateOfExamination'"
+                    v-model="physicalData[key]"
+                    :label="formatLabel(key)"
                   ></v-text-field>
-                </v-col>
-                <v-col>
-                  <v-text-field
-                    label="First Name"
-                    v-model="personnelData.fname"
-                    dense
-                    @keypress="validateString($event)"
-                  ></v-text-field>
-                </v-col>
-                <v-col>
-                  <v-text-field
-                    label="Middle Name"
-                    v-model="personnelData.mname"
-                    dense
-                    @keypress="validateString($event)"
-                  ></v-text-field>
-                </v-col>
-              </v-row>
-              <v-row>
-                <v-col>
-                  <v-text-field
-                    label="Home Address"
-                    v-model="personnelData.address"
-                    dense
-                  ></v-text-field>
-                </v-col>
-                <v-col cols="2">
-                  <v-select
-                    label="Sex"
-                    v-model="personnelData.gender"
-                    :items="['Male', 'Female']"
-                    dense
-                  ></v-select>
-                </v-col>
-                <v-col cols="2">
-                  <v-select
-                    label="Civil Status"
-                    v-model="personnelData.civilStatus"
-                    :items="['Single', 'Married', 'Widowed', 'Seperated']"
-                    dense
-                  ></v-select>
-                </v-col>
-                <v-col>
-                  <v-text-field
-                    label="Mobile"
-                    v-model="personnelData.mobile"
-                    prefix="+639"
-                    dense
-                    @keypress="validateNumber($event)"
-                  ></v-text-field>
-                </v-col>
-              </v-row>
-              <v-row>
-                <v-col>
                   <v-menu
+                    v-else
                     ref="menu"
                     v-model="menu"
                     :close-on-content-click="false"
@@ -90,8 +29,8 @@
                   >
                     <template v-slot:activator="{ on, attrs }">
                       <v-text-field
-                        v-model="personnelData.dateOfBirth"
-                        label="Date of Birth"
+                        v-model="physicalData.dateOfExamination"
+                        :label="formatLabel(key)"
                         prepend-icon="mdi-calendar"
                         readonly
                         dense
@@ -100,98 +39,17 @@
                       ></v-text-field>
                     </template>
                     <v-date-picker
-                      v-model="personnelData.dateOfBirth"
+                      v-model="physicalData.dateOfExamination"
                       no-title
                       scrollable
                     >
-                      <v-spacer></v-spacer>
-                      <v-btn text color="primary" @click="menu = false">
-                        Cancel
-                      </v-btn>
-                      <v-btn
-                        text
-                        color="primary"
-                        @click="$refs.menu.save(personnelData.dateOfBirth)"
-                      >
-                        OK
-                      </v-btn>
+
                     </v-date-picker>
                   </v-menu>
                 </v-col>
-                <v-col>
-                  <v-text-field
-                    label="Place of birth"
-                    v-model="personnelData.placeOfBirth"
-                    dense
-                  ></v-text-field>
-                </v-col>
               </v-row>
-              <v-row>
-                <v-col>
-                  <v-select
-                    label="Unit Assignment"
-                    v-model="personnelData.unit"
-                    :items="[
-                      'OARD - R1',
-                      'OPFM - ILOCOS NORTE',
-                      'OPFM - ILOCOS SUR',
-                      'OPFM - La Union',
-                      'OPFM - PANGASINAN',
-                    ]"
-                    dense
-                  ></v-select>
-                </v-col>
-                <v-col>
-                  <v-text-field
-                    label="Designation"
-                    v-model="personnelData.designation"
-                    dense
-                  ></v-text-field>
-                </v-col>
-              </v-row>
-              <!-- physical api -->
-              <v-row>
-                <v-col
-                  cols="4"
-                  v-for="(value, key) in physicalData"
-                  :key="key"
-                >
-                <v-text-field v-model="physicalData[key]" :label="key"></v-text-field>
-                </v-col>
-              </v-row>
-              <!-- <v-row>
-                <v-col>
-                  <v-text-field
-                    label="Significat Medical history"
-                    v-model="physicalData.significantHistory"
-                    dense
-                    @keypress="validateString($event)"
-                  ></v-text-field>
-                </v-col>
-              </v-row>
-              <v-row>
-                <v-col>
-                  <v-text-field
-                    label="Overall Physical Evaluation"
-                    v-model="physicalData.physicalEvaluation"
-                    dense
-                    @keypress="validateString($event)"
-                  ></v-text-field>
-                </v-col>
-              </v-row>
-              <v-row>
-                <v-col>
-                  <v-text-field
-                    label="Recommendation"
-                    v-model="physicalData.recommendation"
-                    dense
-                    @keypress="validateString($event)"
-                  ></v-text-field>
-                </v-col>
-              </v-row> -->
             </div>
             <v-btn color="primary" @click="submitHandler">Submit</v-btn>
-
           </v-form>
         </v-card-text>
       </v-card>
@@ -205,7 +63,7 @@ import validateString from "@/_common/helpers/validateString.js";
 import validateNumber from "@/_common/helpers/validateNumber.js";
 
 import { createNamespacedHelpers } from "vuex";
-const { mapGetters, mapActions } = createNamespacedHelpers('navigation')
+const { mapGetters, mapActions } = createNamespacedHelpers("navigation");
 
 export default {
   data: () => ({
@@ -214,23 +72,8 @@ export default {
     date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
       .toISOString()
       .substr(0, 10),
-    personnelData: {
-      rank: "",
-      lname: "",
-      fname: "",
-      mname: "",
-      homeAddress: "",
-      sex: "Male",
-      civilStatus: "",
-      mobile: "",
-      dateOfBirth: "",
-      placeOfBirth: "",
-      unit: "",
-      designation: "",
-      address: "",
-      
-    },
     physicalData: {
+      
       height: "",
       weight: "",
       build: "",
@@ -241,10 +84,10 @@ export default {
       neck: "",
       noseAndSinuses: "",
       mouthAndThroat: "",
-      earsAndEardrums: '',
-      whisperVoiceTest: '',
-      eyesOrPupils: '',
-      vision: '',
+      earsAndEardrums: "",
+      whisperVoiceTest: "",
+      eyesOrPupils: "",
+      vision: "",
       colorVision: "",
       heart: "",
       vascularSystem: "",
@@ -256,7 +99,7 @@ export default {
       lowerExtremities: "",
       spineAndMskSystem: "",
       pelvic: "",
-      psychiatric: '',
+      psychiatric: "",
       bloodPressure: "",
       cardiacRate: "",
       drugTest: "",
@@ -269,21 +112,29 @@ export default {
       cholesterol: "",
       ecg: "",
       chestXray: "",
-      purposeOfExamination: '',
-      dateOfExamination: '',
+
       significantMedicalHistory: "",
       overallPhysicalEvaluation: "",
       recommendation: "",
+      purposeOfExamination: "",
+      dateOfExamination: "",
     },
   }),
   methods: {
     ...mapActions(["updatePhysical"]),
-    async submitHandler(){
+    async submitHandler() {
       await this.updatePhysical({
         personnelId: this.personnelId,
         data: this.physicalData,
-      })
-      this.dialog = false
+      });
+      this.dialog = false;
+    },
+    formatLabel(label) {
+      label = label.replace(/([a-z])([A-Z])/g, "$1 $2");
+      // Capitalize the first letter of each word in the label
+      return label.replace(/(^\w{1})|(\s+\w{1})/g, (letter) =>
+        letter.toUpperCase()
+      );
     },
     open() {
       this.dialog = !this.dialog;
@@ -294,15 +145,13 @@ export default {
     validateNumber(e) {
       validateNumber(e, this.physicalData.mobile.length);
     },
-    
   },
   computed: {
     ...mapGetters(["personnelDetails"]),
     personnelId() {
       return this.personnelDetails.personnel.id;
     },
-    
-  }
+  },
 };
 </script>
 

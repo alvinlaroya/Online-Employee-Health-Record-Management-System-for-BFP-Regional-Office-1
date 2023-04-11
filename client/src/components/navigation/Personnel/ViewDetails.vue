@@ -6,7 +6,7 @@
         <v-btn v-print="'#print'" class="ml-3" small>print</v-btn>
       </v-row>
     </v-container>
-    <v-container id="print" class="pa-8" >
+    <v-container id="print" class="pa-8">
       <v-row>
         <span>
           Account Number : <strong>{{ data.accountNo }}</strong>
@@ -21,7 +21,8 @@
         <span
           >Full Name :
           <strong
-            >{{ data.fname }} {{ data.mname }} {{ data.lname }} {{ data.extName }}</strong
+            >{{ data.fname }} {{ data.mname }} {{ data.lname }}
+            {{ data.extName }}</strong
           ></span
         >
       </v-row>
@@ -61,7 +62,7 @@
           >Philhealth : <strong> {{ data.philhealth }}</strong></span
         >
       </v-row>
-      
+
       <v-row>
         <span
           >Unit : <strong> {{ data.unit }}</strong></span
@@ -77,7 +78,6 @@
           >Remarks : <strong>{{ data.remarks }}</strong></span
         >
       </v-row>
-
     </v-container>
   </v-card>
 </template>
@@ -88,17 +88,16 @@ import UpdateDetails from "./ViewDetail/UpdateDetails.vue";
 const { mapGetters } = createNamespacedHelpers("navigation");
 
 export default {
-    props: ["data"],
-    components:{
-      UpdateDetails
+  props: ["data"],
+  components: {
+    UpdateDetails,
+  },
+  computed: {
+    ...mapGetters(["personnelDetails"]),
+    birthDate() {
+      return this.data.dateOfBirth.substr(0, 10);
     },
-    computed: {
-        ...mapGetters(["personnelDetails"]),
-        birthDate() {
-            return this.data.dateOfBirth.substr(0, 10);
-        },
-    },
-  
+  },
 };
 </script>
 

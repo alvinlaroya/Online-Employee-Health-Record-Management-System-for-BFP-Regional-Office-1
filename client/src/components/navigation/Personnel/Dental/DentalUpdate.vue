@@ -306,13 +306,13 @@ export default {
       remarks: "",
       presentOralComplaint: "",
       diabetes: false,
-      bleeding: true,
+      bleeding: false,
       drugSensitivity: false,
       historyOfHypertension: false,
       asthma: false,
-      foodAllergy: true,
-      systolicBP: true,
-      diastolicBP: true,
+      foodAllergy: false,
+      systolicBP: false,
+      diastolicBP: false,
       examiningDate: false,
     },
   }),
@@ -342,6 +342,10 @@ export default {
       return this.personnelDetails.personnel.id;
     },
   },
+
+  mounted() {
+    this.dental = this.personnelDetails.dental
+  }
 };
 </script>
 

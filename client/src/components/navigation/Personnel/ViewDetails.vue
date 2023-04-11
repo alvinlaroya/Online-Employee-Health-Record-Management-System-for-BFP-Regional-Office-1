@@ -9,73 +9,73 @@
     <v-container id="print" class="pa-8">
       <v-row>
         <span>
-          Account Number : <strong>{{ data.accountNo }}</strong>
+          Account Number : <strong>{{ personnel.accountNo }}</strong>
         </span>
       </v-row>
       <v-row>
         <span>
-          Rank : <strong> {{ data.rank }}</strong></span
+          Rank : <strong> {{ personnel.rank }}</strong></span
         >
       </v-row>
       <v-row>
         <span
           >Full Name :
           <strong
-            >{{ data.fname }} {{ data.mname }} {{ data.lname }}
-            {{ data.extName }}</strong
+            >{{ personnel.fname }} {{ personnel.mname }} {{ personnel.lname }}
+            {{ personnel.extName }}</strong
           ></span
         >
       </v-row>
       <v-row>
         <span
-          >Gender : <strong> {{ data.gender }}</strong></span
+          >Gender : <strong> {{ personnel.gender }}</strong></span
         >
       </v-row>
       <v-row>
         <span
-          >Mobile Number : <strong>{{ data.mobile }}</strong></span
+          >Mobile Number : <strong>{{ personnel.mobile }}</strong></span
         >
       </v-row>
       <v-row>
         <span
-          >Address : <strong> {{ data.address }}</strong></span
+          >Address : <strong> {{ personnel.address }}</strong></span
         >
       </v-row>
       <v-row>
         <span
-          >Date of Birth : <strong> {{ birthDate }}</strong></span
+          >Date of Birth : <strong> {{ personnel.birthDate }}</strong></span
         >
       </v-row>
       <v-row>
         <span
-          >Age : <strong> {{ birthDate | computeAge }}</strong></span
+          >Age : <strong> {{ personnel.birthDate | computeAge }}</strong></span
         >
       </v-row>
       <v-row>
         <span
-          >Civil Status : <strong> {{ data.civilStatus }}</strong></span
-        >
-      </v-row>
-
-      <v-row>
-        <span
-          >Philhealth : <strong> {{ data.philhealth }}</strong></span
+          >Civil Status : <strong> {{ personnel.civilStatus }}</strong></span
         >
       </v-row>
 
       <v-row>
         <span
-          >Unit : <strong> {{ data.unit }}</strong></span
+          >Philhealth : <strong> {{ personnel.philhealth }}</strong></span
+        >
+      </v-row>
+
+      <v-row>
+        <span
+          >Unit : <strong> {{ personnel.unit }}</strong></span
         >
       </v-row>
       <v-row>
         <span
-          >Designation : <strong> {{ data.designation }}</strong></span
+          >Designation : <strong> {{ personnel.designation }}</strong></span
         >
       </v-row>
       <v-row>
         <span
-          >Remarks : <strong>{{ data.remarks }}</strong></span
+          >Remarks : <strong>{{ personnel.remarks }}</strong></span
         >
       </v-row>
     </v-container>
@@ -94,6 +94,9 @@ export default {
   },
   computed: {
     ...mapGetters(["personnelDetails"]),
+    personnel() {
+      return this.personnelDetails.personnel
+    },
     birthDate() {
       return this.data.dateOfBirth.substr(0, 10);
     },

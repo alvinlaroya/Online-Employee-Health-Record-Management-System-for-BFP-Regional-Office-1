@@ -4,8 +4,7 @@ import DentalEventService from "@/services/dashboard/Dental";
 import PhysicalEventService from "@/services/dashboard/Physical";
 import FamilyEventService from "@/services/dashboard/MedicalProfile";
 import PersonalEventService from "@/services/dashboard/MedicalProfile";
-
-// import UpdatePersonnelEventService from "@/services/dashboard/updatePersonnel";
+import UpdatePersonnelEventService from "@/services/dashboard/updatePersonnel";
 
 
 /* import * as types from "@/store/mutation-types"; */
@@ -76,10 +75,10 @@ export const updatePersonal= async ({ commit, dispatch }, payload) => {
     await PersonalEventService.updatePersonal(payload)
     await dispatch("viewDetails", payload.personnelId)
 }
-// export const updatePersonnel= async ({ commit, dispatch }, payload) => {
-//     await UpdatePersonnelEventService.updatePersonnel(payload)
-//     await dispatch("viewDetails", payload.personnelId)
-// }
+export const updatePersonnel= async ({ commit, dispatch }, payload) => {
+    await UpdatePersonnelEventService.updatePersonnel(payload)
+    await dispatch("viewDetails", payload.personnelId)
+}
 
 // get cases
 

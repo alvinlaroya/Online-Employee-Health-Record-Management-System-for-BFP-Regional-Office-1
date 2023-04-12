@@ -1,12 +1,15 @@
 <template>
   <v-card elevation="0">
-    <v-container>
+    <v-container >
       <v-row justify="end" class="pa-2">
         <DentalUpdate />
         <v-btn v-print="'#print'" class="ml-3" small>print</v-btn>
       </v-row>
     </v-container>
-    <v-container id="print" class="pa-8">
+    <v-container id="print" class="px-8">
+      <v-row class="">
+        <v-col class="px-0"> <h1>Dental Record</h1></v-col>
+      </v-row>
       <v-row justify="space-between">
         <v-col class="pa-0">
           <div class="">
@@ -65,9 +68,9 @@
       <v-row justify="space-between">
         <v-col class="pa-0">
           <span class="body-2">INITIAL DATE : </span>
-          <strong> {{ initialDate  }} </strong>
+          <strong> {{ initialDate }} </strong>
           <span class="body-2 pl-5">TRAINING DATE : </span>
-          <strong>{{ trainingDate  }}</strong>
+          <strong>{{ trainingDate }}</strong>
           <span class="body-2 pl-5">PROMOTION DATE: </span>
           <strong>{{ promotionDate }}</strong>
         </v-col>
@@ -120,7 +123,6 @@ export default {
   computed: {
     ...mapGetters(["personnelDetails"]),
     birthDate() {
-      
       return this.personnelDetails.personnel.dateOfBirth.substr(0, 10);
     },
     dateToday() {

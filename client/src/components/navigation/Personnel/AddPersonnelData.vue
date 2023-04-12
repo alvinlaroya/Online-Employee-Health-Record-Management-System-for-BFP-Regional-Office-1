@@ -71,11 +71,11 @@
               <v-row>
                 <v-col class="" cols="12" md="4">
                   <v-text-field label="Last Name" v-model="personnels.lname" dense
-                    @keypress="validateString($event)"></v-text-field>
+                    ></v-text-field>
                 </v-col>
                 <v-col class="" cols="12" md="4">
                   <v-text-field label="First Name" v-model="personnels.fname" dense
-                    @keypress="validateString($event)"></v-text-field>
+                    ></v-text-field>
                 </v-col>
                 <v-col class="" cols="12" md="4">
                   <v-text-field label="Middle Name" v-model="personnels.mname" dense

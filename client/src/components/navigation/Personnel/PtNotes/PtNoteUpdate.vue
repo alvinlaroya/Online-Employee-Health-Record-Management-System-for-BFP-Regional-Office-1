@@ -88,6 +88,12 @@
                 </v-col>
               </v-row>
               <v-row>
+                <v-col>
+                  <small>Family Medical History</small>
+                  <v-divider></v-divider>
+                </v-col>
+              </v-row>
+              <v-row>
                 <v-col cols="6">
                   <h3>Father</h3>
                   <v-checkbox
@@ -226,6 +232,12 @@
                 </v-col>
               </v-row>
               <v-row>
+                <v-col>
+                  <small>Gait Analysis</small>
+                  <v-divider></v-divider>
+                </v-col>
+              </v-row>
+              <v-row>
                 <v-col v-for="(gait, index) in gaits" :key="index" cols="3">
                   <v-checkbox
                     v-model="gait.value"
@@ -264,6 +276,12 @@
                 </v-col>
               </v-row>
               <v-row>
+                <v-col>
+                  <small>Balance and Tolerance</small>
+                  <v-divider></v-divider>
+                </v-col>
+              </v-row>
+              <v-row>
                 <v-col cols="3">
                   <v-checkbox
                     v-model="balanceTolerance[0].sittingBalance"
@@ -289,12 +307,21 @@
                   ></v-checkbox>
                 </v-col>
               </v-row>
-
+              <v-row>
+                <v-col> 
+                  <small>ADL</small>
+                  <v-divider></v-divider>
+                </v-col>
+              </v-row>
               <v-row>
                 <v-col v-for="(item, index) in adl" :key="index" :cols="4">
                   <v-checkbox
                     v-model="adl[index][Object.keys(item)[0]]"
-                    :label="Object.keys(item)[0].split(/(?=[A-Z])/).join(' ')"
+                    :label="
+                      Object.keys(item)[0]
+                        .split(/(?=[A-Z])/)
+                        .join(' ')
+                    "
                     :true-value="true"
                     :false-value="false"
                   />

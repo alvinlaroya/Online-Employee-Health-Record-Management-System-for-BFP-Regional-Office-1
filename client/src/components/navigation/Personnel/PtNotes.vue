@@ -3,10 +3,13 @@
     <v-container>
       <v-row justify="end" class="pa-2">
         <PtNoteUpdate />
-        <v-btn v-print="'#print'" class="ml-3" small>print</v-btn>
+        <v-btn  v-print="'#print'" class="ml-3" small>print</v-btn>
       </v-row>
     </v-container>
-    <v-container id="print" class="pa-8">
+    <v-container id="print" class="px-8">
+      <v-row class="">
+        <v-col class="px-0"> <h1>PT notes</h1></v-col>
+      </v-row>
       <v-row justify="space-between">
         <v-col class="pa-0">
           <div class="">
@@ -16,7 +19,7 @@
               {{ personnelDetails.personnel.extName }}
             </strong>
             <span class="body-2 pl-5">OCCUPATION : </span>
-            <strong>BFP</strong>
+            <strong>{{personnelDetails.personnel.occupation}}</strong>
             <span class="body-2 pl-5">RANK : </span>
             <strong>{{ personnelDetails.personnel.rank }}</strong>
             <span class="body-2 pl-5">UNIT : </span>

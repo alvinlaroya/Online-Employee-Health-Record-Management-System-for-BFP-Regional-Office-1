@@ -33,7 +33,7 @@
             <span class="body-2"> ADDRESS : </span>
             <strong> {{personnelDetails.personnel.address}} </strong>
             <span class="body-2 pl-5">MOBILE NO. : </span>
-            <strong>{{personnelDetails.personnel.mobile}}</strong>
+            <strong>+639{{personnelDetails.personnel.mobile}}</strong>
             <span class="body-2 pl-5">SEX : </span>
             <strong>{{personnelDetails.personnel.gender}}</strong>
             <span class="body-2 pl-5">CIVIL STATUS : </span>

@@ -7,8 +7,15 @@
       </v-row>
     </v-container>
     <v-container id="print" class="px-8">
+<<<<<<< Updated upstream
       <v-row class="">
         <v-col class="px-0"> <h1>Physical Exam</h1></v-col>
+=======
+      <v-row>
+        <v-avatar size="150" class="mb-5" tile>
+          <img :src="`http://localhost:8000/${personnelDetails.personnel.personnelImage}`" alt="John" style="object-fit: cover;">
+        </v-avatar>
+>>>>>>> Stashed changes
       </v-row>
       <v-row justify="space-between">
         <v-col class="pa-0">
@@ -42,7 +49,7 @@
             <span class="body-2 pl-5"> AGE : </span>
             <strong> {{ birthDate | computeAge }}</strong>
             <span class="body-2 pl-5"> MOBILE NO. : </span>
-            <strong> {{ personnelDetails.personnel.mobile }}</strong>
+            <strong>+639{{ personnelDetails.personnel.mobile }}</strong>
           </div>
         </v-col>
       </v-row>

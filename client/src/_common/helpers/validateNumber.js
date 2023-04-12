@@ -1,7 +1,7 @@
 import validateDigit from "./validateDigit";
 
 const validate = (e, len) => {
-    if (len < 10) {
+    if (len < 9) {
         validateDigit(e)
     } else {
         e.preventDefault();

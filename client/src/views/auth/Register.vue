@@ -23,7 +23,6 @@
                       required
                       outlined
                       prepend-inner-icon="mdi-account"
-                      @keypress="isLetter($event)"
                     ></v-text-field>
                   </v-col>
                   <v-col md="4">
@@ -34,7 +33,6 @@
                       required
                       outlined
                       prepend-inner-icon="mdi-account"
-                      @keypress="isLetter($event)"
                     ></v-text-field>
                   </v-col>
                   <v-col md="4">
@@ -45,7 +43,6 @@
                       required
                       outlined
                       prepend-inner-icon="mdi-account"
-                      @keypress="isLetter($event)"
                     ></v-text-field>
                   </v-col>
                 </v-row>
@@ -57,6 +54,7 @@
                       label="Username"
                       required
                       outlined
+                      @keypress="isLetter($event)"
                       prepend-inner-icon="mdi-account"
                     ></v-text-field>
                   </v-col>
@@ -105,7 +103,6 @@
                       label="Position"
                       outlined
                       prepend-inner-icon="mdi-account"
-                      @keypress="isLetter($event)"
                     ></v-text-field>
                   </v-col>
                 </v-row>

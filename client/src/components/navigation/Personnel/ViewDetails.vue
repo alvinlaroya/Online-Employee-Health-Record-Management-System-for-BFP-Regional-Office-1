@@ -39,7 +39,7 @@
            <span>Gender : <strong> {{ personnel.gender ? personnel.gender : '' }}</strong></span>
           </v-row>
           <v-row class="py-3 text-h6">
-            <span>Mobile Number : <strong>{{ personnel.mobile ? personnel.mobile : '' }}</strong></span>
+            <span>Mobile Number : <strong>+639{{ personnel.mobile ? personnel.mobile : '' }}</strong></span>
           </v-row>
           <v-row class="py-3 text-h6">
             <span>Address : <strong> {{ personnel.address ? personnel.address : '' }}</strong></span>

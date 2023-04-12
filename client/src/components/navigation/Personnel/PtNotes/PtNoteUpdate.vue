@@ -237,6 +237,9 @@
                   <v-divider></v-divider>
                 </v-col>
               </v-row>
+              <v-row class="mt-7 pa-2">
+                <p>[Check if Right. Uncheck if Left]</p>
+              </v-row>
               <v-row>
                 <v-col v-for="(gait, index) in gaits" :key="index" cols="3">
                   <v-checkbox

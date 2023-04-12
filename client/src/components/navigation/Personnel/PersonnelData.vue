@@ -7,6 +7,9 @@
           <img :src="renderPhoto(item.personnelImage)" alt="John" style="object-fit: cover;">
         </v-avatar>
       </template>
+      <template v-slot:item.mobile="{ item }">
+        <span>+639{{ item.mobile }}</span>
+      </template>
       <template v-slot:item.action="{ item }">
         <v-menu offset-y>
           <template v-slot:activator="{ on }">

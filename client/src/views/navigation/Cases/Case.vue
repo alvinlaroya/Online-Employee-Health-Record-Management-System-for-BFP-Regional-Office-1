@@ -10,6 +10,9 @@
           <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details></v-text-field>
         </v-card-title>
         <v-data-table :headers="headers" :items="items" :search="search" sort-by="calories" class="elevation-1">
+          <template v-slot:item.mobile="{ item }">
+            <span>+639{{ item.mobile }}</span>
+          </template>
           <template v-slot:item.actions="{ item }">
             <v-icon small class="mr-2" @click="openDialog(item)">
               mdi-eye

@@ -6,9 +6,11 @@
         <v-btn v-print="'#print'" class="ml-3" small>print</v-btn>
       </v-row>
     </v-container>
-    <v-container id="print" class="px-8">
-      <v-row class="">
-        <v-col class="px-0"> <h1>Dental Record</h1></v-col>
+    <v-container id="print" class="pa-8">
+      <v-row>
+        <v-avatar size="150" class="mb-5" tile>
+          <img :src="`http://localhost:8000/${personnelDetails.personnel.personnelImage}`" alt="John" style="object-fit: cover;">
+        </v-avatar>
       </v-row>
       <v-row justify="space-between">
         <v-col class="pa-0">
@@ -35,7 +37,7 @@
             <span class="body-2 pl-5">HOME ADDRESS : </span>
             <strong>{{ personnelDetails.personnel.address }}</strong>
             <span class="body-2 pl-5">CELLPHONE No. : </span>
-            <strong>{{ personnelDetails.personnel.mobile }}</strong>
+            <strong>+639{{ personnelDetails.personnel.mobile }}</strong>
           </div>
         </v-col>
       </v-row>
@@ -46,21 +48,21 @@
             <strong>
               {{
                 personnelDetails.dental.initial
-                  ? personnelDetails.dental.initial
-                  : "N/A"
+                ? personnelDetails.dental.initial
+                : "N/A"
               }}
             </strong>
             <span class="body-2 pl-5">TRAINING : </span>
             <strong>{{
               personnelDetails.dental.training
-                ? personnelDetails.dental.training
-                : "N/A"
+              ? personnelDetails.dental.training
+              : "N/A"
             }}</strong>
             <span class="body-2 pl-5">PROMOTION : </span>
             <strong>{{
               personnelDetails.dental.promotion
-                ? personnelDetails.dental.promotion
-                : "N/A"
+              ? personnelDetails.dental.promotion
+              : "N/A"
             }}</strong>
           </div>
         </v-col>
@@ -93,9 +95,7 @@
       <v-row>
         <v-col>
           <div class="d-flex flex-column">
-            <strong class="text-decoration-underline"
-              >SINSP CLAPER A OJASCASTRO, DMD</strong
-            >
+            <strong class="text-decoration-underline">SINSP CLAPER A OJASCASTRO, DMD</strong>
             <span class="body-1">Chief, Dental Service Section</span>
             <span class="body-1">BFP Region 1</span>
           </div>

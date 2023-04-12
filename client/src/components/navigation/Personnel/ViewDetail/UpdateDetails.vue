@@ -40,7 +40,6 @@
                   label="Last Name"
                   v-model="Personnel.lname"
                   dense
-                  @keypress="validateString($event)"
                 ></v-text-field>
               </v-col>
               <v-col class="" cols="12" md="4">
@@ -48,7 +47,6 @@
                   label="First Name"
                   v-model="Personnel.fname"
                   dense
-                  @keypress="validateString($event)"
                 ></v-text-field>
               </v-col>
               <v-col class="" cols="12" md="4">
@@ -124,6 +122,16 @@
                 ></v-text-field>
               </v-col>
             </v-row>
+            <v-row>
+              <v-col cols="4">
+                <v-select
+                  label="Ext Name"
+                  v-model="Personnel.extName"
+                  :items="['Sr', 'Jr', 'I', 'II', 'III  ']"
+                  dense
+                ></v-select>
+              </v-col>
+            </v-row>
             <v-btn color="primary" @click="submitHandler">Submit</v-btn>
           </v-form>
         </v-card-text>
@@ -138,7 +146,7 @@ import validateString from "@/_common/helpers/validateString.js";
 import validateNumber from "@/_common/helpers/validateNumber.js";
 
 import { createNamespacedHelpers } from "vuex";
-const { mapActions, mapGetters } =createNamespacedHelpers("navigation");
+const { mapActions, mapGetters } = createNamespacedHelpers("navigation");
 
 export default {
   data: () => ({
@@ -195,7 +203,6 @@ export default {
     setTimeout(() => {
       this.Personnel = this.personnelDetails.personnel;
     }, 2000);
-    
   },
 };
 </script>

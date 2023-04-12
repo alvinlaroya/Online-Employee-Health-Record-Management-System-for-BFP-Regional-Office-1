@@ -45,10 +45,10 @@
             <span>Address : <strong> {{ personnel.address ? personnel.address : '' }}</strong></span>
           </v-row>
           <v-row class="py-3 text-h6">
-            <span>Date of Birth : <strong> {{ personnel.birthDate ? personnel.birthDate : '' }}</strong></span>
+            <span>Date of Birth : <strong> {{ birthDate  }}</strong></span>
           </v-row>
           <v-row class="py-3 text-h6">
-            <span>Age : <strong> {{ personnel.birthDate | computeAge }}</strong></span>
+            <span>Age : <strong> {{ birthDate | computeAge }}</strong></span>
           </v-row>
           <v-row class="py-3 text-h6">
            <span>Civil Status : <strong> {{ personnel.civilStatus ? personnel.civilStatus : '' }}</strong></span>

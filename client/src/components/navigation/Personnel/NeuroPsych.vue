@@ -7,6 +7,9 @@
       </v-row>
     </v-container>
     <v-container id="print" class="px-8">
+      <v-row class="">
+        <v-col class="px-0"> <h1>Neuro Psych</h1></v-col>
+      </v-row>
       <v-row justify="space-between">
         <v-col class="mb-2">
           <span>

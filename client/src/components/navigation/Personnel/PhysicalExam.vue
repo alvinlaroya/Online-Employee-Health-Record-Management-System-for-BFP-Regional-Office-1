@@ -7,15 +7,15 @@
       </v-row>
     </v-container>
     <v-container id="print" class="px-8">
-<<<<<<< Updated upstream
-      <v-row class="">
-        <v-col class="px-0"> <h1>Physical Exam</h1></v-col>
-=======
       <v-row>
+        <v-col class="px-0"> <h1>Physical Exam</h1></v-col>
         <v-avatar size="150" class="mb-5" tile>
-          <img :src="`http://localhost:8000/${personnelDetails.personnel.personnelImage}`" alt="John" style="object-fit: cover;">
+          <img
+            :src="`http://localhost:8000/${personnelDetails.personnel.personnelImage}`"
+            alt="John"
+            style="object-fit: cover"
+          />
         </v-avatar>
->>>>>>> Stashed changes
       </v-row>
       <v-row justify="space-between">
         <v-col class="pa-0">
@@ -57,7 +57,8 @@
         <v-col class="pa-0">
           <div class="">
             <span class="body-2"> DATE AND PLACE OF BIRTH : </span>
-            <strong> {{ birthDate }} | cam sus
+            <strong>
+              {{ birthDate }} | cam sus
               <!-- {{ physicalExam.placeOfBirth}} -->
             </strong>
             <span class="body-2 pl-5"> Date of Examination : </span>
@@ -81,8 +82,11 @@
           <div class="">
             <span class="body-2"> PURPOSE OF EXAMINATION : </span>
             <strong>
-              {{ physicalExam.purposeOfExamination ? physicalExam.purposeOfExamination
-                  : "N/A" }}
+              {{
+                physicalExam.purposeOfExamination
+                  ? physicalExam.purposeOfExamination
+                  : "N/A"
+              }}
             </strong>
           </div>
         </v-col>
@@ -123,7 +127,6 @@
         </v-col>
       </v-row>
     </v-container>
-
   </v-card>
 </template>
 
@@ -143,7 +146,6 @@ export default {
     ...mapGetters(["personnelDetails"]),
     physicalExam() {
       return this.personnelDetails.physicalExamination;
-      
     },
     birthDate() {
       if (!this.personnelDetails.personnel.dateOfBirth) {

@@ -29,7 +29,7 @@
           </span>
           <span class="pr-5">AGE: <strong>{{ birthDate | computeAge }}</strong></span>
           <span class="pr-5"
-            >Place of Birth: <strong>Naga City, Cam. sur</strong></span
+            >Place of Birth: <strong>{{personnelDetails.personnel.placeOfBirth}}</strong></span
           ></v-col
         >
       </v-row>

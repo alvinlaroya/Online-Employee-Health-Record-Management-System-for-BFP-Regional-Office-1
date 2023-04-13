@@ -58,8 +58,8 @@
           <div class="">
             <span class="body-2"> DATE AND PLACE OF BIRTH : </span>
             <strong>
-              {{ birthDate }} | cam sus
-              <!-- {{ physicalExam.placeOfBirth}} -->
+              {{ birthDate }} | {{ personnelDetails.personnel.placeOfBirth}}
+              
             </strong>
             <span class="body-2 pl-5"> Date of Examination : </span>
             <strong> {{ examDate }}</strong>

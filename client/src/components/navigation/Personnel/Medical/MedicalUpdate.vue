@@ -427,14 +427,14 @@
                   >
                     <v-text-field
                       v-model="personalHistory[key]"
-                      :label="key"
+                      :label="formatLabel(key)"
                       type="text"
                     ></v-text-field>
                   </template>
                   <template v-else>
                     <v-checkbox
                       v-model="personalHistory[key]"
-                      :label="key"
+                      :label="formatLabel(key)"
                       :value="true"
                     ></v-checkbox>
                   </template>

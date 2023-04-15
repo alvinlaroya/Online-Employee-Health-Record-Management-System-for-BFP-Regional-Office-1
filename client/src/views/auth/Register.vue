@@ -75,9 +75,10 @@
                 <v-row class="mt-0">
                   <v-col md="6">
                     <v-menu
+                      ref="birthDateMenu"
                       v-model="birthDateMenu"
-                      :close-on-content-click="true"
-                      :nudge-left="20"
+                      :close-on-content-click="false"
+                      :return-value.sync="date"
                       transition="scale-transition"
                       offset-y
                       min-width="auto"
@@ -86,15 +87,34 @@
                         <v-text-field
                           v-model="user.birthDate"
                           label="Date of Birth"
-                          prepend-inner-icon="mdi-calendar"
+                          prepend-icon="mdi-calendar"
                           readonly
-                          flat
-                          outlined
+                          dense
                           v-bind="attrs"
                           v-on="on"
                         ></v-text-field>
                       </template>
-                      <v-date-picker v-model="user.birthDate"></v-date-picker>
+                      <v-date-picker
+                        v-model="user.birthDate"
+                        no-title
+                        scrollable
+                      >
+                        <v-spacer></v-spacer>
+                        <v-btn
+                          text
+                          color="primary"
+                          @click="birthDateMenu = false"
+                        >
+                          Cancel
+                        </v-btn>
+                        <v-btn
+                          text
+                          color="primary"
+                          @click="$refs.birthDateMenu.save(user.birthDate)"
+                        >
+                          OK
+                        </v-btn>
+                      </v-date-picker>
                     </v-menu>
                   </v-col>
                   <v-col md="6">
@@ -179,6 +199,9 @@ export default {
   data: () => ({
     show: false,
     valid: true,
+    date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+      .toISOString()
+      .substr(0, 10),
     birthDateMenu: null,
     user: {
       fname: "",

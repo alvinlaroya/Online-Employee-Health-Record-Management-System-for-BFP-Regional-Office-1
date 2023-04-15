@@ -91,7 +91,7 @@ export default {
       return this.personnelDetails.personnel || ''
     },
     birthDate() {
-      return this.data.dateOfBirth.substr(0, 10);
+      return this.data?.dateOfBirth?.substr(0, 10);
     },
   },
 };

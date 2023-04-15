@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fluid>
     <h1>Case: {{ title }}</h1>
     <h2>Total: {{ total }}</h2>
     <div class="mt-5">
@@ -101,7 +101,7 @@ export default {
       await this.viewDetails(item.personnelId);
       this.tab = 0;
       this.currentTab = "view-detail";
-      this.selectedItem = item;
+      this.selectedItem = this.personnelDetails.personnel
       this.dialog = true;
     },
     close() {
@@ -113,7 +113,7 @@ export default {
     this.title = this.$route.params.title;
   },
   computed: {
-    ...mapGetters(["personnelCases"]),
+    ...mapGetters(["personnelCases", "personnelDetails"]),
     items() {
       return this.personnelCases;
     },

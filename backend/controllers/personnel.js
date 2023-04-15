@@ -111,7 +111,7 @@ const addPersonnel = async (req, res) => {
     designation,
     mobile,
     civilStatus,
-    gender
+    gender,
   });
   await PtNotes.create({
     personnelId: personnel.id,

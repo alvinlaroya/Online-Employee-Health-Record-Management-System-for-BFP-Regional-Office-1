@@ -7,7 +7,7 @@ const apiUrl = "http://localhost:8000/api/personnel";
 export default {
     async updatePersonnel({ personnelId, data }) {
         console.log("Service", { personnelId, data})
-        await axios.put(
+        await axios.patch(
             `${apiUrl}/updatePersonnel/${personnelId}`, data,
             {
                 headers: {

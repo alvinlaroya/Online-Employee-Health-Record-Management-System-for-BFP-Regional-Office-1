@@ -130,10 +130,11 @@
                   <v-col cols="12">
                     <v-text-field
                       v-model="user.phone"
-                      label="Phone"
+                      label="Mobile"
                       prefix="+639"
                       outlined
                       prepend-inner-icon="mdi-phone"
+                      @keypress="validateNumber($event)"
                       min="2"
                     ></v-text-field>
                   </v-col>
@@ -194,6 +195,7 @@ const { mapGetters, mapActions } = createNamespacedHelpers("auth");
 
 // helpers
 import validateString from "@/_common/helpers/validateString.js";
+import validateNumber from "@/_common/helpers/validateNumber.js";
 
 export default {
   data: () => ({
@@ -241,6 +243,9 @@ export default {
         this.snackbar = true;
         this.text = "Account Successfully Created";
       }
+    },
+    validateNumber(e) {
+      validateNumber(e, this.user.phone.length);
     },
     reset() {
       this.$refs.form.reset();

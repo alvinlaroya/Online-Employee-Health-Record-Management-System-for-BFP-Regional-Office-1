@@ -182,6 +182,7 @@ export default {
       });
 
       this.dialog = false;
+      location.reload();
     },
     keyPressAccountNo(e) {
       validateAccountNo(e, this.personnelDetails.personnel.accountNo.length);

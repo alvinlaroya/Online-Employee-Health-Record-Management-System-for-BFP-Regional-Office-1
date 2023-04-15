@@ -198,6 +198,26 @@ const updatePersonnel = async (req, res) => {
     }
   });
 
+  console.log("update", persoonelData)
+
+  await MedicalPersonalHistory.update({
+    accountNo: persoonelData.accountNo,
+    rank: persoonelData.rank, 
+    lname: persoonelData.lname,
+    fname: persoonelData.fname,
+    mname: persoonelData.mname,
+    extName: persoonelData.extName,
+    unit: persoonelData.unit,
+    designation: persoonelData.designation,
+    mobile: persoonelData.mobile,
+    civilStatus: persoonelData.civilStatus,
+    gender: persoonelData.gender
+  }, {
+    where: {
+      personnelId: req.params.personnelId
+    }
+  })
+
   res.sendStatus(200);
 }
 

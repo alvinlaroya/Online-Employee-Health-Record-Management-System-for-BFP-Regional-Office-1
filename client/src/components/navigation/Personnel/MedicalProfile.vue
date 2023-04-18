@@ -15,7 +15,9 @@
           <span>
             Full Name :
             <strong>
-              {{ personnelDetails.personnel.fname }} {{ personnelDetails.personnel.mname }} {{ personnelDetails.personnel.lname }}
+              {{ personnelDetails.personnel.fname }}
+              {{ personnelDetails.personnel.mname }}
+              {{ personnelDetails.personnel.lname }}
               {{ personnelDetails.personnel.extName }}
             </strong>
           </span>
@@ -25,9 +27,11 @@
         <v-col align-content="space-between" class="pa-0">
           <span class="pr-5"
             >Date Of Birth :
-            <strong>{{ birthDate}}</strong>
+            <strong>{{ birthDate }}</strong>
           </span>
-          <span class="pr-5">AGE: <strong>{{ birthDate | computeAge }}</strong></span>
+          <span class="pr-5"
+            >AGE: <strong>{{ birthDate | computeAge }}</strong></span
+          >
           <span class="pr-5"
             >Place of Birth: <strong>Naga City, Cam. sur</strong></span
           ></v-col
@@ -36,8 +40,9 @@
 
       <v-row class="mt-5">
         <v-tabs v-model="tab">
-          <v-tab @click="tab = 0" >Family History</v-tab>
-          <v-tab @click="tab = 1" >Personal History</v-tab>
+          <v-tab @click="tab = 0">Family History</v-tab>
+          <v-tab @click="tab = 1">Personal History</v-tab>
+          <v-tab @click="tab = 2">Occupational History</v-tab>
         </v-tabs>
       </v-row>
       <v-card-text class="">
@@ -53,9 +58,9 @@
 import { createNamespacedHelpers } from "vuex";
 const { mapGetters } = createNamespacedHelpers("navigation");
 
-
 import PersonalHistory from "@/components/navigation/Personnel/Medical/PersonalHistory";
 import MedicalDetails from "@/components/navigation/Personnel/Medical/MedicalDetails";
+import OccupationalHistory from "@/components/navigation/Personnel/Medical/OccupationalHistory";
 import MedicalUpdate from "@/components/navigation/Personnel/Medical/MedicalUpdate";
 
 export default {
@@ -63,11 +68,16 @@ export default {
   components: {
     MedicalDetails,
     PersonalHistory,
+    OccupationalHistory,
     MedicalUpdate,
   },
   data: () => ({
     tab: 0,
-    tabs: [{ component: MedicalDetails }, { component: PersonalHistory }],
+    tabs: [
+      { component: MedicalDetails },
+      { component: PersonalHistory },
+      { component: OccupationalHistory },
+    ],
   }),
   computed: {
     ...mapGetters(["personnelDetails"]),

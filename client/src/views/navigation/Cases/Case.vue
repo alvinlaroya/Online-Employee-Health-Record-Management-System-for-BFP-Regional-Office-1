@@ -7,9 +7,21 @@
         <v-card-title>
           Personnels
           <v-spacer></v-spacer>
-          <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details></v-text-field>
+          <v-text-field
+            v-model="search"
+            append-icon="mdi-magnify"
+            label="Search"
+            single-line
+            hide-details
+          ></v-text-field>
         </v-card-title>
-        <v-data-table :headers="headers" :items="items" :search="search" sort-by="calories" class="elevation-1">
+        <v-data-table
+          :headers="headers"
+          :items="items"
+          :search="search"
+          sort-by="calories"
+          class="elevation-1"
+        >
           <template v-slot:item.mobile="{ item }">
             <span>+639{{ item.mobile }}</span>
           </template>
@@ -22,12 +34,20 @@
       </v-card>
     </div>
     <v-row justify="center">
-      <v-dialog v-model="dialog" width="80vw" transition="dialog-bottom-transition">
+      <v-dialog
+        v-model="dialog"
+        width="80vw"
+        transition="dialog-bottom-transition"
+      >
         <v-card>
           <v-toolbar dense>
             <v-tabs v-model="tab">
-              <v-tab v-for="(item, i) in Object.keys(component)" :key="i" @click="[(tab = i), (currentTab = item)]">{{
-                item.replaceAll("-", " ") }}</v-tab>
+              <v-tab
+                v-for="(item, i) in Object.keys(component)"
+                :key="i"
+                @click="[(tab = i), (currentTab = item)]"
+                >{{ item.replaceAll("-", " ") }}</v-tab
+              >
             </v-tabs>
             <v-spacer></v-spacer>
             <v-btn icon @click="close">
@@ -35,7 +55,11 @@
             </v-btn>
           </v-toolbar>
           <keep-alive>
-            <component :is="component[currentTab]" :data="selectedItem" :dialogVisible="dialog" />
+            <component
+              :is="component[currentTab]"
+              :data="selectedItem"
+              :dialogVisible="dialog"
+            />
           </keep-alive>
         </v-card>
       </v-dialog>
@@ -60,7 +84,7 @@ export default {
     ViewDetails,
   },
   data: () => ({
-    search: '',
+    search: "",
     component: {
       "view-detail": ViewDetails,
       "medical-profile": MedicalProfile,
@@ -77,26 +101,26 @@ export default {
     title: null,
     headers: [
       {
-        text: 'Account #',
-        align: 'start',
+        text: "Account #",
+        align: "start",
         sortable: false,
-        value: 'accountNo',
+        value: "accountNo",
       },
-      { text: 'Rank', value: 'rank' },
-      { text: 'First Name', value: 'fname' },
-      { text: 'Middle Name', value: 'mname' },
-      { text: 'Last Name', value: 'lname' },
-      { text: 'Ext Name', value: 'extName' },
-      { text: 'Unit', value: 'unit' },
-      { text: 'Designation', value: 'designation' },
-      { text: 'Mobile', value: 'mobile' },
-      { text: 'Civil Status', value: 'civilStatus' },
-      { text: 'Gender', value: 'gender' },
-      { text: 'Actions', value: 'actions', sortable: false },
+      { text: "Rank", value: "rank" },
+      { text: "First Name", value: "fname" },
+      { text: "Middle Name", value: "mname" },
+      { text: "Last Name", value: "lname" },
+      { text: "Ext Name", value: "extName" },
+      { text: "Unit", value: "unit" },
+      { text: "Designation", value: "designation" },
+      { text: "Mobile", value: "mobile" },
+      { text: "Civil Status", value: "civilStatus" },
+      { text: "Gender", value: "gender" },
+      { text: "Actions", value: "actions", sortable: false },
     ],
   }),
   methods: {
-    ...mapActions(['viewDetails', 'getAllPersonnelsByCase']),
+    ...mapActions(["viewDetails", "getAllPersonnelsByCase"]),
     async openDialog(item) {
       await this.viewDetails(item.personnelId);
       this.tab = 0;
@@ -111,6 +135,7 @@ export default {
   mounted() {
     // Retrieve the title and total values from the route parameters
     this.title = this.$route.params.title;
+    this.getAllPersonnelsByCase(this.$route.params.title);
   },
   computed: {
     ...mapGetters(["personnelCases", "personnelDetails"]),
@@ -118,12 +143,9 @@ export default {
       return this.personnelCases;
     },
     total() {
-      return this.personnelCases.length
-    }
+      return this.personnelCases.length;
+    },
   },
-  created() {
-    this.getAllPersonnelsByCase(this.$route.params.title)
-  }
 };
 </script>
 

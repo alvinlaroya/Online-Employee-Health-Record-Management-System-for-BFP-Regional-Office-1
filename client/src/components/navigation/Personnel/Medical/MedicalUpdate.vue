@@ -422,7 +422,8 @@
                   <template
                     v-if="
                       key === 'numberOfTimesPregnant' ||
-                      key === 'numberOfChildren'
+                      key === 'numberOfChildren' ||
+                      key === 'numberOfAbortion'
                     "
                   >
                     <v-text-field
@@ -527,7 +528,7 @@ export default {
       numberOfTimesPregnant: 0,
       numberOfChildren: 0,
       hadAbortion: false,
-      numberOfAbortion: false,
+      numberOfAbortion: 0,
       wornEyeglasses: false,
       wornHearingAid: false,
       syphillis: false,

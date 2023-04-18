@@ -21,7 +21,20 @@
                 <v-select
                   label="Rank"
                   v-model="Personnel.rank"
-                  :items="['SF01', 'SF02', 'SF03']"
+                  :items="['FDir',
+                    'FCSupt',
+                    'FSSupt',
+                    'FSupt',
+                    'FCInsp',
+                    'FSInsp',
+                    'FInsp',
+                    'SFO4',
+                    'SFO3',
+                    'SFO2',
+                    'SFO1',
+                    'FO3',
+                    'FO2',
+                    'FO1']"
                   dense
                 ></v-select>
               </v-col>

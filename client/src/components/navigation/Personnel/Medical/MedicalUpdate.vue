@@ -82,7 +82,7 @@
                 </v-col>
                 <v-col>
                   <v-text-field
-                    v-model="familyHistory.motherstateOfHealth"
+                    v-model="familyHistory.motherStateOfHealth"
                     label="State of health"
                     dense
                   ></v-text-field>

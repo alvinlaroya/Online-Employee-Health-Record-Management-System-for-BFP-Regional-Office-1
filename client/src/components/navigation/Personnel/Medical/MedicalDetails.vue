@@ -102,30 +102,30 @@
     <v-row>
       <v-col cols="4">
         <div class="d-flex flex-column">
-          <small>Brother 1 Cause of Death : </small>
+          <small>Father Cause of Death : </small>
           <strong>{{
-            medicalFamilyHistory.brother1CauseOfDeath
-              ? medicalFamilyHistory.brother1CauseOfDeath
+            medicalFamilyHistory.fatherCauseOfDeath
+              ? medicalFamilyHistory.fatherCauseOfDeath
               : "N/A"
           }}</strong>
         </div>
       </v-col>
       <v-col cols="4">
         <div class="d-flex flex-column">
-          <small>Sister 1 Cause of Death : </small>
+          <small>Mother Cause of Death : </small>
           <strong>{{
-            medicalFamilyHistory.sister1CauseOfDeath
-              ? medicalFamilyHistory.sister1CauseOfDeath
+            medicalFamilyHistory.motherCauseOfDeath
+              ? medicalFamilyHistory.motherCauseOfDeath
               : "N/A"
           }}</strong>
         </div>
       </v-col>
       <v-col cols="4">
         <div class="d-flex flex-column">
-          <small>Children 1 Cause of Death : </small>
+          <small>Spouse Cause of Death : </small>
           <strong>{{
-            medicalFamilyHistory.children1CauseOfDeath
-              ? medicalFamilyHistory.children1CauseOfDeath
+            medicalFamilyHistory.spouseCauseOfDeath
+              ? medicalFamilyHistory.spouseCauseOfDeath
               : "N/A"
           }}</strong>
         </div>
@@ -491,7 +491,7 @@
       </v-col>
     </v-row>
 
-    <pre></pre>
+ 
   </div>
 </template>
 

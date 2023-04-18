@@ -6,12 +6,14 @@
         <v-btn v-print="'#print'" class="ml-3" small>print</v-btn>
       </v-row>
     </v-container>
-    <v-container id="print" class="pa-8">
+    <v-container id="print" class="px-8">
       <v-row>
         <v-avatar size="150" class="mb-5" tile>
           <img :src="`http://localhost:8000/${personnelDetails.personnel.personnelImage}`" alt="John" style="object-fit: cover;">
         </v-avatar>
       </v-row>
+      <v-row><v-col><strong class="mt-2">Section I : PATIENT DATA</strong></v-col></v-row>
+      <v-row><v-divider class="my-1"></v-divider></v-row>
       <v-row justify="space-between">
         <v-col class="pa-0">
           <div class="">
@@ -31,16 +33,19 @@
       </v-row>
       <v-row justify="space-between">
         <v-col class="pa-0">
-          <div class="">
+          <div class="" >
             <span class="body-2"> UNIT ASSIGNMENT : </span>
             <strong> {{ personnelDetails.personnel.unit }} </strong>
-            <span class="body-2 pl-5">HOME ADDRESS : </span>
+            <span class="body-2 mx-1">HOME ADDRESS : </span>
             <strong>{{ personnelDetails.personnel.address }}</strong>
-            <span class="body-2 pl-5">CELLPHONE No. : </span>
+            <span class="body-2 mx-1"> CELLPHONE No. : </span>
             <strong>+639{{ personnelDetails.personnel.mobile }}</strong>
           </div>
         </v-col>
       </v-row>
+      <v-row><v-col><strong class="mt-2">Section II : DENTAL EXAMINATION</strong></v-col></v-row>
+      <v-row><v-divider class="my-1"></v-divider></v-row>
+      
       <v-row justify="space-between">
         <v-col class="pa-0">
           <div class="">
@@ -67,6 +72,7 @@
           </div>
         </v-col>
       </v-row>
+      
       <v-row justify="space-between">
         <v-col class="pa-0">
           <span class="body-2">INITIAL DATE : </span>
@@ -77,6 +83,8 @@
           <strong>{{ promotionDate }}</strong>
         </v-col>
       </v-row>
+      <v-row><v-col><strong class="mt-2">Section III : CASE HISTORY</strong></v-col></v-row>
+      <v-row><v-divider class="my-1"></v-divider></v-row>
       <v-row>
         <v-col cols="6">
           <DentalTable />

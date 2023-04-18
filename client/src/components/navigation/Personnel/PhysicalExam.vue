@@ -8,13 +8,8 @@
     </v-container>
     <v-container id="print" class="px-8">
       <v-row>
-        <v-col class="px-0"> <h1>Physical Exam</h1></v-col>
         <v-avatar size="150" class="mb-5" tile>
-          <img
-            :src="`http://localhost:8000/${personnelDetails.personnel.personnelImage}`"
-            alt="John"
-            style="object-fit: cover"
-          />
+          <img :src="`http://localhost:8000/${personnelDetails.personnel.personnelImage}`" alt="John" style="object-fit: cover;">
         </v-avatar>
       </v-row>
       <v-row justify="space-between">

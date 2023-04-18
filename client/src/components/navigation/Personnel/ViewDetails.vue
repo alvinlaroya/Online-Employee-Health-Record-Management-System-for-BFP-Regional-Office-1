@@ -70,6 +70,7 @@
           </v-row>
         </v-col>
       </v-row>
+      <pre>{{ personnelDetails.medicalRecord.medicalFamilyHistory }}</pre>
     </v-container>
     
   </v-card>

@@ -126,9 +126,20 @@
         </v-col>
       </v-row>
       <v-row>
-        <div>
-          <strong>VITAL SIGNS :</strong>
-        </div>
+        <v-col>
+          <div>
+            <strong>Vital Signs : </strong>
+            <span> {{ptNotes.vitalSigns ? ptNotes.vitalSigns : 'N/A' }} </span>
+            <v-divider></v-divider>
+          </div>
+        </v-col>
+        <v-col>
+          <div>
+            <strong>Special Test Input : </strong>
+            <span> {{ptNotes.specialTest ? ptNotes.specialTest : 'N/A' }} </span>
+            <v-divider></v-divider>
+          </div>
+        </v-col>
       </v-row>
       <v-row>
         <v-col>
@@ -299,6 +310,23 @@
           <strong>Home Instruction : </strong>
           <span>{{ ptNotes.homeInstruction ? ptNotes.homeInstruction : 'N/A' }}</span>
           <v-divider></v-divider>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <strong class="mb-4">Examining Physical Therapist : </strong>
+          <div class="text-center  mt-5">{{ ptNotes.examiningPhysicalTherapist ? ptNotes.examiningPhysicalTherapist : 'N/A' }}</div>
+          <v-divider></v-divider>
+          <div class="text-center">Physical Therapist </div>
+          
+        </v-col>
+
+        <v-col>
+          <strong class="mb-4">Noted By : </strong>
+          <div class="text-center mt-5">{{ ptNotes.notedBy ? ptNotes.notedBy : 'N/A' }}</div>
+          <v-divider></v-divider>
+          <div class="text-center">Acting Chief, Physical Therapy Rehabilitation </div>
+          
         </v-col>
       </v-row>
     </v-container>

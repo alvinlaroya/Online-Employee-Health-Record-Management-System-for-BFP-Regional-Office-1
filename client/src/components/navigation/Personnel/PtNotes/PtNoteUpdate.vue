@@ -146,6 +146,26 @@
               <v-row>
                 <v-col>
                   <v-text-field
+                    label="Vital Signs"
+                    v-model="ptNoteData.vitalSigns"
+                    dense
+                  >
+                  </v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-text-field
+                    label="Special Test Input"
+                    v-model="ptNoteData.specialTest"
+                    dense
+                  >
+                  </v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-text-field
                     label="Objective"
                     v-model="ptNoteData.objective"
                     dense
@@ -286,48 +306,53 @@
               </v-row>
               <v-row>
                 <v-col cols="3">
-                  <v-checkbox
+                  <v-text-field
                     v-model="balanceTolerance[0].sittingBalance"
                     label="Sitting Balance"
-                  ></v-checkbox>
+                  ></v-text-field>
                 </v-col>
                 <v-col cols="3">
-                  <v-checkbox
+                  <v-text-field
                     v-model="balanceTolerance[0].sittingTolerance"
                     label="Sitting Tolerance"
-                  ></v-checkbox>
+                  ></v-text-field>
                 </v-col>
                 <v-col cols="3">
-                  <v-checkbox
+                  <v-text-field
                     v-model="balanceTolerance[0].standingBalance"
                     label="Standing Balance"
-                  ></v-checkbox>
+                  ></v-text-field>
                 </v-col>
                 <v-col cols="3">
-                  <v-checkbox
+                  <v-text-field
                     v-model="balanceTolerance[0].standingTolerance"
                     label="Standing Tolerance"
-                  ></v-checkbox>
+                  ></v-text-field>
                 </v-col>
               </v-row>
               <v-row>
-                <v-col> 
+                <v-col>
                   <small>ADL</small>
                   <v-divider></v-divider>
                 </v-col>
               </v-row>
               <v-row>
-                <v-col v-for="(item, index) in adl" :key="index" :cols="4">
-                  <v-checkbox
-                    v-model="adl[index][Object.keys(item)[0]]"
-                    :label="
-                      Object.keys(item)[0]
-                        .split(/(?=[A-Z])/)
-                        .join(' ')
-                    "
-                    :true-value="true"
-                    :false-value="false"
-                  />
+                <v-col v-for="(item, index) in adlNew" :key="index" :cols="4">
+                  <v-select
+                    :key="index"
+                    :label="item.label"
+                    v-model="item.status"
+                    :items="[
+                      'Fully Dependent',
+                      'Partially Dependent',
+                      'Independent',
+                    ]"
+                  ></v-select>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-divider></v-divider>
                 </v-col>
               </v-row>
               <v-row>
@@ -392,6 +417,24 @@
                   </v-text-field>
                 </v-col>
               </v-row>
+              <v-row>
+                <v-col>
+                  <v-text-field
+                    label="Examining Physical Therapist"
+                    v-model="ptNoteData.examiningPhysicalTherapist"
+                    dense
+                  >
+                  </v-text-field>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    label="Noted By"
+                    v-model="ptNoteData.notedBy"
+                    dense
+                  >
+                  </v-text-field>
+                </v-col>
+              </v-row>
             </div>
 
             <v-btn type="submit" color="primary">Submit</v-btn>
@@ -429,7 +472,8 @@ export default {
       fda: "",
       subjective: "",
       objective: "",
-      vitalSign: "",
+      vitalSigns: "",
+      specialTest: "",
       bloodPressure: "",
       pulseRate: "",
       rr: "",
@@ -452,6 +496,9 @@ export default {
       ptManagement: "",
       suggestedPtManagement: "",
       homeInstruction: "",
+
+      examiningPhysicalTherapist: "",
+      notedBy: "",
     },
     fatherConditions: [
       { id: 1, name: "Hypertension", isChecked: false },
@@ -506,6 +553,83 @@ export default {
       { wheelchairToMat: "" },
       { bedToWheelchair: "" },
       { ambulation: "" },
+    ],
+    adlNew: [
+      {
+        name: "Bathing",
+        status: null,
+        label: 'Bathing'
+      },
+      {
+        name: "Toileting",
+        status: null,
+        label: 'Toileting'
+      },
+      {
+        name: "eating",
+        status: null,
+        label: 'Eating'
+      },
+      {
+        name: "upperExtermityDressing",
+        status: null,
+        label: 'Upper Extermity Dressing'
+      },
+      {
+        name: "lowerExtremityDressing",
+        status: null,
+        label: 'Lower Extremity Dressing'
+      },
+      {
+        name: "bedMobility",
+        status: null,
+        label: 'Bed Mobility'
+      },
+      {
+        name: "scootTowardsHeadOfHead",
+        status: null,
+        label: 'Scoot Towards Head Of Head'
+      },
+      {
+        name: "scootTowardsFootOfHead",
+        status: null,
+        label: 'Scoot Towards Foot Of Head'
+      },
+      {
+        name: "sideToSideScooting",
+        status: null,
+        label: 'Side To Side Scooting'
+      },
+      {
+        name: "supineToLongSitting",
+        status: null,
+        label: 'Supine To Long Sitting'
+      },
+      {
+        name: "rolling",
+        status: null,
+        label: 'Rolling'
+      },
+      {
+        name: "transfers",
+        status: null,
+        label: 'Transfers'
+      },
+      {
+        name: "wheelchairToMat",
+        status: null,
+        label: 'Wheel Chair To Mat'
+      },
+      {
+        name: "bedToWheelchair",
+        status: null,
+        label: 'Bed To Wheelchair'
+      },
+      {
+        name: "ambulation",
+        status: null,
+        label: 'Ambulation'
+      },
     ],
   }),
   methods: {
@@ -578,6 +702,7 @@ export default {
     validateNumber(e) {
       validateNumber(e, this.ptNoteData.mobile.length);
     },
+
   },
   computed: {
     ...mapGetters(["personnelDetails"]),

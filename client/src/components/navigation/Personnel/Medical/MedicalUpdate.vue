@@ -12,7 +12,8 @@
               
               <v-row>
                 <v-col>
-                  <strong>Family History</strong>
+                  <small>Family History</small>
+                  <v-divider></v-divider>
                 </v-col>
               </v-row>
               <v-row>
@@ -400,17 +401,11 @@
                 </v-col>
               </v-row>
               <v-row>
-                <v-col><v-divider></v-divider></v-col>
-              </v-row>
-              <v-row>
                 <v-col>
-                  <strong>Personal History</strong>
-                  
+                  <small>Personal History</small>
+                  <v-divider></v-divider>
                 </v-col>
-               
               </v-row>
-              
-              
               <v-row>
                 <v-col
                   v-for="(value, key) in personalHistory"
@@ -441,8 +436,612 @@
                   </template>
                 </v-col>
               </v-row>
+              <!-- Occupational History Update -->
               <v-row>
-                <v-col> </v-col>
+                <v-col>
+                  <small>Occupational History</small>
+                  <v-divider></v-divider>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="6">
+                  <v-checkbox
+                    v-model="occupationalHistory.isAdvised"
+                    label="Advised"
+                    dense
+                  />
+                </v-col>
+                <v-col v-if="occupationalHistory.isAdvised" cols="6">
+                  <v-text-field
+                    v-model="occupationalHistory.advisedAnswer"
+                    label="If yes Describe"
+                    dense
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="6">
+                  <v-checkbox
+                    v-model="occupationalHistory.isAccident"
+                    label="Have you had accidents or injuries"
+                    dense
+                  />
+                </v-col>
+                <v-col v-if="occupationalHistory.isAccident" cols="6">
+                  <v-text-field
+                    v-model="occupationalHistory.accidentAnswer"
+                    label="If Yes, Give details"
+                    dense
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="5">
+                  <v-checkbox
+                    v-model="occupationalHistory.isHospitalized"
+                    label="Have you ever been hospitalized ?"
+                    dense
+                  />
+                </v-col>
+                <v-col v-if="occupationalHistory.isHospitalized" cols="3">
+                  <v-text-field
+                    v-model="occupationalHistory.hospitalizedIn"
+                    label="Where ?"
+                    dense
+                  ></v-text-field>
+                </v-col>
+                <v-col v-if="occupationalHistory.isHospitalized" cols="4">
+                  <v-text-field
+                    v-model="occupationalHistory.hospitalizedReason"
+                    label="Why ? "
+                    dense
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="3">
+                  <v-checkbox
+                    v-model="occupationalHistory.isCholera"
+                    label="Cholera"
+                    dense
+                  />
+                </v-col>
+                <v-col cols="3">
+                  <v-menu
+                    ref="menuCholera"
+                    v-model="menuCholera"
+                    :close-on-content-click="false"
+                    :return-value.sync="date"
+                    transition="scale-transition"
+                    offset-y
+                    min-width="auto"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field
+                        v-model="occupationalHistory.choleraAt"
+                        label="Cholera Date"
+                        prepend-icon="mdi-calendar"
+                        readonly
+                        dense
+                        v-bind="attrs"
+                        v-on="on"
+                      ></v-text-field>
+                    </template>
+                    <v-date-picker
+                      v-model="occupationalHistory.choleraAt"
+                      no-title
+                      scrollable
+                    >
+                      <v-spacer></v-spacer>
+                      <v-btn text color="primary" @click="menuCholera = false">
+                        Cancel
+                      </v-btn>
+                      <v-btn
+                        text
+                        color="primary"
+                        @click="$refs.menuCholera.save(occupationalHistory.choleraAt)"
+                      >
+                        OK
+                      </v-btn>
+                    </v-date-picker>
+                  </v-menu>
+                </v-col>
+                <v-col cols="3">
+                  <v-checkbox
+                    v-model="occupationalHistory.isInfluenza"
+                    label="Influenza"
+                    dense
+                  />
+                </v-col>
+                <v-col cols="3">
+                  <v-menu
+                    ref="menuInfluenza"
+                    v-model="menuInfluenza"
+                    :close-on-content-click="false"
+                    :return-value.sync="date"
+                    transition="scale-transition"
+                    offset-y
+                    min-width="auto"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field
+                        v-model="occupationalHistory.influenzaAt"
+                        label="Influenza Date"
+                        prepend-icon="mdi-calendar"
+                        readonly
+                        dense
+                        v-bind="attrs"
+                        v-on="on"
+                      ></v-text-field>
+                    </template>
+                    <v-date-picker
+                      v-model="occupationalHistory.influenzaAt"
+                      no-title
+                      scrollable
+                    >
+                      <v-spacer></v-spacer>
+                      <v-btn text color="primary" @click="menuInfluenza = false">
+                        Cancel
+                      </v-btn>
+                      <v-btn
+                        text
+                        color="primary"
+                        @click="$refs.menuInfluenza.save(occupationalHistory.influenzaAt)"
+                      >
+                        OK
+                      </v-btn>
+                    </v-date-picker>
+                  </v-menu>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="3">
+                  <v-checkbox
+                    v-model="occupationalHistory.isTetanus"
+                    label="Tetanus"
+                    dense
+                  />
+                </v-col>
+                <v-col cols="3">
+                  <v-menu
+                    ref="menuTetanus"
+                    v-model="menuTetanus"
+                    :close-on-content-click="false"
+                    :return-value.sync="date"
+                    transition="scale-transition"
+                    offset-y
+                    min-width="auto"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field
+                        v-model="occupationalHistory.tetanusAt"
+                        label="Tetanus Date"
+                        prepend-icon="mdi-calendar"
+                        readonly
+                        dense
+                        v-bind="attrs"
+                        v-on="on"
+                      ></v-text-field>
+                    </template>
+                    <v-date-picker
+                      v-model="occupationalHistory.tetanusAt"
+                      no-title
+                      scrollable
+                    >
+                      <v-spacer></v-spacer>
+                      <v-btn text color="primary" @click="menuTetanus = false">
+                        Cancel
+                      </v-btn>
+                      <v-btn
+                        text
+                        color="primary"
+                        @click="$refs.menuTetanus.save(occupationalHistory.tetanusAt)"
+                      >
+                        OK
+                      </v-btn>
+                    </v-date-picker>
+                  </v-menu>
+                </v-col>
+                <v-col cols="3">
+                  <v-checkbox
+                    v-model="occupationalHistory.isTyphoid"
+                    label="Typhoid"
+                    dense
+                  />
+                </v-col>
+                <!-- typhoid -->
+                <v-col cols="3">
+                  <v-menu
+                    ref="menuTyphoid"
+                    v-model="menuTyphoid"
+                    :close-on-content-click="false"
+                    :return-value.sync="date"
+                    transition="scale-transition"
+                    offset-y
+                    min-width="auto"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field
+                        v-model="occupationalHistory.typhoidAt"
+                        label="Typhoid Date"
+                        prepend-icon="mdi-calendar"
+                        readonly
+                        dense
+                        v-bind="attrs"
+                        v-on="on"
+                      ></v-text-field>
+                    </template>
+                    <v-date-picker
+                      v-model="occupationalHistory.typhoidAt"
+                      no-title
+                      scrollable
+                    >
+                      <v-spacer></v-spacer>
+                      <v-btn text color="primary" @click="menuTyphoid = false">
+                        Cancel
+                      </v-btn>
+                      <v-btn
+                        text
+                        color="primary"
+                        @click="$refs.menuTyphoid.save(occupationalHistory.typhoidAt)"
+                      >
+                        OK
+                      </v-btn>
+                    </v-date-picker>
+                  </v-menu>
+                </v-col>
+              </v-row>
+              <!-- /typhoid -->
+              <v-row>
+                <v-col cols="3">
+                  <v-checkbox
+                    v-model="occupationalHistory.isHepatitis"
+                    label="Hepatitis"
+                    dense
+                  />
+                </v-col>
+                <v-col cols="3">
+                  <v-menu
+                    ref="menuHepatitis"
+                    v-model="menuHepatitis"
+                    :close-on-content-click="false"
+                    :return-value.sync="date"
+                    transition="scale-transition"
+                    offset-y
+                    min-width="auto"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field
+                        v-model="occupationalHistory.hepatitisAt"
+                        label="Hepatitis Date"
+                        prepend-icon="mdi-calendar"
+                        readonly
+                        dense
+                        v-bind="attrs"
+                        v-on="on"
+                      ></v-text-field>
+                    </template>
+                    <v-date-picker
+                      v-model="occupationalHistory.hepatitisAt"
+                      no-title
+                      scrollable
+                    >
+                      <v-spacer></v-spacer>
+                      <v-btn text color="primary" @click="menuHepatitis = false">
+                        Cancel
+                      </v-btn>
+                      <v-btn
+                        text
+                        color="primary"
+                        @click="$refs.menuHepatitis.save(occupationalHistory.hepatitisAt)"
+                      >
+                        OK
+                      </v-btn>
+                    </v-date-picker>
+                  </v-menu>
+                </v-col>
+                <v-col cols="3">
+                  <v-checkbox
+                    v-model="occupationalHistory.isMumps"
+                    label="Mumps"
+                    dense
+                  />
+                </v-col>
+                <v-col cols="3">
+                  <v-menu
+                    ref="menuMumps"
+                    v-model="menuMumps"
+                    :close-on-content-click="false"
+                    :return-value.sync="date"
+                    transition="scale-transition"
+                    offset-y
+                    min-width="auto"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field
+                        v-model="occupationalHistory.mumpsAt"
+                        label="Mumps Date"
+                        prepend-icon="mdi-calendar"
+                        readonly
+                        dense
+                        v-bind="attrs"
+                        v-on="on"
+                      ></v-text-field>
+                    </template>
+                    <v-date-picker
+                      v-model="occupationalHistory.mumpsAt"
+                      no-title
+                      scrollable
+                    >
+                      <v-spacer></v-spacer>
+                      <v-btn text color="primary" @click="menuMumps = false">
+                        Cancel
+                      </v-btn>
+                      <v-btn
+                        text
+                        color="primary"
+                        @click="$refs.menuMumps.save(occupationalHistory.mumpsAt)"
+                      >
+                        OK
+                      </v-btn>
+                    </v-date-picker>
+                  </v-menu>
+                </v-col>
+              </v-row>
+
+              <!--  -->
+              <v-row>
+                <v-col>
+                  <v-checkbox
+                    v-model="occupationalHistory.isRightHanded"
+                    label="Right Handed?"
+                    dense
+                  />
+                </v-col>
+                <v-col>
+                  <v-checkbox
+                    v-model="occupationalHistory.isLeftHanded"
+                    label="Left Handed?"
+                    dense
+                  />
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-checkbox
+                    v-model="occupationalHistory.isRadioactive"
+                    label="Have you ever worked with Radioactive Materials ?"
+                    dense
+                  />
+                </v-col>
+                
+              </v-row>
+              <v-row>
+                <v-col class="py-0 ">
+                  <v-checkbox
+                    v-model="occupationalHistory.isRefuseEmployment"
+                    label="Have you ever refused employment with BFP because of your Health / Other Reason ?"
+                    dense
+                  />
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col v-if="occupationalHistory.isRefuseEmployment" class="py-0 ">
+                  <v-text-field
+                    v-model="occupationalHistory.refuseEmploymentDetails"
+                    label="If yes, Give details :"
+                    dense
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-checkbox
+                    v-model="occupationalHistory.isSensitiveToChemical"
+                    label="Sensitive to Chemical , Dust , Sunlight ?"
+                    dense
+                  />
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-checkbox
+                    v-model="occupationalHistory.isInabilityAssumePosition"
+                    label="Inability to assume certain positions ?"
+                    dense
+                  />
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-checkbox
+                    v-model="occupationalHistory.isOtherMedicalReason"
+                    label="Other medical reasons ?"
+                    dense
+                  />
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col class="py-0">
+                  <v-checkbox
+                    v-model="occupationalHistory.isDisqualifiedFromWork"
+                    label="Have you ever been disqualified from work due to physical or mental reason ?"
+                    dense
+                  />
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col v-if="occupationalHistory.isDisqualifiedFromWork" class="py-0 ">
+                  <v-text-field
+                    v-model="occupationalHistory.disqualifiedWorkDetail"
+                    label="If Yes, Give reasons : "
+                    dense
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+
+              <v-row>
+                <v-col>
+                  <v-text-field
+                    v-model="occupationalHistory.numberOfJobsPastThreeYears"
+                    label="Number of Jobs in the Past Three Years ?"
+                    dense
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-text-field
+                    v-model="occupationalHistory.longestPeriodJob"
+                    label="Longest Period in Job ?"
+                    dense
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-text-field
+                    v-model="occupationalHistory.usualOccupation"
+                    label="What is your usual Occupation ?"
+                    dense
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+
+              <v-row>
+                <v-col class="py-0">
+                  <v-checkbox
+                    v-model="occupationalHistory.isConsultedByPhysician"
+                    label="Have you ever consulted/ been treated by Physician or other practitioners within the last 5 years?"
+                    dense
+                  />
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col v-if="occupationalHistory.isConsultedByPhysician" class="py-0 ">
+                  <v-text-field
+                    v-model="occupationalHistory.consultedPhysicianDetail"
+                    label="If Yes, Give Details and Data : "
+                    dense
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+
+              <v-row>
+                <v-col class="py-0">
+                  <v-checkbox
+                    v-model="occupationalHistory.hasSelfMedication"
+                    label="Have you tried Self Medications ?"
+                    dense
+                  />
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col v-if="occupationalHistory.hasSelfMedication" class="py-0 ">
+                  <v-text-field
+                    v-model="occupationalHistory.selfMedicationDetail"
+                    label="If Yes, Give Details : "
+                    dense
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+
+              <v-row>
+                <v-col class="py-0">
+                  <v-checkbox
+                    v-model="occupationalHistory.hasMentalComplaints"
+                    label="Have you had any Physical or Mental Complaints at presents ?"
+                    dense
+                  />
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col v-if="occupationalHistory.hasMentalComplaints" class="py-0 ">
+                  <v-text-field
+                    v-model="occupationalHistory.mentalComplaintsDetail"
+                    label="If Yes, Give Details : "
+                    dense
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+
+              <v-row>
+                <v-col class="">
+                  <v-checkbox
+                    v-model="occupationalHistory.isAppliedAtBFP"
+                    label="Have you ever Applied to BFP ?"
+                    dense
+                  />
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col v-if="occupationalHistory.isAppliedAtBFP " class="">
+                  <v-checkbox
+                    v-model="occupationalHistory.isExaminedByMedical"
+                    label="Have you been Examined by a Medical Officer"
+                    dense
+                  />
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col v-if="occupationalHistory.isAppliedAtBFP " class="">
+                  <v-menu
+                    ref="menuOfLastExam"
+                    v-model="menuOfLastExam"
+                    :close-on-content-click="false"
+                    :return-value.sync="date"
+                    transition="scale-transition"
+                    offset-y
+                    min-width="auto"
+                  >
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-text-field
+                        v-model="occupationalHistory.dateOfLastExamination"
+                        label="Date Of Last Examination"
+                        prepend-icon="mdi-calendar"
+                        readonly
+                        dense
+                        v-bind="attrs"
+                        v-on="on"
+                      ></v-text-field>
+                    </template>
+                    <v-date-picker
+                      v-model="occupationalHistory.dateOfLastExamination"
+                      no-title
+                      scrollable
+                    >
+                      <v-spacer></v-spacer>
+                      <v-btn text color="primary" @click="menuOfLastExam = false">
+                        Cancel
+                      </v-btn>
+                      <v-btn
+                        text
+                        color="primary"
+                        @click="$refs.menuOfLastExam.save(occupationalHistory.dateOfLastExamination)"
+                      >
+                        OK
+                      </v-btn>
+                    </v-date-picker>
+                  </v-menu>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-text-field
+                    v-model="occupationalHistory.neuropsychiatricExam"
+                    label="Neuropsychiatric Exam  "
+                    dense
+                  ></v-text-field>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col>
+                  <v-checkbox
+                    v-model="occupationalHistory.neuropsychiatricExamResult"
+                    label="Neuropsychiatric Exam Result (Check if Passed)"
+                    dense
+                  />
+                </v-col>
               </v-row>
             </div>
             <v-btn @click="submitHandler" color="primary">Submit</v-btn>
@@ -463,6 +1062,13 @@ export default {
   data: () => ({
     dialog: false,
     menu: false,
+    menuCholera: false,
+    menuInfluenza: false,
+    menuTetanus: false,
+    menuTyphoid: false,
+    menuHepatitis: false,
+    menuMumps: false,
+    menuOfLastExam: false,
     date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
       .toISOString()
       .substr(0, 10),
@@ -586,6 +1192,59 @@ export default {
       rectalDisease: false,
       diarrhea: false,
     },
+    occupationalHistory:{
+      isAdvised: true,
+      advisedAnswer: "",
+      isAccident: true,
+      accidentAnswer: "",
+      isHospitalized: true,
+      hospitalizedIn: "",
+      hospitalizedReason: "",
+
+      isCholera: false,
+      choleraAt: '',
+      isInfluenza: false,
+      fluenzaAt: '',
+      isTetanus: false,
+      tetanusAt: '',
+      isTyphoid: false,
+      typhoidAt: '',
+      isHepatitis: false,
+      hepatitisAt: '',
+      isMumps: false,
+      mumpsAt: '',
+
+
+      isRightHanded: false,
+      isLeftHanded: false,
+      isRadioactive: false,
+      isRefuseEmployment: true,
+
+      refuseEmploymentDetails: "",
+
+      isSensitiveToChemical: false,
+      isInabilityAssumePosition: false,
+      isOtherMedicalReason: false,
+
+      isDisqualifiedFromWork: true,
+      disqualifiedWorkDetail: "",
+
+      numberOfJobsPastThreeYears: "",
+      longestPeriodJob: "",
+      usualOccupation: "",
+      isConsultedByPhysician: true,
+      consultedPhysicianDetail: "",
+      hasSelfMedication: true,
+      selfMedicationDetail: "",
+      hasMentalComplaints: true,
+      mentalComplaintsDetail: "",
+      isAppliedAtBFP: true,
+      isExaminedByMedical: true,
+      dateOfLastExamination: "",
+      neuropsychiatricExam: "",
+      neuropsychiatricExamResult: "",
+
+    }
   }),
   methods: {
     ...mapActions(["updatePersonal", 'updateFamily']),

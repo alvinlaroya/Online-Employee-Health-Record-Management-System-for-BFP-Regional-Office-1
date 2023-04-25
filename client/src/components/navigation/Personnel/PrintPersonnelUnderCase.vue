@@ -3,7 +3,7 @@
     <v-dialog v-model="dialog" max-width="1200">
       <template v-slot:activator="{ on }">
         <v-btn v-on="on" tile>
-          <v-icon left> mdi-plus </v-icon>
+          <v-icon left> mdi-printer </v-icon>
           Print
         </v-btn>
       </template>

@@ -255,6 +255,22 @@
                   </v-menu>
                 </v-col> -->
               </v-row>
+              <v-row>
+                <v-col>
+                  <v-text-field
+                    v-model="dental.oralComplaint"
+                    label="Oral Complaint"
+                    dense
+                  ></v-text-field>
+                </v-col>
+                <v-col>
+                  <v-text-field
+                    v-model="dental.examiningDentist"
+                    label="Examining Dentist"
+                    dense
+                  ></v-text-field>
+                </v-col>
+              </v-row>
             </div>
             <v-btn @click="submitHandler" color="primary">Submit</v-btn>
           </v-form>

@@ -3,10 +3,11 @@
     <v-container>
       <v-row justify="end" class="pa-2">
         <PhysicalUpdate />
-        <v-btn v-print="'#print'" class="ml-3" small>print</v-btn>
+        <v-btn v-print="'#print'" class="ml-3" small >print</v-btn>
       </v-row>
     </v-container>
     <v-container id="print" class="px-8">
+      
       <v-row>
         <v-avatar size="150" class="mb-5" tile>
           <img :src="`http://localhost:8000/${personnelDetails.personnel.personnelImage}`" alt="John" style="object-fit: cover;">
@@ -121,6 +122,32 @@
           </div>
         </v-col>
       </v-row>
+      <v-row justify="center" align="center">
+        <v-col cols="6" >
+           <strong class="d-flex justify-center "> ______________________________</strong>
+           <v-divider></v-divider>
+          <small class="d-flex justify-center mt-1" >Signature of Personnel</small>
+        </v-col>
+        <v-col cols="6" >
+          <strong class="d-flex justify-center "> ______________________________</strong>
+          <v-divider></v-divider>
+          <small class="d-flex justify-center mt-1 text-underlined" >Name: (PRINT)</small>
+        </v-col>
+        
+      </v-row>
+      <v-row justify="center" align="center">
+        <v-col cols="46" >
+           <strong class="d-flex justify-center "> ______________________________</strong>
+           <v-divider></v-divider>
+          <small class="d-flex justify-center mt-1 " >Official Designation: MEDICAL OFFICER</small>
+        </v-col>
+        <v-col cols="46" >
+          <strong class="d-flex justify-center "> ______________________________</strong>
+          <v-divider></v-divider>
+          <small class="d-flex justify-center mt-1 text-underlined" >REG CERTIFICATE NO </small>
+        </v-col>
+        
+      </v-row>
     </v-container>
   </v-card>
 </template>
@@ -133,6 +160,7 @@ import PhysicalTable from "@/components/navigation/Personnel/Physical/PhysicalTa
 import PhysicalUpdate from "@/components/navigation/Personnel/Physical/PhysicalUpdate";
 export default {
   props: ["data"],
+
   components: {
     PhysicalTable,
     PhysicalUpdate,

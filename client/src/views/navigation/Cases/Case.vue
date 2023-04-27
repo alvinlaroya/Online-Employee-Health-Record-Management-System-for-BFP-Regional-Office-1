@@ -7,6 +7,7 @@
         <v-card-title>
           Personnels
           <v-spacer></v-spacer>
+          <PrintPersonnelData />
           <v-text-field
             v-model="search"
             append-icon="mdi-magnify"
@@ -15,6 +16,7 @@
             hide-details
           ></v-text-field>
         </v-card-title>
+
         <v-data-table
           :headers="headers"
           :items="items"
@@ -78,10 +80,12 @@ import DentalRecord from "@/components/navigation/Personnel/DentalRecord";
 import PhysicalExam from "@/components/navigation/Personnel/PhysicalExam";
 import PtNotes from "@/components/navigation/Personnel/PtNotes";
 import NeuroPsych from "@/components/navigation/Personnel/NeuroPsych";
+import PrintPersonnelData from "@/components/navigation/Personnel/PrintPersonnelUnderCase";
 
 export default {
   components: {
     ViewDetails,
+    PrintPersonnelData,
   },
   data: () => ({
     search: "",
@@ -125,7 +129,7 @@ export default {
       await this.viewDetails(item.personnelId);
       this.tab = 0;
       this.currentTab = "view-detail";
-      this.selectedItem = this.personnelDetails.personnel
+      this.selectedItem = this.personnelDetails.personnel;
       this.dialog = true;
     },
     close() {

@@ -24,9 +24,6 @@
         <v-col cols="2">
           <AddPersonnelData />
         </v-col>
-        <v-col cols="1">
-          <PrintPersonnelData />
-        </v-col>
       </v-row>
 
       <v-row>
@@ -39,13 +36,11 @@
 <script>
 import PersonnelData from "@/components/navigation/Personnel/PersonnelData";
 import AddPersonnelData from "@/components/navigation/Personnel/AddPersonnelData";
-import PrintPersonnelData from "@/components/navigation/Personnel/PrintPersonnelUnderCase";
 
 export default {
   components: {
     PersonnelData,
     AddPersonnelData,
-    PrintPersonnelData,
   },
   data: () => ({
     search: "",

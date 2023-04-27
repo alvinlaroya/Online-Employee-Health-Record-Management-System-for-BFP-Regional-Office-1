@@ -2,7 +2,7 @@
   <div>
     <v-dialog v-model="dialog" max-width="1200">
       <template v-slot:activator="{ on }">
-        <v-btn v-on="on" tile>
+        <v-btn v-on="on" tile style="margin-right: 20px; margin-bottom: -15px">
           <v-icon left> mdi-printer </v-icon>
           Print
         </v-btn>
@@ -27,7 +27,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for="(item, i) in personnels" :key="i">
+              <tr v-for="(item, i) in personnelCases" :key="i">
                 <td style="font-size: 10px">{{ item.accountNo }}</td>
                 <td style="font-size: 10px">{{ item.rank }}</td>
                 <td style="font-size: 10px">{{ item.lname }}</td>
@@ -75,7 +75,7 @@ export default {
   }),
 
   computed: {
-    ...mapGetters(["personnels"]),
+    ...mapGetters(["personnelCases"]),
   },
 };
 </script>

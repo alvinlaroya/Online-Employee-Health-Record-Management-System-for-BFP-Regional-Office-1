@@ -3,10 +3,13 @@
     <v-container>
       <v-row justify="end" class="pa-2">
         <PtNoteUpdate />
-        <v-btn  v-print="'#print'" class="ml-3" small>print</v-btn>
+        <v-btn  v-print="'#print'" class="ml-3" small @click="isPrint = true">print</v-btn>
       </v-row>
     </v-container>
     <v-container id="print" class="px-8">
+      <v-row v-if="isPrint" justify="center" align="center" class="mb-2">
+        <img height="190px" width="100%" :src="ptNoteHeader" style="border-radius: 1rem;">
+      </v-row>
       <v-row class="">
         <v-col class="px-0"> <h1>PT notes</h1></v-col>
       </v-row>
@@ -33,11 +36,11 @@
             <span class="body-2"> ADDRESS : </span>
             <strong> {{personnelDetails.personnel.address}} </strong>
             <span class="body-2 pl-5">MOBILE NO. : </span>
-            <strong>+639{{personnelDetails.personnel.mobile}}</strong>
+            <strong>+639{{personnelDetails.personnel.mobile}}&nbsp;</strong>
             <span class="body-2 pl-5">SEX : </span>
-            <strong>{{personnelDetails.personnel.gender}}</strong>
+            <strong>{{personnelDetails.personnel.gender}}&nbsp;</strong>
             <span class="body-2 pl-5">CIVIL STATUS : </span>
-            <strong> {{personnelDetails.personnel.civilStatus}}</strong>
+            <strong> {{personnelDetails.personnel.civilStatus}}&nbsp;</strong>
           </div>
         </v-col>
       </v-row>
@@ -355,6 +358,8 @@ export default {
   },
   
   data: () => ({
+    isPrint: false,
+    ptNoteHeader: require("@/assets/imported-images/Pt-Notes.jpg"),
     items: [
       {
         name: "Hypertension",

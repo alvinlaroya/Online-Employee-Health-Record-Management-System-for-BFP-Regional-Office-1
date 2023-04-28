@@ -39,6 +39,7 @@ export const login = async ({ commit }, payload) => {
       await EventService.getCurrentUser(response.data.id).then(
         async (currentResponse) => {
           commit(types.SET_AUTH_INFO, currentResponse.data.user);
+          commit(types.SET_USER_ROLES, currentResponse.data.roles);
         }
       );
       router.replace("/dashboard");

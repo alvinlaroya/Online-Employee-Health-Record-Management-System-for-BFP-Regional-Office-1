@@ -2,7 +2,7 @@
   <div>
     <v-dialog v-model="dialog" max-width="900">
       <template v-slot:activator="{ on }">
-        <v-btn v-on="on" tile small> Update </v-btn>
+        <v-btn v-if="updateNeuro" v-on="on" tile small> Update </v-btn>
       </template>
       <v-card>
         <v-card-title> Update Form </v-card-title>
@@ -44,7 +44,8 @@
 <script>
 import validateString from "@/_common/helpers/validateString.js";
 import { createNamespacedHelpers } from "vuex";
-const { mapGetters, mapActions } = createNamespacedHelpers('navigation')
+const { mapGetters, mapActions } = createNamespacedHelpers("navigation");
+const { mapGetters: mapAuthGetters } = createNamespacedHelpers("auth");
 
 export default {
   data: () => ({
@@ -56,16 +57,16 @@ export default {
     psych: {
       currentHealthCondition: "",
       historyOfMentalHealthCondition: "",
-      currentMentalHealthCondition: ""
-    }
+      currentMentalHealthCondition: "",
+    },
   }),
   methods: {
     ...mapActions(["updatePsych"]),
     async submitHandler() {
       await this.updatePsych({
         personnelId: this.personnelId,
-        data: this.psych
-      })
+        data: this.psych,
+      });
 
       this.dialog = false;
     },
@@ -75,13 +76,14 @@ export default {
   },
   computed: {
     ...mapGetters(["personnelDetails"]),
+    ...mapAuthGetters(["userRoles"]),
     personnelId() {
       return this.personnelDetails.personnel.id;
-    }
+    },
   },
   mounted() {
-    this.psych = this.personnelDetails.neuroPsych
-  }
+    this.psych = this.personnelDetails.neuroPsych;
+  },
 };
 </script>
 

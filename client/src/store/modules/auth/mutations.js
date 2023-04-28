@@ -1,4 +1,4 @@
-import { SET_AUTH_INFO, LOG_OUT, SET_ADDRESSES, SET_LOGIN_FAILED  } from '../../mutation-types'
+import { SET_AUTH_INFO, SET_USER_ROLES, LOG_OUT, SET_ADDRESSES, SET_LOGIN_FAILED } from '../../mutation-types'
 
 export default {
   [SET_ADDRESSES](state, data) {
@@ -7,6 +7,9 @@ export default {
   [SET_AUTH_INFO](state, data) {
     state.user = data
     state.loggedIn = true
+  },
+  [SET_USER_ROLES](state, data) {
+    state.roles = data
   },
   [LOG_OUT](state, data) {
     state.user = data;

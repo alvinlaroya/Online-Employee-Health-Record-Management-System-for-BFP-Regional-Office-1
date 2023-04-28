@@ -1,5 +1,6 @@
 // Media
 export const SET_AUTH_INFO = "SET_AUTH_INFO";
+export const SET_USER_ROLES = "SET_USER_ROLES";
 export const SET_LOGIN_FAILED = "SET_LOGIN_FAILED";
 export const SET_ALL_MEDIA = "SET_ALL_MEDIA";
 export const SET_COUNT = "SET_COUNT";

@@ -2,7 +2,9 @@
   <div>
     <v-dialog v-model="dialog" max-width="900">
       <template v-slot:activator="{ on }">
-        <v-btn v-on="on" tile small> Update </v-btn>
+        <v-btn v-if="userRoles.updatePtNotes" v-on="on" tile small>
+          Update
+        </v-btn>
       </template>
       <v-card>
         <v-card-title> Update Form </v-card-title>
@@ -451,6 +453,7 @@ import validateNumber from "@/_common/helpers/validateNumber.js";
 
 import { createNamespacedHelpers } from "vuex";
 const { mapActions, mapGetters } = createNamespacedHelpers("navigation");
+const { mapGetters: mapAuthGetters } = createNamespacedHelpers("auth");
 
 export default {
   data: () => ({
@@ -558,77 +561,77 @@ export default {
       {
         name: "Bathing",
         status: null,
-        label: 'Bathing'
+        label: "Bathing",
       },
       {
         name: "Toileting",
         status: null,
-        label: 'Toileting'
+        label: "Toileting",
       },
       {
         name: "eating",
         status: null,
-        label: 'Eating'
+        label: "Eating",
       },
       {
         name: "upperExtermityDressing",
         status: null,
-        label: 'Upper Extermity Dressing'
+        label: "Upper Extermity Dressing",
       },
       {
         name: "lowerExtremityDressing",
         status: null,
-        label: 'Lower Extremity Dressing'
+        label: "Lower Extremity Dressing",
       },
       {
         name: "bedMobility",
         status: null,
-        label: 'Bed Mobility'
+        label: "Bed Mobility",
       },
       {
         name: "scootTowardsHeadOfHead",
         status: null,
-        label: 'Scoot Towards Head Of Head'
+        label: "Scoot Towards Head Of Head",
       },
       {
         name: "scootTowardsFootOfHead",
         status: null,
-        label: 'Scoot Towards Foot Of Head'
+        label: "Scoot Towards Foot Of Head",
       },
       {
         name: "sideToSideScooting",
         status: null,
-        label: 'Side To Side Scooting'
+        label: "Side To Side Scooting",
       },
       {
         name: "supineToLongSitting",
         status: null,
-        label: 'Supine To Long Sitting'
+        label: "Supine To Long Sitting",
       },
       {
         name: "rolling",
         status: null,
-        label: 'Rolling'
+        label: "Rolling",
       },
       {
         name: "transfers",
         status: null,
-        label: 'Transfers'
+        label: "Transfers",
       },
       {
         name: "wheelchairToMat",
         status: null,
-        label: 'Wheel Chair To Mat'
+        label: "Wheel Chair To Mat",
       },
       {
         name: "bedToWheelchair",
         status: null,
-        label: 'Bed To Wheelchair'
+        label: "Bed To Wheelchair",
       },
       {
         name: "ambulation",
         status: null,
-        label: 'Ambulation'
+        label: "Ambulation",
       },
     ],
   }),
@@ -702,10 +705,10 @@ export default {
     validateNumber(e) {
       validateNumber(e, this.ptNoteData.mobile.length);
     },
-
   },
   computed: {
     ...mapGetters(["personnelDetails"]),
+    ...mapAuthGetters(["userRoles"]),
     personnelId() {
       return this.personnelDetails.personnel.id;
     },
@@ -716,5 +719,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

@@ -2,14 +2,15 @@
   <div>
     <v-dialog v-model="dialog" max-width="900">
       <template v-slot:activator="{ on }">
-        <v-btn v-on="on" tile small> Update </v-btn>
+        <v-btn v-if="userRoles.updateMedical" v-on="on" tile small>
+          Update
+        </v-btn>
       </template>
       <v-card>
         <v-card-title> Update Form </v-card-title>
         <v-card-text>
           <v-form @submit.prevent="submit">
             <div>
-              
               <v-row>
                 <v-col>
                   <small>Family History</small>
@@ -315,7 +316,6 @@
                     dense
                   ></v-text-field>
                 </v-col>
-                
               </v-row>
               <v-row>
                 <v-col cols="3">
@@ -539,7 +539,9 @@
                       <v-btn
                         text
                         color="primary"
-                        @click="$refs.menuCholera.save(occupationalHistory.choleraAt)"
+                        @click="
+                          $refs.menuCholera.save(occupationalHistory.choleraAt)
+                        "
                       >
                         OK
                       </v-btn>
@@ -580,13 +582,21 @@
                       scrollable
                     >
                       <v-spacer></v-spacer>
-                      <v-btn text color="primary" @click="menuInfluenza = false">
+                      <v-btn
+                        text
+                        color="primary"
+                        @click="menuInfluenza = false"
+                      >
                         Cancel
                       </v-btn>
                       <v-btn
                         text
                         color="primary"
-                        @click="$refs.menuInfluenza.save(occupationalHistory.influenzaAt)"
+                        @click="
+                          $refs.menuInfluenza.save(
+                            occupationalHistory.influenzaAt
+                          )
+                        "
                       >
                         OK
                       </v-btn>
@@ -635,7 +645,9 @@
                       <v-btn
                         text
                         color="primary"
-                        @click="$refs.menuTetanus.save(occupationalHistory.tetanusAt)"
+                        @click="
+                          $refs.menuTetanus.save(occupationalHistory.tetanusAt)
+                        "
                       >
                         OK
                       </v-btn>
@@ -683,7 +695,9 @@
                       <v-btn
                         text
                         color="primary"
-                        @click="$refs.menuTyphoid.save(occupationalHistory.typhoidAt)"
+                        @click="
+                          $refs.menuTyphoid.save(occupationalHistory.typhoidAt)
+                        "
                       >
                         OK
                       </v-btn>
@@ -727,13 +741,21 @@
                       scrollable
                     >
                       <v-spacer></v-spacer>
-                      <v-btn text color="primary" @click="menuHepatitis = false">
+                      <v-btn
+                        text
+                        color="primary"
+                        @click="menuHepatitis = false"
+                      >
                         Cancel
                       </v-btn>
                       <v-btn
                         text
                         color="primary"
-                        @click="$refs.menuHepatitis.save(occupationalHistory.hepatitisAt)"
+                        @click="
+                          $refs.menuHepatitis.save(
+                            occupationalHistory.hepatitisAt
+                          )
+                        "
                       >
                         OK
                       </v-btn>
@@ -780,7 +802,9 @@
                       <v-btn
                         text
                         color="primary"
-                        @click="$refs.menuMumps.save(occupationalHistory.mumpsAt)"
+                        @click="
+                          $refs.menuMumps.save(occupationalHistory.mumpsAt)
+                        "
                       >
                         OK
                       </v-btn>
@@ -814,10 +838,9 @@
                     dense
                   />
                 </v-col>
-                
               </v-row>
               <v-row>
-                <v-col class="py-0 ">
+                <v-col class="py-0">
                   <v-checkbox
                     v-model="occupationalHistory.isRefuseEmployment"
                     label="Have you ever refused employment with BFP because of your Health / Other Reason ?"
@@ -826,7 +849,10 @@
                 </v-col>
               </v-row>
               <v-row>
-                <v-col v-if="occupationalHistory.isRefuseEmployment" class="py-0 ">
+                <v-col
+                  v-if="occupationalHistory.isRefuseEmployment"
+                  class="py-0"
+                >
                   <v-text-field
                     v-model="occupationalHistory.refuseEmploymentDetails"
                     label="If yes, Give details :"
@@ -871,7 +897,10 @@
                 </v-col>
               </v-row>
               <v-row>
-                <v-col v-if="occupationalHistory.isDisqualifiedFromWork" class="py-0 ">
+                <v-col
+                  v-if="occupationalHistory.isDisqualifiedFromWork"
+                  class="py-0"
+                >
                   <v-text-field
                     v-model="occupationalHistory.disqualifiedWorkDetail"
                     label="If Yes, Give reasons : "
@@ -918,7 +947,10 @@
                 </v-col>
               </v-row>
               <v-row>
-                <v-col v-if="occupationalHistory.isConsultedByPhysician" class="py-0 ">
+                <v-col
+                  v-if="occupationalHistory.isConsultedByPhysician"
+                  class="py-0"
+                >
                   <v-text-field
                     v-model="occupationalHistory.consultedPhysicianDetail"
                     label="If Yes, Give Details and Data : "
@@ -937,7 +969,10 @@
                 </v-col>
               </v-row>
               <v-row>
-                <v-col v-if="occupationalHistory.hasSelfMedication" class="py-0 ">
+                <v-col
+                  v-if="occupationalHistory.hasSelfMedication"
+                  class="py-0"
+                >
                   <v-text-field
                     v-model="occupationalHistory.selfMedicationDetail"
                     label="If Yes, Give Details : "
@@ -956,7 +991,10 @@
                 </v-col>
               </v-row>
               <v-row>
-                <v-col v-if="occupationalHistory.hasMentalComplaints" class="py-0 ">
+                <v-col
+                  v-if="occupationalHistory.hasMentalComplaints"
+                  class="py-0"
+                >
                   <v-text-field
                     v-model="occupationalHistory.mentalComplaintsDetail"
                     label="If Yes, Give Details : "
@@ -975,7 +1013,7 @@
                 </v-col>
               </v-row>
               <v-row>
-                <v-col v-if="occupationalHistory.isAppliedAtBFP " class="">
+                <v-col v-if="occupationalHistory.isAppliedAtBFP" class="">
                   <v-checkbox
                     v-model="occupationalHistory.isExaminedByMedical"
                     label="Have you been Examined by a Medical Officer"
@@ -984,7 +1022,7 @@
                 </v-col>
               </v-row>
               <v-row>
-                <v-col v-if="occupationalHistory.isAppliedAtBFP " class="">
+                <v-col v-if="occupationalHistory.isAppliedAtBFP" class="">
                   <v-menu
                     ref="menuOfLastExam"
                     v-model="menuOfLastExam"
@@ -1011,13 +1049,21 @@
                       scrollable
                     >
                       <v-spacer></v-spacer>
-                      <v-btn text color="primary" @click="menuOfLastExam = false">
+                      <v-btn
+                        text
+                        color="primary"
+                        @click="menuOfLastExam = false"
+                      >
                         Cancel
                       </v-btn>
                       <v-btn
                         text
                         color="primary"
-                        @click="$refs.menuOfLastExam.save(occupationalHistory.dateOfLastExamination)"
+                        @click="
+                          $refs.menuOfLastExam.save(
+                            occupationalHistory.dateOfLastExamination
+                          )
+                        "
                       >
                         OK
                       </v-btn>
@@ -1057,6 +1103,7 @@
 import validateString from "@/_common/helpers/validateString.js";
 import { createNamespacedHelpers } from "vuex";
 const { mapGetters, mapActions } = createNamespacedHelpers("navigation");
+const { mapGetters: mapAuthGetters } = createNamespacedHelpers("auth");
 
 export default {
   data: () => ({
@@ -1075,45 +1122,45 @@ export default {
 
     familyHistory: {
       fatherName: "",
-      fatherAge: '',
+      fatherAge: "",
       fatherStateOfHealth: "",
       fatherCauseOfDeath: "",
       motherName: "",
-      motherAge: '',
+      motherAge: "",
       motherStateOfHealth: "",
       motherCauseOfDeath: "",
       spouseName: "",
-      spouseAge: '',
+      spouseAge: "",
       spouseStateOfHealth: "",
       spouseCauseOfDeath: "",
 
       brother1Name: "",
-      brother1Age: '',
+      brother1Age: "",
       brother1StateOfHealth: "",
       brother1CauseOfDeath: "",
 
       brother2Name: "",
-      brother2Age: '',
+      brother2Age: "",
       brother2StateOfHealth: "",
       brother2CauseOfDeath: "",
 
       sister1Name: "",
-      sister1Age: '',
+      sister1Age: "",
       sister1StateOfHealth: "",
       sister1CauseOfDeath: "",
 
       sister2Name: "",
-      sister2Age: '',
+      sister2Age: "",
       sister2StateOfHealth: "",
       sister2CauseOfDeath: "",
 
       children1Name: "",
-      children1Age: '',
+      children1Age: "",
       children1StateOfHealth: "",
       children1CauseOfDeath: "",
 
       children2Name: "",
-      children2Age: '',
+      children2Age: "",
       children2StateOfHealth: "",
       children2CauseOfDeath: "",
 
@@ -1192,7 +1239,7 @@ export default {
       rectalDisease: false,
       diarrhea: false,
     },
-    occupationalHistory:{
+    occupationalHistory: {
       isAdvised: true,
       advisedAnswer: "",
       isAccident: true,
@@ -1202,18 +1249,17 @@ export default {
       hospitalizedReason: "",
 
       isCholera: false,
-      choleraAt: '',
+      choleraAt: "",
       isInfluenza: false,
-      fluenzaAt: '',
+      fluenzaAt: "",
       isTetanus: false,
-      tetanusAt: '',
+      tetanusAt: "",
       isTyphoid: false,
-      typhoidAt: '',
+      typhoidAt: "",
       isHepatitis: false,
-      hepatitisAt: '',
+      hepatitisAt: "",
       isMumps: false,
-      mumpsAt: '',
-
+      mumpsAt: "",
 
       isRightHanded: false,
       isLeftHanded: false,
@@ -1243,11 +1289,10 @@ export default {
       dateOfLastExamination: "",
       neuropsychiatricExam: "",
       neuropsychiatricExamResult: "",
-
-    }
+    },
   }),
   methods: {
-    ...mapActions(["updatePersonal", 'updateFamily']),
+    ...mapActions(["updatePersonal", "updateFamily"]),
     async submitHandler() {
       await this.updateFamily({
         personnelId: this.personnelId,
@@ -1274,13 +1319,16 @@ export default {
   },
   computed: {
     ...mapGetters(["personnelDetails"]),
+    ...mapAuthGetters(["userRoles"]),
     personnelId() {
       return this.personnelDetails.personnel.id;
     },
   },
   mounted() {
-    this.familyHistory = this.personnelDetails.medicalRecord.medicalFamilyHistory
-    this.personalHistory = this.personnelDetails.medicalRecord.medicalPersonalHistory
+    this.familyHistory =
+      this.personnelDetails.medicalRecord.medicalFamilyHistory;
+    this.personalHistory =
+      this.personnelDetails.medicalRecord.medicalPersonalHistory;
     delete this.personalHistory.id;
     delete this.personalHistory.personnelId;
     delete this.personalHistory.accountNo;
@@ -1294,9 +1342,10 @@ export default {
     delete this.personalHistory.mobile;
     delete this.personalHistory.civilStatus;
     delete this.personalHistory.gender;
-  }
+    delete this.personalHistory.createdAt;
+    delete this.personalHistory.updatedAt;
+  },
 };
 </script>
 
-<style>
-</style>
+<style></style>

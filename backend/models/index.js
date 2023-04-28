@@ -29,6 +29,7 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
+db.rolesAndPermission = require("./rolesAndPermission")(sequelize, DataTypes);
 db.users = require("./user")(sequelize, DataTypes);
 db.peronnels = require("./personnel")(sequelize, DataTypes);
 db.physicalExaminations = require("./physicalExamination")(sequelize, DataTypes);

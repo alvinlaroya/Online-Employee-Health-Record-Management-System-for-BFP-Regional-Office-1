@@ -13,9 +13,12 @@ const vonage = new Vonage({
 
 // MODEL
 const User = db.users;
+const RolesAndPermission = db.rolesAndPermission;
 
 // CREATE CASE
 const registerUser = async (req, res) => {
+  const { user, roles } = req.body;
+
   const {
     fname,
     mname,
@@ -26,7 +29,7 @@ const registerUser = async (req, res) => {
     birthDate,
     position,
     phone,
-  } = req.body;
+  } = user;
 
   let param = {
     fname,
@@ -43,8 +46,12 @@ const registerUser = async (req, res) => {
     hasUpdate: 0,
   };
 
-  const user = await User.create(param);
-  res.status(200).send(user);
+  const responseUser = await User.create(param);
+  await RolesAndPermission.create({
+    ...roles,
+    personnelId: responseUser.dataValues.id
+  })
+  res.status(200).send(responseUser);
 };
 
 const authenticateUserWithemail = async (req, res) => {
@@ -85,7 +92,7 @@ const authenticateUserWithemail = async (req, res) => {
 };
 
 const getAuthenticatedUser = async (req, res) => {
-  await User.findOne({
+  const userResponse = await User.findOne({
     where: {
       id: req.body.id, // user email
     },
@@ -100,11 +107,18 @@ const getAuthenticatedUser = async (req, res) => {
       "status",
       "hasUpdate",
     ],
-  }).then(async (response) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.json({
-      user: response.dataValues,
-    });
+  });
+
+  const rolesResponse = await RolesAndPermission.findOne({
+    where: {
+      personnelId: req.body.id, // user email
+    }
+  });
+
+  res.header("Access-Control-Allow-Origin", "*");
+  res.json({
+    user: userResponse.dataValues,
+    roles: rolesResponse
   });
 };
 

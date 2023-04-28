@@ -2,14 +2,15 @@
   <div>
     <v-dialog v-model="dialog" max-width="900">
       <template v-slot:activator="{ on }">
-        <v-btn v-on="on" tile small> Update </v-btn>
+        <v-btn v-if="userRoles.updateDental" v-on="on" tile small>
+          Update
+        </v-btn>
       </template>
       <v-card>
         <v-card-title> Update Form </v-card-title>
         <v-card-text>
           <v-form @submit.prevent="submit">
             <div>
-              
               <v-row>
                 <v-col cols="3">
                   <v-checkbox
@@ -39,11 +40,7 @@
                         v-on="on"
                       ></v-text-field>
                     </template>
-                    <v-date-picker
-                      v-model="initialDate"
-                      no-title
-                      scrollable
-                    >
+                    <v-date-picker v-model="initialDate" no-title scrollable>
                       <v-spacer></v-spacer>
                       <v-btn text color="primary" @click="menu1 = false">
                         Cancel
@@ -88,11 +85,7 @@
                         v-on="on"
                       ></v-text-field>
                     </template>
-                    <v-date-picker
-                      v-model="trainingDate"
-                      no-title
-                      scrollable
-                    >
+                    <v-date-picker v-model="trainingDate" no-title scrollable>
                       <v-spacer></v-spacer>
                       <v-btn text color="primary" @click="menu2 = false">
                         Cancel
@@ -137,11 +130,7 @@
                         v-on="on"
                       ></v-text-field>
                     </template>
-                    <v-date-picker
-                      v-model="promotionDate"
-                      no-title
-                      scrollable
-                    >
+                    <v-date-picker v-model="promotionDate" no-title scrollable>
                       <v-spacer></v-spacer>
                       <v-btn text color="primary" @click="menu4 = false">
                         Cancel
@@ -288,6 +277,7 @@ import validateNumber from "@/_common/helpers/validateNumber.js";
 
 import { createNamespacedHelpers } from "vuex";
 const { mapGetters, mapActions } = createNamespacedHelpers("navigation");
+const { mapGetters: mapAuthGetters } = createNamespacedHelpers("auth");
 
 export default {
   data: () => ({
@@ -344,52 +334,52 @@ export default {
   },
   computed: {
     ...mapGetters(["personnelDetails"]),
+    ...mapAuthGetters(["userRoles"]),
     personnelId() {
       return this.personnelDetails.personnel.id;
     },
     promotionDate: {
       get() {
         if (this.dental.promotionDate) {
-          return this.dental.promotionDate.substr(0, 10)
+          return this.dental.promotionDate.substr(0, 10);
         } else {
-          return ''
+          return "";
         }
       },
       set(value) {
-        this.dental.promotionDate = value
-      }
+        this.dental.promotionDate = value;
+      },
     },
     initialDate: {
       get() {
         if (this.dental.initialDate) {
-          return this.dental.initialDate.substr(0, 10)
+          return this.dental.initialDate.substr(0, 10);
         } else {
-          return ''
+          return "";
         }
       },
       set(value) {
-        this.dental.initialDate = value
-      }
+        this.dental.initialDate = value;
+      },
     },
     trainingDate: {
       get() {
         if (this.dental.trainingDate) {
-          return this.dental.trainingDate.substr(0, 10)
+          return this.dental.trainingDate.substr(0, 10);
         } else {
-          return ''
+          return "";
         }
       },
       set(value) {
-        this.dental.trainingDate = value
-      }
+        this.dental.trainingDate = value;
+      },
     },
   },
 
   mounted() {
-    this.dental = this.personnelDetails.dental
-  }
+    this.dental = this.personnelDetails.dental;
+  },
 };
 </script>
 
-<style>
-</style>
+<style></style>

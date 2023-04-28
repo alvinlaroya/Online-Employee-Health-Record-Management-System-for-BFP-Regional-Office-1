@@ -161,6 +161,126 @@
                     ></v-text-field>
                   </v-col>
                 </v-row>
+                <v-row class="my-2 text-left pa-3">
+                  <v-col>
+                    <span>Roles and Permissions</span>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    class="my-1"
+                    style="border: 1px solid gray; border-radius: 5px"
+                  >
+                    <span style="font-size: 11px"
+                      >Medical Record Permission</span
+                    >
+                    <v-row>
+                      <v-col cols="6">
+                        <v-switch
+                          v-model="roles.viewMedical"
+                          label="View Medical History"
+                        ></v-switch>
+                      </v-col>
+                      <v-col cols="6">
+                        <v-switch
+                          v-model="roles.updateMedical"
+                          label="Update Medical History"
+                        ></v-switch>
+                      </v-col>
+                    </v-row>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    class="my-1"
+                    style="border: 1px solid gray; border-radius: 5px"
+                  >
+                    <span style="font-size: 11px"
+                      >Dental Record Permission</span
+                    >
+                    <v-row>
+                      <v-col cols="6">
+                        <v-switch
+                          v-model="roles.viewDental"
+                          label="View Dental History"
+                        ></v-switch>
+                      </v-col>
+                      <v-col cols="6">
+                        <v-switch
+                          v-model="roles.updateDental"
+                          label="Update Dental History"
+                        ></v-switch>
+                      </v-col>
+                    </v-row>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    class="my-1"
+                    style="border: 1px solid gray; border-radius: 5px"
+                  >
+                    <span style="font-size: 11px"
+                      >Physical Exam Record Permission</span
+                    >
+                    <v-row>
+                      <v-col cols="6">
+                        <v-switch
+                          v-model="roles.viewPhysical"
+                          label="View Dental History"
+                        ></v-switch>
+                      </v-col>
+                      <v-col cols="6">
+                        <v-switch
+                          v-model="roles.updatePhysical"
+                          label="Update Dental History"
+                        ></v-switch>
+                      </v-col>
+                    </v-row>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    class="my-1"
+                    style="border: 1px solid gray; border-radius: 5px"
+                  >
+                    <span style="font-size: 11px"
+                      >PT Notes Record Permission</span
+                    >
+                    <v-row>
+                      <v-col cols="6">
+                        <v-switch
+                          v-model="roles.viewPtNotes"
+                          label="View Dental History"
+                        ></v-switch>
+                      </v-col>
+                      <v-col cols="6">
+                        <v-switch
+                          v-model="roles.updatePtNotes"
+                          label="Update Dental History"
+                        ></v-switch>
+                      </v-col>
+                    </v-row>
+                  </v-col>
+                  <v-col
+                    cols="12"
+                    class="my-1"
+                    style="border: 1px solid gray; border-radius: 5px"
+                  >
+                    <span style="font-size: 11px"
+                      >Neuro Psych Record Permission</span
+                    >
+                    <v-row>
+                      <v-col cols="6">
+                        <v-switch
+                          v-model="roles.viewNeuro"
+                          label="View Dental History"
+                        ></v-switch>
+                      </v-col>
+                      <v-col cols="6">
+                        <v-switch
+                          v-model="roles.updateNeuro"
+                          label="Update Dental History"
+                        ></v-switch>
+                      </v-col>
+                    </v-row>
+                  </v-col>
+                </v-row>
                 <v-btn tile color="success" block large @click="validate">
                   <v-icon left> mdi-account-plus-outline </v-icon>
                   Register
@@ -216,6 +336,18 @@ export default {
       position: "",
       phone: "",
     },
+    roles: {
+      viewMedical: false,
+      updateMedical: false,
+      viewDental: false,
+      updateDental: false,
+      viewPhysical: false,
+      updatePhysical: false,
+      viewPtNotes: false,
+      updatePtNotes: false,
+      viewNeuro: false,
+      updateNeuro: false,
+    },
     fnameRules: [(v) => !!v || "First name is required"],
     mnameRules: [(v) => !!v || "Middle name is required"],
     lnameRules: [(v) => !!v || "Last name is required"],
@@ -238,7 +370,10 @@ export default {
     validate() {
       const valid = this.$refs.form.validate();
       if (valid) {
-        this.register(this.user);
+        this.register({
+          user: this.user,
+          roles: this.roles,
+        });
         this.$refs.form.reset();
         this.snackbar = true;
         this.text = "Account Successfully Created";

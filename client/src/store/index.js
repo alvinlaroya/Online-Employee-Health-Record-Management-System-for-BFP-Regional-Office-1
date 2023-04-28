@@ -7,7 +7,7 @@ import Auth from "./modules/auth";
 import Dashboard from "./modules/navigation/dashboard";
 
 const dataState = createPersistedState({
-  paths: ["auth.auth.user", "auth.auth.loggedIn"],
+  paths: ["auth.auth.user", "auth.auth.loggedIn", "auth.auth.roles"],
 });
 
 export default new Vuex.Store({

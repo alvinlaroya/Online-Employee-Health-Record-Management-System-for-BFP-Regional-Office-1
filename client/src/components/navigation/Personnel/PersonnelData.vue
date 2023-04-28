@@ -1,10 +1,19 @@
 <template>
   <div class="w-100">
-    <v-data-table :headers="headers" :items="personnels" :items-per-page="20" :search="search"
-      class="elevation-1 no-wrap">
+    <v-data-table
+      :headers="headers"
+      :items="personnels"
+      :items-per-page="20"
+      :search="search"
+      class="elevation-1 no-wrap"
+    >
       <template v-slot:item.photo="{ item }">
         <v-avatar size="40">
-          <img :src="renderPhoto(item.personnelImage)" alt="John" style="object-fit: cover;">
+          <img
+            :src="renderPhoto(item.personnelImage)"
+            alt="John"
+            style="object-fit: cover"
+          />
         </v-avatar>
       </template>
       <template v-slot:item.mobile="{ item }">
@@ -13,11 +22,17 @@
       <template v-slot:item.action="{ item }">
         <v-menu offset-y>
           <template v-slot:activator="{ on }">
-            <v-icon small class="mr-5 cursor-pointer" @click="openDialog(item)">mdi-file-eye-outline</v-icon>
+            <v-icon small class="mr-5 cursor-pointer" @click="openDialog(item)"
+              >mdi-file-eye-outline</v-icon
+            >
             <v-icon small v-on="on">mdi-dots-vertical</v-icon>
           </template>
           <v-list dense>
-            <v-list-item v-for="(option, i) in options" :key="option.title" @click="open(item, option, i)">
+            <v-list-item
+              v-for="(option, i) in options"
+              :key="option.title"
+              @click="open(item, option, i)"
+            >
               <v-list-item-title>
                 {{ option.title }}
               </v-list-item-title>
@@ -27,12 +42,20 @@
       </template>
     </v-data-table>
     <v-row justify="center">
-      <v-dialog v-model="dialog" width="70vw" transition="dialog-bottom-transition">
+      <v-dialog
+        v-model="dialog"
+        width="70vw"
+        transition="dialog-bottom-transition"
+      >
         <v-card style="min-height: 80vh">
           <v-toolbar dense>
             <v-tabs v-model="tab">
-              <v-tab v-for="(item, i) in Object.keys(component)" :key="i" @click="[(tab = i), (currentTab = item)]">{{
-                item.replaceAll("-", " ") }}</v-tab>
+              <v-tab
+                v-for="(item, i) in Object.keys(component)"
+                :key="i"
+                @click="[(tab = i), (currentTab = item)]"
+                >{{ item.replaceAll("-", " ") }}</v-tab
+              >
             </v-tabs>
             <v-spacer></v-spacer>
             <v-btn icon @click="close">
@@ -40,7 +63,11 @@
             </v-btn>
           </v-toolbar>
           <keep-alive>
-            <component :is="component[currentTab]" :data="selectedItem" :dialogVisible="dialog" />
+            <component
+              :is="component[currentTab]"
+              :data="selectedItem"
+              :dialogVisible="dialog"
+            />
           </keep-alive>
         </v-card>
       </v-dialog>
@@ -50,6 +77,7 @@
 <script>
 import { createNamespacedHelpers } from "vuex";
 const { mapActions, mapGetters } = createNamespacedHelpers("navigation");
+const { mapGetters: mapAuthGetters } = createNamespacedHelpers("auth");
 
 // components
 import ViewDetails from "@/components/navigation/Personnel/ViewDetails";
@@ -64,14 +92,6 @@ export default {
     ViewDetails,
   },
   data: () => ({
-    component: {
-      "view-detail": ViewDetails,
-      "medical-profile": MedicalProfile,
-      "dental-record": DentalRecord,
-      "physical-exam": PhysicalExam,
-      "pt-notes": PtNotes,
-      "neuro-psych": NeuroPsych,
-    },
     tab: 0,
     /* tabs: [
       "view-detail",
@@ -121,9 +141,9 @@ export default {
   methods: {
     ...mapActions(["getPersonnels", "viewDetails"]),
     renderPhoto(src) {
-      if(src) return `http://localhost:8000/${src}`
+      if (src) return `http://localhost:8000/${src}`;
 
-      return "https://png.pngitem.com/pimgs/s/137-1370051_avatar-generic-avatar-hd-png-download.png"
+      return "https://png.pngitem.com/pimgs/s/137-1370051_avatar-generic-avatar-hd-png-download.png";
     },
     async open(item, option, i) {
       await this.viewDetails(item.id);
@@ -147,6 +167,29 @@ export default {
   },
   computed: {
     ...mapGetters(["personnels"]),
+    ...mapAuthGetters(["userRoles"]),
+    component() {
+      let views = {
+        "view-detail": ViewDetails,
+      };
+      if (this.userRoles.viewMedical) {
+        views = { ...views, "medical-profile": MedicalProfile };
+      }
+      if (this.userRoles.viewDental) {
+        views = { ...views, "dental-record": DentalRecord };
+      }
+      if (this.userRoles.viewPhysical) {
+        views = { ...views, "physical-exam": PhysicalExam };
+      }
+      if (this.userRoles.viewPtNotes) {
+        views = { ...views, "pt-notes": PtNotes };
+      }
+      if (this.userRoles.viewNeuro) {
+        views = { ...views, "neuro-psych": NeuroPsych };
+      }
+
+      return views;
+    },
   },
   created() {
     this.getPersonnels({

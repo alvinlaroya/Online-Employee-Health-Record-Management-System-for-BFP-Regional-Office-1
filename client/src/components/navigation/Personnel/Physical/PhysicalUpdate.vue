@@ -2,7 +2,7 @@
   <div>
     <v-dialog v-model="dialog" max-width="900">
       <template v-slot:activator="{ on }">
-        <v-btn v-on="on" tile small> Update </v-btn>
+        <v-btn v-if="updatePhysical" v-on="on" tile small> Update </v-btn>
       </template>
       <v-card>
         <v-card-title> Update Form </v-card-title>
@@ -43,7 +43,6 @@
                       no-title
                       scrollable
                     >
-
                     </v-date-picker>
                   </v-menu>
                 </v-col>
@@ -53,7 +52,6 @@
           </v-form>
         </v-card-text>
       </v-card>
-     
     </v-dialog>
   </div>
 </template>
@@ -65,6 +63,7 @@ import validateNumber from "@/_common/helpers/validateNumber.js";
 
 import { createNamespacedHelpers } from "vuex";
 const { mapGetters, mapActions } = createNamespacedHelpers("navigation");
+const { mapGetters: mapAuthGetters } = createNamespacedHelpers("auth");
 
 export default {
   data: () => ({
@@ -74,7 +73,6 @@ export default {
       .toISOString()
       .substr(0, 10),
     physicalData: {
-      
       height: "",
       weight: "",
       build: "",
@@ -149,15 +147,15 @@ export default {
   },
   computed: {
     ...mapGetters(["personnelDetails"]),
+    ...mapAuthGetters(["userRoles"]),
     personnelId() {
       return this.personnelDetails.personnel.id;
     },
   },
   mounted() {
-    this.physicalExamination = this.personnelDetails.physicalExamination
-  }
+    this.physicalExamination = this.personnelDetails.physicalExamination;
+  },
 };
 </script>
 
-<style>
-</style>
+<style></style>

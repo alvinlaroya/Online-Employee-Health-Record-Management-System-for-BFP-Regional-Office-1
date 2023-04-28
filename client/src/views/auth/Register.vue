@@ -223,13 +223,13 @@
                       <v-col cols="6">
                         <v-switch
                           v-model="roles.viewPhysical"
-                          label="View Dental History"
+                          label="View Physical Exam History"
                         ></v-switch>
                       </v-col>
                       <v-col cols="6">
                         <v-switch
                           v-model="roles.updatePhysical"
-                          label="Update Dental History"
+                          label="Update Physical Exam History"
                         ></v-switch>
                       </v-col>
                     </v-row>
@@ -246,13 +246,13 @@
                       <v-col cols="6">
                         <v-switch
                           v-model="roles.viewPtNotes"
-                          label="View Dental History"
+                          label="View PT Notes History"
                         ></v-switch>
                       </v-col>
                       <v-col cols="6">
                         <v-switch
                           v-model="roles.updatePtNotes"
-                          label="Update Dental History"
+                          label="Update PT Notes History"
                         ></v-switch>
                       </v-col>
                     </v-row>
@@ -269,13 +269,13 @@
                       <v-col cols="6">
                         <v-switch
                           v-model="roles.viewNeuro"
-                          label="View Dental History"
+                          label="View Neuro Psych History"
                         ></v-switch>
                       </v-col>
                       <v-col cols="6">
                         <v-switch
                           v-model="roles.updateNeuro"
-                          label="Update Dental History"
+                          label="Update Neuro Psych History"
                         ></v-switch>
                       </v-col>
                     </v-row>

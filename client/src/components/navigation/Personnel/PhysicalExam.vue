@@ -8,11 +8,14 @@
     </v-container>
     <v-container id="print" class="px-8">
       
-      <v-row>
+      <!-- <v-row>
         <v-avatar size="150" class="mb-5" tile>
           <img :src="`http://localhost:8000/${personnelDetails.personnel.personnelImage}`" alt="John" style="object-fit: cover;">
         </v-avatar>
-      </v-row>
+      </v-row> -->
+      <div style="display: flex; justify-content: center; align-items: center; width: 100%; margin-bottom: 2rem">
+        <h3>REPORT OF PHYSICAL EXAMINATION</h3>
+      </div>
       <v-row justify="space-between">
         <v-col class="pa-0">
           <div class="">
@@ -41,7 +44,7 @@
             <span class="body-2"> SEX : </span>
             <strong> {{ personnelDetails.personnel.gender }}</strong>
             <span class="body-2 pl-5"> CIVIL STATUS : </span>
-            <strong>{{ personnelDetails.personnel.civilStatus }}</strong>
+            <strong>{{ personnelDetails.personnel.civilStatus }} </strong>
             <span class="body-2 pl-5"> AGE : </span>
             <strong> {{ birthDate | computeAge }}</strong>
             <span class="body-2 pl-5"> MOBILE NO. : </span>
@@ -124,26 +127,26 @@
       </v-row>
       <v-row justify="center" align="center">
         <v-col cols="6" >
-           <strong v-if="isPrint" class="d-flex justify-center "> ______________________________</strong>
-           <v-divider></v-divider>
+           <strong v-if="isPrint" class="d-flex justify-center "> &nbsp;</strong>
+           <v-divider style="border-bottom: 1px solid black;"></v-divider>
           <small class="d-flex justify-center mt-1" >Signature of Personnel</small>
         </v-col>
         <v-col cols="6" >
-          <strong  v-if="isPrint" class="d-flex justify-center "> ______________________________</strong>
-          <v-divider></v-divider>
+          <strong  v-if="isPrint" class="d-flex justify-center "> &nbsp;</strong>
+          <v-divider style="border-bottom: 1px solid black;"></v-divider>
           <small class="d-flex justify-center mt-1 text-underlined" >Name: (PRINT)</small>
         </v-col>
         
       </v-row>
       <v-row justify="center" align="center">
         <v-col cols="46" >
-           <strong  v-if="isPrint" class="d-flex justify-center "> ______________________________</strong>
-           <v-divider></v-divider>
+           <strong  v-if="isPrint" class="d-flex justify-center "> &nbsp;</strong>
+           <v-divider style="border-bottom: 1px solid black;"></v-divider>
           <small class="d-flex justify-center mt-1 " >Official Designation: MEDICAL OFFICER</small>
         </v-col>
         <v-col cols="46" >
-          <strong  v-if="isPrint" class="d-flex justify-center "> ______________________________</strong>
-          <v-divider></v-divider>
+          <strong  v-if="isPrint" class="d-flex justify-center ">&nbsp;</strong>
+          <v-divider style="border-bottom: 1px solid black;"></v-divider>
           <small class="d-flex justify-center mt-1 text-underlined" >REG CERTIFICATE NO </small>
         </v-col>
         

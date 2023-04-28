@@ -7,10 +7,37 @@
       </v-row>
     </v-container>
     <v-container id="print" class="px-8">
-      <v-row v-if="isPrint" justify="center" align="center" class="mb-2">
-        <img height="190px" width="100%" :src="dentalHeader" style="border-radius: 1rem;">
-      </v-row>
-      <v-row>
+      <div style="display: flex; flex-direction: row; justify-content: space-evenly; align-items: center;  margin-bottom: 3rem;">
+        <div >
+          <v-avatar size="130" class="mb-5" tile>
+          <img
+            :src="dental1"
+            alt="dental-logo-left"
+            style="object-fit: cover;"
+          />
+        </v-avatar>
+        </div>
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+          <span>Republic of the Philippines</span>
+          <span>Department of the Interior and Local Government</span>
+          <strong>BUREAU OF FIRE PROTECTION</strong>
+          <strong>REGIONAL OFFICE 1</strong>
+          <span>Patac, Sto. Tomas, La Union</span>
+          <span>Contact Number: 09178404942</span>
+          <span>Email: bfpr1opndiv@yahoo.com</span>
+        </div>
+        <div >
+          <v-avatar size="130" class="mb-5" tile>
+          <img
+            :src="dental2"
+            alt="dental-logo-right"
+            style="object-fit: cover;"
+          />
+        </v-avatar>
+        </div>
+      </div>
+      
+       <!-- <div style="display: flex; justify-content: end; align-items: center; width: 100%; ">
         <v-avatar size="150" class="mb-5" tile>
           <img
             :src="`http://localhost:8000/${personnelDetails.personnel.personnelImage}`"
@@ -18,7 +45,10 @@
             style="object-fit: cover"
           />
         </v-avatar>
-      </v-row>
+       </div> -->
+       <div style="display: flex; justify-content: center; align-items: center; width: 100%; margin: 2rem 0;">
+        <h3>BFP DENTAL HEALTH RECORD</h3>
+      </div>
       <v-row
         ><v-col
           ><strong class="mt-2">Section I : PATIENT DATA</strong></v-col
@@ -147,12 +177,12 @@
       <v-row justify="center" align="center">
         <v-col cols="4" >
            <strong class="d-flex justify-center"> &nbsp;</strong>
-          <v-divider  ></v-divider>
+          <v-divider style="border-bottom: 1px solid black;"></v-divider>
           <small class="d-flex justify-center mt-1" >Signature of Personnel</small>
         </v-col>
         <v-col cols="4" >
           <strong class="d-flex justify-center"> &nbsp;</strong>
-          <v-divider  ></v-divider>
+          <v-divider style="border-bottom: 1px solid black;"></v-divider>
           <small class="d-flex justify-center mt-1 text-underlined" >Date</small>
         </v-col>
         <v-col cols="4" >
@@ -161,19 +191,12 @@
                 ? personnelDetails.dental.examiningDentist
                 : "N/A"
             }}</strong>
-          <v-divider  ></v-divider>
+          <v-divider style="border-bottom: 1px solid black;" ></v-divider>
           <small class="d-flex justify-center mt-1" >Examining Dentist</small>
         </v-col>
       </v-row>
       <v-row>
         <v-col>
-          <!-- <div class="d-flex flex-column">
-            <strong class="text-decoration-underline"
-              >SINSP CLAPER A OJASCASTRO, DMD</strong
-            >
-            <span class="body-1">Chief, Dental Service Section</span>
-            <span class="body-1">BFP Region 1</span>
-          </div> -->
           <strong class="text-decoration-underline"
               >SINSP CLAPER A OJASCASTRO, DMD</strong
             >
@@ -229,7 +252,9 @@ export default {
     items: [],
     
     dentalTeeth: require("@/assets/imported-images/Dental-Teeth.jpg"),
-    dentalHeader: require("@/assets/imported-images/Dental.jpg"),
+    dental1: require("@/assets/imported-images/Dental1.png"),
+    dental2: require("@/assets/imported-images/Dental2.png"),
+    // dentalHeader: require("@/assets/imported-images/Dental.jpg"),
     // dentalTeeth: "@/assets/imported-images/Dental-Teeth.jpg",
     caseHistory:{
       oralComplaint: '',
@@ -282,5 +307,7 @@ export default {
 
 <style scoped>
 
-
+.text-center{
+  text-align: center;
+}
 </style>

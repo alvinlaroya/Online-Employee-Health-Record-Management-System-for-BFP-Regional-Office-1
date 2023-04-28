@@ -7,12 +7,38 @@
       </v-row>
     </v-container>
     <v-container id="print" class="px-8">
-      <v-row v-if="isPrint" justify="center" align="center" class="mb-2">
-        <img height="190px" width="100%" :src="ptNoteHeader" style="border-radius: 1rem;">
-      </v-row>
-      <v-row class="">
-        <v-col class="px-0"> <h1>PT notes</h1></v-col>
-      </v-row>
+      <div style="display: flex; flex-direction: row; justify-content: space-evenly; align-items: center;  margin-bottom: 3rem;">
+        <div >
+          <v-avatar size="130" class="mb-5" tile>
+          <img
+            :src="ptNote1"
+            alt="ptNotes-logo-left"
+            style="object-fit: cover;"
+          />
+        </v-avatar>
+        </div>
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+          <span>Republic of the Philippines</span>
+          <span>Department of the Interior and Local Government</span>
+          <strong>BUREAU OF FIRE PROTECTION</strong>
+          <strong>NATIONAL HEADQUARTERS</strong>
+          <span>Agham Road, Brgy. Bagong Pag-asa, Diliman, Quezon City</span>
+          <span>Telefax Number: (02) 426 - 0219 loc 406</span>
+          <span>Email: hemd_nhq@yahoo.com</span>
+        </div>
+        <div >
+          <v-avatar size="130" class="mb-5" tile>
+          <img
+            :src="ptNote2"
+            alt="ptNotes-logo-right"
+            style="object-fit: cover;"
+          />
+        </v-avatar>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: center; align-items: center; width: 100%; margin: 2rem 0;">
+        <h3>PT NOTES INITIAL EVALUATION</h3>
+      </div>
       <v-row justify="space-between">
         <v-col class="pa-0">
           <div class="">
@@ -22,9 +48,9 @@
               {{ personnelDetails.personnel.extName }}
             </strong>
             <span class="body-2 pl-5">OCCUPATION : </span>
-            <strong>{{personnelDetails.personnel.occupation}}</strong>
+            <strong>{{personnelDetails.personnel.occupation}}&nbsp;</strong>
             <span class="body-2 pl-5">RANK : </span>
-            <strong>{{ personnelDetails.personnel.rank }}</strong>
+            <strong>{{ personnelDetails.personnel.rank }}&nbsp;</strong>
             <span class="body-2 pl-5">UNIT : </span>
             <strong> {{personnelDetails.personnel.unit}} </strong>
           </div>
@@ -312,14 +338,14 @@
         <v-col>
           <strong>Home Instruction : </strong>
           <span>{{ ptNotes.homeInstruction ? ptNotes.homeInstruction : 'N/A' }}</span>
-          <v-divider></v-divider>
+          <v-divider ></v-divider>
         </v-col>
       </v-row>
       <v-row>
         <v-col>
           <strong class="mb-4">Examining Physical Therapist : </strong>
           <div class="text-center  mt-5">{{ ptNotes.examiningPhysicalTherapist ? ptNotes.examiningPhysicalTherapist : 'N/A' }}</div>
-          <v-divider></v-divider>
+          <v-divider style="border-bottom: 1px solid black;"></v-divider>
           <div class="text-center">Physical Therapist </div>
           
         </v-col>
@@ -327,7 +353,7 @@
         <v-col>
           <strong class="mb-4">Noted By : </strong>
           <div class="text-center mt-5">{{ ptNotes.notedBy ? ptNotes.notedBy : 'N/A' }}</div>
-          <v-divider></v-divider>
+          <v-divider style="border-bottom: 1px solid black;"></v-divider>
           <div class="text-center">Acting Chief, Physical Therapy Rehabilitation </div>
           
         </v-col>
@@ -360,6 +386,8 @@ export default {
   data: () => ({
     isPrint: false,
     ptNoteHeader: require("@/assets/imported-images/Pt-Notes.jpg"),
+    ptNote1: require("@/assets/imported-images/Pt-Notes1.png"),
+    ptNote2: require("@/assets/imported-images/Pt-Notes2.png"),
     items: [
       {
         name: "Hypertension",

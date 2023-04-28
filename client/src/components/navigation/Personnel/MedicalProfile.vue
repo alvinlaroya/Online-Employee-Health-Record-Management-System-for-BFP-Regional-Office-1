@@ -7,9 +7,9 @@
       </v-row>
     </v-container>
     <v-container id="print" class="px-8">
-      <v-row class="">
-        <v-col class="px-0"> <h1>Medical Profile</h1></v-col>
-      </v-row>
+      <div style="display: flex; justify-content: center; align-items: center; width: 100%; margin-bottom: 2rem ;">
+        <h3>REPORT OF MEDICAL HISTORY</h3>
+      </div>
       <v-row justify="space-between">
         <v-col class="pa-0">
           <span>
@@ -27,10 +27,10 @@
         <v-col align-content="space-between" class="pa-0">
           <span class="pr-5"
             >Date Of Birth :
-            <strong>{{ birthDate }}</strong>
+            <strong>{{ birthDate }} &nbsp;</strong>
           </span>
           <span class="pr-5"
-            >AGE: <strong>{{ birthDate | computeAge }}</strong></span
+            >AGE:&nbsp;<strong>{{ birthDate | computeAge }}&nbsp;</strong></span
           >
           <span class="pr-5"
             >Place of Birth: <strong>{{personnelDetails.personnel.placeOfBirth}}</strong></span

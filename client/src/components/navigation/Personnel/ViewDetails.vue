@@ -118,6 +118,7 @@
           </v-row>
         </v-col>
       </v-row>
+      <pre>{{ personnelDetails }}</pre>
     </v-container>
   </v-card>
 </template>

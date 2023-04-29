@@ -5,82 +5,8 @@
         <span class="py-3">OCCUPATIONAL HISTORY</span>
       </v-col>
     </v-row>
-    <v-row>
-      <v-col class="py-1 ">
-        <span>
-          Do you have been advised to undergo any surgical operation ?</span
-        >
-        <strong> {{ occupationalHistory.isAdvised ? "Yes" : "NO" }}</strong>
-      </v-col>
-      <v-col v-if="occupationalHistory.isAdvised" class="py-1 ">
-        <span> If Yes, describe what type and what age it was done ?</span>
-        <strong>
-          {{
-            occupationalHistory.advisedAnswer
-              ? occupationalHistory.advisedAnswer
-              : "N/A"
-          }}</strong
-        >
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col class="py-1 ">
-        <span>
-          Have you had accidents or injuries other than those listed ?</span
-        >
-        <strong> {{ occupationalHistory.isAccident ? "Yes" : "NO" }}</strong>
-      </v-col>
-      <v-col v-if="occupationalHistory.isAccident" class="py-1 ">
-        <span> If Yes, give Details and Data ?</span>
-        <strong>
-          {{
-            occupationalHistory.accidentAnswer
-              ? occupationalHistory.accidentAnswer
-              : "N/A"
-          }}</strong
-        >
-      </v-col>
-    </v-row>
-
-    <v-row>
-      <v-col class="py-1 ">
-        <span> Have you ever been hospitalized ?</span>
-        <strong>
-          {{ occupationalHistory.isHospitalized ? "Yes" : "NO" }}</strong
-        >
-      </v-col>
-      <v-col v-if="occupationalHistory.isHospitalized" class="py-1 ">
-        <span> Where ?</span>
-        <strong>
-          {{
-            occupationalHistory.hospitalizedIn
-              ? occupationalHistory.hospitalizedIn
-              : "N/A"
-          }}</strong
-        >
-      </v-col>
-      <v-col v-if="occupationalHistory.isHospitalized" class="py-1 ">
-        <span> Why ?</span>
-        <strong>
-          {{
-            occupationalHistory.hospitalizedReason
-              ? occupationalHistory.hospitalizedReason
-              : "N/A"
-          }}</strong
-        >
-      </v-col>
-    </v-row>
-    <v-row>
-      <v-col >
-        <v-data-table
-          :headers="headers"
-          :items="items"
-          dense
-          hide-default-footer
-          class="elevation-1"
-        ></v-data-table>
-      </v-col>
-    </v-row>
+    
+   
     <v-row>
       <v-col class="py-1 ">
         <span>Are you Right Handed ?</span>
@@ -249,6 +175,9 @@
         <strong> {{ occupationalHistory.neuropsychiatricExamResult  ? "Passed" : "Failed" }}</strong>
       </v-col>
     </v-row>
+    <!-- <v-row>
+      <pre>{{  personnelDetails.medicalRecord}}</pre>
+    </v-row> -->
   </div>
 </template>
 
@@ -258,240 +187,184 @@ const { mapGetters } = createNamespacedHelpers("navigation");
 
 export default {
   data: () => ({
-    occupationalHistory: {
-      isAdvised: true,
-      advisedAnswer: "",
-      isAccident: true,
-      accidentAnswer: "",
-      isHospitalized: true,
-      hospitalizedIn: "",
-      hospitalizedReason: "",
+    // occupationalHistory: {
+    //   isRightHanded: false,
+    //   isLeftHanded: false,
+    //   isRadioactive: false,
+    //   isRefuseEmployment: true,
 
-      isRightHanded: false,
-      isLeftHanded: false,
-      isRadioactive: false,
-      isRefuseEmployment: true,
+    //   refuseEmploymentDetails: "",
 
-      refuseEmploymentDetails: "",
+    //   isSensitiveToChemical: false,
+    //   isInabilityAssumePosition: false,
+    //   isOtherMedicalReason: false,
 
-      isSensitiveToChemical: false,
-      isInabilityAssumePosition: false,
-      isOtherMedicalReason: false,
+    //   isDisqualifiedFromWork: true,
+    //   disqualifiedWorkDetail: "",
 
-      isDisqualifiedFromWork: true,
-      disqualifiedWorkDetail: "",
+    //   numberOfJobsPastThreeYears: "",
+    //   longestPeriodJob: "",
+    //   usualOccupation: "",
 
-      numberOfJobsPastThreeYears: "",
-      longestPeriodJob: "",
-      usualOccupation: "",
+    //   isConsultedByPhysician: true,
+    //   consultedPhysicianDetail: "",
 
-      isConsultedByPhysician: true,
-      consultedPhysicianDetail: "",
+    //   hasSelfMedication: true,
+    //   selfMedicationDetail: "",
 
-      hasSelfMedication: true,
-      selfMedicationDetail: "",
+    //   hasMentalComplaints: true,
+    //   mentalComplaintsDetail: "",
 
-      hasMentalComplaints: true,
-      mentalComplaintsDetail: "",
+    //   isAppliedAtBFP: true,
+    //   isExaminedByMedical: true,
 
-      isAppliedAtBFP: true,
-      isExaminedByMedical: true,
-
-      dateOfLastExamination: "",
-      neuropsychiatricExam: "",
-      neuropsychiatricExamResult: "",
-    },
-    headers: [
-      {
-        text: "Disease",
-        value: "disease",
-      },
-      {
-        text: "Yes/No",
-        value: "yesOrNo",
-      },
-      {
-        text: "Year",
-        value: "year",
-      },
-    ],
+    //   dateOfLastExamination: "",
+    //   neuropsychiatricExam: "",
+    //   neuropsychiatricExamResult: "",
+    // },
+   
     items: [],
   }),
-  watch: {
-    personnelDetails: {
-      handler(val) {
-        this.items = [
-          {
-            disease: "Cholera",
-            yesOrNo:
-              this.occupationalHistory.isCholera === null
-                ? ""
-                : this.occupationalHistory.isCholera
-                ? "Yes"
-                : "No",
-            year: this.choleraAt,
-          },
-          {
-            disease: "Influenza",
-            yesOrNo:
-              this.occupationalHistory.isInfluenza === null
-                ? ""
-                : this.occupationalHistory.isInfluenza
-                ? "Yes"
-                : "No",
-            year: this.influenzaAt,
-          },
-          {
-            disease: "Tetanus",
-            yesOrNo:
-              this.occupationalHistory.isTetanus === null
-                ? ""
-                : this.occupationalHistory.isTetanus
-                ? "Yes"
-                : "No",
-            year: this.tetanusAt,
-          },
-          {
-            disease: "Typhoid",
-            yesOrNo:
-              this.occupationalHistory.isTyphoid === null
-                ? ""
-                : this.occupationalHistory.isTyphoid
-                ? "Yes"
-                : "No",
-            year: this.typhoidAt,
-          },
-          {
-            disease: "Hepatitis B",
-            yesOrNo:
-              this.occupationalHistory.isHepatitis === null
-                ? ""
-                : this.occupationalHistory.isHepatitis
-                ? "Yes"
-                : "No",
-            year: this.hepatitisAt,
-          },
-          {
-            disease: "Mumps",
-            yesOrNo:
-              this.occupationalHistory.isMumps === null
-                ? ""
-                : this.occupationalHistory.isMumps
-                ? "Yes"
-                : "No",
-            year: this.mumpsAt,
-          },
-        ];
-      },
-      deep: true,
-    },
-  },
+  // watch: {
+  //   personnelDetails: {
+  //     handler(val) {
+  //       this.items = [
+  //         {
+  //           disease: "Cholera",
+  //           yesOrNo:
+  //             this.occupationalHistory.isCholera === null
+  //               ? ""
+  //               : this.occupationalHistory.isCholera
+  //               ? "Yes"
+  //               : "No",
+  //           year: this.choleraAt,
+  //         },
+  //         {
+  //           disease: "Influenza",
+  //           yesOrNo:
+  //             this.occupationalHistory.isInfluenza === null
+  //               ? ""
+  //               : this.occupationalHistory.isInfluenza
+  //               ? "Yes"
+  //               : "No",
+  //           year: this.influenzaAt,
+  //         },
+  //         {
+  //           disease: "Tetanus",
+  //           yesOrNo:
+  //             this.occupationalHistory.isTetanus === null
+  //               ? ""
+  //               : this.occupationalHistory.isTetanus
+  //               ? "Yes"
+  //               : "No",
+  //           year: this.tetanusAt,
+  //         },
+  //         {
+  //           disease: "Typhoid",
+  //           yesOrNo:
+  //             this.occupationalHistory.isTyphoid === null
+  //               ? ""
+  //               : this.occupationalHistory.isTyphoid
+  //               ? "Yes"
+  //               : "No",
+  //           year: this.typhoidAt,
+  //         },
+  //         {
+  //           disease: "Hepatitis B",
+  //           yesOrNo:
+  //             this.occupationalHistory.isHepatitis === null
+  //               ? ""
+  //               : this.occupationalHistory.isHepatitis
+  //               ? "Yes"
+  //               : "No",
+  //           year: this.hepatitisAt,
+  //         },
+  //         {
+  //           disease: "Mumps",
+  //           yesOrNo:
+  //             this.occupationalHistory.isMumps === null
+  //               ? ""
+  //               : this.occupationalHistory.isMumps
+  //               ? "Yes"
+  //               : "No",
+  //           year: this.mumpsAt,
+  //         },
+  //       ];
+  //     },
+  //     deep: true,
+  //   },
+  // },
   computed: {
     ...mapGetters(["personnelDetails"]),
     occupationalHistory() {
       return this.personnelDetails.medicalRecord.occupationalHistory;
     },
-    choleraAt() {
-      if (!this.occupationalHistory.choleraAt) {
-        return "N/A";
-      }
-      return this.occupationalHistory.choleraAt.substr(0, 10);
-    },
-    influenzaAt() {
-      if (!this.occupationalHistory.influenzaAt) {
-        return "N/A";
-      }
-      return this.occupationalHistory.influenzaAt.substr(0, 10);
-    },
-    tetanusAt() {
-      if (!this.occupationalHistory.tetanusAt) {
-        return "N/A";
-      }
-      return this.occupationalHistory.tetanusAt.substr(0, 10);
-    },
-    typhoidAt() {
-      if (!this.occupationalHistory.typhoidAt) {
-        return "N/A";
-      }
-      return this.occupationalHistory.typhoidAt.substr(0, 10);
-    },
-    hepatitisAt() {
-      if (!this.occupationalHistory.hepatitisAt) {
-        return "N/A";
-      }
-      return this.occupationalHistory.hepatitisAt.substr(0, 10);
-    },
-    mumpsAt() {
-      if (!this.occupationalHistory.mumpsAt) {
-        return "N/A";
-      }
-      return this.occupationalHistory.mumpsAt.substr(0, 10);
-    },
+    
   },
-  created() {
-    this.items = [
-      {
-        disease: "Cholera",
-        yesOrNo:
-          this.occupationalHistory.isCholera === null
-            ? ""
-            : this.occupationalHistory.isCholera
-            ? "Yes"
-            : "No",
-        year: this.choleraAt,
-      },
-      {
-        disease: "Influenza",
-        yesOrNo:
-          this.occupationalHistory.isInfluenza === null
-            ? ""
-            : this.occupationalHistory.isInfluenza
-            ? "Yes"
-            : "No",
-        year: this.influenzaAt,
-      },
-      {
-        disease: "Tetanus",
-        yesOrNo:
-          this.occupationalHistory.isTetanus === null
-            ? ""
-            : this.occupationalHistory.isTetanus
-            ? "Yes"
-            : "No",
-        year: this.tetanusAt,
-      },
-      {
-        disease: "Typhoid",
-        yesOrNo:
-          this.occupationalHistory.isTyphoid === null
-            ? ""
-            : this.occupationalHistory.isTyphoid
-            ? "Yes"
-            : "No",
-        year: this.typhoidAt,
-      },
-      {
-        disease: "Hepatitis B",
-        yesOrNo:
-          this.occupationalHistory.isHepatitis === null
-            ? ""
-            : this.occupationalHistory.isHepatitis
-            ? "Yes"
-            : "No",
-        year: this.hepatitisAt,
-      },
-      {
-        disease: "Mumps",
-        yesOrNo:
-          this.occupationalHistory.isMumps === null
-            ? ""
-            : this.occupationalHistory.isMumps
-            ? "Yes"
-            : "No",
-        year: this.mumpsAt,
-      },
-    ];
-  },
+  // created() {
+  //   this.items = [
+  //     {
+  //       disease: "Cholera",
+  //       yesOrNo:
+  //         this.occupationalHistory.isCholera === null
+  //           ? ""
+  //           : this.occupationalHistory.isCholera
+  //           ? "Yes"
+  //           : "No",
+  //       year: this.choleraAt,
+  //     },
+  //     {
+  //       disease: "Influenza",
+  //       yesOrNo:
+  //         this.occupationalHistory.isInfluenza === null
+  //           ? ""
+  //           : this.occupationalHistory.isInfluenza
+  //           ? "Yes"
+  //           : "No",
+  //       year: this.influenzaAt,
+  //     },
+  //     {
+  //       disease: "Tetanus",
+  //       yesOrNo:
+  //         this.occupationalHistory.isTetanus === null
+  //           ? ""
+  //           : this.occupationalHistory.isTetanus
+  //           ? "Yes"
+  //           : "No",
+  //       year: this.tetanusAt,
+  //     },
+  //     {
+  //       disease: "Typhoid",
+  //       yesOrNo:
+  //         this.occupationalHistory.isTyphoid === null
+  //           ? ""
+  //           : this.occupationalHistory.isTyphoid
+  //           ? "Yes"
+  //           : "No",
+  //       year: this.typhoidAt,
+  //     },
+  //     {
+  //       disease: "Hepatitis B",
+  //       yesOrNo:
+  //         this.occupationalHistory.isHepatitis === null
+  //           ? ""
+  //           : this.occupationalHistory.isHepatitis
+  //           ? "Yes"
+  //           : "No",
+  //       year: this.hepatitisAt,
+  //     },
+  //     {
+  //       disease: "Mumps",
+  //       yesOrNo:
+  //         this.occupationalHistory.isMumps === null
+  //           ? ""
+  //           : this.occupationalHistory.isMumps
+  //           ? "Yes"
+  //           : "No",
+  //       year: this.mumpsAt,
+  //     },
+  //   ];
+  // },
 };
 </script>
 

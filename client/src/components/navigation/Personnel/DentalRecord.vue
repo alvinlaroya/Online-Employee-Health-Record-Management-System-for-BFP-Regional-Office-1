@@ -213,6 +213,7 @@
           <span class="body-1">BFP Region 1</span>
         </v-col>
       </v-row>
+      <v-row><pre>{{ personnelDetails.dental }}</pre></v-row>
     </v-container>
   </v-card>
 </template>

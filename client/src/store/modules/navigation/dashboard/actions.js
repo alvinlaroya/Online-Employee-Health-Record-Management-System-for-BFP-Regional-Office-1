@@ -4,6 +4,7 @@ import DentalEventService from "@/services/dashboard/Dental";
 import PhysicalEventService from "@/services/dashboard/Physical";
 import FamilyEventService from "@/services/dashboard/MedicalProfile";
 import PersonalEventService from "@/services/dashboard/MedicalProfile";
+import OccupationalEventService from "@/services/dashboard/MedicalProfile";
 import UpdatePersonnelEventService from "@/services/dashboard/updatePersonnel";
 import PtNotesEventService from "@/services/dashboard/PtNotes";
 import CaseEventService from "@/services/dashboard/Case";
@@ -75,6 +76,10 @@ export const updateFamily = async ({ commit, dispatch }, payload) => {
 }
 export const updatePersonal = async ({ commit, dispatch }, payload) => {
     await PersonalEventService.updatePersonal(payload)
+    await dispatch("viewDetails", payload.personnelId)
+}
+export const updateOccupational = async ({ commit, dispatch }, payload) => {
+    await OccupationalEventService.updateOccupational(payload)
     await dispatch("viewDetails", payload.personnelId)
 }
 export const updatePersonnel = async ({ commit, dispatch }, payload) => {

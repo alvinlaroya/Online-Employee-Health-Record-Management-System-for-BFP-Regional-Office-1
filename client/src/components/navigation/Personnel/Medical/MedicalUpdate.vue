@@ -1292,7 +1292,7 @@ export default {
     },
   }),
   methods: {
-    ...mapActions(["updatePersonal", "updateFamily"]),
+    ...mapActions(["updatePersonal", "updateFamily", "updateOccupational"]),
     async submitHandler() {
       await this.updateFamily({
         personnelId: this.personnelId,
@@ -1302,7 +1302,10 @@ export default {
         personnelId: this.personnelId,
         data: this.personalHistory,
       });
-
+      await this.updateOccupational({
+        personnelId: this.personnelId,
+        data: this.occupationalHistory,
+      });
       this.dialog = false;
     },
     open() {

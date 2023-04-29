@@ -291,7 +291,83 @@ module.exports = (sequelize, DataTypes) => {
     diarrhea: {
       type: DataTypes.BOOLEAN,
       allowNull: true,
-    }
+    },
+    isAdvised: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    advisedAnswer: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    isAccident: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    accidentAnswer: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    isHospitalized: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    hospitalizedIn: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    hospitalizedReason: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    isCholera: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    choleraAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    isInfluenza: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    influenzaAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    isTetanus: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    tetanusAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    isTyphoid: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    typhoidAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    isHepatitis: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    hepatitisAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
+    isMumps: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    mumpsAt: {
+      type: DataTypes.DATE,
+      allowNull: true,
+    },
   });
 
   return medical_personal_history;

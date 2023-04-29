@@ -19,5 +19,5 @@ const updatePtNotes = async (req, res) => {
 };
 
 module.exports = {
-    updatePtNotes,
+  updatePtNotes,
 };

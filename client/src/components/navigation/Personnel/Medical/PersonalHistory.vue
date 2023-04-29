@@ -117,9 +117,7 @@
           ></v-data-table>
         </v-col>
       </v-row>
-      <v-row>
-        <pre>{{ personalHistory }}</pre>
-      </v-row>
+ 
     </v-container>
   </div>
 </template>

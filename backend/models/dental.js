@@ -76,6 +76,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
       allowNull: true,
     },
+    examiningDentist: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    oralComplaint: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
   });
 
   return dental;

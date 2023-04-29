@@ -202,7 +202,7 @@ const updatePersonnel = async (req, res) => {
 
   await MedicalPersonalHistory.update({
     accountNo: persoonelData.accountNo,
-    rank: persoonelData.rank, 
+    rank: persoonelData.rank,
     lname: persoonelData.lname,
     fname: persoonelData.fname,
     mname: persoonelData.mname,

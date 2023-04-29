@@ -163,7 +163,7 @@
     </v-row>
     <v-row>
       <v-col  class="py-0 my-0">
-        <span>Neuropsychiatric Exam </span>
+        <span>Neuropsychiatric Exam :</span>
         <strong> {{ occupationalHistory.neuropsychiatricExam      
               ? occupationalHistory.neuropsychiatricExam       
               : "N/A" }}</strong>
@@ -175,9 +175,7 @@
         <strong> {{ occupationalHistory.neuropsychiatricExamResult  ? "Passed" : "Failed" }}</strong>
       </v-col>
     </v-row>
-    <!-- <v-row>
-      <pre>{{  personnelDetails.medicalRecord}}</pre>
-    </v-row> -->
+
   </div>
 </template>
 
@@ -297,7 +295,7 @@ export default {
   computed: {
     ...mapGetters(["personnelDetails"]),
     occupationalHistory() {
-      return this.personnelDetails.medicalRecord.occupationalHistory;
+      return this.personnelDetails.medicalRecord.medicalOccupationalHistory;
     },
     
   },

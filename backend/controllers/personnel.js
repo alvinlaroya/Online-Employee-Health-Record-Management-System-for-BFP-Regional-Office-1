@@ -16,6 +16,7 @@ const Dental = db.dentals;
 const Psych = db.psychs;
 const MedicalFamilyHistory = db.medicalFamilyHistories;
 const MedicalPersonalHistory = db.medicalPersonalHistories;
+const MedicalOccupationalHistory = db.medicalOccupationalHistories;
 const PtNotes = db.ptNotes;
 
 // UPLOAD
@@ -113,6 +114,9 @@ const addPersonnel = async (req, res) => {
     civilStatus,
     gender,
   });
+  await MedicalOccupationalHistory.create({
+    personnelId: personnel.id,
+  });
   await PtNotes.create({
     personnelId: personnel.id,
   });
@@ -166,6 +170,11 @@ const viewDetails = async (req, res) => {
       personnelId: personnelId, // user email
     },
   });
+  let medicalOccupationalHistory = await MedicalOccupationalHistory.findOne({
+    where: {
+      personnelId: personnelId, // user email
+    },
+  });
   let ptNotes = await PtNotes.findOne({
     where: {
       personnelId: personnelId, // user email
@@ -182,6 +191,7 @@ const viewDetails = async (req, res) => {
       medicalRecord: {
         medicalFamilyHistory,
         medicalPersonalHistory,
+        medicalOccupationalHistory,
       },
       ptNotes
     }

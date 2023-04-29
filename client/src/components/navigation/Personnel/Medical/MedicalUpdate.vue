@@ -408,7 +408,7 @@
               </v-row>
               <v-row>
                 <v-col
-                  v-for="(value, key) in personalHistory"
+                  v-for="key in filteredKeys"
                   :key="key"
                   cols="12"
                   sm="6"
@@ -436,24 +436,18 @@
                   </template>
                 </v-col>
               </v-row>
-              <!-- Occupational History Update -->
-              <v-row>
-                <v-col>
-                  <small>Occupational History</small>
-                  <v-divider></v-divider>
-                </v-col>
-              </v-row>
+              <v-divider class="my-5"></v-divider>
               <v-row>
                 <v-col cols="6">
                   <v-checkbox
-                    v-model="occupationalHistory.isAdvised"
+                    v-model="personalHistory.isAdvised"
                     label="Advised"
                     dense
                   />
                 </v-col>
-                <v-col v-if="occupationalHistory.isAdvised" cols="6">
+                <v-col v-if="personalHistory.isAdvised" cols="6">
                   <v-text-field
-                    v-model="occupationalHistory.advisedAnswer"
+                    v-model="personalHistory.advisedAnswer"
                     label="If yes Describe"
                     dense
                   ></v-text-field>
@@ -462,14 +456,14 @@
               <v-row>
                 <v-col cols="6">
                   <v-checkbox
-                    v-model="occupationalHistory.isAccident"
+                    v-model="personalHistory.isAccident"
                     label="Have you had accidents or injuries"
                     dense
                   />
                 </v-col>
-                <v-col v-if="occupationalHistory.isAccident" cols="6">
+                <v-col v-if="personalHistory.isAccident" cols="6">
                   <v-text-field
-                    v-model="occupationalHistory.accidentAnswer"
+                    v-model="personalHistory.accidentAnswer"
                     label="If Yes, Give details"
                     dense
                   ></v-text-field>
@@ -478,34 +472,38 @@
               <v-row>
                 <v-col cols="5">
                   <v-checkbox
-                    v-model="occupationalHistory.isHospitalized"
+                    v-model="personalHistory.isHospitalized"
                     label="Have you ever been hospitalized ?"
                     dense
                   />
                 </v-col>
-                <v-col v-if="occupationalHistory.isHospitalized" cols="3">
+                <v-col v-if="personalHistory.isHospitalized" cols="3">
                   <v-text-field
-                    v-model="occupationalHistory.hospitalizedIn"
+                    v-model="personalHistory.hospitalizedIn"
                     label="Where ?"
                     dense
                   ></v-text-field>
                 </v-col>
-                <v-col v-if="occupationalHistory.isHospitalized" cols="4">
+                <v-col v-if="personalHistory.isHospitalized" cols="4">
                   <v-text-field
-                    v-model="occupationalHistory.hospitalizedReason"
+                    v-model="personalHistory.hospitalizedReason"
                     label="Why ? "
                     dense
                   ></v-text-field>
                 </v-col>
               </v-row>
+              
               <v-row>
+                <!-- cholera checkbox -->
                 <v-col cols="3">
                   <v-checkbox
-                    v-model="occupationalHistory.isCholera"
+                    v-model="personalHistory.isCholera"
                     label="Cholera"
                     dense
                   />
                 </v-col>
+                <!-- cholera checkbox end -->
+                <!-- cholera date -->
                 <v-col cols="3">
                   <v-menu
                     ref="menuCholera"
@@ -518,7 +516,7 @@
                   >
                     <template v-slot:activator="{ on, attrs }">
                       <v-text-field
-                        v-model="occupationalHistory.choleraAt"
+                        v-model="choleraAt"
                         label="Cholera Date"
                         prepend-icon="mdi-calendar"
                         readonly
@@ -528,7 +526,7 @@
                       ></v-text-field>
                     </template>
                     <v-date-picker
-                      v-model="occupationalHistory.choleraAt"
+                      v-model="choleraAt"
                       no-title
                       scrollable
                     >
@@ -540,7 +538,7 @@
                         text
                         color="primary"
                         @click="
-                          $refs.menuCholera.save(occupationalHistory.choleraAt)
+                          $refs.menuCholera.save(choleraAt)
                         "
                       >
                         OK
@@ -548,13 +546,19 @@
                     </v-date-picker>
                   </v-menu>
                 </v-col>
+                <!-- cholera date end -->
+
+                 <!-- influenza checkbox -->
                 <v-col cols="3">
                   <v-checkbox
-                    v-model="occupationalHistory.isInfluenza"
+                    v-model="personalHistory.isInfluenza"
                     label="Influenza"
                     dense
                   />
                 </v-col>
+                <!-- influenza checkbox end -->
+
+                <!-- influenza date -->
                 <v-col cols="3">
                   <v-menu
                     ref="menuInfluenza"
@@ -567,7 +571,7 @@
                   >
                     <template v-slot:activator="{ on, attrs }">
                       <v-text-field
-                        v-model="occupationalHistory.influenzaAt"
+                        v-model="influenzaAt"
                         label="Influenza Date"
                         prepend-icon="mdi-calendar"
                         readonly
@@ -577,25 +581,19 @@
                       ></v-text-field>
                     </template>
                     <v-date-picker
-                      v-model="occupationalHistory.influenzaAt"
+                      v-model="influenzaAt"
                       no-title
                       scrollable
                     >
                       <v-spacer></v-spacer>
-                      <v-btn
-                        text
-                        color="primary"
-                        @click="menuInfluenza = false"
-                      >
+                      <v-btn text color="primary" @click="menuInfluenza = false">
                         Cancel
                       </v-btn>
                       <v-btn
                         text
                         color="primary"
                         @click="
-                          $refs.menuInfluenza.save(
-                            occupationalHistory.influenzaAt
-                          )
+                          $refs.menuInfluenza.save(influenzaAt)
                         "
                       >
                         OK
@@ -603,15 +601,21 @@
                     </v-date-picker>
                   </v-menu>
                 </v-col>
+                <!-- influenza date end -->
               </v-row>
+              
               <v-row>
+                <!-- Tetanus checkbox -->
                 <v-col cols="3">
                   <v-checkbox
-                    v-model="occupationalHistory.isTetanus"
+                    v-model="personalHistory.isTetanus"
                     label="Tetanus"
                     dense
                   />
                 </v-col>
+                <!-- Tetanus checkbox end -->
+
+                <!-- Tetanus date  -->
                 <v-col cols="3">
                   <v-menu
                     ref="menuTetanus"
@@ -624,7 +628,7 @@
                   >
                     <template v-slot:activator="{ on, attrs }">
                       <v-text-field
-                        v-model="occupationalHistory.tetanusAt"
+                        v-model="tetanusAt"
                         label="Tetanus Date"
                         prepend-icon="mdi-calendar"
                         readonly
@@ -634,7 +638,7 @@
                       ></v-text-field>
                     </template>
                     <v-date-picker
-                      v-model="occupationalHistory.tetanusAt"
+                      v-model="tetanusAt"
                       no-title
                       scrollable
                     >
@@ -646,7 +650,7 @@
                         text
                         color="primary"
                         @click="
-                          $refs.menuTetanus.save(occupationalHistory.tetanusAt)
+                          $refs.menuTetanus.save(tetanusAt)
                         "
                       >
                         OK
@@ -654,14 +658,19 @@
                     </v-date-picker>
                   </v-menu>
                 </v-col>
+                <!-- Tetanus date end   -->
+
+                <!-- Typhoid checkbox  -->
                 <v-col cols="3">
                   <v-checkbox
-                    v-model="occupationalHistory.isTyphoid"
+                    v-model="personalHistory.isTyphoid"
                     label="Typhoid"
                     dense
                   />
                 </v-col>
-                <!-- typhoid -->
+                <!-- Typhoid checkbox  end -->
+              
+                <!-- Typhoid Date  -->
                 <v-col cols="3">
                   <v-menu
                     ref="menuTyphoid"
@@ -674,7 +683,7 @@
                   >
                     <template v-slot:activator="{ on, attrs }">
                       <v-text-field
-                        v-model="occupationalHistory.typhoidAt"
+                        v-model="typhoidAt"
                         label="Typhoid Date"
                         prepend-icon="mdi-calendar"
                         readonly
@@ -684,7 +693,7 @@
                       ></v-text-field>
                     </template>
                     <v-date-picker
-                      v-model="occupationalHistory.typhoidAt"
+                      v-model="typhoidAt"
                       no-title
                       scrollable
                     >
@@ -696,7 +705,7 @@
                         text
                         color="primary"
                         @click="
-                          $refs.menuTyphoid.save(occupationalHistory.typhoidAt)
+                          $refs.menuTyphoid.save(typhoidAt)
                         "
                       >
                         OK
@@ -704,16 +713,20 @@
                     </v-date-picker>
                   </v-menu>
                 </v-col>
+                <!-- Typhoid Date  end -->
               </v-row>
-              <!-- /typhoid -->
               <v-row>
+                <!-- Hepatitis Checkbox -->
                 <v-col cols="3">
                   <v-checkbox
-                    v-model="occupationalHistory.isHepatitis"
+                    v-model="personalHistory.isHepatitis"
                     label="Hepatitis"
                     dense
                   />
                 </v-col>
+                <!-- Hepatitis Checkbox  end -->
+
+                <!-- Hepatitis date  -->
                 <v-col cols="3">
                   <v-menu
                     ref="menuHepatitis"
@@ -726,7 +739,7 @@
                   >
                     <template v-slot:activator="{ on, attrs }">
                       <v-text-field
-                        v-model="occupationalHistory.hepatitisAt"
+                        v-model="hepatitisAt"
                         label="Hepatitis Date"
                         prepend-icon="mdi-calendar"
                         readonly
@@ -736,7 +749,7 @@
                       ></v-text-field>
                     </template>
                     <v-date-picker
-                      v-model="occupationalHistory.hepatitisAt"
+                      v-model="hepatitisAt"
                       no-title
                       scrollable
                     >
@@ -752,9 +765,7 @@
                         text
                         color="primary"
                         @click="
-                          $refs.menuHepatitis.save(
-                            occupationalHistory.hepatitisAt
-                          )
+                          $refs.menuHepatitis.save(hepatitisAt)
                         "
                       >
                         OK
@@ -762,9 +773,12 @@
                     </v-date-picker>
                   </v-menu>
                 </v-col>
+                <!-- Hepatitis Date  end -->
+
+
                 <v-col cols="3">
                   <v-checkbox
-                    v-model="occupationalHistory.isMumps"
+                    v-model="personalHistory.isMumps"
                     label="Mumps"
                     dense
                   />
@@ -781,7 +795,7 @@
                   >
                     <template v-slot:activator="{ on, attrs }">
                       <v-text-field
-                        v-model="occupationalHistory.mumpsAt"
+                        v-model="mumpsAt"
                         label="Mumps Date"
                         prepend-icon="mdi-calendar"
                         readonly
@@ -791,7 +805,7 @@
                       ></v-text-field>
                     </template>
                     <v-date-picker
-                      v-model="occupationalHistory.mumpsAt"
+                      v-model="mumpsAt"
                       no-title
                       scrollable
                     >
@@ -802,14 +816,19 @@
                       <v-btn
                         text
                         color="primary"
-                        @click="
-                          $refs.menuMumps.save(occupationalHistory.mumpsAt)
-                        "
+                        @click="$refs.menuMumps.save(mumpsAt)"
                       >
                         OK
                       </v-btn>
                     </v-date-picker>
                   </v-menu>
+                </v-col>
+              </v-row>
+              <!-- Occupational History Update -->
+              <v-row>
+                <v-col>
+                  <small>Occupational History</small>
+                  <v-divider></v-divider>
                 </v-col>
               </v-row>
 
@@ -1238,8 +1257,7 @@ export default {
       severeIndigestion: false,
       rectalDisease: false,
       diarrhea: false,
-    },
-    occupationalHistory: {
+
       isAdvised: true,
       advisedAnswer: "",
       isAccident: true,
@@ -1251,7 +1269,7 @@ export default {
       isCholera: false,
       choleraAt: "",
       isInfluenza: false,
-      fluenzaAt: "",
+      influenzaAt: "",
       isTetanus: false,
       tetanusAt: "",
       isTyphoid: false,
@@ -1260,7 +1278,9 @@ export default {
       hepatitisAt: "",
       isMumps: false,
       mumpsAt: "",
+    },
 
+    occupationalHistory: {
       isRightHanded: false,
       isLeftHanded: false,
       isRadioactive: false,
@@ -1325,6 +1345,110 @@ export default {
     ...mapAuthGetters(["userRoles"]),
     personnelId() {
       return this.personnelDetails.personnel.id;
+    },
+    personalHistoryDisease() {
+      return this.personnelDetails.medicalRecord.medicalPersonalHistory;
+    },
+    occupationalHistoryTwo() {
+      return this.personnelDetails.medicalRecord.occupationalHistory;
+    },
+    filteredKeys() {
+      return Object.keys(this.personalHistory).filter(
+        (key) =>
+          ![
+            "isAdvised",
+            "advisedAnswer",
+            "isAccident",
+            "accidentAnswer",
+            "isHospitalized",
+            "hospitalizedReason",
+            "hospitalizedIn",
+            "isCholera",
+            "choleraAt",
+            "isInfluenza",
+            "influenzaAt",
+            "isTetanus",
+            "tetanusAt",
+            "isTyphoid",
+            "typhoidAt",
+            "isHepatitis",
+            "hepatitisAt",
+            "isMumps",
+            "mumpsAt",
+          ].includes(key)
+      );
+    },
+    choleraAt: {
+      get() {
+        if (this.personalHistoryDisease.choleraAt) {
+          return this.personalHistoryDisease.choleraAt.substr(0, 10);
+        } else {
+          return "";
+        }
+      },
+      set(value) {
+        this.personalHistoryDisease.choleraAt = value;
+      },
+    },
+    influenzaAt: {
+      get() {
+        if (this.personalHistoryDisease.influenzaAt) {
+          return this.personalHistoryDisease.influenzaAt.substr(0, 10);
+        } else {
+          return "";
+        }
+      },
+      set(value) {
+        this.personalHistoryDisease.influenzaAt = value;
+      },
+    },
+    tetanusAt: {
+      get() {
+        if (this.personalHistoryDisease.tetanusAt) {
+          return this.personalHistoryDisease.tetanusAt.substr(0, 10);
+        } else {
+          return "";
+        }
+      },
+      set(value) {
+        this.personalHistoryDisease.tetanusAt = value;
+      },
+    },
+    typhoidAt: {
+      get() {
+        if (this.personalHistoryDisease.typhoidAt) {
+          return this.personalHistoryDisease.typhoidAt.substr(0, 10);
+        } else {
+          return "";
+        }
+      },
+      set(value) {
+        this.personalHistoryDisease.typhoidAt = value;
+      },
+    },
+    hepatitisAt: {
+      get() {
+        if (this.personalHistoryDisease.hepatitisAt) {
+          return this.personalHistoryDisease.hepatitisAt.substr(0, 10);
+        } else {
+          return "";
+        }
+      },
+      set(value) {
+        this.personalHistoryDisease.hepatitisAt = value;
+      },
+    },
+    mumpsAt: {
+      get() {
+        if (this.personalHistoryDisease.mumpsAt) {
+          return this.personalHistoryDisease.mumpsAt.substr(0, 10);
+        } else {
+          return "";
+        }
+      },
+      set(value) {
+        this.personalHistoryDisease.mumpsAt = value;
+      },
     },
   },
   mounted() {

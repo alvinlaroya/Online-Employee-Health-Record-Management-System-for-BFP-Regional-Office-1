@@ -258,7 +258,8 @@ export default {
     ];
   },
   watch: {
-    handler(val) {
+    personnelDetails:{
+      handler(val) {
       this.items = [
         {
           disease: "Cholera",
@@ -323,6 +324,7 @@ export default {
       ];
     },
     deep: true,
+    }
   },
 };
 </script>

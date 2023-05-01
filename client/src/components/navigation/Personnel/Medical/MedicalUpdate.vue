@@ -1349,9 +1349,6 @@ export default {
     personalHistoryDisease() {
       return this.personnelDetails.medicalRecord.medicalPersonalHistory;
     },
-    occupationalHistoryTwo() {
-      return this.personnelDetails.medicalRecord.occupationalHistory;
-    },
     filteredKeys() {
       return Object.keys(this.personalHistory).filter(
         (key) =>
@@ -1380,74 +1377,74 @@ export default {
     },
     choleraAt: {
       get() {
-        if (this.personalHistoryDisease.choleraAt) {
-          return this.personalHistoryDisease.choleraAt.substr(0, 10);
+        if (this.personalHistory.choleraAt) {
+          return this.personalHistory.choleraAt.substr(0, 10);
         } else {
           return "";
         }
       },
       set(value) {
-        this.personalHistoryDisease.choleraAt = value;
+        this.personalHistory.choleraAt = value;
       },
     },
     influenzaAt: {
       get() {
-        if (this.personalHistoryDisease.influenzaAt) {
-          return this.personalHistoryDisease.influenzaAt.substr(0, 10);
+        if (this.personalHistory.influenzaAt) {
+          return this.personalHistory.influenzaAt.substr(0, 10);
         } else {
           return "";
         }
       },
       set(value) {
-        this.personalHistoryDisease.influenzaAt = value;
+        this.personalHistory.influenzaAt = value;
       },
     },
     tetanusAt: {
       get() {
-        if (this.personalHistoryDisease.tetanusAt) {
-          return this.personalHistoryDisease.tetanusAt.substr(0, 10);
+        if (this.personalHistory.tetanusAt) {
+          return this.personalHistory.tetanusAt.substr(0, 10);
         } else {
           return "";
         }
       },
       set(value) {
-        this.personalHistoryDisease.tetanusAt = value;
+        this.personalHistory.tetanusAt = value;
       },
     },
     typhoidAt: {
       get() {
-        if (this.personalHistoryDisease.typhoidAt) {
-          return this.personalHistoryDisease.typhoidAt.substr(0, 10);
+        if (this.personalHistory.typhoidAt) {
+          return this.personalHistory.typhoidAt.substr(0, 10);
         } else {
           return "";
         }
       },
       set(value) {
-        this.personalHistoryDisease.typhoidAt = value;
+        this.personalHistory.typhoidAt = value;
       },
     },
     hepatitisAt: {
       get() {
-        if (this.personalHistoryDisease.hepatitisAt) {
-          return this.personalHistoryDisease.hepatitisAt.substr(0, 10);
+        if (this.personalHistory.hepatitisAt) {
+          return this.personalHistory.hepatitisAt.substr(0, 10);
         } else {
           return "";
         }
       },
       set(value) {
-        this.personalHistoryDisease.hepatitisAt = value;
+        this.personalHistory.hepatitisAt = value;
       },
     },
     mumpsAt: {
       get() {
-        if (this.personalHistoryDisease.mumpsAt) {
-          return this.personalHistoryDisease.mumpsAt.substr(0, 10);
+        if (this.personalHistory.mumpsAt) {
+          return this.personalHistory.mumpsAt.substr(0, 10);
         } else {
           return "";
         }
       },
       set(value) {
-        this.personalHistoryDisease.mumpsAt = value;
+        this.personalHistory.mumpsAt = value;
       },
     },
   },

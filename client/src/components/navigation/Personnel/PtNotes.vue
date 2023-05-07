@@ -3,21 +3,38 @@
     <v-container>
       <v-row justify="end" class="pa-2">
         <PtNoteUpdate />
-        <v-btn  v-print="'#print'" class="ml-3" small @click="isPrint = true">print</v-btn>
+        <v-btn v-print="'#print'" class="ml-3" small @click="isPrint = true"
+          >print</v-btn
+        >
       </v-row>
     </v-container>
     <v-container id="print" class="px-8">
-      <div style="display: flex; flex-direction: row; justify-content: space-evenly; align-items: center;  margin-bottom: 3rem;">
-        <div >
+      <div
+        style="
+          display: flex;
+          flex-direction: row;
+          justify-content: space-evenly;
+          align-items: center;
+          margin-bottom: 3rem;
+        "
+      >
+        <div>
           <v-avatar size="130" class="mb-5" tile>
-          <img
-            :src="ptNote1"
-            alt="ptNotes-logo-left"
-            style="object-fit: cover;"
-          />
-        </v-avatar>
+            <img
+              :src="ptNote1"
+              alt="ptNotes-logo-left"
+              style="object-fit: cover"
+            />
+          </v-avatar>
         </div>
-        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+          "
+        >
           <span>Republic of the Philippines</span>
           <span>Department of the Interior and Local Government</span>
           <strong>BUREAU OF FIRE PROTECTION</strong>
@@ -26,17 +43,25 @@
           <span>Telefax Number: (02) 426 - 0219 loc 406</span>
           <span>Email: hemd_nhq@yahoo.com</span>
         </div>
-        <div >
+        <div>
           <v-avatar size="130" class="mb-5" tile>
-          <img
-            :src="ptNote2"
-            alt="ptNotes-logo-right"
-            style="object-fit: cover;"
-          />
-        </v-avatar>
+            <img
+              :src="ptNote2"
+              alt="ptNotes-logo-right"
+              style="object-fit: cover"
+            />
+          </v-avatar>
         </div>
       </div>
-      <div style="display: flex; justify-content: center; align-items: center; width: 100%; margin: 2rem 0;">
+      <div
+        style="
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          margin: 2rem 0;
+        "
+      >
         <h3>PT NOTES INITIAL EVALUATION</h3>
       </div>
       <v-row justify="space-between">
@@ -44,15 +69,17 @@
           <div class="">
             <span class="body-2"> FULL NAME : </span>
             <strong>
-              {{ personnelDetails.personnel.fname }} {{ personnelDetails.personnel.mname }} {{ personnelDetails.personnel.lname }}
+              {{ personnelDetails.personnel.fname }}
+              {{ personnelDetails.personnel.mname }}
+              {{ personnelDetails.personnel.lname }}
               {{ personnelDetails.personnel.extName }}
             </strong>
             <span class="body-2 pl-5">OCCUPATION : </span>
-            <strong>{{personnelDetails.personnel.occupation}}&nbsp;</strong>
+            <strong>{{ personnelDetails.personnel.occupation }}&nbsp;</strong>
             <span class="body-2 pl-5">RANK : </span>
             <strong>{{ personnelDetails.personnel.rank }}&nbsp;</strong>
             <span class="body-2 pl-5">UNIT : </span>
-            <strong> {{personnelDetails.personnel.unit}} </strong>
+            <strong> {{ personnelDetails.personnel.unit }} </strong>
           </div>
         </v-col>
       </v-row>
@@ -60,13 +87,13 @@
         <v-col class="pa-0">
           <div class="">
             <span class="body-2"> ADDRESS : </span>
-            <strong> {{personnelDetails.personnel.address}} </strong>
+            <strong> {{ personnelDetails.personnel.address }} </strong>
             <span class="body-2 pl-5">MOBILE NO. : </span>
-            <strong>+639{{personnelDetails.personnel.mobile}}&nbsp;</strong>
+            <strong>+639{{ personnelDetails.personnel.mobile }}&nbsp;</strong>
             <span class="body-2 pl-5">SEX : </span>
-            <strong>{{personnelDetails.personnel.gender}}&nbsp;</strong>
+            <strong>{{ personnelDetails.personnel.gender }}&nbsp;</strong>
             <span class="body-2 pl-5">CIVIL STATUS : </span>
-            <strong> {{personnelDetails.personnel.civilStatus}}&nbsp;</strong>
+            <strong> {{ personnelDetails.personnel.civilStatus }}&nbsp;</strong>
           </div>
         </v-col>
       </v-row>
@@ -74,20 +101,22 @@
         <v-col>
           <div class="">
             <strong>Referring Doctor : </strong>
-            <span>{{ ptNotes.refDoctor ? ptNotes.refDoctor : 'N/A' }}</span>
+            <span>{{ ptNotes.refDoctor ? ptNotes.refDoctor : "N/A" }}</span>
             <v-divider></v-divider>
             <strong>Diagnosis : </strong>
-            <span>{{ ptNotes.diagnosis ? ptNotes.diagnosis : 'N/A' }}</span>
+            <span>{{ ptNotes.diagnosis ? ptNotes.diagnosis : "N/A" }}</span>
             <v-divider></v-divider>
           </div>
         </v-col>
         <v-col>
           <div>
             <strong>Initial/Re-evaluation : </strong>
-            <span>{{ ptNotes.initialEvaluation ? ptNotes.initialEvaluation : 'N/A'  }}</span>
+            <span>{{
+              ptNotes.initialEvaluation ? ptNotes.initialEvaluation : "N/A"
+            }}</span>
             <v-divider></v-divider>
             <strong>History of Present Illness : </strong>
-            <span>{{ ptNotes.hpi ? ptNotes.hpi : 'N/A' }}</span>
+            <span>{{ ptNotes.hpi ? ptNotes.hpi : "N/A" }}</span>
             <v-divider></v-divider>
           </div>
         </v-col>
@@ -95,24 +124,26 @@
       <v-row>
         <v-col>
           <strong>Medications: </strong>
-          <span>{{ ptNotes.medication ? ptNotes.medication : 'N/A'  }}</span>
+          <span>{{ ptNotes.medication ? ptNotes.medication : "N/A" }}</span>
           <v-divider></v-divider>
         </v-col>
         <v-col>
           <strong>Laboratory Exam : </strong>
-          <span>{{ ptNotes.labExams ? ptNotes.labExams : 'N/A' }}</span>
+          <span>{{ ptNotes.labExams ? ptNotes.labExams : "N/A" }}</span>
           <v-divider></v-divider>
         </v-col>
         <v-col>
           <strong>Diagnostic Procedure : </strong>
-          <span>{{ ptNotes.diagnosticProcedure ? ptNotes.diagnosticProcedure : 'N/A' }}</span>
+          <span>{{
+            ptNotes.diagnosticProcedure ? ptNotes.diagnosticProcedure : "N/A"
+          }}</span>
           <v-divider></v-divider>
         </v-col>
       </v-row>
       <v-row>
         <v-col>
           <strong>PAST MEDICAL HISTORY : </strong>
-          <span>{{ptNotes.pmh ? ptNotes.pmh : 'N/A' }}</span>
+          <span>{{ ptNotes.pmh ? ptNotes.pmh : "N/A" }}</span>
           <v-divider></v-divider>
         </v-col>
       </v-row>
@@ -126,14 +157,14 @@
         <v-col>
           <div>
             <strong>PERSONAL/SOCIAL HISTORY : </strong>
-            <span>{{ptNotes.psh ? ptNotes.psh : 'N/A' }}</span>
+            <span>{{ ptNotes.psh ? ptNotes.psh : "N/A" }}</span>
             <v-divider></v-divider>
           </div>
         </v-col>
         <v-col>
           <div>
             <strong>FOOD AND DRUG ALLERGY : </strong>
-            <span>{{ptNotes.fda ? ptNotes.fda : 'N/A' }}</span>
+            <span>{{ ptNotes.fda ? ptNotes.fda : "N/A" }}</span>
             <v-divider></v-divider>
           </div>
         </v-col>
@@ -142,14 +173,14 @@
         <v-col>
           <div>
             <strong>SUBJECTIVE : </strong>
-            <span>{{ptNotes.subjective ? ptNotes.subjective : 'N/A' }}</span>
+            <span>{{ ptNotes.subjective ? ptNotes.subjective : "N/A" }}</span>
             <v-divider></v-divider>
           </div>
         </v-col>
         <v-col>
           <div>
             <strong>OBJECTIVE : </strong>
-            <span>{{ptNotes.objective ? ptNotes.objective : 'N/A' }}</span>
+            <span>{{ ptNotes.objective ? ptNotes.objective : "N/A" }}</span>
             <v-divider></v-divider>
           </div>
         </v-col>
@@ -158,14 +189,16 @@
         <v-col>
           <div>
             <strong>Vital Signs : </strong>
-            <span> {{ptNotes.vitalSigns ? ptNotes.vitalSigns : 'N/A' }} </span>
+            <span> {{ ptNotes.vitalSigns ? ptNotes.vitalSigns : "N/A" }} </span>
             <v-divider></v-divider>
           </div>
         </v-col>
         <v-col>
           <div>
             <strong>Special Test Input : </strong>
-            <span> {{ptNotes.specialTest ? ptNotes.specialTest : 'N/A' }} </span>
+            <span>
+              {{ ptNotes.specialTest ? ptNotes.specialTest : "N/A" }}
+            </span>
             <v-divider></v-divider>
           </div>
         </v-col>
@@ -174,14 +207,16 @@
         <v-col>
           <div>
             <strong>RR : </strong>
-            <span> {{ptNotes.rr ? ptNotes.rr : 'N/A' }} </span>
+            <span> {{ ptNotes.rr ? ptNotes.rr : "N/A" }} </span>
             <v-divider></v-divider>
           </div>
         </v-col>
         <v-col>
           <div>
             <strong>Blood Pressure : </strong>
-            <span> {{ptNotes.bloodPressure ? ptNotes.bloodPressure : 'N/A' }} </span>
+            <span>
+              {{ ptNotes.bloodPressure ? ptNotes.bloodPressure : "N/A" }}
+            </span>
             <v-divider></v-divider>
           </div>
         </v-col>
@@ -190,14 +225,16 @@
         <v-col>
           <div>
             <strong>Pulse Rate : </strong>
-            <span> {{ptNotes.pulseRate ? ptNotes.pulseRate : 'N/A' }} </span>
+            <span> {{ ptNotes.pulseRate ? ptNotes.pulseRate : "N/A" }} </span>
             <v-divider></v-divider>
           </div>
         </v-col>
         <v-col>
           <div>
             <strong>Temperature : </strong>
-            <span> {{ptNotes.temperature ? ptNotes.temperature : 'N/A' }} </span>
+            <span>
+              {{ ptNotes.temperature ? ptNotes.temperature : "N/A" }}
+            </span>
             <v-divider></v-divider>
           </div>
         </v-col>
@@ -205,22 +242,24 @@
       <v-row>
         <v-col>
           <strong>Ocular Inspection : </strong>
-          <span>{{ptNotes.ocularInspection ? ptNotes.ocularInspection : 'N/A' }}</span>
+          <span>{{
+            ptNotes.ocularInspection ? ptNotes.ocularInspection : "N/A"
+          }}</span>
           <v-divider></v-divider>
         </v-col>
         <v-col>
           <strong>Palpation : </strong>
-          <span>{{ ptNotes.palpation ? ptNotes.palpation : 'N/A'  }}</span>
+          <span>{{ ptNotes.palpation ? ptNotes.palpation : "N/A" }}</span>
           <v-divider></v-divider>
         </v-col>
         <v-col>
           <strong>ROM : </strong>
-          <span>{{ ptNotes.rom ? ptNotes.rom : 'N/A'  }}</span>
+          <span>{{ ptNotes.rom ? ptNotes.rom : "N/A" }}</span>
           <v-divider></v-divider>
         </v-col>
         <v-col>
           <strong>MMT : </strong>
-          <span>{{ ptNotes.mmt ? ptNotes.mmt : 'N/A'  }}</span>
+          <span>{{ ptNotes.mmt ? ptNotes.mmt : "N/A" }}</span>
           <v-divider></v-divider>
         </v-col>
       </v-row>
@@ -228,14 +267,14 @@
         <v-col>
           <div>
             <strong> Muscle Bulk Measurement (MBM) : </strong>
-            <span> {{ ptNotes.mbm ? ptNotes.mbm : 'N/A'  }} </span>
+            <span> {{ ptNotes.mbm ? ptNotes.mbm : "N/A" }} </span>
             <v-divider></v-divider>
           </div>
         </v-col>
         <v-col>
           <div>
             <strong> Limb Girth Measurement (LGM) : </strong>
-            <span> {{ ptNotes.lgm ? ptNotes.lgm : 'N/A'  }} </span>
+            <span> {{ ptNotes.lgm ? ptNotes.lgm : "N/A" }} </span>
             <v-divider></v-divider>
           </div>
         </v-col>
@@ -250,7 +289,7 @@
         <v-col>
           <div>
             <strong> Findings : </strong>
-            <span> {{ ptNotes.findings ? ptNotes.findings : 'N/A'  }} </span>
+            <span> {{ ptNotes.findings ? ptNotes.findings : "N/A" }} </span>
             <v-divider></v-divider>
           </div>
         </v-col>
@@ -259,7 +298,9 @@
         <v-col>
           <div>
             <strong> Significance : </strong>
-            <span> {{ ptNotes.significance ? ptNotes.significance : 'N/A'  }} </span>
+            <span>
+              {{ ptNotes.significance ? ptNotes.significance : "N/A" }}
+            </span>
             <v-divider></v-divider>
           </div>
         </v-col>
@@ -268,7 +309,11 @@
         <v-col>
           <div>
             <strong> Functional Analysis : </strong>
-            <span> {{ ptNotes.functionalAnalysis ? ptNotes.functionalAnalysis : 'N/A'  }} </span>
+            <span>
+              {{
+                ptNotes.functionalAnalysis ? ptNotes.functionalAnalysis : "N/A"
+              }}
+            </span>
             <v-divider></v-divider>
           </div>
         </v-col>
@@ -288,74 +333,90 @@
       <v-row>
         <v-col>
           <strong>ASSESSMENT : </strong>
-          <span>{{ ptNotes.assessment ? ptNotes.assessment : 'N/A'  }}</span>
+          <span>{{ ptNotes.assessment ? ptNotes.assessment : "N/A" }}</span>
           <v-divider></v-divider>
         </v-col>
       </v-row>
       <v-row>
         <v-col>
           <strong>Diagnosis : </strong>
-          <span>{{ ptNotes.diagnosis ? ptNotes.diagnosis : 'N/A'  }}</span>
+          <span>{{ ptNotes.diagnosis ? ptNotes.diagnosis : "N/A" }}</span>
           <v-divider></v-divider>
         </v-col>
       </v-row>
       <v-row>
         <v-col>
           <strong>PT Impression : </strong>
-          <span>{{ ptNotes.ptImpression ? ptNotes.ptImpression : 'N/A'  }}</span>
+          <span>{{ ptNotes.ptImpression ? ptNotes.ptImpression : "N/A" }}</span>
           <v-divider></v-divider>
         </v-col>
       </v-row>
       <v-row>
         <v-col>
           <strong>Problem List : </strong>
-          <span>{{ ptNotes.problemList ? ptNotes.problemList : 'N/A'  }}</span>
+          <span>{{ ptNotes.problemList ? ptNotes.problemList : "N/A" }}</span>
           <v-divider></v-divider>
         </v-col>
       </v-row>
       <v-row>
         <v-col>
           <strong>Short Term Goal : </strong>
-          <span>{{ ptNotes.shortTermGoal ? ptNotes.shortTermGoal : 'N/A' }}</span>
+          <span>{{
+            ptNotes.shortTermGoal ? ptNotes.shortTermGoal : "N/A"
+          }}</span>
           <v-divider></v-divider>
         </v-col>
       </v-row>
       <v-row>
         <v-col>
           <strong>PT Management : </strong>
-          <span>{{ ptNotes.ptManagement ? ptNotes.ptManagement : 'N/A' }}</span>
+          <span>{{ ptNotes.ptManagement ? ptNotes.ptManagement : "N/A" }}</span>
           <v-divider></v-divider>
         </v-col>
       </v-row>
       <v-row>
         <v-col>
           <strong>Suggested PT Management : </strong>
-          <span>{{ ptNotes.suggestedPtManagement ? ptNotes.suggestedPtManagement : 'N/A' }}</span>
+          <span>{{
+            ptNotes.suggestedPtManagement
+              ? ptNotes.suggestedPtManagement
+              : "N/A"
+          }}</span>
           <v-divider></v-divider>
         </v-col>
       </v-row>
       <v-row>
         <v-col>
           <strong>Home Instruction : </strong>
-          <span>{{ ptNotes.homeInstruction ? ptNotes.homeInstruction : 'N/A' }}</span>
-          <v-divider ></v-divider>
+          <span>{{
+            ptNotes.homeInstruction ? ptNotes.homeInstruction : "N/A"
+          }}</span>
+          <v-divider></v-divider>
         </v-col>
       </v-row>
       <v-row>
         <v-col>
           <strong class="mb-4">Examining Physical Therapist : </strong>
-          <div class="text-center  mt-5">{{ ptNotes.examiningPhysicalTherapist ? ptNotes.examiningPhysicalTherapist : 'N/A' }}</div>
-          <v-divider style="border-bottom: 1px solid black;"></v-divider>
-          <div class="text-center">Physical Therapist </div>
-          
+          <div class="text-center mt-5">
+            {{
+              ptNotes.examiningPhysicalTherapist
+                ? ptNotes.examiningPhysicalTherapist
+                : "N/A"
+            }}
+          </div>
+          <v-divider style="border-bottom: 1px solid black"></v-divider>
+          <div class="text-center">Physical Therapist</div>
         </v-col>
 
         <v-col>
           <strong class="mb-4">Noted By : </strong>
-          <div class="text-center mt-5">{{ ptNotes.notedBy ? ptNotes.notedBy : 'N/A' }}</div>
-          <v-divider style="border-bottom: 1px solid black;"></v-divider>
-          <div class="text-center">Acting Chief, Physical Therapy Rehabilitation </div>
-          
+          <div class="text-center mt-5">
+            {{ ptNotes.notedBy ? ptNotes.notedBy : "N/A" }}
+          </div>
+          <v-divider style="border-bottom: 1px solid black"></v-divider>
+          <div class="text-center">
+            Acting Chief, Physical Therapy Rehabilitation
+          </div>
         </v-col>
       </v-row>
     </v-container>
@@ -365,7 +426,6 @@
 <script>
 import { createNamespacedHelpers } from "vuex";
 const { mapGetters } = createNamespacedHelpers("navigation");
-
 
 import GaitAnalysis from "@/components/navigation/Personnel/PtNotes/GaitAnalysis";
 import FamMedHistory from "@/components/navigation/Personnel/PtNotes/FamMedHistory";
@@ -382,7 +442,7 @@ export default {
     Adl,
     PtNoteUpdate,
   },
-  
+
   data: () => ({
     isPrint: false,
     ptNoteHeader: require("@/assets/imported-images/Pt-Notes.jpg"),
@@ -414,7 +474,6 @@ export default {
         father: "",
         mother: "",
       },
-      
     ],
     headers: [
       {
@@ -430,16 +489,11 @@ export default {
   computed: {
     ...mapGetters(["personnelDetails"]),
     ptNotes() {
-      return this.personnelDetails.ptNotes
-      
+      return this.personnelDetails.ptNotes;
     },
     birthDate() {
       return this.personnelDetails.personnel.dateOfBirth.substr(0, 10);
     },
-    
-    
   },
-
 };
 </script>
-

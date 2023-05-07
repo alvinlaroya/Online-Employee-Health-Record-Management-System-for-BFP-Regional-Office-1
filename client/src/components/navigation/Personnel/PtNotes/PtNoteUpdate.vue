@@ -308,28 +308,28 @@
               </v-row>
               <v-row>
                 <v-col cols="3">
-                  <v-text-field
+                  <v-checkbox
                     v-model="balanceTolerance[0].sittingBalance"
                     label="Sitting Balance"
-                  ></v-text-field>
+                  ></v-checkbox>
                 </v-col>
                 <v-col cols="3">
-                  <v-text-field
+                  <v-checkbox
                     v-model="balanceTolerance[0].sittingTolerance"
                     label="Sitting Tolerance"
-                  ></v-text-field>
+                  ></v-checkbox>
                 </v-col>
                 <v-col cols="3">
-                  <v-text-field
+                  <v-checkbox
                     v-model="balanceTolerance[0].standingBalance"
                     label="Standing Balance"
-                  ></v-text-field>
+                  ></v-checkbox>
                 </v-col>
                 <v-col cols="3">
-                  <v-text-field
+                  <v-checkbox
                     v-model="balanceTolerance[0].standingTolerance"
                     label="Standing Tolerance"
-                  ></v-text-field>
+                  ></v-checkbox>
                 </v-col>
               </v-row>
               <v-row>

@@ -200,13 +200,13 @@
                       <v-col cols="6">
                         <v-switch
                           v-model="roles.viewDental"
-                          label="View Dental History"
+                          label="View Dental"
                         ></v-switch>
                       </v-col>
                       <v-col cols="6">
                         <v-switch
                           v-model="roles.updateDental"
-                          label="Update Dental History"
+                          label="Update Dental"
                         ></v-switch>
                       </v-col>
                     </v-row>
@@ -223,13 +223,13 @@
                       <v-col cols="6">
                         <v-switch
                           v-model="roles.viewPhysical"
-                          label="View Physical Exam History"
+                          label="View Physical Exam"
                         ></v-switch>
                       </v-col>
                       <v-col cols="6">
                         <v-switch
                           v-model="roles.updatePhysical"
-                          label="Update Physical Exam History"
+                          label="Update Physical Exam"
                         ></v-switch>
                       </v-col>
                     </v-row>
@@ -246,13 +246,13 @@
                       <v-col cols="6">
                         <v-switch
                           v-model="roles.viewPtNotes"
-                          label="View PT Notes History"
+                          label="View PT Notes"
                         ></v-switch>
                       </v-col>
                       <v-col cols="6">
                         <v-switch
                           v-model="roles.updatePtNotes"
-                          label="Update PT Notes History"
+                          label="Update PT Notes"
                         ></v-switch>
                       </v-col>
                     </v-row>
@@ -269,13 +269,13 @@
                       <v-col cols="6">
                         <v-switch
                           v-model="roles.viewNeuro"
-                          label="View Neuro Psych History"
+                          label="View Neuro Psych"
                         ></v-switch>
                       </v-col>
                       <v-col cols="6">
                         <v-switch
                           v-model="roles.updateNeuro"
-                          label="Update Neuro Psych History"
+                          label="Update Neuro Psych"
                         ></v-switch>
                       </v-col>
                     </v-row>

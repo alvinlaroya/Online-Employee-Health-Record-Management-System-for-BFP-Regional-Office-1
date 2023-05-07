@@ -245,63 +245,63 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: true,
     },
     adlBathing: {
-      type: DataTypes.BOOLEAN,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     adlToileting: {
-      type: DataTypes.BOOLEAN,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     adlEating: {
-      type: DataTypes.BOOLEAN,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     adlUpperExtermityDressing: {
-      type: DataTypes.BOOLEAN,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     adlLowerExtermityDressing: {
-      type: DataTypes.BOOLEAN,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     adlBedMobility: {
-      type: DataTypes.BOOLEAN,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     adlScootTowardsHeadOfHead: {
-      type: DataTypes.BOOLEAN,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     adlScootTowardsFootOfHead: {
-      type: DataTypes.BOOLEAN,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     adlSideToSideScooting: {
-      type: DataTypes.BOOLEAN,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     adlSupineToLongSitting: {
-      type: DataTypes.BOOLEAN,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     adlRolling: {
-      type: DataTypes.BOOLEAN,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     adlTransfers: {
-      type: DataTypes.BOOLEAN,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     adlWheelChairToMat: {
-      type: DataTypes.BOOLEAN,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     adlBedToWheelChair: {
-      type: DataTypes.BOOLEAN,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     adlAmbulation: {
-      type: DataTypes.BOOLEAN,
+      type: DataTypes.STRING,
       allowNull: true,
     },
     vitalSigns: {

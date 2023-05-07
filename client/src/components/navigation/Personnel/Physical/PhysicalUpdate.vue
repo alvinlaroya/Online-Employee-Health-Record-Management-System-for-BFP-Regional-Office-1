@@ -2,7 +2,9 @@
   <div>
     <v-dialog v-model="dialog" max-width="900">
       <template v-slot:activator="{ on }">
-        <v-btn v-if="updatePhysical" v-on="on" tile small> Update </v-btn>
+        <v-btn v-if="userRoles.updatePhysical" v-on="on" tile small>
+          Update
+        </v-btn>
       </template>
       <v-card>
         <v-card-title> Update Form </v-card-title>
@@ -121,6 +123,7 @@ export default {
   }),
   methods: {
     ...mapActions(["updatePhysical"]),
+    ...mapAuthGetters(["userRoles"]),
     async submitHandler() {
       await this.updatePhysical({
         personnelId: this.personnelId,

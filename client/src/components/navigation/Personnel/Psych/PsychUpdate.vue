@@ -2,7 +2,7 @@
   <div>
     <v-dialog v-model="dialog" max-width="900">
       <template v-slot:activator="{ on }">
-        <v-btn v-if="updateNeuro" v-on="on" tile small> Update </v-btn>
+        <v-btn  v-on="on" tile small> Update </v-btn>
       </template>
       <v-card>
         <v-card-title> Update Form </v-card-title>

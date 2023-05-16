@@ -1,9 +1,9 @@
 <template>
   <div>
     <v-row>
-      <v-col class="py-0">
-        <v-row>
-          <v-col cols="6" md="4">
+      <v-col class="">
+        <v-row dense >
+          <v-col  cols="6" md="4" align-self="center">
             <v-text-field
               v-model="search"
               dense
@@ -12,7 +12,7 @@
               label="Search Case"
             ></v-text-field>
           </v-col>
-          <v-col cols="6" md="4" lg="2">
+          <v-col cols="6" md="4" lg="2" align-self="center">
             <v-select
               v-model="selectedItem"
               :items="items"
@@ -21,6 +21,14 @@
               rounded
               solo
             ></v-select>
+          </v-col>
+          <v-col cols="6" md="4" lg="2" >
+            <v-btn  @click="sortDescending" class="mr-1">
+              <v-icon small> mdi-arrow-down </v-icon>
+            </v-btn>
+            <v-btn @click="sortAscending">
+              <v-icon small > mdi-arrow-up </v-icon>
+            </v-btn>
           </v-col>
         </v-row>
       </v-col>
@@ -61,29 +69,27 @@ export default {
     selectedItem: null,
     items: [],
     cardItem: [],
+    sortDirection: "asc", // "asc" for ascending, "desc" for descending
   }),
   computed: {
-    ...mapGetters(['cases']),
+    ...mapGetters(["cases"]),
     filteredItems() {
-      if(this.cases === []) return []
+      if (this.cases === []) return [];
 
-      if (this.search === "" && this.selectedItem === null) {
-        return this.sortCaseTitle(this.cases);
-      } else {
-        let filteredItems = this.cases;
-        const search = this.search.toLowerCase();
-        if (search !== "") {
-          filteredItems = filteredItems.filter((item) =>
-            item.title.toLowerCase().includes(search)
-          );
-        }
-        if (this.selectedItem !== null && this.selectedItem !== "All") {
-          filteredItems = filteredItems.filter(
-            (item) => item.title === this.selectedItem
-          );
-        }
-        return this.sortCaseTitle(filteredItems);
+      let filteredItems = this.cases;
+      const search = this.search.toLowerCase();
+      if (search !== "") {
+        filteredItems = filteredItems.filter((item) =>
+          item.title.toLowerCase().includes(search)
+        );
       }
+      if (this.selectedItem !== null && this.selectedItem !== "All") {
+        filteredItems = filteredItems.filter(
+          (item) => item.title === this.selectedItem
+        );
+      }
+
+      return this.sortItems(filteredItems);
     },
   },
 
@@ -92,13 +98,12 @@ export default {
     this.items = ["All"].concat(this.cases.map((item) => item.title));
   },
   methods: {
-    ...mapActions(['getAllCases', 'getAllPersonnelsByCase']),
+    ...mapActions(["getAllCases", "getAllPersonnelsByCase"]),
     async fetchAllCases() {
       await this.getAllCases();
     },
     open(item) {
-      // this.$router.push("/case/" + title.toLowerCase());
-      this.getAllPersonnelsByCase(item.title)
+      this.getAllPersonnelsByCase(item.title);
       this.$router.push({
         name: "navigation/case",
         params: {
@@ -107,12 +112,17 @@ export default {
         },
       });
     },
-    sortCaseTitle(arr) {
+    sortItems(arr) {
+      const direction = this.sortDirection === "asc" ? 1 : -1;
       return arr.sort(function (a, b) {
-        var textA = a.title.toUpperCase();
-        var textB = b.title.toUpperCase();
-        return textA < textB ? -1 : textA > textB ? 1 : 0;
+        return direction * (a.total - b.total);
       });
+    },
+    sortAscending() {
+      this.sortDirection = "asc";
+    },
+    sortDescending() {
+      this.sortDirection = "desc";
     },
   },
 };

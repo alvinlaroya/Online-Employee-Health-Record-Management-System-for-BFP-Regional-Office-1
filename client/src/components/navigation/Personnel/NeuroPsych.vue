@@ -11,6 +11,39 @@
         <v-col class="px-0"> <h1>Neuro Psych</h1></v-col>
       </v-row>
       <v-row justify="space-between">
+        <v-col class="pa-0">
+          <div class="">
+            <span class="body-2"> FULL NAME : </span>
+            <strong>
+              {{ personnelDetails.personnel.fname }}
+              {{ personnelDetails.personnel.mname }}
+              {{ personnelDetails.personnel.lname }}
+              {{ personnelDetails.personnel.extName }}
+            </strong>
+            <span class="body-2 pl-5">OCCUPATION : </span>
+            <strong>{{ personnelDetails.personnel.occupation }}&nbsp;</strong>
+            <span class="body-2 pl-5">RANK : </span>
+            <strong>{{ personnelDetails.personnel.rank }}&nbsp;</strong>
+            <span class="body-2 pl-5">UNIT : </span>
+            <strong> {{ personnelDetails.personnel.unit }} </strong>
+          </div>
+        </v-col>
+      </v-row>
+      <v-row justify="space-between">
+        <v-col class="pa-0">
+          <div class="">
+            <span class="body-2"> ADDRESS : </span>
+            <strong> {{ personnelDetails.personnel.address }} </strong>
+            <span class="body-2 pl-5">MOBILE NO. : </span>
+            <strong>+639{{ personnelDetails.personnel.mobile }}&nbsp;</strong>
+            <span class="body-2 pl-5">SEX : </span>
+            <strong>{{ personnelDetails.personnel.gender }}&nbsp;</strong>
+            <span class="body-2 pl-5">CIVIL STATUS : </span>
+            <strong> {{ personnelDetails.personnel.civilStatus }}&nbsp;</strong>
+          </div>
+        </v-col>
+      </v-row>
+      <v-row justify="space-between">
         <v-col class="mb-2">
           <span>
             Date :

@@ -52,8 +52,10 @@
           <v-card-subtitle class="pb-0"> {{ item.title }} </v-card-subtitle>
           <v-card-title class="green--text text-h3">
             {{ item.total }}
+            
           </v-card-title>
         </v-card>
+        
       </v-col>
     </v-row>
   </div>

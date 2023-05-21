@@ -2,8 +2,18 @@
   <v-card elevation="0">
     <v-container>
       <v-row justify="end" class="pa-2">
-        <PsychUpdate />
-        <v-btn v-print="'#print'" class="ml-3" small>print</v-btn>
+        <v-tabs v-model="medicalType">
+          <v-tab @click="medicalType = 0">Entry</v-tab>
+          <v-tab @click="medicalType = 1">Training</v-tab>
+          <v-tab @click="medicalType = 2">Promotion</v-tab>
+        </v-tabs>
+        <v-spacer />
+        <div style="margin-top: -40px">
+          <PsychUpdate :medicalType="medicalType" />
+        </div>
+        <div style="margin-top: -40px">
+          <v-btn v-print="'#print'" class="ml-3" small>print</v-btn>
+        </div>
       </v-row>
     </v-container>
     <v-container id="print" class="px-8">
@@ -47,7 +57,7 @@
         <v-col class="mb-2">
           <span>
             Date :
-            <strong> {{ dateToday}} </strong>
+            <strong> {{ dateToday }} </strong>
           </span>
         </v-col>
       </v-row>
@@ -74,6 +84,7 @@ export default {
   data() {
     return {
       dialogVisible: false,
+      medicalType: 0,
     };
   },
   methods: {

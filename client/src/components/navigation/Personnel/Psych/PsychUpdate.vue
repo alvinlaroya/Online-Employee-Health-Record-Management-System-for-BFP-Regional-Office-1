@@ -11,6 +11,14 @@
         <v-card-text>
           <v-form @submit.prevent="submit">
             <div>
+              <v-row class="mt-3">
+                <v-select
+                  v-model="psych.medicalType"
+                  :items="['Entry', 'Training', 'Promotion']"
+                  label="Medical Type"
+                  outlined
+                ></v-select>
+              </v-row>
               <v-row>
                 <v-col cols="4">
                   <v-text-field
@@ -50,6 +58,12 @@ const { mapGetters, mapActions } = createNamespacedHelpers("navigation");
 const { mapGetters: mapAuthGetters } = createNamespacedHelpers("auth");
 
 export default {
+  props: {
+    medicalType: {
+      type: Number,
+      default: 0,
+    },
+  },
   data: () => ({
     dialog: false,
     menu: false,
@@ -57,6 +71,7 @@ export default {
       .toISOString()
       .substr(0, 10),
     psych: {
+      medicalType: "",
       currentHealthCondition: "",
       historyOfMentalHealthCondition: "",
       currentMentalHealthCondition: "",
@@ -81,6 +96,23 @@ export default {
     ...mapAuthGetters(["userRoles"]),
     personnelId() {
       return this.personnelDetails.personnel.id;
+    },
+  },
+  watch: {
+    medicalType() {
+      switch (this.medicalType) {
+        case 0:
+          this.psych.medicalType = "Entry";
+          break;
+        case 1:
+          this.psych.medicalType = "Training";
+          break;
+        case 2:
+          this.psych.medicalType = "Promotion";
+          break;
+        default:
+          this.psych.medicalType = "Entry";
+      }
     },
   },
   mounted() {

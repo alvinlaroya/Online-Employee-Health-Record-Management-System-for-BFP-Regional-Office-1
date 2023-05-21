@@ -2,22 +2,49 @@
   <v-card elevation="0">
     <v-container>
       <v-row justify="end" class="pa-2">
-        <DentalUpdate />
-        <v-btn v-print="'#print'" class="ml-3" small @click="isPrint = true">print</v-btn>
+        <v-tabs v-model="medicalType">
+          <v-tab @click="medicalType = 0">Entry</v-tab>
+          <v-tab @click="medicalType = 1">Training</v-tab>
+          <v-tab @click="medicalType = 2">Promotion</v-tab>
+        </v-tabs>
+        <v-spacer />
+        <div style="margin-top: -40px">
+          <DentalUpdate :medicalType="medicalType" />
+        </div>
+        <div style="margin-top: -40px">
+          <v-btn v-print="'#print'" class="ml-3" small @click="isPrint = true"
+            >print</v-btn
+          >
+        </div>
       </v-row>
     </v-container>
     <v-container id="print" class="px-8">
-      <div style="display: flex; flex-direction: row; justify-content: space-evenly; align-items: center;  margin-bottom: 3rem;">
-        <div >
+      <div
+        style="
+          display: flex;
+          flex-direction: row;
+          justify-content: space-evenly;
+          align-items: center;
+          margin-bottom: 3rem;
+        "
+      >
+        <div>
           <v-avatar size="130" class="mb-5" tile>
-          <img
-            :src="dental1"
-            alt="dental-logo-left"
-            style="object-fit: cover;"
-          />
-        </v-avatar>
+            <img
+              :src="dental1"
+              alt="dental-logo-left"
+              style="object-fit: cover"
+            />
+          </v-avatar>
         </div>
-        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+          "
+        >
           <span>Republic of the Philippines</span>
           <span>Department of the Interior and Local Government</span>
           <strong>BUREAU OF FIRE PROTECTION</strong>
@@ -26,18 +53,18 @@
           <span>Contact Number: 09178404942</span>
           <span>Email: bfpr1opndiv@yahoo.com</span>
         </div>
-        <div >
+        <div>
           <v-avatar size="130" class="mb-5" tile>
-          <img
-            :src="dental2"
-            alt="dental-logo-right"
-            style="object-fit: cover;"
-          />
-        </v-avatar>
+            <img
+              :src="dental2"
+              alt="dental-logo-right"
+              style="object-fit: cover"
+            />
+          </v-avatar>
         </div>
       </div>
-      
-       <!-- <div style="display: flex; justify-content: end; align-items: center; width: 100%; ">
+
+      <!-- <div style="display: flex; justify-content: end; align-items: center; width: 100%; ">
         <v-avatar size="150" class="mb-5" tile>
           <img
             :src="`http://localhost:8000/${personnelDetails.personnel.personnelImage}`"
@@ -46,7 +73,15 @@
           />
         </v-avatar>
        </div> -->
-       <div style="display: flex; justify-content: center; align-items: center; width: 100%; margin: 2rem 0;">
+      <div
+        style="
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          margin: 2rem 0;
+        "
+      >
         <h3>BFP DENTAL HEALTH RECORD</h3>
       </div>
       <v-row
@@ -131,7 +166,12 @@
       <v-row>
         <v-col cols="6">
           <!-- <v-img max-width="400px" height="350px" :src="dentalTeeth" contain></v-img> -->
-          <img height="100%" width="100%" :src="dentalTeeth" style="border-radius: 1rem;">
+          <img
+            height="100%"
+            width="100%"
+            :src="dentalTeeth"
+            style="border-radius: 1rem"
+          />
         </v-col>
         <v-col cols="6">
           <strong>A. CALCULUS</strong>
@@ -143,14 +183,20 @@
             class="elevation-1 my-5"
           ></v-data-table>
           <strong class="pt-3">B. ABNORMALITIES</strong>
-          <v-card class="mt-2" height="190px" max-height="190px" elevation="0" style="border: 1px solid gray; ">
+          <v-card
+            class="mt-2"
+            height="190px"
+            max-height="190px"
+            elevation="0"
+            style="border: 1px solid gray"
+          >
             <v-card-text>
               <!-- text here -->
             </v-card-text>
           </v-card>
         </v-col>
       </v-row>
-      
+
       <v-row
         ><v-col
           ><strong class="mt-2">Section III : CASE HISTORY</strong></v-col
@@ -160,13 +206,13 @@
       <v-row>
         <v-col>
           <span class="body-2"> Oral Complaint : </span>
-            <strong>
-              <strong>{{
+          <strong>
+            <strong>{{
               personnelDetails.dental.oralComplaint
                 ? personnelDetails.dental.oralComplaint
                 : "N/A"
             }}</strong>
-            </strong>
+          </strong>
         </v-col>
       </v-row>
       <v-row>
@@ -175,33 +221,34 @@
         </v-col>
       </v-row>
       <v-row justify="center" align="center">
-        <v-col cols="4" >
-           <strong class="d-flex justify-center"> &nbsp;</strong>
-          <v-divider style="border-bottom: 1px solid black;"></v-divider>
-          <small class="d-flex justify-center mt-1" >Signature of Personnel</small>
-        </v-col>
-        <v-col cols="4" >
+        <v-col cols="4">
           <strong class="d-flex justify-center"> &nbsp;</strong>
-          <v-divider style="border-bottom: 1px solid black;"></v-divider>
-          <small class="d-flex justify-center mt-1 text-underlined" >Date</small>
+          <v-divider style="border-bottom: 1px solid black"></v-divider>
+          <small class="d-flex justify-center mt-1"
+            >Signature of Personnel</small
+          >
         </v-col>
-        <v-col cols="4" >
+        <v-col cols="4">
+          <strong class="d-flex justify-center"> &nbsp;</strong>
+          <v-divider style="border-bottom: 1px solid black"></v-divider>
+          <small class="d-flex justify-center mt-1 text-underlined">Date</small>
+        </v-col>
+        <v-col cols="4">
           <strong class="d-flex justify-center">{{
-              personnelDetails.dental.examiningDentist
-                ? personnelDetails.dental.examiningDentist
-                : "N/A"
-            }}</strong>
-          <v-divider style="border-bottom: 1px solid black;" ></v-divider>
-          <small class="d-flex justify-center mt-1" >Examining Dentist</small>
+            personnelDetails.dental.examiningDentist
+              ? personnelDetails.dental.examiningDentist
+              : "N/A"
+          }}</strong>
+          <v-divider style="border-bottom: 1px solid black"></v-divider>
+          <small class="d-flex justify-center mt-1">Examining Dentist</small>
         </v-col>
       </v-row>
       <v-row>
         <v-col>
           <strong class="text-decoration-underline"
-              >SINSP CLAPER A OJASCASTRO, DMD</strong
-            >
+            >SINSP CLAPER A OJASCASTRO, DMD</strong
+          >
         </v-col>
-        
       </v-row>
       <v-row>
         <v-col>
@@ -213,7 +260,6 @@
           <span class="body-1">BFP Region 1</span>
         </v-col>
       </v-row>
-
     </v-container>
   </v-card>
 </template>
@@ -251,15 +297,16 @@ export default {
       },
     ],
     items: [],
-    
+    medicalType: 0,
+
     dentalTeeth: require("@/assets/imported-images/Dental-Teeth.jpg"),
     dental1: require("@/assets/imported-images/Dental1.png"),
     dental2: require("@/assets/imported-images/Dental2.png"),
     // dentalHeader: require("@/assets/imported-images/Dental.jpg"),
     // dentalTeeth: "@/assets/imported-images/Dental-Teeth.jpg",
-    caseHistory:{
-      oralComplaint: '',
-      examiningDentist: ''
+    caseHistory: {
+      oralComplaint: "",
+      examiningDentist: "",
     },
   }),
   computed: {
@@ -289,10 +336,10 @@ export default {
       return this.personnelDetails.dental.promotionDate.substr(0, 10);
     },
   },
-  methods:{
-    printOpen(){
-      this.isPrint =!this.isPrint
-    }
+  methods: {
+    printOpen() {
+      this.isPrint = !this.isPrint;
+    },
   },
   created() {
     this.items = [
@@ -307,8 +354,7 @@ export default {
 </script>
 
 <style scoped>
-
-.text-center{
+.text-center {
   text-align: center;
 }
 </style>

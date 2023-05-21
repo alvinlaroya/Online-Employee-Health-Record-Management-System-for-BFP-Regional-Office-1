@@ -19,13 +19,6 @@
         >
           Login
         </v-btn>
-        <v-btn
-          style="margin-left: 10px"
-          @click="$router.push({ name: 'auth.register' })"
-          class="elevation-0"
-        >
-          Register
-        </v-btn>
       </template>
     </v-app-bar>
   </div>

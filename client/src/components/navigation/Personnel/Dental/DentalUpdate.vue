@@ -7,10 +7,18 @@
         </v-btn>
       </template>
       <v-card>
-        <v-card-title> Update Form </v-card-title>
+        <v-card-title> Update Form {{ medicalType }}</v-card-title>
         <v-card-text>
           <v-form @submit.prevent="submit">
             <div>
+              <v-row class="mt-3">
+                <v-select
+                  v-model="dental.medicalType"
+                  :items="['Entry', 'Training', 'Promotion']"
+                  label="Medical Type"
+                  outlined
+                ></v-select>
+              </v-row>
               <v-row>
                 <v-col cols="3">
                   <v-checkbox
@@ -280,6 +288,12 @@ const { mapGetters, mapActions } = createNamespacedHelpers("navigation");
 const { mapGetters: mapAuthGetters } = createNamespacedHelpers("auth");
 
 export default {
+  props: {
+    medicalType: {
+      type: Number,
+      default: 0,
+    },
+  },
   data: () => ({
     dialog: false,
     menu: false,
@@ -292,6 +306,7 @@ export default {
       .substr(0, 10),
 
     dental: {
+      medicalType: "",
       initial: false,
       initialDate: "",
       training: false,
@@ -373,6 +388,24 @@ export default {
       set(value) {
         this.dental.trainingDate = value;
       },
+    },
+  },
+
+  watch: {
+    medicalType() {
+      switch (this.medicalType) {
+        case 0:
+          this.dental.medicalType = "Entry";
+          break;
+        case 1:
+          this.dental.medicalType = "Training";
+          break;
+        case 2:
+          this.dental.medicalType = "Promotion";
+          break;
+        default:
+          this.dental.medicalType = "Entry";
+      }
     },
   },
 

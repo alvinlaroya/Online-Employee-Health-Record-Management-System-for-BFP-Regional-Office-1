@@ -12,6 +12,14 @@
           <v-form @submit.prevent="submit">
             <div>
               <!-- physical api -->
+              <v-row class="mt-3">
+                <v-select
+                  v-model="type.medicalType"
+                  :items="['Entry', 'Training', 'Promotion']"
+                  label="Medical Type"
+                  outlined
+                ></v-select>
+              </v-row>
               <v-row>
                 <v-col cols="4" v-for="(value, key) in physicalData" :key="key">
                   <v-text-field
@@ -68,12 +76,21 @@ const { mapGetters, mapActions } = createNamespacedHelpers("navigation");
 const { mapGetters: mapAuthGetters } = createNamespacedHelpers("auth");
 
 export default {
+  props: {
+    medicalType: {
+      type: Number,
+      default: 0,
+    },
+  },
   data: () => ({
     dialog: false,
     menu: false,
     date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
       .toISOString()
       .substr(0, 10),
+    type: {
+      medicalType: "",
+    },
     physicalData: {
       height: "",
       weight: "",
@@ -123,7 +140,6 @@ export default {
   }),
   methods: {
     ...mapActions(["updatePhysical"]),
-    ...mapAuthGetters(["userRoles"]),
     async submitHandler() {
       await this.updatePhysical({
         personnelId: this.personnelId,
@@ -153,6 +169,23 @@ export default {
     ...mapAuthGetters(["userRoles"]),
     personnelId() {
       return this.personnelDetails.personnel.id;
+    },
+  },
+  watch: {
+    medicalType() {
+      switch (this.medicalType) {
+        case 0:
+          this.type.medicalType = "Entry";
+          break;
+        case 1:
+          this.type.medicalType = "Training";
+          break;
+        case 2:
+          this.type.medicalType = "Promotion";
+          break;
+        default:
+          this.type.medicalType = "Entry";
+      }
     },
   },
   mounted() {

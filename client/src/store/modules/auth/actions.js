@@ -55,3 +55,4 @@ export const logOutUser = async ({ commit }) => {
   commit(types.LOG_OUT, {});
   router.replace("/");
 };
+

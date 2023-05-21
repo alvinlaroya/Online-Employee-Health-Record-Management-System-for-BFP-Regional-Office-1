@@ -69,7 +69,14 @@
       </v-list-item>
     </v-list>
     <v-divider></v-divider>
-    <v-list nav dense subheader v-for="(list, i) in navigationList" :key="i">
+    <v-list
+      class="pb-0"
+      nav
+      dense
+      subheader
+      v-for="(list, i) in navigationList"
+      :key="i"
+    >
       <v-subheader class="text-truncate">{{ list.subheader }}</v-subheader>
       <v-list-item-group>
         <div v-for="(item, i) in list.subheaderList" :key="i">
@@ -95,6 +102,38 @@
         </div>
       </v-list-item-group>
     </v-list>
+    <!-- user management -->
+
+    <!-- trial -->
+    <v-list link dense nav subheader style="padding-bottom: 0">
+      <v-list-group
+        style="padding: 0"
+        v-for="(item, index) in navigationItems"
+        :key="index"
+        v-model="item.active"
+        no-action
+      >
+        <template v-slot:activator>
+          <v-list-item active-class="active-class" dense style="padding: 0">
+            <v-list-item-icon>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title v-text="item.title"></v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </template>
+        <v-list-item v-for="(item, subIndex) in item.subItems" :key="subIndex" @click="handleClick(item)">
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>{{ item.text }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list-group>
+    </v-list>
+    <!-- try -->
   </v-navigation-drawer>
 </template>
 
@@ -132,12 +171,47 @@ export default {
         ],
       },
     ],
+
     otherOptions: [
       {
         text: "Sign Out",
         icon: "mdi-logout-variant",
         iconColor: "red",
         method: "logout",
+      },
+    ],
+    navigationItems: [
+      {
+        title: "User Management",
+        icon: "mdi-account-cog",
+        active: false,
+        subItems: [
+          {
+            text: "Add New User",
+            icon: "mdi-account-plus",
+            
+          },
+          {
+            text: "Delete User",
+            icon: "mdi-account-remove",
+
+          },
+          {
+            text: "Change Password",
+            icon: "mdi-account-edit",
+
+          },
+          {
+            text: "Transaction Log",
+            icon: "mdi-lock-reset",
+
+          },
+          {
+            text: "Forgot Password",
+            icon: "mdi-account-question",
+
+          },
+        ],
       },
     ],
   }),
@@ -153,6 +227,19 @@ export default {
           return null;
       }
     },
+    handleClick(item) {
+    if (item.text === 'Add New User') {
+      this.$router.push({ name: 'auth.register' });
+    } else if (item.text === 'Delete User') {
+      // Perform delete user action
+    } else if (item.text === 'Change Password') {
+      // Perform change password action
+    } else if (item.text === 'Transaction Log') {
+      // Perform transaction log action
+    } else if (item.text === 'Forgot Password') {
+      // Perform forgot password action
+    }
+  }
   },
   computed: {
     ...mapGettersAuth(["currentUser"]),

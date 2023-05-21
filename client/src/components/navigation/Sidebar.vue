@@ -123,7 +123,7 @@
             </v-list-item-content>
           </v-list-item>
         </template>
-        <v-list-item v-for="(item, subIndex) in item.subItems" :key="subIndex" @click="handleClick(item)">
+        <v-list-item v-for="(item, subIndex) in item.subItems" :key="subIndex" link :to="item.path">
           <v-list-item-icon>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon>
@@ -179,6 +179,12 @@ export default {
         iconColor: "red",
         method: "logout",
       },
+      {
+        text: "Delete User",
+        icon: "mdi-account-remove",
+        iconColor: "red",
+        method: "delete",
+      },
     ],
     navigationItems: [
       {
@@ -189,28 +195,29 @@ export default {
           {
             text: "Add New User",
             icon: "mdi-account-plus",
-            
+            path: "/add-new-user",
           },
-          {
-            text: "Delete User",
-            icon: "mdi-account-remove",
-
-          },
+          // {
+          //   text: "Delete User",
+          //   icon: "mdi-account-remove",
+          //   path: "/delete-user",
+          // },
           {
             text: "Change Password",
             icon: "mdi-account-edit",
-
+            path: "/change-password",
           },
           {
             text: "Transaction Log",
             icon: "mdi-lock-reset",
+            path: "/transaction-log",
 
           },
-          {
-            text: "Forgot Password",
-            icon: "mdi-account-question",
+          // {
+          //   text: "Forgot Password",
+          //   icon: "mdi-account-question",
 
-          },
+          // },
         ],
       },
     ],
@@ -227,19 +234,17 @@ export default {
           return null;
       }
     },
-    handleClick(item) {
-    if (item.text === 'Add New User') {
-      this.$router.push({ name: 'auth.register' });
-    } else if (item.text === 'Delete User') {
-      // Perform delete user action
-    } else if (item.text === 'Change Password') {
-      // Perform change password action
-    } else if (item.text === 'Transaction Log') {
-      // Perform transaction log action
-    } else if (item.text === 'Forgot Password') {
-      // Perform forgot password action
-    }
-  }
+  //   handleClick(item) {
+  //   if (item.text === 'Add New User') {
+  //     this.$router.push({ name: 'auth.register' });
+  //   } else if (item.text === 'Delete User') {
+  //     // Perform delete user action
+  //   } else if (item.text === 'Change Password') {
+  //     // Perform change password action
+  //   } else if (item.text === 'Transaction Log') {
+  //     // Perform transaction log action
+  //   }
+  // }
   },
   computed: {
     ...mapGettersAuth(["currentUser"]),

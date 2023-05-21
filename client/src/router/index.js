@@ -11,6 +11,13 @@ import ForgotPassword from "@/views/auth/ForgotPassword.vue";
 import Dashboard from "@/views/navigation/Dashboard.vue";
 import Personnel from "@/views/navigation/Personnel";
 import History from "@/views/navigation/History";
+
+// Pages for user management > Navigation 
+import AddNewUser from "@/views/navigation/User-Management/AddNewUser.vue";
+import ChangePassword from "@/views/navigation/User-Management/ChangePassword.vue";
+
+import TransactionLog from "@/views/navigation/User-Management/TransactionLog.vue";
+
 // Pages > Cases
 import Case from "@/views/navigation/Cases/Case";
 
@@ -142,6 +149,82 @@ const routes = [
       sidebar: Sidebar,
     }
   },
+
+  // user management
+  {
+    path: "/add-new-user",
+    name: "navigation.addNewUser",
+    components: {
+      default: AddNewUser,
+      navbar: Navbar,
+      sidebar: Sidebar,
+    },
+    beforeEnter(to, from, next) {
+      Auth.isAuthenticated()
+        .then((response) => {
+          if (response) {
+            next(); // If authenticated, proceed with the redirect
+          } else {
+            next({ name: "auth.login" });
+          }
+          next();
+        })
+        .catch(() => {
+          next({ name: "auth.login" });
+        });
+    },
+  },
+
+
+  
+  {
+    path: "/change-password",
+    name: "navigation.ChangePassword",
+    components: {
+      default: ChangePassword,
+      navbar: Navbar,
+      sidebar: Sidebar,
+    },
+    beforeEnter(to, from, next) {
+      Auth.isAuthenticated()
+        .then((response) => {
+          if (response) {
+            next(); // If authenticated, proceed with the redirect
+          } else {
+            next({ name: "auth.login" });
+          }
+          next();
+        })
+        .catch(() => {
+          next({ name: "auth.login" });
+        });
+    },
+  },
+
+  {
+    path: "/transaction-log",
+    name: "navigation.TransactionLog",
+    components: {
+      default: TransactionLog,
+      navbar: Navbar,
+      sidebar: Sidebar,
+    },
+    beforeEnter(to, from, next) {
+      Auth.isAuthenticated()
+        .then((response) => {
+          if (response) {
+            next(); // If authenticated, proceed with the redirect
+          } else {
+            next({ name: "auth.login" });
+          }
+          next();
+        })
+        .catch(() => {
+          next({ name: "auth.login" });
+        });
+    },
+  },
+
 ];
 
 const router = new VueRouter({

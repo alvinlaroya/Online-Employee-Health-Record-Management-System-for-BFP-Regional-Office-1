@@ -5,13 +5,8 @@
         <v-card class="pa-6" style="text-align: center">
           <img src="@/images/pnp.png" style="width: 100px" alt="" /><br />
           <span class="font-weight-bold" style="font-size: 21px"
-            >Login to Dashboard</span
+            >Forgot Password</span
           >
-          <v-card-subtitle>
-            Online Employee Health Record Management System for BFP Regional
-            Office 1
-          </v-card-subtitle>
-
           <v-alert
             v-if="hasLoginFail"
             dense
@@ -34,25 +29,16 @@
                 ></v-text-field>
 
                 <v-text-field
-                  v-model="password"
-                  :rules="passwordRules"
-                  label="Password"
+                  v-model="pet"
+                  label="Favorite pet"
                   required
                   outlined
-                  prepend-inner-icon="mdi-lock"
-                  :append-icon="show ? 'mdi-eye' : 'mdi-eye-off'"
-                  :type="show ? 'text' : 'password'"
-                  @click:append="show = !show"
+                  prepend-inner-icon="mdi-paw"
                 ></v-text-field>
                 <v-btn tile color="success" block large @click="validate">
                   <v-icon left> mdi-login-variant </v-icon>
-                  Login
+                  Submit
                 </v-btn>
-                <div style="margin-top: 10px">
-                  <router-link to="/forgot-password"
-                    >Forgot Password</router-link
-                  >
-                </div>
               </v-form>
             </v-container>
           </v-card-text>
@@ -76,8 +62,7 @@ export default {
       (v) => (v && v.length <= 40) || "Name must be less than 40 characters",
       (v) => /.+@.+\..+/.test(v) || "Email must be valid",
     ],
-    password: "",
-    passwordRules: [(v) => !!v || "Password is required"],
+    pet: "",
   }),
 
   methods: {

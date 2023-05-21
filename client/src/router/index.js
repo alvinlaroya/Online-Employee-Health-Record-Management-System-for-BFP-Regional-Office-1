@@ -6,6 +6,7 @@ import Auth from "@/services/auth/Register.js";
 // Pages > Auth
 import Login from "@/views/auth/Login.vue";
 import Register from "@/views/auth/Register.vue";
+import ForgotPassword from "@/views/auth/ForgotPassword.vue";
 // Pages > Navigation
 import Dashboard from "@/views/navigation/Dashboard.vue";
 import Personnel from "@/views/navigation/Personnel";
@@ -47,6 +48,14 @@ const routes = [
     name: "auth.register",
     components: {
       default: Register,
+      navbar: Navbar,
+    },
+  },
+  {
+    path: "/forgot-password",
+    name: "auth.forgot",
+    components: {
+      default: ForgotPassword,
       navbar: Navbar,
     },
   },

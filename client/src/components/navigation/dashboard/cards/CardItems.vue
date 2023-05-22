@@ -1,36 +1,96 @@
 <template>
-  <div>
-    <v-row>
-      <v-col class="">
-        <v-row dense >
-          <v-col  cols="6" md="4" align-self="center">
+  <v-container fluid>
+    <v-row dense>
+      <v-col cols="6" md="4" align-self="center">
+        <v-text-field
+          v-model="search"
+          dense
+          solo
+          rounded
+          label="Search Case"
+        ></v-text-field>
+      </v-col>
+      <v-col cols="6" md="4" lg="2" align-self="center">
+        <v-select
+          v-model="selectedItem"
+          :items="items"
+          label="All"
+          dense
+          rounded
+          solo
+        ></v-select>
+      </v-col>
+      <v-col cols="auto">
+        <v-btn @click="sortDescending" class="mr-1">
+          <v-icon small> mdi-arrow-down </v-icon>
+        </v-btn>
+        <v-btn @click="sortAscending">
+          <v-icon small> mdi-arrow-up </v-icon>
+        </v-btn>
+      </v-col>
+
+      <v-col cols="1">
+        <v-menu
+          ref="menuFrom"
+          v-model="menuFrom"
+          :close-on-content-click="false"
+          :return-value.sync="date"
+          transition="scale-transition"
+          offset-y
+          min-width="auto"
+        >
+          <template v-slot:activator="{ on, attrs }">
             <v-text-field
-              v-model="search"
+              v-model="fromDate"
+              label="From"
+              
+              readonly
               dense
-              solo
-              rounded
-              label="Search Case"
+              v-bind="attrs"
+              v-on="on"
             ></v-text-field>
-          </v-col>
-          <v-col cols="6" md="4" lg="2" align-self="center">
-            <v-select
-              v-model="selectedItem"
-              :items="items"
-              label="All"
+          </template>
+          <v-date-picker v-model="fromDate" no-title scrollable>
+            <v-spacer></v-spacer>
+            <v-btn text color="primary" @click="menuFrom = false">
+              Cancel
+            </v-btn>
+            <v-btn text color="primary" @click="$refs.menuFrom.save(fromDate)">
+              OK
+            </v-btn>
+          </v-date-picker>
+        </v-menu>
+      </v-col>
+      <v-col cols="auto" style="padding-top: 10px;"><div >~</div></v-col>
+      <v-col cols="1">
+        <v-menu
+          ref="menuTo"
+          v-model="menuTo"
+          :close-on-content-click="false"
+          :return-value.sync="date"
+          transition="scale-transition"
+          offset-y
+          min-width="auto"
+        >
+          <template v-slot:activator="{ on, attrs }">
+            <v-text-field
+              v-model="toDate"
+              label="To"
+              
+              readonly
               dense
-              rounded
-              solo
-            ></v-select>
-          </v-col>
-          <v-col cols="6" md="4" lg="2" >
-            <v-btn  @click="sortDescending" class="mr-1">
-              <v-icon small> mdi-arrow-down </v-icon>
+              v-bind="attrs"
+              v-on="on"
+            ></v-text-field>
+          </template>
+          <v-date-picker v-model="toDate" no-title scrollable>
+            <v-spacer></v-spacer>
+            <v-btn text color="primary" @click="menuTo = false"> Cancel </v-btn>
+            <v-btn text color="primary" @click="$refs.menuTo.save(toDate)">
+              OK
             </v-btn>
-            <v-btn @click="sortAscending">
-              <v-icon small > mdi-arrow-up </v-icon>
-            </v-btn>
-          </v-col>
-        </v-row>
+          </v-date-picker>
+        </v-menu>
       </v-col>
     </v-row>
 
@@ -52,13 +112,11 @@
           <v-card-subtitle class="pb-0"> {{ item.title }} </v-card-subtitle>
           <v-card-title class="green--text text-h3">
             {{ item.total }}
-            
           </v-card-title>
         </v-card>
-        
       </v-col>
     </v-row>
-  </div>
+  </v-container>
 </template>
 
 <script>
@@ -72,6 +130,14 @@ export default {
     items: [],
     cardItem: [],
     sortDirection: "asc", // "asc" for ascending, "desc" for descending
+
+    menuFrom: false,
+    menuTo: false,
+    fromDate: '',
+    toDate: '',
+    date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
+      .toISOString()
+      .substr(0, 10),
   }),
   computed: {
     ...mapGetters(["cases"]),
@@ -126,6 +192,7 @@ export default {
     sortDescending() {
       this.sortDirection = "desc";
     },
+
   },
 };
 </script>

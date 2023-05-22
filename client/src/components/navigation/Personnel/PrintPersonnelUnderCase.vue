@@ -10,9 +10,43 @@
       <v-card>
         <v-card-title>
           <v-spacer></v-spacer>
+
           <v-btn v-print="'#personnels'">PRINT</v-btn>
+
+          
         </v-card-title>
-        <v-simple-table id="personnels">
+        <v-container id="personnels">
+          <div style="display: flex; flex-direction: row; justify-content: space-evenly; align-items: center;  margin-bottom: 3rem;">
+        <div >
+          <v-avatar size="130" class="mb-5" tile>
+          <img
+            :src="dental1"
+            alt="dental-logo-left"
+            style="object-fit: cover;"
+          />
+        </v-avatar>
+        </div>
+        <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+          <span>Republic of the Philippines</span>
+          <span>Department of the Interior and Local Government</span>
+          <strong>BUREAU OF FIRE PROTECTION</strong>
+          <strong>REGIONAL OFFICE 1</strong>
+          <span>Patac, Sto. Tomas, La Union</span>
+          <span>Contact Number: 09178404942</span>
+          <span>Email: bfpr1opndiv@yahoo.com</span>
+        </div>
+        <div >
+          <v-avatar size="130" class="mb-5" tile>
+          <img
+            :src="dental2"
+            alt="dental-logo-right"
+            style="object-fit: cover;"
+          />
+        </v-avatar>
+        </div>
+      </div>
+          <v-simple-table >
+          
           <template v-slot:default>
             <thead>
               <tr>
@@ -42,6 +76,7 @@
             </tbody>
           </template>
         </v-simple-table>
+        </v-container>
       </v-card>
     </v-dialog>
   </div>
@@ -53,7 +88,8 @@ const { mapGetters } = createNamespacedHelpers("navigation");
 export default {
   data: () => ({
     dialog: false,
-
+    dental1: require("@/assets/imported-images/Dental1.png"),
+    dental2: require("@/assets/imported-images/Dental2.png"),
     headers: [
       {
         text: "Account #",

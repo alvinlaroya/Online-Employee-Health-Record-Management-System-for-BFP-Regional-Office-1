@@ -8,6 +8,7 @@
           Personnels
           <v-spacer></v-spacer>
           <PrintPersonnelData />
+          
           <v-text-field
             v-model="search"
             append-icon="mdi-magnify"

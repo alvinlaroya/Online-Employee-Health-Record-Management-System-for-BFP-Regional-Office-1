@@ -22,10 +22,13 @@
       <template v-slot:item.action="{ item }">
         <v-menu offset-y>
           <template v-slot:activator="{ on }">
-            <v-icon small class="mr-5 cursor-pointer" @click="openDialog(item)"
-              >mdi-file-eye-outline</v-icon
-            >
-            <v-icon small v-on="on">mdi-dots-vertical</v-icon>
+            <v-icon class="mr-2" small v-on="on" > mdi-dots-vertical </v-icon>
+            
+            <v-icon small @click="deletePersonnel" :color="iconDeleteColor">mdi-delete-outline</v-icon>
+            <v-icon small class="mr-2 cursor-pointer" @click="openDialog(item)" >
+              mdi-file-eye-outline
+            </v-icon>
+            
           </template>
           <v-list dense>
             <v-list-item
@@ -104,6 +107,9 @@ export default {
     currentTab: "view-detail",
     dialog: false,
     selectedItem: {},
+    iconDeleteColor: 'red',
+    iconFileColor: 'yellow',
+    iconDotColor: 'blue',
     headers: [
       {
         text: "Photo",
@@ -163,6 +169,9 @@ export default {
     },
     close() {
       this.dialog = false;
+    },
+    deletePersonnel() {
+      console.log("delete");
     },
   },
   computed: {

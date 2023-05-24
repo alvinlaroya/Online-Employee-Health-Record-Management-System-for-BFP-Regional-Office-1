@@ -179,12 +179,12 @@ export default {
         iconColor: "red",
         method: "logout",
       },
-      {
-        text: "Delete User",
-        icon: "mdi-account-remove",
-        iconColor: "red",
-        method: "delete",
-      },
+      // {
+      //   text: "Delete User",
+      //   icon: "mdi-account-remove",
+      //   iconColor: "red",
+      //   method: "delete",
+      // },
     ],
     navigationItems: [
       {
@@ -197,11 +197,11 @@ export default {
             icon: "mdi-account-plus",
             path: "/add-new-user",
           },
-          // {
-          //   text: "Delete User",
-          //   icon: "mdi-account-remove",
-          //   path: "/delete-user",
-          // },
+          {
+            text: "Delete User",
+            icon: "mdi-account-remove",
+            path: "/delete-user",
+          },
           {
             text: "Change Password",
             icon: "mdi-account-edit",

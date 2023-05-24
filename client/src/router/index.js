@@ -14,6 +14,7 @@ import History from "@/views/navigation/History";
 
 // Pages for user management > Navigation 
 import AddNewUser from "@/views/navigation/User-Management/AddNewUser.vue";
+import DeleteUser from "@/views/navigation/User-Management/DeleteUser.vue";
 import ChangePassword from "@/views/navigation/User-Management/ChangePassword.vue";
 
 import TransactionLog from "@/views/navigation/User-Management/TransactionLog.vue";
@@ -175,7 +176,29 @@ const routes = [
     },
   },
 
-
+  {
+    path: "/delete-user",
+    name: "navigation.DeleteUser",
+    components: {
+      default: DeleteUser,
+      navbar: Navbar,
+      sidebar: Sidebar,
+    },
+    beforeEnter(to, from, next) {
+      Auth.isAuthenticated()
+        .then((response) => {
+          if (response) {
+            next(); // If authenticated, proceed with the redirect
+          } else {
+            next({ name: "auth.login" });
+          }
+          next();
+        })
+        .catch(() => {
+          next({ name: "auth.login" });
+        });
+    },
+  },
   
   {
     path: "/change-password",

@@ -181,6 +181,39 @@ const forgotPassword = async (req, res) => {
   }
 };
 
+const changePassword = async (req, res) => {
+  const { email, oldPassword, newPassword } = req.body;
+
+  console.log(req.body)
+
+  try {
+    User.findOne({
+      where: {
+        email: email, // user email
+      },
+    }).then(async (response) => {
+      if (!response) return res.sendStatus(404);
+      if (
+        !response.dataValues.password ||
+        !(await response.validPassword(oldPassword, response.dataValues.password))
+      ) {
+        res.sendStatus(404);
+        console.log("NOT VERIFIED", oldPassword)
+      } else {
+        response.update({
+          password: newPassword,
+        });
+      }
+    });
+  } catch (error) {
+    res.sendStatus(404).json({
+      error: {
+        message: "user match failed",
+      },
+    });
+  }
+}
+
 module.exports = {
   authenticateUserWithemail,
   registerUser,
@@ -188,4 +221,5 @@ module.exports = {
   getAuthenticatedUser,
   getAllUsers,
   updatePersonnel,
+  changePassword
 };

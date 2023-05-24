@@ -31,7 +31,13 @@
                 @click:append="newShow = !newShow"
               ></v-text-field>
 
-              <v-btn small type="submit" color="primary">Change Password</v-btn>
+              <v-btn
+                small
+                type="submit"
+                color="primary"
+                @click="changePasswordHandler"
+                >Change Password</v-btn
+              >
             </v-form>
           </v-card-text>
         </v-card>
@@ -39,12 +45,14 @@
     </v-row>
   </v-container>
 </template>
-  
-  <script>
+
+<script>
+import { createNamespacedHelpers } from "vuex";
+const { mapGetters, mapActions } = createNamespacedHelpers("auth");
 export default {
   data: () => ({
-    newPassword: '',
-    oldPassword: '',
+    newPassword: "",
+    oldPassword: "",
     valid: true,
     oldShow: false,
     newShow: false,
@@ -53,11 +61,18 @@ export default {
   }),
 
   methods: {
-    changePassword() {
-      // Add your logic to change the password here
-      // You can access the entered values using this.oldPassword, this.newPassword, this.confirmPassword
+    ...mapActions(["changePassword"]),
+    changePasswordHandler() {
+      this.changePassword({
+        email: this.currentUser.email,
+        oldPassword: this.oldPassword,
+        newPassword: this.newPassword,
+      });
     },
+  },
+
+  computed: {
+    ...mapGetters(["currentUser"]),
   },
 };
 </script>
-  

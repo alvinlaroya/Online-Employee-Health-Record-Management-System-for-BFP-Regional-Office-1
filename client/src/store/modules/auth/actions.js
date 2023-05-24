@@ -31,6 +31,10 @@ export const forgot = async ({ commit }, payload) => {
   commit(types.SET_FORGOT_PASSWORD, response.data.data.newPassword)
 };
 
+export const changePassword = async (_, payload) => {
+  await EventService.changePassword(payload);
+}
+
 export const login = async ({ commit }, payload) => {
   await EventService.loginEvent(payload)
     .then(async (response) => {
@@ -56,4 +60,10 @@ export const logOutUser = async ({ commit }) => {
   commit(types.LOG_OUT, {});
   router.replace("/");
 };
+
+export const getUsers = async ({ commit }) => {
+  const response = await EventService.getUsers();
+  console.log("RESPOONSE USERS", response)
+  commit("GET_ALL_USERS", response.data.data.rows);
+}
 

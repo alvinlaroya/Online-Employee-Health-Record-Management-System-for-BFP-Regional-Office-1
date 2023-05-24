@@ -22,5 +22,8 @@ export default {
   [SET_FORGOT_PASSWORD](state, data) {
     state.hasNewPassword = true;
     state.newPassword = data;
+  },
+  GET_ALL_USERS(state, data) {
+    state.users = data;
   }
 }

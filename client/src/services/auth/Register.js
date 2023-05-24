@@ -37,11 +37,34 @@ export default {
       },
     });
   },
+  async changePassword(payload) {
+    console.log(payload)
+    await axios.put(`${apiUrl}/user/changePassword`, payload, {
+      headers: {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Credentials": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+      },
+    });
+  },
   async getCurrentUser(payload) {
     console.log("TOKEN", localStorage.getItem("token"));
     return await axios.post(
       `${apiUrl}/user/currentUser`,
       { id: payload },
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": "*",
+          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+        },
+      }
+    );
+  },
+  async getUsers() {
+    return await axios.get(
+      `${apiUrl}/user/getUsers`,
       {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,

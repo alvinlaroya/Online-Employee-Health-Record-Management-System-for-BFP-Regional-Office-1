@@ -11,6 +11,7 @@ router.post("/forgot", user.forgotPassword);
 router.post("/currentUser", middleware, user.getAuthenticatedUser);
 router.get("/getUsers", middleware, user.getAllUsers);
 router.put("/updatePersonnel/:id", user.updatePersonnel);
+router.put("/changePassword", user.changePassword);
 
 function middleware(req, res, next) {
   const authHeader = req.headers["authorization"];

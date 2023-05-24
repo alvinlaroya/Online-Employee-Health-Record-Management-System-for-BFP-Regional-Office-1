@@ -6,24 +6,24 @@
       :items-per-page="5"
       class="elevation-1"
     >
-    <template v-slot:[`item.action`]="{ item }">
-      <v-btn icon small color="error" @click="deleteUsers(item)">
-        <v-icon>mdi-delete</v-icon>
-      </v-btn>
-    </template>
+      <template v-slot:[`item.action`]="{ item }">
+        <v-btn icon small color="error" @click="deleteUsers(item)">
+          <v-icon>mdi-delete</v-icon>
+        </v-btn>
+      </template>
     </v-data-table>
   </v-container>
 </template>
 
 <script>
 import { createNamespacedHelpers } from "vuex";
-const { mapGetters, mapActions } = createNamespacedHelpers("navigation");
+const { mapGetters, mapActions } = createNamespacedHelpers("auth");
 export default {
   data: () => ({
     headers: [
-      { text: "First Name", value: "firstName" },
-      { text: "Middle Name", value: "middleName" },
-      { text: "Last Name", value: "lastName" },
+      { text: "First Name", value: "fname" },
+      { text: "Middle Name", value: "mname" },
+      { text: "Last Name", value: "lname" },
       { text: "Address", value: "address" },
       { text: "Phone", value: "phone" },
       { text: "Position", value: "position" },
@@ -49,22 +49,21 @@ export default {
     //   // Add more employee objects as needed
     // ],
   }),
-  methods:{
-    ...mapActions(["getAllUsers"]),
+  methods: {
+    ...mapActions(["getUsers"]),
     async fetchAllUsers() {
-      await this.getAllusers();
-      this.items = this.getAllUsers
+      await this.getUsers();
     },
     deleteUsers() {
       // Handle delete action
-      console.log('Delete user:');
+      console.log("Delete user:");
     },
   },
-  computed:{
+  computed: {
     ...mapGetters(["users"]),
   },
-  created(){
+  created() {
     this.fetchAllUsers();
-  }
+  },
 };
 </script>

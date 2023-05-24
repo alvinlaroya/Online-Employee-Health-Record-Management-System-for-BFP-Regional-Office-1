@@ -1,22 +1,15 @@
 <template>
   <v-container fill-height fluid>
     <v-row align="center" justify="center" style="height: 90vh">
-      <v-col cols="8">
+      <v-col cols="12">
         <v-card class="pa-6" style="text-align: center">
-          <img src="@/images/pnp.png" style="width: 100px" alt="" /><br />
-          <span class="font-weight-bold" style="font-size: 21px"
-            >Login to Dashboard</span
-          >
-          <v-card-subtitle
-            >Online Employee Health Record Management System for BFP Regional
-            Office 1</v-card-subtitle
-          >
           <v-card-text class="mt-5">
             <v-container>
               <v-form ref="form" v-model="valid" lazy-validation>
                 <v-row>
                   <v-col md="4">
-                    <v-text-field dense
+                    <v-text-field
+                      dense
                       v-model="user.fname"
                       :rules="fnameRules"
                       label="First name"
@@ -26,7 +19,8 @@
                     ></v-text-field>
                   </v-col>
                   <v-col md="4">
-                    <v-text-field dense
+                    <v-text-field
+                      dense
                       v-model="user.mname"
                       :rules="mnameRules"
                       label="Middle name"
@@ -36,7 +30,8 @@
                     ></v-text-field>
                   </v-col>
                   <v-col md="4">
-                    <v-text-field dense
+                    <v-text-field
+                      dense
                       v-model="user.lname"
                       :rules="lnameRules"
                       label="Last name"
@@ -48,7 +43,8 @@
                 </v-row>
                 <v-row class="mt-0">
                   <v-col md="6">
-                    <v-text-field dense
+                    <v-text-field
+                      dense
                       v-model="user.email"
                       :rules="usernameRules"
                       label="Username"
@@ -59,7 +55,8 @@
                     ></v-text-field>
                   </v-col>
                   <v-col md="6">
-                    <v-text-field dense
+                    <v-text-field
+                      dense
                       v-model="user.password"
                       :rules="passwordRules"
                       label="Password"
@@ -84,7 +81,7 @@
                       min-width="auto"
                     >
                       <template v-slot:activator="{ on, attrs }">
-                        <v-text-field 
+                        <v-text-field
                           v-model="user.birthDate"
                           label="Date of Birth"
                           prepend-icon="mdi-calendar"
@@ -118,7 +115,8 @@
                     </v-menu>
                   </v-col>
                   <v-col md="6">
-                    <v-text-field dense
+                    <v-text-field
+                      dense
                       v-model="user.position"
                       label="Position"
                       outlined
@@ -128,7 +126,8 @@
                 </v-row>
                 <v-row class="mt-0">
                   <v-col cols="12">
-                    <v-text-field dense
+                    <v-text-field
+                      dense
                       v-model="user.phone"
                       label="Mobile"
                       prefix="+639"
@@ -152,7 +151,8 @@
                       required
                       prepend-inner-icon="mdi-map-marker"
                     ></v-select> -->
-                    <v-text-field dense
+                    <v-text-field
+                      dense
                       v-model="user.address"
                       label="Address"
                       outlined

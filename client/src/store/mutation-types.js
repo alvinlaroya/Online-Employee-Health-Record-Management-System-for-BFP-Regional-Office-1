@@ -2,6 +2,7 @@
 export const SET_AUTH_INFO = "SET_AUTH_INFO";
 export const SET_USER_ROLES = "SET_USER_ROLES";
 export const SET_LOGIN_FAILED = "SET_LOGIN_FAILED";
+export const SET_FORGOT_PASSWORD = "SET_FORGOT_PASSWORD";
 export const SET_ALL_MEDIA = "SET_ALL_MEDIA";
 export const SET_COUNT = "SET_COUNT";
 export const SET_MEDIA_LOADING = "SET_MEDIA_LOADING";

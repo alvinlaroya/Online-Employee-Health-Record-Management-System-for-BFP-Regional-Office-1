@@ -29,7 +29,7 @@ export default {
     });
   },
   async forgotEvent(payload) {
-    await axios.post(`${apiUrl}/user/forgot`, payload, {
+    return await axios.post(`${apiUrl}/user/forgot`, payload, {
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Credentials": "*",

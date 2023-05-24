@@ -27,7 +27,8 @@ export const register = (_, payload) => {
 };
 
 export const forgot = async ({ commit }, payload) => {
-  await EventService.forgotEvent(payload);
+  const response = await EventService.forgotEvent(payload);
+  commit(types.SET_FORGOT_PASSWORD, response.data.data.newPassword)
 };
 
 export const login = async ({ commit }, payload) => {

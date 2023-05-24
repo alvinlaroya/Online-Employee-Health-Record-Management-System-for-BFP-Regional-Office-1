@@ -40,6 +40,9 @@
                   Submit
                 </v-btn>
               </v-form>
+              <p v-if="hasNewPassword" class="mt-6">
+                New password: {{ newPassword }}
+              </p>
             </v-container>
           </v-card-text>
         </v-card>
@@ -66,10 +69,14 @@ export default {
   }),
 
   methods: {
-    ...mapActions(["login"]),
+    ...mapActions(["login", "forgot"]),
     validate() {
       const valid = this.$refs.form.validate();
-      if (valid) this.login({ email: this.email, password: this.password });
+      if (!valid) return;
+      this.forgot({
+        email: this.email,
+        pet: this.pet,
+      });
     },
     reset() {
       this.$refs.form.reset();
@@ -77,12 +84,9 @@ export default {
     resetValidation() {
       this.$refs.form.resetValidation();
     },
-    forgot() {
-      this.$router.push({ name: "auth.forgot" });
-    },
   },
   computed: {
-    ...mapGetters(["hasLoginFail"]),
+    ...mapGetters(["hasLoginFail", "hasNewPassword", "newPassword"]),
   },
 };
 </script>

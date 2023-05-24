@@ -122,6 +122,7 @@ const getAuthenticatedUser = async (req, res) => {
   });
 };
 
+
 const getAllUsers = async (req, res) => {
   let users = await User.findAndCountAll({
     order: [["createdAt", "DESC"]],
@@ -152,37 +153,32 @@ const updatePersonnel = async (req, res) => {
 
 // FORGOT PASSWORD
 const forgotPassword = async (req, res) => {
-  /* let resultUser = await User.findOne({ where: { phone: req.body.phone } });
+  const { email, pet } = req.body;
+  let resultUser = await User.findOne({ where: { email: email } });
 
   let r = (Math.random() + 1).toString(36).substring(7);
-  let newPassword = `password${r}`;
+  let newPassword = `${pet}${r}`;
 
   if (resultUser) {
     resultUser.update({
       password: newPassword,
     });
 
-    const from = "Vonage APIs";
-    const to = `639${resultUser.phone}`;
-    const text = `Your new password is ${newPassword}!`;
-
-    vonage.message.sendSms(from, to, text, (err, responseData) => {
-      if (err) {
-        console.log(err);
-      } else {
-        if (responseData.messages[0]["status"] === "0") {
-          console.log("Message sent successfully.");
-        } else {
-          console.log(
-            `Message failed with error: ${responseData.messages[0]["error-text"]}`
-          );
-        }
-      }
+    res.header("Access-Control-Allow-Origin", "*");
+    res.json({
+      message: "success",
+      data: {
+        newPassword: newPassword
+      },
     });
-
+  } else {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.sendStatus(404).json({
+      error: {
+        message: "user match failed",
+      },
+    });
   }
-
-  res.sendStatus(200); */
 };
 
 module.exports = {

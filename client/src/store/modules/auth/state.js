@@ -3,5 +3,7 @@ export default {
   user: {},
   loggedIn: false,
   hasLoginFail: false,
+  hasNewPassword: false,
+  newPassword: "",
   roles: {}
 };

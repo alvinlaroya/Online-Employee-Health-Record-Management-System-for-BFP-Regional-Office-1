@@ -2,12 +2,12 @@
 import axios from "axios";
 
 /* const apiUrl = "http://127.0.0.1:8000/api"; */
-const apiUrl = "http://localhost:8000/api/transactionLog";
+const apiUrl = "http://localhost:8000/api/user/";
 
 export default {
     async getTransactionLog() {
         return await axios.get(
-            `${apiUrl}/getTransactionLog`,
+            `${apiUrl}/transaction-logs`,
             {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`,

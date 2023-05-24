@@ -18,7 +18,7 @@
   
 <script>
 import { createNamespacedHelpers } from "vuex";
-import { transactionLog } from "../../../store/modules/navigation/dashboard/getters";
+
 const { mapGetters } = createNamespacedHelpers("navigation");
 export default {
   // data() {

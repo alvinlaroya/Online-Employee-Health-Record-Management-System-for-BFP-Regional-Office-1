@@ -5,7 +5,7 @@
       <v-card-text>
         <v-data-table
           :headers="headers"
-          :items="transactionLog"
+          :items="items"
           class="elevation-1"
           disable-pagination
           hide-default-footer
@@ -52,15 +52,9 @@ export default {
   computed: {
     ...mapGetters(["transactionLog"]),
   },
-  // created() {
-  //   this.items = [
-  //     {
-  //       name: transactionLog.name,
-  //       log: transactionLog.log,
-  //       logCreated: transactionLog.logCreated,
-  //     },
-  //   ];
-  // },
+  created() {
+    this.items = { transactionLog }
+  },
 };
 </script>
   

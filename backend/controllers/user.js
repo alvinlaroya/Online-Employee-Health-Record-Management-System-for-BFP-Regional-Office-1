@@ -106,6 +106,7 @@ const getAuthenticatedUser = async (req, res) => {
       "position",
       "status",
       "hasUpdate",
+      "isSuperAdmin"
     ],
   });
 

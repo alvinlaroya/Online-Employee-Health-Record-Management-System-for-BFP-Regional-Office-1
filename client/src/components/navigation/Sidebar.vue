@@ -105,7 +105,14 @@
     <!-- user management -->
 
     <!-- trial -->
-    <v-list link dense nav subheader style="padding-bottom: 0">
+    <v-list
+      v-if="currentUser.isSuperAdmin"
+      link
+      dense
+      nav
+      subheader
+      style="padding-bottom: 0"
+    >
       <v-list-group
         style="padding: 0"
         v-for="(item, index) in navigationItems"

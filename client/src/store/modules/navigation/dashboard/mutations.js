@@ -17,4 +17,7 @@ export default {
     SET_ALL_TRANSACTION_LOG(state, data) {
         state.transactionLog = data
     },
+    SET_ALL_USERS(state, data) {
+        state.users = data
+    },
 }

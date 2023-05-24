@@ -18,8 +18,7 @@
   
 <script>
 import { createNamespacedHelpers } from "vuex";
-
-const { mapGetters } = createNamespacedHelpers("navigation");
+const { mapGetters, mapActions } = createNamespacedHelpers("navigation");
 export default {
   // data() {
   //   return {
@@ -52,8 +51,16 @@ export default {
   computed: {
     ...mapGetters(["transactionLog"]),
   },
+  methods: {
+    ...mapActions(["getTransactionLog"]),
+    async fetchTransactionLog() {
+      await this.getTransactionLog();
+      this.items = this.getTransactionLog; // Assign the response to items
+    },
+  },
   created() {
-    this.items = { transactionLog }
+    this.fetchTransactionLog();
+    
   },
 };
 </script>

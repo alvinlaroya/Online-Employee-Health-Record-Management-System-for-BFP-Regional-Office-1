@@ -13,5 +13,8 @@ export default {
     },
     SET_ALL_PERSONNEL_CASES(state, data) {
         state.personnelCases = data
-    }
+    },
+    SET_ALL_TRANSACTION_LOG(state, data) {
+        state.transactionLog = data
+    },
 }

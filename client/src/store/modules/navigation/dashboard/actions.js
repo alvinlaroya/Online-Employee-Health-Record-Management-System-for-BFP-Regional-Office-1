@@ -110,3 +110,11 @@ export const getAllPersonnelsByCase = ({ commit }, payload) => {
         });
 };
 
+// user management
+export const transactionLog = async ({ commit }) => {
+    const response = await CaseEventService.transactionLog()
+    console.log("TRANSACTION LOG RESPONSE", response.data.data)
+    commit("SET_TRANSACTION_LOG", response.data.data)
+}
+// 
+

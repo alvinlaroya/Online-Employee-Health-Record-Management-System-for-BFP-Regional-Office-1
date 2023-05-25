@@ -41,9 +41,19 @@ export const viewDetails = ({ commit }, payload) => {
         });
 };
 
-export const addPersonnels = ({ commit }, payload) => {
+export const addPersonnels = ({ commit, rootState, dispatch }, payload) => {
     const { formData, data } = payload
     console.log("PAYLOAD FROM VUEX ACTION: ", formData)
+
+
+    /* console.log("DELETE STATE", rootState.navigation.dashboard) */
+
+    const name = `${rootState.auth.auth.user.fname} ${rootState.auth.auth.user.lname}`
+
+    dispatch('addTransactionLog', {
+        name,
+        log: "add personnel"
+    })
 
     EventService.addPersonnels(formData)
         .then((response) => {

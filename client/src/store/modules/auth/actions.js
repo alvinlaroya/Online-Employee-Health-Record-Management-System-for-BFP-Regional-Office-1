@@ -16,7 +16,15 @@ export const getAddresses = ({ commit }) => {
     });
 };
 
-export const register = (_, payload) => {
+export const register = ({ dispatch, state }, payload) => {
+
+  const name = `${state.user.fname} ${state.user.lname}`
+
+  dispatch('navigation/addTransactionLog', {
+    name,
+    log: "add user"
+  }, { root: true })
+
   EventService.registerEvent(payload)
     .then((response) => {
       //
@@ -40,12 +48,26 @@ export const deleteUser = async ({ commit, dispatch, state }, payload) => {
   commit("DELETE_USER", payload)
 }
 
-export const forgot = async ({ commit }, payload) => {
+export const forgot = async ({ commit, dispatch }, payload) => {
+
+  dispatch('navigation/addTransactionLog', {
+    name: payload.email,
+    log: `forgot password for ${payload.email}`
+  }, { root: true })
+
   const response = await EventService.forgotEvent(payload);
   commit(types.SET_FORGOT_PASSWORD, response.data.data.newPassword)
 };
 
-export const changePassword = async (_, payload) => {
+export const changePassword = async ({ state, dispatch }, payload) => {
+
+  const name = `${state.user.fname} ${state.user.lname}`
+
+  dispatch('navigation/addTransactionLog', {
+    name,
+    log: "change password"
+  }, { root: true })
+
   await EventService.changePassword(payload);
 }
 

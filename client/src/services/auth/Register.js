@@ -28,6 +28,19 @@ export default {
       },
     });
   },
+  async deleteUser(payload) {
+    await axios.delete(
+      `${apiUrl}/user/deleteUser/${payload}`,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Credentials": "*",
+          "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+        },
+      }
+    );
+  },
   async forgotEvent(payload) {
     return await axios.post(`${apiUrl}/user/forgot`, payload, {
       headers: {

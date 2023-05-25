@@ -8,6 +8,7 @@ import OccupationalEventService from "@/services/dashboard/MedicalProfile";
 import UpdatePersonnelEventService from "@/services/dashboard/updatePersonnel";
 import PtNotesEventService from "@/services/dashboard/PtNotes";
 import CaseEventService from "@/services/dashboard/Case";
+import TransactionLogService from "@/services/dashboard/TransactionLog";
 
 
 /* import * as types from "@/store/mutation-types"; */
@@ -121,5 +122,17 @@ export const getAllUsers = async ({ commit }) => {
     const response = await CaseEventService.getAllUsers()
     console.log("USERS RESPONSE", response.data.data)
     commit("SET_ALL_USERS", response.data.data)
+}
+
+// transaction logs
+export const addTransactionLog = async ({ commit }, payload) => {
+    const response = await TransactionLogService.addTransactionLog(payload);
+    console.log("ADDED LOG", response)
+    /* commit("ADD_TRANSACTION_LOG", response.data.log) */
+}
+
+export const getAllTransactionLogs = async ({ commit }) => {
+    const response = await TransactionLogService.getAllTransactionLogs();
+    commit("SET_ALL_TRANSACTION_LOGS", response.data.data.rows)
 }
 

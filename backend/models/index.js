@@ -39,6 +39,7 @@ db.medicalFamilyHistories = require("./medicalFamilyHistory")(sequelize, DataTyp
 db.medicalPersonalHistories = require("./medicalPersonalHistory")(sequelize, DataTypes);
 db.medicalOccupationalHistories = require("./medicalOccupationalHistory.js")(sequelize, DataTypes);
 db.ptNotes = require("./ptNotes.js")(sequelize, DataTypes);
+db.transactionLogs = require("./transactionLogs.js")(sequelize, DataTypes);
 /* db.clearances = require("./clearance")(sequelize, DataTypes);
 db.cases = require("./case")(sequelize, DataTypes);
 db.applicants = require("./applicant")(sequelize, DataTypes);

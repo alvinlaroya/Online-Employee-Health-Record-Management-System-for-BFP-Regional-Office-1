@@ -25,5 +25,9 @@ export default {
   },
   GET_ALL_USERS(state, data) {
     state.users = data;
+  },
+  DELETE_USER(state, data) {
+    const newUsers = state.users.filter((user, i) => user.id !== data);
+    state.users = newUsers;
   }
 }

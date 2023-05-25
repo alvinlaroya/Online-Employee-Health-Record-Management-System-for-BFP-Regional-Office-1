@@ -50,13 +50,13 @@ export default {
     // ],
   }),
   methods: {
-    ...mapActions(["getUsers"]),
+    ...mapActions(["getUsers", "deleteUser"]),
     async fetchAllUsers() {
       await this.getUsers();
     },
-    deleteUsers() {
+    deleteUsers(item) {
       // Handle delete action
-      console.log("Delete user:");
+      this.deleteUser(item.id);
     },
   },
   computed: {

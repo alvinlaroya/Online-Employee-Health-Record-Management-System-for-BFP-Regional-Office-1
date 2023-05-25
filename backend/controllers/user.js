@@ -152,6 +152,17 @@ const updatePersonnel = async (req, res) => {
   res.sendStatus(200);
 };
 
+// DELETE USER
+const deleteUser = async (req, res) => {
+  await User.destroy({
+    where: {
+      id: req.params.id
+    }
+  });
+
+  res.sendStatus(200);
+}
+
 // FORGOT PASSWORD
 const forgotPassword = async (req, res) => {
   const { email, pet } = req.body;
@@ -218,6 +229,7 @@ const changePassword = async (req, res) => {
 module.exports = {
   authenticateUserWithemail,
   registerUser,
+  deleteUser,
   forgotPassword,
   getAuthenticatedUser,
   getAllUsers,

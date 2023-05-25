@@ -7,6 +7,7 @@ const router = require("express").Router();
 // routes
 router.post("/register", user.registerUser);
 router.post("/login", user.authenticateUserWithemail);
+router.delete("/deleteUser/:id", user.deleteUser);
 router.post("/forgot", user.forgotPassword);
 router.post("/currentUser", middleware, user.getAuthenticatedUser);
 router.get("/getUsers", middleware, user.getAllUsers);

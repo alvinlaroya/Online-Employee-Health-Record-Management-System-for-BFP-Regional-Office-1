@@ -26,6 +26,20 @@ export const register = (_, payload) => {
     });
 };
 
+export const deleteUser = async ({ commit, dispatch, state }, payload) => {
+  /* console.log("DELETE STATE", rootState.navigation.dashboard) */
+
+  const name = `${state.user.fname} ${state.user.lname}`
+
+  dispatch('navigation/addTransactionLog', {
+    name,
+    log: "delete user"
+  }, { root: true })
+
+  await EventService.deleteUser(payload);
+  commit("DELETE_USER", payload)
+}
+
 export const forgot = async ({ commit }, payload) => {
   const response = await EventService.forgotEvent(payload);
   commit(types.SET_FORGOT_PASSWORD, response.data.data.newPassword)

@@ -227,7 +227,7 @@ export default {
           {
             text: "Backup",
             icon: "mdi-backup-restore",
-            path: "/transaction-log",
+            path: "/backup",
           },
           // {
           //   text: "Forgot Password",

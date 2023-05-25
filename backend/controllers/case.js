@@ -232,7 +232,7 @@ const getAllPersonnelsByCase = async (req, res) => {
         },
       });
       break;
-    default :
+    default:
       personnels = await MedicalPersonalHistory.findAndCountAll();
       break;
   }

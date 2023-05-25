@@ -23,6 +23,7 @@ const psychRoutes = require("./routes/psych.js");
 const medicalHistoryRoutes = require("./routes/medicalHistory.js");
 const ptNotes = require("./routes/ptNotes.js");
 const cases = require("./routes/case.js");
+const transactionLogRoutes = require("./routes/transactionLogs.js");
 
 app.use("/api/user", userRoutes);
 app.use("/api/personnel", personnelRoutes);
@@ -32,6 +33,7 @@ app.use("/api/psych", psychRoutes);
 app.use("/api/medical-history", medicalHistoryRoutes);
 app.use("/api/pt-notes", ptNotes);
 app.use("/api/case", cases);
+app.use("/api/transaction-log", transactionLogRoutes);
 
 // static images folder
 app.use("/images", express.static("./images"));

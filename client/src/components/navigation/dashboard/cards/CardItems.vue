@@ -43,7 +43,6 @@
             <v-text-field
               v-model="fromDate"
               label="From"
-              
               readonly
               dense
               v-bind="attrs"
@@ -61,7 +60,7 @@
           </v-date-picker>
         </v-menu>
       </v-col>
-      <v-col cols="auto" style="padding-top: 10px;"><div >~</div></v-col>
+      <v-col cols="auto" style="padding-top: 10px"><div>~</div></v-col>
       <v-col cols="1">
         <v-menu
           ref="menuTo"
@@ -76,7 +75,6 @@
             <v-text-field
               v-model="toDate"
               label="To"
-              
               readonly
               dense
               v-bind="attrs"
@@ -86,7 +84,11 @@
           <v-date-picker v-model="toDate" no-title scrollable>
             <v-spacer></v-spacer>
             <v-btn text color="primary" @click="menuTo = false"> Cancel </v-btn>
-            <v-btn text color="primary" @click="$refs.menuTo.save(toDate)">
+            <v-btn
+              text
+              color="primary"
+              @click="[$refs.menuTo.save(toDate), filterHandler()]"
+            >
               OK
             </v-btn>
           </v-date-picker>
@@ -94,7 +96,7 @@
       </v-col>
     </v-row>
 
-    <v-row>
+    <v-row v-if="!loading">
       <v-col
         cols="6"
         sm="4"
@@ -116,6 +118,11 @@
         </v-card>
       </v-col>
     </v-row>
+    <v-row v-else>
+      <v-col cols="12">
+        <h1 class="mx-auto">Loading</h1>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -125,6 +132,7 @@ const { mapActions, mapGetters } = createNamespacedHelpers("navigation");
 
 export default {
   data: () => ({
+    loading: false,
     search: "",
     selectedItem: null,
     items: [],
@@ -133,8 +141,8 @@ export default {
 
     menuFrom: false,
     menuTo: false,
-    fromDate: '',
-    toDate: '',
+    fromDate: "",
+    toDate: "",
     date: new Date(Date.now() - new Date().getTimezoneOffset() * 60000)
       .toISOString()
       .substr(0, 10),
@@ -157,7 +165,7 @@ export default {
         );
       }
 
-      return this.sortItems(filteredItems);
+      return this.sortItems(filteredItems).reverse();
     },
   },
 
@@ -192,7 +200,12 @@ export default {
     sortDescending() {
       this.sortDirection = "desc";
     },
-
+    filterHandler() {
+      this.loading = true;
+      setTimeout(() => {
+        this.loading = false;
+      }, 2000);
+    },
   },
 };
 </script>

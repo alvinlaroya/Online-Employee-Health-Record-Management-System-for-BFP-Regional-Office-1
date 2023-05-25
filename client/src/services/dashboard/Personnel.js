@@ -46,4 +46,32 @@ export default {
             }
         );
     },
+    async deletePersonnel(payload) {
+        await axios.delete(
+            `${apiUrl}/deletePersonnel/${payload}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                    "Content-Type": "application/json",
+                    "Access-Control-Allow-Credentials": "*",
+                    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+                },
+            }
+        );
+    },
+    async backupData() {
+        window.location.href = `${apiUrl}/backupPersonnelsData`;
+        /* setTimeout(() => {
+            window.location.href = `${apiUrl}/backupDentalsData`;
+        }, 1000);
+        setTimeout(() => {
+            window.location.href = `${apiUrl}/backupMedicalOccupationalHistoryData`;
+        }, 1000);
+        setTimeout(() => {
+            window.location.href = `${apiUrl}/backupMedicalPersonalHistoryData`;
+        }, 1000);
+        setTimeout(() => {
+            window.location.href = `${apiUrl}/backupPhysicalExaminationsData`;
+        }, 1000); */
+    },
 };

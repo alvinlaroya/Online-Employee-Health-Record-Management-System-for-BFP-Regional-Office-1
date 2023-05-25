@@ -10,6 +10,16 @@ router.post("/addPersonnel", personnel.upload, personnel.addPersonnel);
 router.get("/getALlPersonnels", personnel.getAllPersonnels)
 router.get("/viewDetails/:personnelId", personnel.viewDetails)
 router.patch("/updatePersonnel/:personnelId", personnel.updatePersonnel)
+router.delete("/deletePersonnel/:personnelId", personnel.deletePersonnel)
+router.get("/backupPersonnelsData", personnel.backupPersonnelsData)
+router.get("/backupDentalsData", personnel.backupDentalsData)
+router.get("/backupMedicalOccupationalHistoryData", personnel.backupMedicalOccupationalHistoryData)
+router.get("/backupMedicalFamilyHistoryData", personnel.backupMedicalFamilyHistoryData)
+router.get("/backupMedicalPersonalHistoryData", personnel.backupMedicalPersonalHistoryData)
+router.get("/backupPhysicalExaminationsData", personnel.backupPhysicalExaminationsData)
+router.get("/backupPsychsData", personnel.backupPsychsData)
+router.get("/backupPtNotesData", personnel.backupPtNotesData)
+
 /* router.get("/getAllApplicant", middleware, applicant.getAllApplicant);
 router.put("/updateApplicant/:id", middleware, applicant.updateApplicant);
  */

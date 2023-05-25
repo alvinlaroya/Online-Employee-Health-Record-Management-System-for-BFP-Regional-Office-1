@@ -8,6 +8,11 @@ export default {
     ADD_PERSONNELS(state, payload) {
         state.personnels.unshift(payload)
     },
+    DELETE_PERSONNEL(state, payload) {
+        console.log("DELETE PERSONNEL ID", payload)
+        const newPersonnels = state.personnels.filter(personnel => personnel.id !== payload);
+        state.personnels = newPersonnels;
+    },
     SET_ALL_CASES(state, data) {
         state.cases = data
     },

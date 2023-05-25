@@ -22,13 +22,17 @@
       <template v-slot:item.action="{ item }">
         <v-menu offset-y>
           <template v-slot:activator="{ on }">
-            <v-icon class="mr-2" small v-on="on" > mdi-dots-vertical </v-icon>
-            
-            <v-icon small @click="deletePersonnel" :color="iconDeleteColor">mdi-delete-outline</v-icon>
-            <v-icon small class="mr-2 cursor-pointer" @click="openDialog(item)" >
+            <v-icon class="mr-2" small v-on="on"> mdi-dots-vertical </v-icon>
+
+            <v-icon
+              small
+              @click="deletePersonnelHandler(item)"
+              :color="iconDeleteColor"
+              >mdi-delete-outline</v-icon
+            >
+            <v-icon small class="mr-2 cursor-pointer" @click="openDialog(item)">
               mdi-file-eye-outline
             </v-icon>
-            
           </template>
           <v-list dense>
             <v-list-item
@@ -107,9 +111,9 @@ export default {
     currentTab: "view-detail",
     dialog: false,
     selectedItem: {},
-    iconDeleteColor: 'red',
-    iconFileColor: 'yellow',
-    iconDotColor: 'blue',
+    iconDeleteColor: "red",
+    iconFileColor: "yellow",
+    iconDotColor: "blue",
     headers: [
       {
         text: "Photo",
@@ -145,7 +149,7 @@ export default {
     ],
   }),
   methods: {
-    ...mapActions(["getPersonnels", "viewDetails"]),
+    ...mapActions(["getPersonnels", "viewDetails", "deletePersonnel"]),
     renderPhoto(src) {
       if (src) return `http://localhost:8000/${src}`;
 
@@ -170,8 +174,9 @@ export default {
     close() {
       this.dialog = false;
     },
-    deletePersonnel() {
-      console.log("delete");
+    deletePersonnelHandler(item) {
+      console.log("deletess", item.id);
+      this.deletePersonnel(item.id);
     },
   },
   computed: {

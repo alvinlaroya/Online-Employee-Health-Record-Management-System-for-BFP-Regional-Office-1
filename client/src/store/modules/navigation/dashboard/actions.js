@@ -64,6 +64,21 @@ export const addPersonnels = ({ commit, rootState, dispatch }, payload) => {
             console.log(error);
         });
 }
+
+export const deletePersonnel = async ({ commit, rootState, dispatch }, payload) => {
+    /* console.log("DELETE STATE", rootState.navigation.dashboard) */
+
+    const name = `${rootState.auth.auth.user.fname} ${rootState.auth.auth.user.lname}`
+
+    dispatch('addTransactionLog', {
+        name,
+        log: "delete personnel"
+    })
+
+    commit("DELETE_PERSONNEL", payload)
+
+    await EventService.deletePersonnel(payload);
+}
 // End of Personnel actions
 
 
@@ -144,5 +159,9 @@ export const addTransactionLog = async ({ commit }, payload) => {
 export const getAllTransactionLogs = async ({ commit }) => {
     const response = await TransactionLogService.getAllTransactionLogs();
     commit("SET_ALL_TRANSACTION_LOGS", response.data.data.rows)
+}
+
+export const backupData = async (_) => {
+    await EventService.backupData();
 }
 

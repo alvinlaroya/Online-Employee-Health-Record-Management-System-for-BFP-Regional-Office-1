@@ -2,7 +2,7 @@
   <v-container fluid class="px-5">
     <v-row>
       <v-col cols="12">
-        <h1>Personnel</h1>
+        <h1>Personnels</h1>
       </v-col>
     </v-row>
     <v-col>

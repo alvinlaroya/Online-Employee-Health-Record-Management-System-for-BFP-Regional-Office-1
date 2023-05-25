@@ -16,6 +16,7 @@ import History from "@/views/navigation/History";
 import AddNewUser from "@/views/navigation/User-Management/AddNewUser.vue";
 import DeleteUser from "@/views/navigation/User-Management/DeleteUser.vue";
 import ChangePassword from "@/views/navigation/User-Management/ChangePassword.vue";
+import Backup from "@/views/navigation/User-Management/Backup.vue";
 
 import TransactionLog from "@/views/navigation/User-Management/TransactionLog.vue";
 
@@ -199,7 +200,7 @@ const routes = [
         });
     },
   },
-  
+
   {
     path: "/change-password",
     name: "navigation.ChangePassword",
@@ -229,6 +230,30 @@ const routes = [
     name: "navigation.TransactionLog",
     components: {
       default: TransactionLog,
+      navbar: Navbar,
+      sidebar: Sidebar,
+    },
+    beforeEnter(to, from, next) {
+      Auth.isAuthenticated()
+        .then((response) => {
+          if (response) {
+            next(); // If authenticated, proceed with the redirect
+          } else {
+            next({ name: "auth.login" });
+          }
+          next();
+        })
+        .catch(() => {
+          next({ name: "auth.login" });
+        });
+    },
+  },
+
+  {
+    path: "/backup",
+    name: "navigation.backup",
+    components: {
+      default: Backup,
       navbar: Navbar,
       sidebar: Sidebar,
     },

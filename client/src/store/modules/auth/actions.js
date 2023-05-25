@@ -61,13 +61,14 @@ export const forgot = async ({ commit, dispatch }, payload) => {
 
 export const changePassword = async ({ state, dispatch }, payload) => {
 
-  const name = `${state.user.fname} ${state.user.lname}`
+  /*  const name = `${state.user.fname} ${state.user.lname}`
+ 
+   dispatch('navigation/addTransactionLog', {
+     name,
+     log: "change password"
+   }, { root: true }) */
 
-  dispatch('navigation/addTransactionLog', {
-    name,
-    log: "change password"
-  }, { root: true })
-
+  console.log("PAYLOAD EMAIL", payload)
   await EventService.changePassword(payload);
 }
 

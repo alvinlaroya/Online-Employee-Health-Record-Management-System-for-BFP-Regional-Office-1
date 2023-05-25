@@ -52,7 +52,7 @@ export default {
   },
   async changePassword(payload) {
     console.log(payload)
-    await axios.put(`${apiUrl}/user/changePassword`, payload, {
+    await axios.post(`${apiUrl}/user/changePassword`, payload, {
       headers: {
         "Content-Type": "application/json",
         "Access-Control-Allow-Credentials": "*",

@@ -5,7 +5,7 @@
         <v-card elevation="4">
           <v-card-title class="text-center">Change Password</v-card-title>
           <v-card-text>
-            <v-form @submit.prevent="changePassword">
+            <v-form>
               <v-text-field
                 dense
                 v-model="oldPassword"
@@ -67,6 +67,9 @@ export default {
         email: this.currentUser.email,
         oldPassword: this.oldPassword,
         newPassword: this.newPassword,
+      }).then(() => {
+        this.oldPassword = "";
+        this.newPassword = "";
       });
     },
   },
